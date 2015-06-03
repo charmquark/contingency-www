@@ -18,7 +18,7 @@
   <tbody>
     <% @members.each do |member| %>
       <tr>
-        <td><%= member.avatar %></td>
+        <td><%= member_avatar member, size: :small %></td>
         <td><%= member.biography %></td>
         <td><%= member.handle %></td>
         <td><%= member.email %></td>

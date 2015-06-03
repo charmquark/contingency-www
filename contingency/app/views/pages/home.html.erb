@@ -1,10 +1,19 @@
-<% content_for :header do %>
-    <h1>The Contingency</h1>
-<% end %>
-
 <section>
-    <h1>Games</h1>
-    <% Game.all.each do |game| %>
+    <p><i>(Summary intro to Contingency.)</i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent turpis nisl, volutpat ut sodales eu, varius eu nulla. Duis id ante cursus, dictum enim ut, auctor mi. Morbi nisl tortor, hendrerit sit amet finibus sit amet, commodo nec augue. Cras laoreet efficitur augue vitae tristique. Pellentesque vitae vehicula lorem, quis commodo ligula. Morbi sem eros, suscipit et dolor sit amet, interdum feugiat felis. Phasellus et rutrum dui. Sed et vulputate lectus. Suspendisse accumsan neque vitae magna dapibus placerat sed id magna. Praesent rhoncus porta diam quis ultrices. Vestibulum tincidunt, lorem sit amet vestibulum malesuada, orci turpis mollis est, nec lobortis lorem dolor sed erat. Sed a tellus ut sapien vulputate consequat ut et mi. Vestibulum congue sem eu lacus vulputate pellentesque. Suspendisse hendrerit aliquet quam, ut ultrices justo placerat vel. Vivamus placerat, erat a varius euismod, nisi erat bibendum tortor, quis dignissim sapien leo eget risus.</p>
+</section>
+<section>
+    <h2>Games</h2>
+    <% @games.each do |game| %>
         <%= game_banner game %>
     <% end %>
+    <%= link_to 'See all games.', games_path %>
+</section>
+<section>
+    <h2>Members</h2>
+    <% members_to_rank_groups(@members).each_pair do |rank, group| %>
+        <% group.each do |member| %>
+            <%= member_avatar member %>
+        <% end %>
+    <% end %>
+    <%= link_to 'See all members.', members_path %>
 </section>

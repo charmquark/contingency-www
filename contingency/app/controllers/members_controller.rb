@@ -64,7 +64,11 @@ class MembersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
-      @member = Member.find(params[:id])
+        # first try finding by handle, then fallback on raw id if needed
+        @member = Member.where(handle: params[:id]).first
+        if @member.nil? then
+            @member = Member.find(params[:id])
+        end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

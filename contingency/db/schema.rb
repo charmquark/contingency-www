@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602211829) do
+ActiveRecord::Schema.define(version: 20150603214423) do
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20150602211829) do
     t.datetime "banner_updated_at"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.text     "description"
+    t.text     "summary"
   end
 
   add_index "games", ["name"], name: "index_games_on_name", unique: true

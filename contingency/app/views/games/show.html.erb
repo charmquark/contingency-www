@@ -12,7 +12,17 @@
 
 <p>
   <strong>Banner:</strong>
-  <%= @game.banner %>
+  <%= game_banner @game %>
+</p>
+
+<p>
+    <strong>Summary:</strong>
+    <%= @game.summary %>
+</p>
+
+<p>
+    <strong>Description:</strong>
+    <%= @game.description %>
 </p>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |

@@ -22,7 +22,12 @@
 </head>
 <body class="<%= controller_name %>-controller">
     <header>
-        <%= yield :header %>
+        <h1>The Contingency <small><i>Functionality Prototype</i></small></h1>
+        <nav>
+            <%= link_to 'Home', root_path %>
+            <%= link_to 'Games', games_path %>
+            <%= link_to 'Members', members_path %>
+        </nav>
     </header>
     <main>
         <%= yield %>
