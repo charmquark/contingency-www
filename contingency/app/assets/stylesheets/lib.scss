@@ -1,0 +1,64 @@
+@mixin box-sizing($value) {
+    @include prefixed(box-sizing, $value, (-moz -webkit));
+}
+
+@mixin clearfix {
+    &:after {
+        display: table;
+        clear: both;
+        content: "";
+    }
+}
+
+@mixin desktop {
+    html.desktop & {
+        @content;
+    }
+}
+
+@mixin font-smoothing($value) {
+    @include prefixed-only(font-smoothing, $value, (-webkit));
+}
+
+@mixin margin-centered($width, $margin: null) {
+    width: 100%;
+    max-width: $width;
+
+    @if $margin == null {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @else {
+        margin: $margin auto;
+    }
+}
+
+@mixin mobile {
+    html.mobile &,
+    html.tablet & {
+        @content;
+    }
+}
+
+@mixin overflow-scrolling($value) {
+    @include prefixed-only(overflow-scrolling, $value, (-webkit));
+}
+
+@mixin perspective($value) { @include prefixed(perspective, $value, (-webkit)); }
+
+@mixin perspective-origin($value) { @include prefixed(perspective-origin, $value, (-webkit)); }
+
+@mixin prefixed($property, $value, $prefixes) {
+    @include prefixed-only($property, $value, $prefixes);
+    #{$property}: $value;
+}
+
+@mixin prefixed-only($property, $value, $prefixes) {
+    @each $prefix in $prefixes {
+        #{$prefix + '-' + $property}: $value;
+    }
+}
+
+@mixin transform($value) { @include prefixed(transform, $value, (-ms -webkit)); }
+
+@mixin transform-origin($value) { @include prefixed(transform-origin, $value, (-ms -webkit)); }
