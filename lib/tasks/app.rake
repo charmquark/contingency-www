@@ -6,9 +6,6 @@ namespace :app do
     PUMA_STATE_FILE     = 'tmp/pids/puma.state'
 
 
-    rails_env = ENV['RAILS_ENV'] || 'development'
-
-
     def invoke (id)
         Rake::Task[id].invoke
     end
@@ -18,8 +15,12 @@ namespace :app do
     end
 
 
+    invoke 'dotenv'
+    rails_env = ENV['RAILS_ENV'] || 'development'
+
+
     desc 'start application'
-    task :start do
+    task :start => :dotenv do
         unless puma_running?
             invoke 'tmp:create'
             #if rails_env != 'development'
@@ -34,7 +35,7 @@ namespace :app do
     end
 
     desc 'stop application'
-    task :stop do
+    task :stop => :dotenv do
         if puma_running?
             sh "kill -TERM `cat #{ PUMA_PID_FILE }`"
         end

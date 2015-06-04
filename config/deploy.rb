@@ -55,7 +55,8 @@ namespace :deploy do
     after :updated, 'app:dotenv' do
         on roles(:app) do |host|
             within release_path do
-                execute 'ln -s ../.env.staging .env.staging'
+                env_file = ".env.#{fetch :rails_env}"
+                execute "cp #{deploy_path}/#{env_file} ./#{env_file}"
             end
         end
     end

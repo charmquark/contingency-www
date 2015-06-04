@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 
 # Handy environment variable management
-gem 'dotenv'
+gem 'dotenv-rails'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
