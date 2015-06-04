@@ -1,6 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
+set :rails_env, fetch(:stage)
+
 set :application, 'contingency'
 set :repo_url, 'git@github.com:csauls/contingency-www.git'
 
@@ -43,7 +45,9 @@ namespace :deploy do
     after :started, 'app:stop' do
         on roles(:app) do |host|
             within release_path do
-                execute :rake, 'app:stop'
+                with rails_env: fetch(:rails_env) do
+                    execute :rake, 'app:stop'
+                end
             end
         end
     end
@@ -51,7 +55,9 @@ namespace :deploy do
     after :published, 'app:start' do
         on roles(:app) do |host|
             within release_path do
-                execute :rake, 'app:start'
+                with rails_env: fetch(:rails_env) do
+                    execute :rake, 'app:start'
+                end
             end
         end
     end
