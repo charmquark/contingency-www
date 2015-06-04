@@ -41,14 +41,18 @@ set :rvm_ruby_version, '2.0.0'
 namespace :deploy do
     
     after :started, 'app:stop' do
-        within release_path do
-            execute :rake, 'app:stop'
+        on roles(:app) do |host|
+            within release_path do
+                execute :rake, 'app:stop'
+            end
         end
     end
     
     after :published, 'app:start' do
-        within release_path do
-            execute :rake, 'app:start'
+        on roles(:app) do |host|
+            within release_path do
+                execute :rake, 'app:start'
+            end
         end
     end
 
