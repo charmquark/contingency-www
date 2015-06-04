@@ -1,11 +1,13 @@
-@import 'normalize.scss';
-@import 'config.scss';
-@import 'lib.scss';
+@import 'normalize';
+@import 'bourbon';
 
-@import 'site.scss';
+@import 'config';
+@import 'lib';
 
-@import 'games.scss';
-@import 'members.scss';
-@import 'pages.scss';
+@import 'site';
 
-//@import 'scaffolds.scss';
+@import 'games';
+@import 'members';
+@import 'pages';
+
+//@import 'scaffolds';

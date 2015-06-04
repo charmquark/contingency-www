@@ -45,3 +45,6 @@ gem 'puma'
 
 # Use paperclip to add image fields to models
 gem 'paperclip'
+
+# Use bourbon to make our SASS even nicer
+gem 'bourbon'
