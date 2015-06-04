@@ -11,8 +11,14 @@ stdout_redirect "log/#{ rails_env }.log", "log/#{ rails_env }_err.log"
 case rails_env
 when 'development'
     port 3000
+when 'staging'
+    bind 'unix:///var/run/puma/contingency-staging.sock'
+    pidfile 'tmp/pids/puma.pid'
+    state_path 'tmp/pids/puma.state'
+    daemonize
+    quiet
 when 'production'
-    bind 'unix:///var/run/puma/fincastali-www.sock'
+    bind 'unix:///var/run/puma/contingency.sock'
     pidfile 'tmp/pids/puma.pid'
     state_path 'tmp/pids/puma.state'
     daemonize
