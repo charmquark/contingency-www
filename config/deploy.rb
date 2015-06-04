@@ -52,7 +52,7 @@ namespace :deploy do
         end
     end
     
-    before :updating, 'app:dotenv' do
+    after 'deploy:bundle', 'app:dotenv' do
         on roles(:app) do |host|
             env_file = ".env.#{fetch :rails_env}"
             execute "cp #{deploy_path}/#{env_file} #{release_path}/#{env_file}"
