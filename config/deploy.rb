@@ -43,7 +43,7 @@ namespace :deploy do
     after :started, 'app:stop' do
         on roles(:app) do |host|
             within release_path do
-                #execute :rake, 'app:stop'
+                execute :rake, 'app:stop'
             end
         end
     end
@@ -51,7 +51,7 @@ namespace :deploy do
     after :published, 'app:start' do
         on roles(:app) do |host|
             within release_path do
-                #execute :rake, 'app:start'
+                execute :rake, 'app:start'
             end
         end
     end
