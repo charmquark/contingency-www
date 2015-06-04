@@ -40,3 +40,6 @@ bower.json
 
 # Ignore KDE directory settings
 .directory
+
+# Ignore the environment-specific .env files
+.env.*

@@ -52,6 +52,14 @@ namespace :deploy do
         end
     end
     
+    after :updated, 'app:dotenv' do
+        on roles(:app) do |host|
+            within release_path do
+                execute 'ln -s ../.env.staging .env.staging'
+            end
+        end
+    end
+    
     after :published, 'app:start' do
         on roles(:app) do |host|
             within release_path do
