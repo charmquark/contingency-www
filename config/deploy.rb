@@ -39,14 +39,26 @@ set :rvm_type, :auto
 set :rvm_ruby_version, '2.0.0'
 
 namespace :deploy do
-
-    after :restart, :clear_cache do
-        on roles(:web), in: :groups, limit: 3, wait: 10 do
-            # Here we can do anything such as:
-            # within release_path do
-            #   execute :rake, 'cache:clear'
-            # end
+    
+    after :started, roles: :app do
+        within release_path do
+            execute :rake, 'app:stop'
         end
     end
+    
+    after :published, roles: :app do
+        within release_path do
+            execute :rake, 'app:start'
+        end
+    end
+
+#     after :restart, :clear_cache do
+#         on roles(:web), in: :groups, limit: 3, wait: 10 do
+#             # Here we can do anything such as:
+#             # within release_path do
+#             #   execute :rake, 'cache:clear'
+#             # end
+#         end
+#     end
 
 end
