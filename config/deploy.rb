@@ -52,6 +52,13 @@ namespace :deploy do
         end
     end
     
+    after :updating, 'app:dotenv' do
+        on roles(:app) do |host|
+            env_file = ".env.#{fetch :rails_env}"
+            execute "cp #{deploy_path}/#{env_file} #{release_path}/#{env_file}"
+        end
+    end
+    
     after :published, 'app:start' do
         on roles(:app) do |host|
             within release_path do
@@ -70,16 +77,5 @@ namespace :deploy do
 #             # end
 #         end
 #     end
-
-end
-
-namespace :git do
-
-    after :create_release, 'app:dotenv' do
-        on roles(:app) do |host|
-            env_file = ".env.#{fetch :rails_env}"
-            execute "cp #{deploy_path}/#{env_file} #{release_path}/#{env_file}"
-        end
-    end
 
 end
