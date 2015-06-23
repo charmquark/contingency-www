@@ -10,4 +10,8 @@ module ApplicationHelper
         options[:class] = options.fetch(:class, '') + ' icon-2x'
         icon which, options
     end
+    
+    def icon_link_to(color, which, text, href, options = {})
+        link_to(icon(color, which) + content_tag(:span, text, class: 'text'), href, options)
+    end
 end

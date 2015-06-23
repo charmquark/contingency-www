@@ -1,4 +1,6 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
     @include prefixer(box-sizing, border-box, moz webkit spec);
     
     @include prefixer(font-smoothing, antialiased, webkit);
@@ -6,24 +8,23 @@
     font-smooth: always;
     
     @include prefixer(overflow-scrolling, touch, webkit);
-    
-    transition: all 0.25s;
 }
 
 html,
 body { @include size(100%); }
 
 body {
-    background: $black;
+    background-attachment: fixed;
+    background-color: $black;
+    background-image: url('/images/site-bg.jpg');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: $white-text;
 
-    font-size: 16px;
+    font-size: 14px;
     margin: 0px;
-    
-    .breakpoint-small & {
-        font-size: 14px;
-        padding-top: 3rem;
-    }
+    padding-top: 5rem;
 }
 
 a {

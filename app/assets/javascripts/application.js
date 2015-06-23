@@ -23,6 +23,7 @@ function init_header_menu() {
     var menuIcon = $('body > header .icon-menu');
     
     menuIcon.click(function() {
-        nav.toggleClass('shown');
+        menuIcon.toggleClass('nav-open');
+        nav.toggleClass('nav-open');
     });
 }

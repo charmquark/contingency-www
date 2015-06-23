@@ -10,3 +10,7 @@
         margin: $margin auto;
     }
 }
+
+%content-constraint {
+    .breakpoint-medium & { @include margin-centered(1000px); }
+}
