@@ -8,6 +8,7 @@ $icons-available: account-multiple, contingency-symbol, gamepad, home, menu;
     background-size: contain;
     
     display: inline-block;
+    transition: opacity 0.4s;
     
     &.icon-2x { @include size(4rem); }
     

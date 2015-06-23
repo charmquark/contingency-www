@@ -1,10 +1,10 @@
 //= require modernizr/modernizr-dev.min
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_self
 //= require metaquery/metaquery.min
 //= require_tree .
+//= require turbolinks
 
 
 Modernizr.load([{
@@ -13,7 +13,7 @@ Modernizr.load([{
 }]);
 
 
-$(function() {
+$(document).on('page:change', function() {
     init_header_menu();
 });
 

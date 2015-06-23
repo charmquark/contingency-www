@@ -13,12 +13,30 @@ body > header {
     > div {
         @include clearfix;
         
-        a .text { color: $white-icon; }
+        a {
+            .text {
+                color: $white-icon;
+                
+                transition: color 0.4s;
+            }
+            
+            &:hover {
+                .icon { opacity: 1; }
+                
+                .text { color: $white; }
+            }
+        }
         
         h1 {
             display: inline-block;
+            transition: color 0.4s;
             
-            .icon { vertical-align: middle; }
+            .icon {
+                vertical-align: middle;
+                
+                position: relative;
+                top: -1px;
+            }
         }
     }
 
@@ -52,6 +70,7 @@ body > header {
                 top: 0px;
                 left: 100%;
                 
+                transition: left 0.4s;
                 z-index: -1;
                 
                 &.nav-open { left: 0px; }
@@ -70,6 +89,8 @@ body > header {
             
             .icon-menu {
                 float: right;
+                
+                transition: transform 0.4s;
                 
                 &.nav-open { @include transform(rotate(360deg)); }
             }
@@ -109,6 +130,7 @@ body > header {
                     position: relative;
                     
                     display: inline-block;
+                    transition: background 0.4s;
                     
                     .icon {
                         position: absolute;
