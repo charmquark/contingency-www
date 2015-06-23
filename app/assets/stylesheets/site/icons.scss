@@ -1,0 +1,33 @@
+$icons-available: contingency-symbol, menu;
+
+.icon {
+    @include size(2rem);
+    
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+    display: inline-block;
+    
+    &.icon-2x { @include size(4rem); }
+    
+    &.icon-black {
+        opacity: $alpha-black-icon;
+        
+        &:hover { opacity: $alpha-black-text; }
+        
+        @each $icon in $icons-available {
+            &.icon-#{$icon} { background-image: url("/images/icons/#{$icon}-black.png"); }
+        }
+    }
+    
+    &.icon-white {
+        opacity: $alpha-white-icon;
+        
+        &:hover { opacity: $alpha-white-text; }
+        
+        @each $icon in $icons-available {
+            &.icon-#{$icon} { background-image: url("/images/icons/#{$icon}-white.png"); }
+        }
+    }
+}

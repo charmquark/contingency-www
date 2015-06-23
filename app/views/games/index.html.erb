@@ -7,6 +7,7 @@
     <tr>
       <th>Name</th>
       <th>Slug</th>
+      <th>Featured</th>
       <th>Banner</th>
       <th>Summary</th>
       <th>Description</th>
@@ -19,6 +20,7 @@
       <tr>
         <td><%= game.name %></td>
         <td><%= game.slug %></td>
+        <td><%= game.featured? ? 'Yes' : 'No' %></td>
         <td><%= game_banner game, size: :small %></td>
         <td><%= game.summary %></td>
         <td><%= game.description %></td>

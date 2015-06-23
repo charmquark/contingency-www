@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-<html lang="en-us">
+<html class="no-js" lang="en-us">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
@@ -8,32 +7,38 @@
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="x-rim-auto-match" content="none">
 
+    <!-- metaquery breakpoints -->
+    <meta name="breakpoint" content="small" media="(max-width: 420px)">
+    <meta name="breakpoint" content="medium" media="(min-width: 421px)">
+    <meta name="breakpoint" content="retina" media="(-webkit-min-device-pixel-ratio: 2)">
+    
     <title><%= yield :title %>The Contingency</title>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
-    <!--<script src="js/modernizr.js"></script>
-    <script src="js/detectizr.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="js/application.js"></script>-->
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     
     <%= csrf_meta_tags %>
 </head>
-<body class="<%= controller_name %>-controller">
+<body class="<%= controller_name %>-controller <%= action_name %>-action">
     <header>
-        <h1>The Contingency <small><i>Functionality Prototype</i></small></h1>
-        <nav>
-            <%= link_to 'Home', root_path %>
-            <%= link_to 'Games', games_path %>
-            <%= link_to 'Members', members_path %>
-        </nav>
+        <div>
+            <h1><%= icon :white, 'contingency-symbol' %>The Contingency</h1>
+            <%= icon :white, :menu %>
+            <nav>
+                <%= link_to 'Home', root_path %>
+                <%= link_to 'Games', games_path %>
+                <%= link_to 'Members', members_path %>
+            </nav>
+        </div>
     </header>
     <main>
         <%= yield %>
     </main>
     <footer>
-        <div id="copyright">Copyright &copy; 2015, The Contingency. All rights reserved.</div>
+        <div>
+            <div id="copyright">Copyright &copy; 2015, The Contingency. All rights reserved.</div>
+        </div>
     </footer>
 </body>
 </html>

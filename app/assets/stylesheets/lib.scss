@@ -1,9 +1,3 @@
-@mixin desktop {
-    html.desktop & {
-        @content;
-    }
-}
-
 @mixin margin-centered($width, $margin: null) {
     width: 100%;
     max-width: $width;
@@ -14,12 +8,5 @@
     }
     @else {
         margin: $margin auto;
-    }
-}
-
-@mixin mobile {
-    html.mobile &,
-    html.tablet & {
-        @content;
     }
 }
