@@ -1,0 +1,50 @@
+@mixin footer-dependant-sizes($gap) {
+    margin-top: $gap * 2;
+    padding: $gap 0px;
+    
+    nav,
+    .copyright { margin-top: $gap; }
+}
+
+body > footer {
+    color: $white-icon;
+    text-align: center;
+    
+    width: 100%;
+    
+    > div { @extend %content-centered; }
+    
+    .breakpoint-small & {
+        background: $blue-grey-900;
+        
+        nav { display: none; }
+        
+        @include footer-dependant-sizes($gap-small);
+    }
+    
+    .breakpoint-medium & {
+        background: $blue-grey-900;
+        
+        position: relative;
+        
+        nav {
+            a {
+                color: $white-icon;
+                
+                height: 50px;
+                width: 100px;
+                
+                font-size: 15px;
+                line-height: 50px;
+                
+                display: inline-block;
+            }
+        }
+        
+        @include footer-dependant-sizes($gap-medium);
+    }
+    
+    .breakpoint-large & { @include footer-dependant-sizes($gap-large); }
+    
+    .breakpoint-wide & { @include footer-dependant-sizes($gap-wide); }
+}

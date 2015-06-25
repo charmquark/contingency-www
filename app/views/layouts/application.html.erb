@@ -10,6 +10,8 @@
     <!-- metaquery breakpoints -->
     <meta name="breakpoint" content="small" media="(max-width: 799px)">
     <meta name="breakpoint" content="medium" media="(min-width: 800px)">
+    <meta name="breakpoint" content="large" media="(min-width: 1060px)">
+    <meta name="breakpoint" content="wide" media="(min-width: 1600px)">
     <meta name="breakpoint" content="retina" media="(-webkit-min-device-pixel-ratio: 2)">
     
     <title><%= yield :title %>The Contingency</title>
@@ -26,8 +28,8 @@
             <h1><%= icon_link_to :white, 'contingency-symbol', 'The Contingency', root_path %></h1>
             <%= icon :white, :menu %>
             <nav>
-                <%= icon_link_to :white, :gamepad, 'Games', games_path %>
-                <%= icon_link_to :white, 'account-multiple', 'Members', members_path %>
+                <%= icon_link_to :white, :gamepad, 'Games', games_path, class: 'hover-hilite' %>
+                <%= icon_link_to :white, 'account-multiple', 'Members', members_path, class: 'hover-hilite' %>
             </nav>
         </div>
     </header>
@@ -37,6 +39,10 @@
     <footer>
         <div>
             <div class="copyright">Copyright &copy; 2015, The Contingency. All rights reserved.</div>
+            <nav>
+                <%= link_to 'Games', games_path, class: 'hover-hilite' %>
+                <%= link_to 'Members', members_path, class: 'hover-hilite' %>
+            </nav>
         </div>
     </footer>
 </body>

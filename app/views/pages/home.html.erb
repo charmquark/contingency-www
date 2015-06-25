@@ -1,26 +1,29 @@
 <section class="intro">
     <div>
-        <p>
-        <p><i>(Summary intro to Contingency.)</i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent turpis nisl, volutpat ut sodales eu, varius eu nulla. Duis id ante cursus, dictum enim ut, auctor mi. Morbi nisl tortor, hendrerit sit amet finibus sit amet, commodo nec augue. Cras laoreet efficitur augue vitae tristique. Pellentesque vitae vehicula lorem, quis commodo ligula. Morbi sem eros, suscipit et dolor sit amet, interdum feugiat felis. Phasellus et rutrum dui. Sed et vulputate lectus. Suspendisse accumsan neque vitae magna dapibus placerat sed id magna. Praesent rhoncus porta diam quis ultrices. Vestibulum tincidunt, lorem sit amet vestibulum malesuada, orci turpis mollis est, nec lobortis lorem dolor sed erat. Sed a tellus ut sapien vulputate consequat ut et mi. Vestibulum congue sem eu lacus vulputate pellentesque. Suspendisse hendrerit aliquet quam, ut ultrices justo placerat vel. Vivamus placerat, erat a varius euismod, nisi erat bibendum tortor, quis dignissim sapien leo eget risus.</p>
+        <p>The Contingency is a community of friends united by a love of gaming and a general philosophy of curiosity, innovation, and hilarity. What began as a technical Minecraft server has expanded to encompass many kinds of experiences: survival games, shooters, minigames, building games, online board games, and more. Members often stream their activity at Twitch.tv and/or post videos to YouTube; and we love to interact with viewers. Depending on what's going on, we will sometimes invite viewers to tag along!</p>
     </div>
 </section>
-<section class="games">
-    <div>
-        <h2>Games</h2>
-        <% @games.where( featured: true ).each do |game| %>
-            <%= game_banner game %>
-        <% end %>
-        <%= link_to 'See all games.', games_path %>
-    </div>
-</section>
-<section class="members">
-    <div>
-        <h2>Members</h2>
-        <% members_to_rank_groups(@members).each_pair do |rank, group| %>
-            <% group.each do |member| %>
-                <%= member_avatar member %>
-            <% end %>
-        <% end %>
-        <%= link_to 'See all members.', members_path %>
-    </div>
-</section>
+<span class="row-large row-of-halfs">
+    <section class="games">
+        <div>
+            <h2>Some of Our Favorite Games</h2>
+            <ul class="games-list">
+                <%- @games.each do |game| -%>
+                    <li><%= game_banner game %></li>
+                <%- end -%>
+                <li class="see-all"><%= link_to 'All Games', games_path %></li>
+            </ul>
+        </div>
+    </section>
+    <section class="members">
+        <div>
+            <h2>Some of Our Members</h2>
+            <ul class="members-list">
+                <%- @members.each do |member| -%>
+                    <li><%= member_avatar member %></li>
+                <%- end -%>
+                <li class="see-all"><%= link_to 'All Members', members_path %></li>
+            </ul>
+        </div>
+    </section>
+</span>

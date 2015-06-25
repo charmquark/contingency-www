@@ -1,0 +1,31 @@
+.breakpoint-large .row-large,
+.breakpoint-wide .row-large,
+.breakpoint-wide .row-wide {
+    @extend %content-centered;
+    
+    position: relative;
+    
+    display: block;
+
+    &.row-of-halfs {
+        @include clearfix;
+        
+        > :first-child { float: left; }
+        > :last-child { float: right; }
+    }
+}
+
+.breakpoint-large .row-large {
+    &.row-of-halfs {
+        > :first-child,
+        > :last-child { width: ($content-width-large / 2) - ($gap-large / 2); }
+    }
+}
+
+.breakpoint-wide .row-large,
+.breakpoint-wide .row-wide {
+    &.row-of-halfs {
+        > :first-child,
+        > :last-child { width: ($content-width-wide / 2) - ($gap-wide / 2); }
+    }
+}

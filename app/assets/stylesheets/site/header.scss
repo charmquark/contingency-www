@@ -1,24 +1,50 @@
+@mixin header-dependant-sizes($ht) {
+    $-nav-icon-sz: $ht / 1.5;
+    
+    > div {
+        height: $ht;
+        
+        h1 {
+            font-size: $ht / 2;
+            line-height: $ht;
+            
+            .icon { @include size($ht * 0.666666); }
+        }
+
+        nav {
+            a {
+                height: $ht;
+                
+                font-size: $ht / 4;
+                line-height: $ht;
+                
+                .icon {
+                    @include size($-nav-icon-sz);
+                    
+                    left: (($header-nav-link-width - $-nav-icon-sz) / 2);
+                }
+                
+                .text { top: $ht / 4; }
+            }
+        }
+    }
+}
+
 body > header {
-    background: rgba($blue-grey-900, 0.6);
     color: $white-icon;
 
     width: 100%;
     height: auto;
-
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
+    
+    z-index: 1000;
     
     > div {
+        @extend %content-centered;
+        
         @include clearfix;
         
         a {
-            .text {
-                color: $white-icon;
-                
-                transition: color 0.4s;
-            }
+            .text { color: $white-icon; }
             
             &:hover {
                 .icon { opacity: 1; }
@@ -28,8 +54,9 @@ body > header {
         }
         
         h1 {
+            margin: 0px;
+            
             display: inline-block;
-            transition: color 0.4s;
             
             .icon {
                 vertical-align: middle;
@@ -39,38 +66,48 @@ body > header {
             }
         }
     }
+    
+    .breakpoint-small &,
+    .breakpoint-medium & {
+        background: $blue-grey-900;
+
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+    }
 
     .breakpoint-small & {
-        background: $blue-grey-900;
-        
-        z-index: 0;
-        
         > div {
-            height: 2rem;
+            height: $header-height-small;
             
-            margin: 0.4rem;
+            margin: ($gap-small / 2) 0px;
+            padding: 0px $gap-small;
             
             h1 {
-                font-size: 1.2rem;
-                line-height: 2rem;
-                margin: 0px;
+                font-size: 20px;
+                line-height: 30px;
                 
-                .icon { margin-right: 0.4rem; }
+                .icon {
+                    @include size(30px);
+                    
+                    margin-right: 5px;
+                }
             }
             
             nav {
-                background: $blue-grey-700;
+                background: $link-hilite;
                 
                 width: 100%;
                 height: auto;
                 
-                padding: 2.6rem 0.4rem 0.4rem 0.4rem;
+                font-size: 30px;
+                padding-top: $header-height-small;
 
                 position: absolute;
                 top: 0px;
                 left: 100%;
                 
-                transition: left 0.4s;
                 z-index: -1;
                 
                 &.nav-open { left: 0px; }
@@ -78,19 +115,30 @@ body > header {
                 a {
                     text-align: right;
                     
-                    font-size: 1.4rem;
-                    padding: 0.6rem 0px;
+                    margin: $gap-small 0px;
+                    padding: ($gap-small / 2) $gap-small;
                     
                     display: block;
+                    
+                    &:after {
+                        color: $white-icon;
+                        content: "\2023";
+                        
+                        margin-left: 5px;
+                    }
+                    
+                    &:hover:after { color: $white; }
                     
                     .icon { display: none; }
                 }
             }
             
             .icon-menu {
+                @include size(30px);
+                
                 float: right;
                 
-                transition: transform 0.4s;
+                transition-property: transform;
                 
                 &.nav-open { @include transform(rotate(360deg)); }
             }
@@ -98,61 +146,61 @@ body > header {
     }
     
     .breakpoint-medium & {
+        @include header-dependant-sizes($header-height-medium);
+        
         > div {
-            @extend %content-constraint;
-            
-            padding: 1rem;
-            
             position: relative;
             
             h1 {
-                vertical-align: middle;
-                
-                font-size: 1.6rem;
-                line-height: 3rem;
                 margin: 0px;
                 
-                .icon { margin-right: 1rem; }
+                .icon { margin-right: 5px; }
             }
             
             nav {
-                vertical-align: middle;
-                
                 float: right;
                 
                 a {
+                    font-weight: bold;
                     text-align: center;
                     
-                    width: 6rem;
-                    
-                    line-height: 3rem;
-                    
+                    width: $header-nav-link-width;
+
                     position: relative;
                     
                     display: inline-block;
-                    transition: background 0.4s;
                     
                     .icon {
                         position: absolute;
                         top: 0px;
-                        left: 2rem;
                     }
                     
                     .text {
-                        font-weight: bold;
-                        
                         position: relative;
-                        top: 1rem;
                         
                         display: inline-block;
                     }
-                    
-                    &:hover { background: $blue-grey-700; }
                 }
+                
             }
             
             .icon-menu { display: none; }
         }
     }
     
+    .breakpoint-large & {
+        @include better-linear-gradient($blue-grey-900, rgba($blue-grey-900, 0));
+        
+        padding-bottom: $gap-large;
+        
+        position: static;
+        
+        @include header-dependant-sizes($header-height-large);
+    }
+    
+    .breakpoint-wide & {
+        padding-bottom: $gap-wide;
+        
+        @include header-dependant-sizes($header-height-wide);
+    }
 }

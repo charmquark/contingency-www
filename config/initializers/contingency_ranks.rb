@@ -12,8 +12,10 @@ module ContingencyRanks
         
         
         def <=>(other)
+            other = other.to_sym if other.is_a? String
+            other = RANKS_BY_SYMBOL[other] if other.is_a? Symbol
             return nil unless other.is_a? Rank
-            @value <=> other.value
+            other.value <=> @value
         end
         
     end

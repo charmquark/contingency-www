@@ -23,4 +23,21 @@ class Member < ActiveRecord::Base
     def to_param
         handle
     end
+    
+    def self.to_rank_groups(members)
+        result = Hash.new {|hash, key| hash[key] = [] }
+        members.each do |member|
+            result[member.rank.to_sym] << member
+        end
+        result
+    end
+    
+    def self.to_rank_order(members)
+        groups = to_rank_groups members
+        result = []
+        ContingencyRanks::RANKS.each do |r|
+            result.concat groups[r.symbol]
+        end
+        result
+    end
 end

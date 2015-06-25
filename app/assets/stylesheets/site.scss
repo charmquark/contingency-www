@@ -8,6 +8,8 @@
     font-smooth: always;
     
     @include prefixer(overflow-scrolling, touch, webkit);
+    @include prefixer(transition-duration, 0.4s, moz o webkit);
+    @include prefixer(transition-timing-function, linear, moz o webkit);
 }
 
 html,
@@ -22,16 +24,53 @@ body {
     background-size: cover;
     color: $white-text;
 
-    font-size: 14px;
     margin: 0px;
-    padding-top: 5rem;
+    
+    .breakpoint-small & {
+        font-size: 14px;
+        
+        padding-top: $header-height-small + $gap-small;
+    }
+    
+    .breakpoint-medium & {
+        font-size: 16px;
+        
+        padding-top: $header-height-medium + $gap-medium;
+    }
+    
+    .breakpoint-large & { padding-top: 0px; }
 }
 
 a {
     color: $white-text;
     text-decoration: none;
+    
+    &.hover-hilite:hover { background: $blue-grey-700; }
 }
 
-@import 'site/icons';
+form {
+    input,
+    textarea {
+        color: $black-text;
+    }
+}
 
+main {
+    z-index: 100;
+    
+    section {
+        .breakpoint-small & { margin-bottom: $gap-small; }
+        
+        .breakpoint-medium & { margin-bottom: $gap-medium; }
+        
+        .breakpoint-large & { margin-bottom: $gap-large; }
+        
+        .breakpoint-wide & { margin-bottom: $gap-wide; }
+    }
+}
+
+
+@import 'site/footer';
 @import 'site/header';
+@import 'site/icons';
+@import 'site/rows';

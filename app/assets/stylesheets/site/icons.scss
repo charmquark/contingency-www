@@ -1,16 +1,13 @@
-$icons-available: account-multiple, contingency-symbol, gamepad, home, menu;
-
 .icon {
-    @include size(2rem);
+    @include size($icon-size);
     
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
     
     display: inline-block;
-    transition: opacity 0.4s;
     
-    &.icon-2x { @include size(4rem); }
+    &.icon-2x { @include size($icon-size * 2); }
     
     &.icon-black {
         opacity: $alpha-black-icon;

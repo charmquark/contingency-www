@@ -1,3 +1,40 @@
-// Place all the styles related to the members controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+a.member-avatar {
+    width: $member-avatar-width;
+    height: $member-avatar-height;
+    
+    position: relative;
+    
+    display: inline-block;
+    
+    img.member-avatar {
+        @include size(100%);
+
+        display: inline-block;
+    }
+    
+    span.member-handle {
+        //background: linear-gradient(rgba($black, 0), rgba($black, 0.6));
+        background: rgba($black, 0.2);
+        color: $white-text;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0px 1px 10px $black-text;
+        
+        width: 100%;
+        height: $member-avatar-height / 6;
+        
+        font-size: ($member-avatar-height / 25) * 2.5;
+        letter-spacing: 0.5px;
+        line-height: $member-avatar-height / 6;
+        padding-bottom: 5px;
+        
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        
+        display: inline-block;
+        
+        .breakpoint-small & { display: none; }
+    }
+}

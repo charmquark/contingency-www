@@ -1,3 +1,9 @@
+@mixin better-linear-gradient($first, $second) {
+    background: $first;
+    background: -webkit-linear-gradient($first, $second);
+    background: linear-gradient($first, $second);
+}
+
 @mixin margin-centered($width, $margin: null) {
     width: 100%;
     max-width: $width;
@@ -11,6 +17,12 @@
     }
 }
 
-%content-constraint {
-    .breakpoint-medium & { @include margin-centered(1000px); }
+%content-centered {
+    .breakpoint-small & { @include margin-centered($content-width-small); }
+    
+    .breakpoint-medium & { @include margin-centered($content-width-medium); }
+    
+    .breakpoint-large & { @include margin-centered($content-width-large); }
+    
+    .breakpoint-wide & { @include margin-centered($content-width-wide); }
 }

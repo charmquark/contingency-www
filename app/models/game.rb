@@ -1,10 +1,4 @@
 class Game < ActiveRecord::Base
-    BANNER_SIZES = {
-        normal: '250x125',
-        small:  '150x75'
-    }
-    
-    
     has_attached_file :banner
     
     validates :banner,
