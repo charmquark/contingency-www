@@ -62,8 +62,9 @@ body > header {
                 vertical-align: middle;
                 
                 position: relative;
-                top: -1px;
             }
+            
+            .text { vertical-align: middle; }
         }
     }
     
@@ -81,8 +82,8 @@ body > header {
         > div {
             height: $header-height-small;
             
-            margin: ($gap-small / 2) 0px;
-            padding: 0px $gap-small;
+            margin: ($pad-small / 2) 0px;
+            padding: 0px $pad-small;
             
             h1 {
                 font-size: 20px;
@@ -115,8 +116,8 @@ body > header {
                 a {
                     text-align: right;
                     
-                    margin: $gap-small 0px;
-                    padding: ($gap-small / 2) $gap-small;
+                    margin: $pad-small 0px;
+                    padding: ($pad-small / 2) $pad-small;
                     
                     display: block;
                     
@@ -191,7 +192,7 @@ body > header {
     .breakpoint-large & {
         @include better-linear-gradient($blue-grey-900, rgba($blue-grey-900, 0));
         
-        padding-bottom: $gap-large;
+        padding-bottom: $pad-large;
         
         position: static;
         
@@ -199,7 +200,7 @@ body > header {
     }
     
     .breakpoint-wide & {
-        padding-bottom: $gap-wide;
+        padding-bottom: $pad-wide;
         
         @include header-dependant-sizes($header-height-wide);
     }

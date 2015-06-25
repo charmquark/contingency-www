@@ -1,17 +1,17 @@
+@import url('http://fonts.googleapis.com/css?family=Lato:300,400|Forum');
+
+$font-lato:     'Lato', 'Roboto', sans-serif;
+$font-forum:    'Forum', 'Roboto', sans-serif;
+
 @import 'config/colors';
 
 $content-width-small:   800px;
 $content-width-medium:  800px;
-$content-width-large:   1020px;
-$content-width-wide:    1540px;
+$content-width-large:   1110px;
+$content-width-wide:    1720px;
 
 $game-banner-width:     250px;
 $game-banner-height:    $game-banner-width / 2;
-
-$gap-small:     10px;
-$gap-medium:    10px;
-$gap-large:     20px;
-$gap-wide:      40px;
 
 $header-height-small:   30px;
 $header-height-medium:  45px;
@@ -25,5 +25,15 @@ $icon-size:         $game-banner-height / 5;
 
 $link-hilite: $blue-grey-700;
 
+$pad-small:     10px;
+$pad-medium:    10px;
+$pad-large:     20px;
+$pad-wide:      40px;
+
 $member-avatar-width:   $game-banner-height;
 $member-avatar-height:  $member-avatar-width;
+
+$spacing-small:     $pad-small * 1.5;   /* 10 * 1.5 = 15 */
+$spacing-medium:    $pad-medium * 1.5;  /* 10 * 1.5 = 15 */
+$spacing-large:     $pad-large * 1.5;   /* 20 * 1.5 = 30 */
+$spacing-wide:      $pad-wide * 1.5;    /* 40 * 1.5 = 60 */

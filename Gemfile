@@ -53,3 +53,6 @@ gem 'paperclip'
 
 # Use bourbon to make our SASS even nicer
 gem 'bourbon'
+
+# Use RedCarpet to render news post content as Markdown
+gem 'redcarpet'

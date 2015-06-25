@@ -1,4 +1,16 @@
+.breakpoint-small .row-medium,
+.breakpoint-small .row-large,
+.breakpoint-small .row-wide,
+.breakpoint-medium:not(.breakpoint-large) .row-large,
+.breakpoint-medium:not(.breakpoint-wide) .row-wide,
+.breakpoint-large:not(.breakpoint-wide) .row-wide {
+    > section > div { @extend %content-centered; }
+}
+
+.breakpoint-medium .row-medium,
+.breakpoint-large .row-medium,
 .breakpoint-large .row-large,
+.breakpoint-wide .row-medium,
 .breakpoint-wide .row-large,
 .breakpoint-wide .row-wide {
     @extend %content-centered;
@@ -15,17 +27,29 @@
     }
 }
 
-.breakpoint-large .row-large {
-    &.row-of-halfs {
-        > :first-child,
-        > :last-child { width: ($content-width-large / 2) - ($gap-large / 2); }
+.breakpoint-medium {
+    .row-medium {
+        &.row-of-halfs {
+            > * { width: ($content-width-medium / 2) - ($spacing-medium / 2); }
+        }
     }
 }
 
-.breakpoint-wide .row-large,
-.breakpoint-wide .row-wide {
-    &.row-of-halfs {
-        > :first-child,
-        > :last-child { width: ($content-width-wide / 2) - ($gap-wide / 2); }
+.breakpoint-large {
+    .row-medium,
+    .row-large {
+        &.row-of-halfs {
+            > * { width: ($content-width-large / 2) - ($spacing-large / 2); }
+        }
+    }
+}
+
+.breakpoint-wide {
+    .row-medium,
+    .row-large,
+    .row-wide {
+        &.row-of-halfs {
+            > * { width: ($content-width-wide / 2) - ($spacing-wide / 2); }
+        }
     }
 }

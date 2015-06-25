@@ -4,7 +4,8 @@ class Game < ActiveRecord::Base
     validates :banner,
         attachment_presence: true,
         attachment_content_type: { content_type: 'image/jpeg' }
-    
+
+    has_many :news_post
     
     def to_param
         slug

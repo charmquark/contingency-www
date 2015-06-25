@@ -1,9 +1,8 @@
-@mixin footer-dependant-sizes($gap) {
-    margin-top: $gap * 2;
-    padding: $gap 0px;
+@mixin footer-dependant-sizes($spacing) {
+    margin-top: $spacing * 2;
+    padding: $spacing 0px;
     
-    nav,
-    .copyright { margin-top: $gap; }
+    nav { margin-top: $spacing; }
 }
 
 body > footer {
@@ -19,7 +18,7 @@ body > footer {
         
         nav { display: none; }
         
-        @include footer-dependant-sizes($gap-small);
+        @include footer-dependant-sizes($pad-small);
     }
     
     .breakpoint-medium & {
@@ -41,10 +40,10 @@ body > footer {
             }
         }
         
-        @include footer-dependant-sizes($gap-medium);
+        @include footer-dependant-sizes($pad-medium);
     }
     
-    .breakpoint-large & { @include footer-dependant-sizes($gap-large); }
+    .breakpoint-large & { @include footer-dependant-sizes($pad-large); }
     
-    .breakpoint-wide & { @include footer-dependant-sizes($gap-wide); }
+    .breakpoint-wide & { @include footer-dependant-sizes($pad-wide); }
 }

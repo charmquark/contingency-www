@@ -10,8 +10,8 @@
     <!-- metaquery breakpoints -->
     <meta name="breakpoint" content="small" media="(max-width: 799px)">
     <meta name="breakpoint" content="medium" media="(min-width: 800px)">
-    <meta name="breakpoint" content="large" media="(min-width: 1060px)">
-    <meta name="breakpoint" content="wide" media="(min-width: 1600px)">
+    <meta name="breakpoint" content="large" media="(min-width: 1150px)">
+    <meta name="breakpoint" content="wide" media="(min-width: 1780px)">
     <meta name="breakpoint" content="retina" media="(-webkit-min-device-pixel-ratio: 2)">
     
     <title><%= yield :title %>The Contingency</title>
@@ -23,6 +23,7 @@
     <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %>-controller <%= action_name %>-action">
+    <img class="top-bg" src="/images/top-bg/<%= '%02d' % (Random.rand(3) + 1) %>.png">
     <header>
         <div>
             <h1><%= icon_link_to :white, 'contingency-symbol', 'The Contingency', root_path %></h1>

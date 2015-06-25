@@ -1,6 +1,7 @@
 body.pages-controller.home-action {
-    main {
-        section {
+    > main {
+        > section,
+        > span > section {
             &.games,
             &.members {
                 > div { text-align: center; }
@@ -33,20 +34,7 @@ body.pages-controller.home-action {
                         display: inline-block;
                     }
                     
-                    &.see-all {
-                        background: rgba($blue-grey-900, $alpha-black-icon);
-                        text-align: center;
-                        
-                        &:hover { background: $blue-grey-700; }
-                        
-                        a {
-                            color: $white-icon;
-                            
-                            font-size: 20px;
-                            
-                            &:hover { color: $white; }
-                        }
-                    }
+                    &.see-all a { font-size: 20px; }
                 }
             }
             
@@ -55,26 +43,17 @@ body.pages-controller.home-action {
                 height: $game-banner-height;
             }
             
-            &.intro {
-                padding: 10px;
-                
-                > div { @extend %content-centered; }
-                
-                p { margin: 0px; }
-            }
-            
             &.members .members-list > li {
                 width: $member-avatar-width;
                 height: $member-avatar-height;
             }
-            
-            h2 { margin: 20px; }
         }
     }
     
     .breakpoint-small & {
-        main {
-            section {
+        > main {
+            > section,
+            > span > section {
                 &.games {
                     .games-list > li {
                         width: 50%;
@@ -94,7 +73,7 @@ body.pages-controller.home-action {
                     > li.see-all {
                         width: 100%;
                         
-                        a { line-height: 60px; }
+                        margin: $spacing-small 0px;
                     }
                 }
             }
@@ -102,63 +81,44 @@ body.pages-controller.home-action {
     }
     
     .breakpoint-medium & {
-        main {
-            section {
+        > main {
+            > section,
+            > span > section {
                 &.games {
                     .games-list { width: $game-banner-width * 3; }
-                }
-                
-                &.intro {
-                    > div { @include margin-centered($content-width-medium); }
                 }
                 
                 &.members {
                     .members-list { width: $member-avatar-width * 6; }
                 }
                 
-                .games-list > li.see-all a { line-height: $game-banner-height; }
+                .games-list > li.see-all a {
+                    line-height: $game-banner-height;
+                    padding: 0px;
+                }
                 
-                .members-list > li.see-all a { line-height: $member-avatar-height; }
+                .members-list > li.see-all a {
+                    line-height: $member-avatar-height;
+                    padding: 0;
+                }
             }
         }
     }
     
     .breakpoint-large & {
-        main {
-            section {
+        > main {
+            > section,
+            > span > section {
                 &.games {
                     > div { text-align: left; }
                     
                     .games-list { width: 100%; }
                 }
                 
-                &.intro {
-                    p {
-                        @include prefixer(column-count, 2, moz webkit);
-                        @include prefixer(column-gap, $gap-large, moz webkit);
-                        
-                        text-align: justify;
-                    }
-                }
-                
                 &.members {
-                    > div { text-align: right; }
+                    > div { text-align: left; }
                     
-                    .members-list {
-                        width: 100%;
-                        
-                        > li { float: right; }
-                    }
-                }
-            }
-        }
-    }
-    
-    .breakpoint-wide & {
-        main {
-            section {
-                &.intro {
-                    p { @include prefixer(column-gap, $gap-wide, moz webkit); }
+                    .members-list { width: 100%; }
                 }
             }
         }

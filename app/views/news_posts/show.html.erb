@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @news_post.title %>
+</p>
+
+<p>
+  <strong>Member:</strong>
+  <%= @news_post.member %>
+</p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @news_post.game %>
+</p>
+
+<p>
+  <strong>Short body:</strong>
+  <%= @news_post.short_body %>
+</p>
+
+<p>
+  <strong>Long body:</strong>
+  <%= @news_post.long_body %>
+</p>
+
+<%= link_to 'Edit', edit_news_post_path(@news_post) %> |
+<%= link_to 'Back', news_posts_path %>

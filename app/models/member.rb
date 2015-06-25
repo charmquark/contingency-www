@@ -11,6 +11,7 @@ class Member < ActiveRecord::Base
         attachment_presence: true,
         attachment_content_type: { content_type: 'image/jpeg' }
 
+    has_many :news_post
 
     has_secure_password
     
