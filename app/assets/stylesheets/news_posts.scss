@@ -51,7 +51,11 @@ article.news-post-embed {
     > main {
         font-size: 0.8rem;
         
-        .breakpoint-medium & { margin-right: ($game-banner-width / 2) + $pad-medium; }
+        .breakpoint-medium & {
+            min-height: ($game-banner-height / 2) + $pad-medium;
+            
+            margin-right: ($game-banner-width / 2) + $pad-medium;
+        }
     }
     
     .read-more {
@@ -75,6 +79,10 @@ article.news-post-embed {
             }
         }
         
-        > main { margin-right: ($game-banner-height / 2) + $pad-medium; }
+        > main {
+            min-height: ($game-banner-width / 2) + $pad-medium;
+            
+            margin-right: ($game-banner-height / 2) + $pad-medium;
+        }
     }
 }

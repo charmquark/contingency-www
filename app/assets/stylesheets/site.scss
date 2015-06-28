@@ -125,12 +125,6 @@ body > main {
             
             margin-bottom: $spacing-large;
         }
-        
-        .breakpoint-wide & {
-            > div { padding: $pad-wide; }
-            
-            margin-bottom: $spacing-wide;
-        }
     }
     
     > section > div {

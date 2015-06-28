@@ -1,8 +1,8 @@
 @mixin footer-dependant-sizes($spacing) {
     margin-top: $spacing * 2;
-    padding: $spacing 0px;
+    padding: ($spacing / 2) 0px;
     
-    nav { margin-top: $spacing; }
+    nav { margin-top: $spacing / 2; }
 }
 
 body > footer {
@@ -23,6 +23,7 @@ body > footer {
     
     .breakpoint-medium & {
         background: $blue-grey-900;
+        background: linear-gradient(rgba($blue-grey-900, 0), $blue-grey-900);
         
         position: relative;
         
