@@ -1,15 +1,25 @@
 module MembersHelper
-    def member_avatar(member, img_options = {}, link_options = {})
-        class_opt   = "member-avatar membar-rank-#{member.rank}"
+    def member_avatar(member, options = {})
+        options     = options.symbolize_keys
+        with_handle = options.fetch(:handle, true)
         
-        img_options = img_options.symbolize_keys
-        img_options[:alt] = img_options.fetch(:alt, member.handle)
-        img_options[:class] = class_opt + img_options.fetch(:class, '')
+        img_options         = options.fetch :img, {}
+        img_options[:title] = options.fetch :title, member.handle unless with_handle
+        content             = member_avatar_img member, img_options
         
-        link_options = link_options.symbolize_keys
-        link_options[:class] = class_opt + link_options.fetch(:class, '')
+        content += content_tag(:span, member.handle, class: "member-handle") if with_handle
+
+        link_classes            = "member-avatar member-rank-#{member.rank} "
+        link_options            = options.fetch :link, {}
+        link_options[:class]    = link_classes + link_options.fetch(:class, '')
+        link_to content, member, link_options
+    end
+    
+    def member_avatar_img(member, options = {})
+        options         = options.symbolize_keys
+        options[:alt]   = options.fetch(:alt, member.handle)
         
-        link_to(image_tag(member.avatar.url, img_options) + content_tag(:span, member.handle, class: 'member-handle'), member, link_options)
+        image_tag member.avatar.url, options
     end
     
     def members_avatars(members, img_options = {}, link_options = {})

@@ -6,13 +6,18 @@ a.member-avatar {
     
     display: inline-block;
     
-    img.member-avatar {
+    &.half-size {
+        width: $member-avatar-width / 2;
+        height: $member-avatar-height / 2;
+    }
+    
+    > img {
         @include size(100%);
 
         display: inline-block;
     }
     
-    span.member-handle {
+    > .member-handle {
         background: rgba($black, 0.2);
         color: $white-text;
         font-weight: bold;

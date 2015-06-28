@@ -15,8 +15,6 @@ article.news-post-embed {
             margin: 0px;
         }
         
-        .member-handle { display: none; }
-        
         .news-post-date {
             font-size: 0.8rem;
             line-height: 1.6;
@@ -36,25 +34,13 @@ article.news-post-embed {
             
             padding: $pad-medium ($pad-medium + ($member-avatar-width / 2)) $pad-medium $pad-medium;
             
-            a.game-banner,
-            a.member-avatar {
-                height: $game-banner-height / 2;
-            }
-            
-            a.game-banner {
-                width: $game-banner-width / 2;
-                
+            .game-banner {
                 position: absolute;
-                top: ($game-banner-height / 2);
+                top: $member-avatar-height / 2;
                 right: 0px;
-                
-                transform: rotate(90deg);
-                transform-origin: bottom;
             }
             
-            a.member-avatar {
-                width: $member-avatar-width / 2;
-                
+            .member-avatar {
                 position: absolute;
                 top: 0px;
                 right: 0px;
@@ -65,9 +51,7 @@ article.news-post-embed {
     > main {
         font-size: 0.8rem;
         
-        .breakpoint-medium & {
-            margin-right: ($member-avatar-width / 2) + $pad-medium;
-        }
+        .breakpoint-medium & { margin-right: ($game-banner-width / 2) + $pad-medium; }
     }
     
     .read-more {
@@ -78,5 +62,19 @@ article.news-post-embed {
             
             margin: $spacing-small 0px;
         }
+    }
+    
+    .csstransforms.breakpoint-medium & {
+        > header {
+            .game-banner {
+                top: ($game-banner-height / 2);
+                right: 0px;
+                
+                transform: rotate(90deg);
+                transform-origin: bottom;
+            }
+        }
+        
+        > main { margin-right: ($game-banner-height / 2) + $pad-medium; }
     }
 }

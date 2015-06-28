@@ -8,20 +8,7 @@
     <section class="latest-news">
         <div>
             <h2>Latest News/Announcements</h2>
-            <article class="news-post-embed">
-                <header>
-                    <%= @news_post.member.nil? ? '' : member_avatar(@news_post.member) %>
-                    <%= @news_post.game.nil? ? '' : game_banner(@news_post.game) %>
-                    <h1><%= @news_post.title %></h1>
-                    <span class="news-post-date"><%= @news_post.created_at.to_formatted_s :news_post %></span>
-                </header>
-                <main>
-                    <%= render_news @news_post %>
-                </main>
-                <%- unless @news_post.long_body.nil? or @news_post.long_body.empty? then -%>
-                    <%= link_to 'Read More', news_post_path(@news_post), class: 'button read-more' %>
-                <%- end %>
-            </article>
+            <%= render partial: 'news_posts/embed', locals: {news_post: @news_post} %>
         </div>
     </section>
 </span>

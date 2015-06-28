@@ -6,5 +6,10 @@ a.game-banner {
     
     display: inline-block;
     
-    img.game-banner { @include size(100%); }
+    &.half-size {
+        width: $game-banner-width / 2;
+        height: $game-banner-height / 2;
+    }
+    
+    > img { @include size(100%); }
 }
