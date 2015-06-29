@@ -60,6 +60,12 @@ form {
     .actions {
         background: $bg-contrast;
         text-align: center;
+        
+        .button {
+            margin-right: $pad-medium;
+            
+            &:last-child { margin-right: 0px; }
+        }
     }
     
     .field {
@@ -77,6 +83,7 @@ form {
             display: block;
         }
         
+        .check-group,
         .radio-group {
             background: rgba($link-hilite, 0.2);
             border-radius: 0.5rem;
@@ -119,20 +126,18 @@ form {
                 font-size: 0.8rem;
                 letter-spacing: 1px;
                 line-height: 1.8rem;
-                padding-left: 0.5rem;
             }
             
             .toggle {
                 background: $blue-grey-200;
-                border-radius: 50%;
                 
                 width: 1.8rem;
+                
+                margin-right: 0.5em;
                 
                 position: relative;
                 
                 > span {
-                    border-radius: 50%;
-
                     @include size(50%);
                     
                     position: absolute;
@@ -141,6 +146,17 @@ form {
                     
                     display: inline-block;
                 }
+            }
+        }
+        
+        .check-group {
+        }
+        
+        .radio-group {
+            .toggle {
+                border-radius: 50%;
+                
+                > span { border-radius: 50%; }
             }
         }
     }

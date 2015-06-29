@@ -121,13 +121,13 @@ body > main {
         color: $white-text;
     }
     
-    .breakpoint-small & { padding: $pad-small * 2; }
+    .breakpoint-small & { padding: $pad-small; }
     
     .breakpoint-medium & { padding: $pad-medium; }
     
-    .breakpoint-large & { padding: $pad-large; }
+    .breakpoint-large & { padding: $pad-large ($pad-large / 2); }
     
-    .breakpoint-wide & { padding: $pad-wide; }
+    .breakpoint-wide & { padding: $pad-wide ($pad-wide / 2); }
 }
 
 .flash {

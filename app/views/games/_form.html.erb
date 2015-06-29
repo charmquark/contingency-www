@@ -22,8 +22,13 @@
         </div>
     </div>
     <div class="field">
-        <%= f.label :featured %>
-        <%= f.check_box :featured %>
+        <label>Attributes</label>
+        <div class="check-group singleton">
+            <div>
+                <%= f.check_box :featured %>
+                <%= f.label :featured %>
+            </div>
+        </div>
     </div>
     <div class="halfs-medium">
         <div class="field">
@@ -49,5 +54,7 @@
     </div>
     <div class="actions">
         <%= f.submit class: 'button' %>
+        <%= f.button 'Reset', class: 'button', type: :reset %>
+        <%= link_to 'Cancel', games_path, class: 'button' %>
     </div>
 <% end %>

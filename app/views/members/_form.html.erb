@@ -74,5 +74,7 @@
     </div>
     <div class="actions">
         <%= f.submit class: 'button' %>
+        <%= f.button 'Reset', class: 'button', type: :reset %>
+        <%= link_to 'Cancel', members_path, class: 'button' %>
     </div>
 <% end %>
