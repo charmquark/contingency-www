@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625180204) do
+ActiveRecord::Schema.define(version: 20150629220520) do
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20150625180204) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.text     "description"
-    t.text     "summary"
     t.boolean  "featured"
   end
 
@@ -39,10 +38,10 @@ ActiveRecord::Schema.define(version: 20150625180204) do
     t.string   "handle"
     t.string   "email"
     t.string   "password_digest"
-    t.string   "rank"
-    t.string   "role"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.string   "rank",                default: "general"
+    t.string   "role",                default: "user"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   add_index "members", ["handle"], name: "index_members_on_handle", unique: true
