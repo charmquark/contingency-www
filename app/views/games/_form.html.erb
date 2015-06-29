@@ -1,41 +1,53 @@
 <%= form_for(@game, html: {multipart: true}) do |f| %>
-  <% if @game.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+    <% if @game.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
 
-      <ul>
-      <% @game.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+            <ul>
+            <% @game.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="halfs-medium">
+        <div class="field">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+        </div>
+        <div class="field">
+            <%= f.label :slug %>
+            <%= f.text_field :slug %>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :slug %><br>
-    <%= f.text_field :slug %>
-  </div>
-  <div class="field">
-    <%= f.label :featured %></br>
-    <%= f.check_box :featured %>
-  </div>
-  <div class="field">
-    <%= f.label :banner %><br>
-    <%= f.file_field :banner %>
-  </div>
-  <div class="field">
-    <%= f.label :summary %><br>
-    <%= f.text_area :summary %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+        <%= f.label :featured %>
+        <%= f.check_box :featured %>
+    </div>
+    <div class="halfs-medium">
+        <div class="field">
+            <%= f.label :banner %>
+            <%= f.file_field :banner %>
+        </div>
+        <div class="field">
+            <%- unless @game.banner.url.empty? then -%>
+                <label>Current Banner</label>
+                <div class="game-banner">
+                    <%= game_banner_img @game %>
+                </div>
+            <%- end -%>
+        </div>
+    </div>
+    <div class="field">
+        <%= f.label :summary %>
+        <%= f.text_area :summary %>
+    </div>
+    <div class="field">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'long' %>
+    </div>
+    <div class="actions">
+        <%= f.submit class: 'button' %>
+    </div>
 <% end %>

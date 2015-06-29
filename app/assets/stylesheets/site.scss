@@ -28,11 +28,7 @@ body {
 
     margin: 0px;
     
-    .breakpoint-small & {
-        font-size: 14px;
-        
-        padding-top: $header-height-small * 2;
-    }
+    .breakpoint-small & { font-size: 14px; }
     
     .breakpoint-medium & {
         font-size: 16px;
@@ -47,40 +43,7 @@ a {
     color: $white-text;
     text-decoration: none;
     
-    &.button {
-        background: rgba($blue-grey-900, $alpha-black-icon);
-        color: $white-icon;
-        font-family: $font-lato;
-        font-weight: lighter;
-        text-align: center;
-
-        font-size: 20px;
-        line-height: 1;
-        
-        position: relative;
-        
-        display: inline-block;
-        
-        &:hover { color: $white-text; }
-        
-        .breakpoint-small & { padding: $pad-small * 2; }
-        
-        .breakpoint-medium & { padding: $pad-medium; }
-        
-        .breakpoint-large & { padding: $pad-large; }
-        
-        .breakpoint-wide & { padding: $pad-wide; }
-    }
-    
-    &.button:hover,
     &.hover-hilite:hover { background: $blue-grey-700; }
-}
-
-form {
-    input,
-    textarea {
-        color: $black-text;
-    }
 }
 
 h,
@@ -130,6 +93,59 @@ body > main {
     > section > div {
         .breakpoint-medium & { @extend %content-centered; }
     }
+    
+    .breakpoint-small & {
+        background: rgba($blue-grey-900, 0.2);
+        
+        padding: ($header-height-small * 2) 0px $pad-small 0px;
+    }
+}
+
+.button {
+    background: rgba($blue-grey-900, $alpha-black-icon);
+    border-width: 0px;
+    color: $white-icon;
+    font-family: $font-lato;
+    font-weight: lighter;
+    text-align: center;
+
+    font-size: 20px;
+    line-height: 1;
+    
+    position: relative;
+    
+    display: inline-block;
+    
+    &:hover {
+        background: $blue-grey-700;
+        color: $white-text;
+    }
+    
+    .breakpoint-small & { padding: $pad-small * 2; }
+    
+    .breakpoint-medium & { padding: $pad-medium; }
+    
+    .breakpoint-large & { padding: $pad-large; }
+    
+    .breakpoint-wide & { padding: $pad-wide; }
+}
+
+.flash {
+    .flash-alert { background: rgba($green-900, 0.4); }
+    
+    .flash-error { background: rgba($red-900, 0.4); }
+
+    .flash-notice { background: rgba($indigo-900, 0.4); }
+    
+    .breakpoint-small & {
+        margin: $spacing-small auto;
+        padding: $pad-small;
+    }
+    
+    .breakpoint-medium & {
+        margin: $spacing-medium auto;
+        padding: $pad-medium;
+    }
 }
 
 .top-bg {
@@ -148,6 +164,7 @@ body > main {
 }
 
 
+@import 'site/form';
 @import 'site/footer';
 @import 'site/header';
 @import 'site/icons';

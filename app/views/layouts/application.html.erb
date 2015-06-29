@@ -29,18 +29,37 @@
             <h1><%= icon_link_to :white, 'contingency-symbol', 'The Contingency', root_path %></h1>
             <%= icon :white, :menu %>
             <nav>
+                <%- unless @current_user.nil? -%>
+                    <%= icon_link_to :white, :account, @current_user.handle, member_path(@current_user), class: 'hover-hilite' %>
+                    <%= icon_link_to :white, :logout, 'Logout', logout_path, class: 'hover-hilite', method: :delete %>
+                <%- end -%>
                 <%= icon_link_to :white, :gamepad, 'Games', games_path, class: 'hover-hilite' %>
                 <%= icon_link_to :white, 'account-multiple', 'Members', members_path, class: 'hover-hilite' %>
             </nav>
         </div>
     </header>
     <main>
+        <%- unless flash.empty? then -%>
+            <section class="flash">
+                <%- %w(error notice).each do |ftype| -%>
+                    <%- if flash[ftype.to_sym] then -%>
+                        <div class="flash-<%= ftype %>"><%= flash[ftype.to_sym] %></div>
+                    <%- end -%>
+                <%- end -%>
+            </section>
+        <%- end -%>
         <%= yield %>
     </main>
     <footer>
         <div>
             <div class="copyright">Copyright &copy; 2015, The Contingency. All rights reserved.</div>
             <nav>
+                <%- if @current_user.nil? -%>
+                    <%= link_to 'Login', login_path, class: 'hover-hilite' %>
+                <%- else -%>
+                    <%= link_to @current_user.handle, member_path(@current_user), class: 'hover-hilite' %>
+                    <%= link_to 'Logout', logout_path, class: 'hover-hilite', method: 'delete' %>
+                <%- end -%>
                 <%= link_to 'Games', games_path, class: 'hover-hilite' %>
                 <%= link_to 'Members', members_path, class: 'hover-hilite' %>
             </nav>

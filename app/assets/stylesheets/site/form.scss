@@ -1,0 +1,170 @@
+@mixin form-dependant-sizes($pad, $spacing) {
+    .field { margin-bottom: $spacing; }
+    
+    .actions {
+        margin-top: $spacing * 2;
+        padding: $pad;
+    }
+}
+
+form {
+    position: relative;
+    
+    input[type=file] {
+        &::-webkit-file-upload-button {
+            @extend .button;
+            
+            cursor: pointer;
+            
+            display: block;
+            transition-duration: 0.4s;
+        }
+    }
+    
+    input[type=text],
+    input[type=password],
+    textarea {
+        background: $blue-grey-200;
+        border-radius: 0.5rem;
+        border-width: 0px;
+        color: $black-text;
+        
+        width: 100%;
+        
+        padding: 0.4rem 0.6rem;
+        
+        display: block;
+    }
+
+    input[type=text],
+    input[type=password] {
+        height: 2.4rem;
+        
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+        line-height: 2.4rem;
+    }
+
+    textarea {
+        max-width: 100%;
+        min-height: 6.8rem;
+        
+        font-size: 1rem;
+        line-height: 1.2rem;
+        
+        &.long {
+            min-height: 12.8rem;
+        }
+    }
+    
+    .actions {
+        background: rgba($blue-grey-100, 0.4);
+        text-align: center;
+    }
+    
+    .field {
+        position: relative;
+        
+        > label {
+            font-family: $font-lato;
+            text-transform: uppercase;
+
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+            
+            display: block;
+        }
+        
+        .radio-group {
+            background: rgba($blue-grey-700, 0.2);
+            border-radius: 0.5rem;
+            
+            &.halfs {
+                position: relative;
+                
+                @include clearfix;
+                
+                > div {
+                    width: 50%;
+                    float: left;
+                }
+            }
+            
+            > div {
+                padding: 0.8rem 0.6rem;
+                
+                &.checked {
+                    background: rgba($blue-grey-700, 0.4);
+                    border-radius: 0.5rem;
+                    
+                    .toggle > span { background: $blue-grey-900; }
+                }
+            }
+            
+            input { display: none; }
+            
+            label,
+            .toggle {
+                cursor: pointer;
+                vertical-align: middle;
+                
+                height: 1.8rem;
+                
+                display: inline-block;
+            }
+            
+            label {
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+                line-height: 1.8rem;
+                padding-left: 0.5rem;
+            }
+            
+            .toggle {
+                background: $blue-grey-200;
+                border-radius: 50%;
+                
+                width: 1.8rem;
+                
+                position: relative;
+                
+                > span {
+                    border-radius: 50%;
+
+                    @include size(50%);
+                    
+                    position: absolute;
+                    top: 25%;
+                    left: 25%;
+                    
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    
+    .breakpoint-small & { @include form-dependant-sizes($pad-small, $spacing-small); }
+    
+    .breakpoint-medium & {
+        @include form-dependant-sizes($pad-medium, $spacing-medium);
+        
+        .halfs-medium {
+            position: relative;
+            
+            @include clearfix;
+            
+            .field {
+                width: 48%;
+                
+                display: inline-block;
+                
+                &:first-child { float: left; }
+                &:last-child { float: right; }
+            }
+        }
+    }
+
+    .breakpoint-large & { @include form-dependant-sizes($pad-large, $spacing-large); }
+}

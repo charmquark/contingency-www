@@ -74,8 +74,8 @@ article.news-post-embed {
                 top: ($game-banner-height / 2);
                 right: 0px;
                 
-                transform: rotate(90deg);
-                transform-origin: bottom;
+                @include transform(rotate(90deg));
+                @include transform-origin(bottom);
             }
         }
         

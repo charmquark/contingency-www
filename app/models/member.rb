@@ -1,15 +1,24 @@
 class Member < ActiveRecord::Base
-    AVATAR_SIZES = {
-        normal: '125x125',
-        small:  '75x75'
-    }
+    scope :core, -> { where(rank: :core) }
     
+    scope :not_core, -> { where.not(rank: :core) }
     
-    has_attached_file :avatar
+    has_attached_file :avatar,
+        default_url: ''
     
     validates :avatar,
         attachment_presence: true,
         attachment_content_type: { content_type: 'image/jpeg' }
+    
+    validates :handle,
+        presence: true,
+        uniqueness: true
+    
+    validates :rank,
+        presence: true
+    
+    validates :role,
+        presence: true
 
     has_many :news_post
 
@@ -18,6 +27,11 @@ class Member < ActiveRecord::Base
     
     def rank_obj
         ContingencyRanks.from_sym rank
+    end
+    
+    
+    def role_obj
+        ContingencyRoles.from_sym role
     end
     
     

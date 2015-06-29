@@ -18,7 +18,7 @@ body > footer {
         
         nav { display: none; }
         
-        @include footer-dependant-sizes($pad-small);
+        padding: $pad-small;
     }
     
     .breakpoint-medium & {

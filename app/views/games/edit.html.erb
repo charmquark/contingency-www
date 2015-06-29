@@ -1,6 +1,12 @@
-<h1>Editing Game</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @game %> |
-<%= link_to 'Back', games_path %>
+<section>
+    <div>
+        <h1>Editing Game<br><%= @game.name %></h1>
+        <%= render 'form' %>
+    </div>
+</section>
+<section>
+    <div>
+        <%= link_to 'Show', @game %> |
+        <%= link_to 'Back', games_path %>
+    </div>
+</section>

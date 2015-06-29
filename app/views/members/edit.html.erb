@@ -1,6 +1,12 @@
-<h1>Editing Member</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @member %> |
-<%= link_to 'Back', members_path %>
+<section>
+    <div>
+        <h1>Editing Member<br><%= @member.handle %></h1>
+        <%= render 'form' %>
+    </div>
+</section>
+<section>
+    <div>
+        <%= link_to 'Show', @member %> |
+        <%= link_to 'Back', members_path %>
+    </div>
+</section>

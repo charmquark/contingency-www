@@ -20,4 +20,26 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+    helpers:
+        label:
+            game:
+                banner:         "Banner Image (500×250 JPEG)"
+                description:    "Long Description (Markdown formatted)"
+                featured:       "Featured"
+                name:           "Name"
+                slug:           "Slug"
+                summary:        "Summary"
+                
+            member:
+                avatar:                 "Avatar image (250×250 JPEG)"
+                biography:              "Biography (Markdown Formatted)"
+                email:                  "Email Address"
+                handle:                 "Handle"
+                password:               "Password"
+                password_confirmation:  "Password Confirmation"
+                rank:                   "Rank"
+                role:                   "Role"
+            
+            session:
+                handle:     "Member Handle"
+                password:   "Password"

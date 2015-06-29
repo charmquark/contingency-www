@@ -10,43 +10,69 @@
         </div>
     <% end %>
 
-    <div class="field">
-        <%= f.label :avatar %><br>
-        <%= f.file_field :avatar %>
+    <div class="halfs-medium">
+        <div class="field">
+            <%= f.label :handle %>
+            <%= f.text_field :handle %>
+        </div>
+        <div class="field">
+            <%= f.label :email %>
+            <%= f.text_field :email %>
+        </div>
+    </div>
+    <div class="halfs-medium">
+        <div class="field">
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+        </div>
+        <div class="field">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+        </div>
+    </div>
+    <div class="halfs-medium">
+        <div class="field">
+            <%= f.label :avatar %>
+            <%= f.file_field :avatar %>
+        </div>
+        <div class="field">
+            <%- unless @member.avatar.url.empty? then -%>
+                <label>Current Avatar</label>
+                <div class="member-avatar">
+                    <%= member_avatar_img @member %>
+                </div>
+            <%- end -%>
+        </div>
     </div>
     <div class="field">
-        <%= f.label :biography %><br>
-        <%= f.text_area :biography %>
+        <%= f.label :biography %>
+        <%= f.text_area :biography, class: 'long' %>
     </div>
-    <div class="field">
-        <%= f.label :handle %><br>
-        <%= f.text_field :handle %>
-    </div>
-    <div class="field">
-        <%= f.label :email %><br>
-        <%= f.text_field :email %>
-    </div>
-    <div class="field">
-        <%= f.label :password %><br>
-        <%= f.password_field :password %>
-    </div>
-    <div class="field">
-        <%= f.label :password_confirmation %><br>
-        <%= f.password_field :password_confirmation %>
-    </div>
-    <div class="field">
-        <%= f.label :rank %><br>
-        <% ContingencyRanks::RANKS.each do |rank| %>
-            <%= f.radio_button :rank, rank.symbol %><%= rank.name %>
-        <% end %>
-    </div>
-    <div class="field">
-        <%= f.label :role %><br>
-        <% ContingencyRoles::ROLES.each do |role| %>
-            <%= f.radio_button :role, role.symbol %><%= role.name %>
-        <% end %>
+    <div class="halfs-medium">
+        <div class="field">
+            <%= f.label :rank %>
+            <div class="radio-group halfs">
+                <% ContingencyRanks::RANKS.each do |rank| %>
+                    <div>
+                        <%= f.radio_button :rank, rank.symbol %>
+                        <label><%= rank.name %></label>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="field">
+            <%= f.label :role %>
+            <div class="radio-group halfs">
+                <% ContingencyRoles::ROLES.each do |role| %>
+                    <div>
+                        <%= f.radio_button :role, role.symbol %>
+                        <label><%= role.name %></label>
+                    </div>
+                <% end %>
+            </div>
+        </div>
     </div>
     <div class="actions">
-        <%= f.submit %>
+        <%= f.submit class: 'button' %>
     </div>
 <% end %>

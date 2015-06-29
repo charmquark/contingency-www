@@ -21,6 +21,9 @@ module ContingencyRanks
     end
     
     
+    DEFAULT = :general
+    
+    
     RANKS = [   #name         symbol      value
         Rank.new('Core'     , :core     , 100   ),
         Rank.new('General'  , :general  , 50    )

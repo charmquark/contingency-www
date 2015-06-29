@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :news_posts
     resources :games
-    
     resources :members
+    resources :news_posts
+
+    get     'login'     => 'sessions#new'       , as: :login
+    post    'login'     => 'sessions#create'    , as: :process_login
+    delete  'logout'    => 'sessions#destroy'   , as: :logout
     
     root 'pages#home'
 

@@ -12,9 +12,12 @@ module ContingencyRoles
     end
     
     
+    DEFAULT = :user
+    
+    
     ROLES = [   #name                 symbol
-        Role.new('User'             , :user     ),
-        Role.new('Administrator'    , :admin    )
+        Role.new('Administrator'    , :admin    ),
+        Role.new('User'             , :user     )
     ]
     
     
