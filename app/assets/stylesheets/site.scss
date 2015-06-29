@@ -43,7 +43,7 @@ a {
     color: $white-text;
     text-decoration: none;
     
-    &.hover-hilite:hover { background: $blue-grey-700; }
+    &.hover-hilite:hover { background: $link-hilite; }
 }
 
 h,
@@ -75,7 +75,7 @@ body > main {
         
         .breakpoint-medium & {
             > div {
-                background: rgba($blue-grey-900, 0.2);
+                background: rgba($bg-color, 0.2);
                 
                 padding: $pad-medium;
             }
@@ -95,14 +95,14 @@ body > main {
     }
     
     .breakpoint-small & {
-        background: rgba($blue-grey-900, 0.2);
+        background: rgba($bg-color, 0.2);
         
         padding: ($header-height-small * 2) 0px $pad-small 0px;
     }
 }
 
 .button {
-    background: rgba($blue-grey-900, $alpha-black-icon);
+    background: $bg-icon;
     border-width: 0px;
     color: $white-icon;
     font-family: $font-lato;
@@ -117,7 +117,7 @@ body > main {
     display: inline-block;
     
     &:hover {
-        background: $blue-grey-700;
+        background: $link-hilite;
         color: $white-text;
     }
     

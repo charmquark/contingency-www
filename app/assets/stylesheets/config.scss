@@ -5,6 +5,10 @@ $font-forum:    'Forum', 'Roboto', sans-serif;
 
 @import 'config/colors';
 
+$bg-color:          $blue-grey-900;
+$bg-contrast:       rgba($blue-grey-100, 0.2);
+$bg-icon:           rgba($bg-color, $alpha-black-icon);
+
 $content-width-small:   800px;
 $content-width-medium:  800px;
 $content-width-large:   1110px;
@@ -33,7 +37,7 @@ $pad-wide:      40px;
 $member-avatar-width:   $game-banner-height;
 $member-avatar-height:  $member-avatar-width;
 
-$spacing-small:     $pad-small * 1.5;   /* 10 * 1.5 = 15 */
-$spacing-medium:    $pad-medium * 1.5;  /* 10 * 1.5 = 15 */
-$spacing-large:     $pad-large * 1.5;   /* 20 * 1.5 = 30 */
-$spacing-wide:      $pad-wide * 1.5;    /* 40 * 1.5 = 60 */
+$spacing-small:     $pad-small * 1.5;
+$spacing-medium:    $pad-medium * 1.5;
+$spacing-large:     $pad-large * 1.5;
+$spacing-wide:      $pad-wide * 1.5;

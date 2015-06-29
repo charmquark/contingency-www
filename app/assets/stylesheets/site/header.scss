@@ -70,7 +70,7 @@ body > header {
     
     .breakpoint-small &,
     .breakpoint-medium & {
-        background: $blue-grey-900;
+        background: $bg-color;
 
         position: fixed;
         top: 0px;
@@ -190,7 +190,7 @@ body > header {
     }
     
     .breakpoint-large & {
-        @include better-linear-gradient($blue-grey-900, rgba($blue-grey-900, 0));
+        @include better-linear-gradient($bg-color, rgba($bg-color, 0));
         
         padding-bottom: $pad-large;
         

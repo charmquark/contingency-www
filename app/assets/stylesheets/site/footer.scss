@@ -14,7 +14,7 @@ body > footer {
     > div { @extend %content-centered; }
     
     .breakpoint-small & {
-        background: $blue-grey-900;
+        background: $bg-color;
         
         nav { display: none; }
         
@@ -22,8 +22,8 @@ body > footer {
     }
     
     .breakpoint-medium & {
-        background: $blue-grey-900;
-        background: linear-gradient(rgba($blue-grey-900, 0), $blue-grey-900);
+        background: $bg-color;
+        background: linear-gradient(rgba($bg-color, 0), $bg-color);
         
         position: relative;
         

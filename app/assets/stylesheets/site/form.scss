@@ -58,7 +58,7 @@ form {
     }
     
     .actions {
-        background: rgba($blue-grey-100, 0.4);
+        background: $bg-contrast;
         text-align: center;
     }
     
@@ -78,7 +78,7 @@ form {
         }
         
         .radio-group {
-            background: rgba($blue-grey-700, 0.2);
+            background: rgba($link-hilite, 0.2);
             border-radius: 0.5rem;
             
             &.halfs {
@@ -99,7 +99,7 @@ form {
                     background: rgba($blue-grey-700, 0.4);
                     border-radius: 0.5rem;
                     
-                    .toggle > span { background: $blue-grey-900; }
+                    .toggle > span { background: $bg-color; }
                 }
             }
             
