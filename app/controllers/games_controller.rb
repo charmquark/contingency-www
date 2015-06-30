@@ -54,7 +54,7 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-        if am_admin_user then
+        if is_admin? then
             return params.require(:game).permit(:name, :slug, :featured, :banner, :summary, :description)
         else
             return params

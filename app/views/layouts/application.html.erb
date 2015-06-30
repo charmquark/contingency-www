@@ -45,10 +45,10 @@
             <%- end -%>
         <%- end -%>
         <%= yield %>
-        <%- if @current_user then -%>
+        <%- if logged_in? then -%>
             <div class="actions">
                 <%= yield :user_actions -%>
-                <%= link_to @current_user.handle, member_path(@current_user), class: 'button' %>
+                <%= link_to current_user.handle, member_path(current_user), class: 'button' %>
                 <%= link_to 'Logout', logout_path, class: 'button', method: 'delete' %>
             </div>
         <%- end -%>

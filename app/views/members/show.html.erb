@@ -10,8 +10,8 @@
     <%- end -%>
 <%- end -%>
 
-<%= content_for :user_actions do -%>
-    <%- if @current_user.is_admin? or @current_user == @member then -%>
+<% content_for :user_actions do %>
+    <%- if is_admin? or (current_user == @member) then -%>
         <%= link_to 'Edit Member', edit_member_path(@member), class: 'button' -%>
     <%- end -%>
-<%- end -%>
+<% end %>

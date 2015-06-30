@@ -58,9 +58,9 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-        if am_admin_user then
+        if is_admin? then
             return params.require(:member).permit(:avatar, :biography, :handle, :email, :password, :password_confirmation, :rank, :role)
-        elsif @member == @current_user then
+        elsif @member == current_user then
             return params.require(:member).permit(:avatar, :biography, :email, :password, :password_confirmation)
         else
             return params

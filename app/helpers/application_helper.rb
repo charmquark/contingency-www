@@ -41,4 +41,8 @@ module ApplicationHelper
         )
         markdown.render(source).html_safe
     end
+    
+    def with_user(&blk)
+        yield unless @current_user.nil?
+    end
 end

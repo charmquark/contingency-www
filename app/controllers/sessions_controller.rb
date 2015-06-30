@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     end
 
     def create
-        if @current_user.nil? then
+        unless logged_in? then
             session_params      = params.require(:session).permit(:handle, :password)
             member_handle       = session_params.fetch :handle, nil
             password_candidate  = session_params.fetch :password, nil
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
                 redirect_to :back
             end
         else
-            flash[:error] = "Already logged in as #{@current_user.handle}."
+            flash[:error] = "Already logged in as #{current_user.handle}."
             redirect_to root_url
         end
     end
