@@ -137,9 +137,6 @@ form {
             }
         }
         
-        .check-group {
-        }
-        
         .radio-group {
             .toggle {
                 border-radius: 50%;
@@ -149,7 +146,16 @@ form {
         }
     }
     
-    .breakpoint-small & { @include form-dependant-sizes($pad-small, $spacing-small); }
+    .breakpoint-small & {
+        @include form-dependant-sizes($pad-small, $spacing-small);
+        
+        padding: 0px $pad-small;
+        
+        .check-group,
+        .radio-group {
+            label { font-size: 0.6rem; }
+        }
+    }
     
     .breakpoint-medium & {
         @include form-dependant-sizes($pad-medium, $spacing-medium);

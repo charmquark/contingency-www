@@ -58,6 +58,8 @@ h6 {
 }
 
 body > main {
+    min-height: 514px;
+    
     z-index: 100;
     
     .breakpoint-small & {
@@ -77,20 +79,30 @@ p {
 
 .actions {
     background: $bg-actions;
-    text-align: center;
-
-    margin: $pad-medium auto;
-    padding: $pad-medium 0px;
     
-    .button {
-        margin-right: $pad-medium;
+    max-width: 94%;
+
+    .button:last-child { margin-right: 0px; }
+    
+    .breakpoint-small & {
+        margin: $pad-small auto;
+        padding: $pad-small 0px;
         
-        &:last-child { margin-right: 0px; }
+        .button { margin: $pad-small; }
     }
     
-    body > main > & { width: $content-width-medium; }
+    .breakpoint-small body > main > & { width: $content-width-small; }
     
-    .breakpoint-small & { display: none; }
+    .breakpoint-medium & {
+        text-align: center;
+        
+        margin: $pad-medium auto;
+        padding: $pad-medium 0px;
+        
+        .button { margin-right: $pad-medium; }
+    }
+    
+    .breakpoint-medium body > main > & { width: $content-width-medium; }
     
     .breakpoint-large & {
         margin: $pad-large auto;
@@ -172,6 +184,8 @@ p {
     
     .breakpoint-wide & { padding: $pad-wide; }
 }
+
+.breakpoint-small .hide-small { display: none; }
 
 .top-bg {
     width: 100%;
