@@ -53,7 +53,7 @@ private
     def set_member
         # first try finding by handle, then fallback on raw id if needed
         @member = Member.where(handle: params[:id]).first
-        @member = Member.find params[:id] if @member.nil?
+        @member = Member.find params[:id] unless @member
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
