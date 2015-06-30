@@ -16,9 +16,6 @@ class Game < ActiveRecord::Base
         presence: true,
         uniqueness: true
     
-    validates :summary,
-        presence: true
-
     has_many :news_post
     
     def to_param

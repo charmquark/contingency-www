@@ -48,30 +48,32 @@
         <%= f.label :biography %>
         <%= f.text_area :biography, class: 'long' %>
     </div>
-    <div class="halfs-medium">
-        <div class="field">
-            <%= f.label :rank %>
-            <div class="radio-group halfs">
-                <% ContingencyRanks::RANKS.each do |rank| %>
-                    <div>
-                        <%= f.radio_button :rank, rank.symbol %>
-                        <label><%= rank.name %></label>
-                    </div>
-                <% end %>
+    <%- if is_admin? then -%>
+        <div class="halfs-medium">
+            <div class="field">
+                <%= f.label :rank %>
+                <div class="radio-group halfs">
+                    <% ContingencyRanks::RANKS.each do |rank| %>
+                        <div>
+                            <%= f.radio_button :rank, rank.symbol %>
+                            <label><%= rank.name %></label>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            <div class="field">
+                <%= f.label :role %>
+                <div class="radio-group halfs">
+                    <% ContingencyRoles::ROLES.each do |role| %>
+                        <div>
+                            <%= f.radio_button :role, role.symbol %>
+                            <label><%= role.name %></label>
+                        </div>
+                    <% end %>
+                </div>
             </div>
         </div>
-        <div class="field">
-            <%= f.label :role %>
-            <div class="radio-group halfs">
-                <% ContingencyRoles::ROLES.each do |role| %>
-                    <div>
-                        <%= f.radio_button :role, role.symbol %>
-                        <label><%= role.name %></label>
-                    </div>
-                <% end %>
-            </div>
-        </div>
-    </div>
+    <%- end -%>
     <div class="actions">
         <%= f.submit class: 'button' %>
         <%= f.button 'Reset', class: 'button', type: :reset %>

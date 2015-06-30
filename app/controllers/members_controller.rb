@@ -61,7 +61,7 @@ private
         if is_admin? then
             return params.require(:member).permit(:avatar, :biography, :handle, :email, :password, :password_confirmation, :rank, :role)
         elsif @member == current_user then
-            return params.require(:member).permit(:avatar, :biography, :email, :password, :password_confirmation)
+            return params.require(:member).permit(:avatar, :biography, :handle, :email, :password, :password_confirmation)
         else
             return params
         end
