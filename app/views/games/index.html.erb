@@ -1,37 +1,14 @@
-<p id="notice"><%= notice %></p>
+<%= content_section 'games-index' do -%>
+    <ul>
+        <%- @games.each do |game| -%>
+            <li>
+                <%= game_banner game -%>
+                <div class="game-description"><%= render_markdown game.description -%></div>
+            </li>
+        <%- end -%>
+    </ul>
+<%- end -%>
 
-<h1>Listing Games</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Slug</th>
-      <th>Featured</th>
-      <th>Banner</th>
-      <th>Summary</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @games.each do |game| %>
-      <tr>
-        <td><%= game.name %></td>
-        <td><%= game.slug %></td>
-        <td><%= game.featured? ? 'Yes' : 'No' %></td>
-        <td><%= game_banner game, size: :small %></td>
-        <td><%= game.summary %></td>
-        <td><%= game.description %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Game', new_game_path %>
+<% content_for :user_actions do %>
+    <%= link_to 'New Game', new_game_path, class: 'button' %>
+<% end %>

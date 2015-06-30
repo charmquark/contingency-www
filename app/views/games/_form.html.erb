@@ -1,5 +1,5 @@
-<%= form_for(@game, html: {multipart: true}) do |f| %>
-    <% if @game.errors.any? %>
+<%= form_for(@game, html: {multipart: true}) do |f| -%>
+    <%- if @game.errors.any? -%>
         <div id="error_explanation">
             <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
 
@@ -9,7 +9,7 @@
             <% end %>
             </ul>
         </div>
-    <% end %>
+    <%- end -%>
 
     <div class="halfs-medium">
         <div class="field">
@@ -51,6 +51,6 @@
     <div class="actions">
         <%= f.submit class: 'button' %>
         <%= f.button 'Reset', class: 'button', type: :reset %>
-        <%= link_to 'Cancel', games_path, class: 'button' %>
+        <%= link_to 'Cancel', (action_name == 'edit' ? game_path(@game) : games_path), class: 'button' %>
     </div>
-<% end %>
+<%- end -%>

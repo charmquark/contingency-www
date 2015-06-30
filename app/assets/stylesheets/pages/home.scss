@@ -1,0 +1,92 @@
+.pages-controller.home-action {
+    #home-games-section,
+    #home-members-section {
+        .content-section-body { text-align: center; }
+        
+        a {
+            @include size(100%);
+            
+            display: inline-block;
+        }
+        
+        li {
+            float: left;
+            
+            &.see-all a { font-size: 20px; }
+        }
+
+        ul {
+            list-style-type: none;
+            
+            font-size: 0px;
+            margin: 0px auto;
+            padding: 0px;
+            
+            @include clearfix;
+            display: block;
+        }
+    }
+    
+    #home-games-section li {
+        width: $game-banner-width;
+        height: $game-banner-height;
+    }
+    
+    #home-members-section li {
+        width: $member-avatar-width;
+        height: $member-avatar-height;
+    }
+    
+    
+    .breakpoint-small & {
+        #home-games-section li {
+            width: 50%;
+            height: auto;
+        }
+        
+        #home-members-section li {
+            width: 25%;
+            height: auto;
+        }
+        
+        #home-games-section,
+        #home-members-section {
+            li.see-all {
+                width: 100%;
+                
+                margin: $spacing-small 0px;
+            }
+        }
+    }
+    
+    
+    .breakpoint-medium & {
+        #home-games-section {
+            ul { width: $game-banner-width * 3; }
+            
+            li.see-all a {
+                line-height: $game-banner-height;
+                padding: 0px;
+            }
+        }
+        
+        #home-members-section {
+            ul { width: $member-avatar-width * 6; }
+            
+            li.see-all a {
+                line-height: $member-avatar-height;
+                padding: 0px;
+            }
+        }
+    }
+    
+    
+    .breakpoint-large & {
+        #home-games-section,
+        #home-members-section {
+            .content-section-body { text-align: left; }
+            
+            ul { width: 100%; }
+        }
+    }
+}

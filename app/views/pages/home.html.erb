@@ -1,38 +1,32 @@
-<span class="row-medium row-of-halfs">
-    <section class="intro">
-        <div>
-            <h2>A Brief Introduction</h2>
-            <p>The Contingency is a community of friends united by a love of gaming and a general philosophy of curiosity, innovation, and hilarity. What began as a technical Minecraft server has expanded to encompass many kinds of experiences: survival games, shooters, minigames, building games, online board games, and more. Members often stream their activity at Twitch.tv and/or post videos to YouTube; and we love to interact with viewers. Depending on what's going on, we will sometimes invite viewers to tag along!</p>
-        </div>
-    </section>
-    <section class="latest-news">
-        <div>
-            <h2>Latest News/Announcements</h2>
-            <%= render partial: 'news_posts/embed', locals: {news_post: @news_post} %>
-        </div>
-    </section>
-</span>
-<span class="row-large row-of-halfs">
-    <section class="games">
-        <div>
-            <h2>Some Games We Enjoy</h2>
-            <ul class="games-list">
-                <%- @games.each do |game| -%>
-                    <li><%= game_banner game %></li>
-                <%- end -%>
-                <li class="see-all"><%= link_to 'All Games', games_path, class: 'button' %></li>
-            </ul>
-        </div>
-    </section>
-    <section class="members">
-        <div>
-            <h2>Some of Our Members</h2>
-            <ul class="members-list">
-                <%- @members.each do |member| -%>
-                    <li><%= member_avatar member %></li>
-                <%- end -%>
-                <li class="see-all"><%= link_to 'All Members', members_path, class: 'button' %></li>
-            </ul>
-        </div>
-    </section>
-</span>
+<%= content_row :medium, :halfs do %>
+    <%= content_section 'home-intro', title: 'A Brief Introduction' do -%>
+        <p>The Contingency is a community of friends united by a love of gaming and a general philosophy of curiosity, innovation, and hilarity. What began as a technical Minecraft server has expanded to encompass many kinds of experiences: survival games, shooters, minigames, building games, online board games, and more. Members often stream their activity at Twitch.tv and/or post videos to YouTube; and we love to interact with viewers. Depending on what's going on, we will sometimes invite viewers to tag along!</p>
+    <%- end -%>
+    
+    <%= content_section 'home-latest-news' do -%>
+        <h2>Latest News/Announcements</h2>
+        <%= render partial: 'news_posts/embed', locals: {news_post: @news_post} -%>
+    <%- end -%>
+<%- end -%>
+
+<%= content_row :large, :halfs do -%>
+    <%= content_section 'home-games' do -%>
+        <h2>Some Games We Enjoy</h2>
+        <ul>
+            <%- @games.each do |game| -%>
+                <li><%= game_banner game %></li>
+            <%- end -%>
+            <li class="see-all"><%= link_to 'All Games', games_path, class: 'button' %></li>
+        </ul>
+    <%- end -%>
+    
+    <%= content_section 'home-members' do -%>
+        <h2>Some of Our Members</h2>
+        <ul>
+            <%- @members.each do |member| -%>
+                <li><%= member_avatar member %></li>
+            <%- end -%>
+            <li class="see-all"><%= link_to 'All Members', members_path, class: 'button' %></li>
+        </ul>
+    <%- end -%>
+<%- end -%>

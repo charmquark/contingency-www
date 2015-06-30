@@ -1,34 +1,17 @@
-<p id="notice"><%= notice %></p>
+<%= content_section 'member-info', title: @member.handle do -%>
+    <%= member_avatar_img @member -%>
+<%- end -%>
 
-<p>
-  <strong>Avatar:</strong>
-  <%= member_avatar @member %>
-</p>
+<%= content_row :large, :halfs do -%>
+    <%= content_section 'member-related-games', title: 'Games' do -%>
+    <%- end -%>
+    
+    <%= content_section 'member-related-media', title: 'Media' do -%>
+    <%- end -%>
+<%- end -%>
 
-<p>
-  <strong>Biography:</strong>
-  <%= @member.biography %>
-</p>
-
-<p>
-  <strong>Handle:</strong>
-  <%= @member.handle %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @member.email %>
-</p>
-
-<p>
-  <strong>Rank:</strong>
-  <%= @member.rank %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @member.role %>
-</p>
-
-<%= link_to 'Edit', edit_member_path(@member) %> |
-<%= link_to 'Back', members_path %>
+<%= content_for :user_actions do -%>
+    <%- if @current_user.is_admin? or @current_user == @member then -%>
+        <%= link_to 'Edit Member', edit_member_path(@member), class: 'button' -%>
+    <%- end -%>
+<%- end -%>

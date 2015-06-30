@@ -1,4 +1,6 @@
 class Game < ActiveRecord::Base
+    scope :random, -> { order 'random()' }
+    
     has_attached_file :banner,
         default_url: ''
     

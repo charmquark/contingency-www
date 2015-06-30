@@ -3,6 +3,8 @@ class Member < ActiveRecord::Base
     
     scope :not_core, -> { where.not(rank: :core) }
     
+    scope :random, -> { order 'random()' }
+    
     has_attached_file :avatar,
         default_url: ''
     
@@ -23,6 +25,11 @@ class Member < ActiveRecord::Base
     has_many :news_post
 
     has_secure_password
+    
+    
+    def is_admin?
+        role == 'admin'
+    end
     
     
     def rank_obj

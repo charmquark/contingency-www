@@ -1,34 +1,22 @@
-<p id="notice"><%= notice %></p>
+<%= content_row :large, :halfs do -%>
+    <%= content_section 'game-info', title: @game.name do -%>
+        <%= game_banner_img @game -%>
+    <%- end -%>
+    
+    <%= content_section 'game-related-news', title: 'Related News' do -%>
+    <%- end -%>
+<%- end -%>
 
-<p>
-  <strong>Name:</strong>
-  <%= @game.name %>
-</p>
+<%= content_row :large, :halfs do -%>
+    <%= content_section 'game-related-members', title: 'Players' do -%>
+    <%- end -%>
+    
+    <%= content_section 'game-related-media', title: 'Media' do -%>
+    <%- end -%>
+<%- end -%>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @game.slug %>
-</p>
-
-<p>
-    <strong>Featured:</strong>
-    <%= @game.featured? ? 'Yes' : 'No' %>
-</p>
-
-<p>
-  <strong>Banner:</strong>
-  <%= game_banner @game %>
-</p>
-
-<p>
-    <strong>Summary:</strong>
-    <%= @game.summary %>
-</p>
-
-<p>
-    <strong>Description:</strong>
-    <%= @game.description %>
-</p>
-
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<%= content_for :user_actions do -%>
+    <%- if @current_user.is_admin? -%>
+        <%= link_to 'Edit Game', edit_game_path(@game), class: 'button' -%>
+    <%- end -%>
+<%- end -%>

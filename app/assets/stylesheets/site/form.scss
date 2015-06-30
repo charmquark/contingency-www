@@ -1,13 +1,12 @@
 @mixin form-dependant-sizes($pad, $spacing) {
     .field { margin-bottom: $spacing; }
-    
-    .actions {
-        margin-top: $spacing * 2;
-        padding: $pad;
-    }
 }
 
 form {
+    max-width: $content-width-medium;
+    
+    margin: auto;
+    
     position: relative;
     
     input[type=file] {
@@ -54,17 +53,6 @@ form {
         
         &.long {
             min-height: 12.8rem;
-        }
-    }
-    
-    .actions {
-        background: $bg-contrast;
-        text-align: center;
-        
-        .button {
-            margin-right: $pad-medium;
-            
-            &:last-child { margin-right: 0px; }
         }
     }
     
@@ -184,3 +172,5 @@ form {
 
     .breakpoint-large & { @include form-dependant-sizes($pad-large, $spacing-large); }
 }
+
+#form-section h2 { text-align: center; }

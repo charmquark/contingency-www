@@ -1,11 +1,3 @@
-<section>
-    <div>
-        <h1>New Game</h1>
-        <%= render 'form' %>
-    </div>
-</section>
-<section>
-    <div>
-        <%= link_to 'Back', games_path %>
-    </div>
-</section>
+<%= content_section :form, title: "New Game" do -%>
+    <%= render 'form' %>
+<%- end -%>

@@ -11,7 +11,7 @@
     <meta name="breakpoint" content="small" media="(max-width: 799px)">
     <meta name="breakpoint" content="medium" media="(min-width: 800px)">
     <meta name="breakpoint" content="large" media="(min-width: 1150px)">
-    <meta name="breakpoint" content="wide" media="(min-width: 1700px)">
+    <meta name="breakpoint" content="wide" media="(min-width: 1660px)">
     <meta name="breakpoint" content="retina" media="(-webkit-min-device-pixel-ratio: 2)">
     
     <title><%= yield :title %>The Contingency</title>
@@ -29,10 +29,6 @@
             <h1><%= icon_link_to :white, 'contingency-symbol', 'The Contingency', root_path %></h1>
             <%= icon :white, :menu %>
             <nav>
-                <%- unless @current_user.nil? -%>
-                    <%= icon_link_to :white, :account, @current_user.handle, member_path(@current_user), class: 'hover-hilite' %>
-                    <%= icon_link_to :white, :logout, 'Logout', logout_path, class: 'hover-hilite', method: :delete %>
-                <%- end -%>
                 <%= icon_link_to :white, :gamepad, 'Games', games_path, class: 'hover-hilite' %>
                 <%= icon_link_to :white, 'account-multiple', 'Members', members_path, class: 'hover-hilite' %>
             </nav>
@@ -40,15 +36,22 @@
     </header>
     <main>
         <%- unless flash.empty? then -%>
-            <section class="flash">
-                <%- %w(error notice).each do |ftype| -%>
+            <%= content_section :flash do -%>
+                <%- %w(alert error notice).each do |ftype| -%>
                     <%- if flash[ftype.to_sym] then -%>
-                        <div class="flash-<%= ftype %>"><%= flash[ftype.to_sym] %></div>
+                        <div class="flash flash-<%= ftype %>"><%= flash[ftype.to_sym] %></div>
                     <%- end -%>
                 <%- end -%>
-            </section>
+            <%- end -%>
         <%- end -%>
         <%= yield %>
+        <%- unless @current_user.nil? then -%>
+            <div class="actions">
+                <%= yield :user_actions -%>
+                <%= link_to @current_user.handle, member_path(@current_user), class: 'button' %>
+                <%= link_to 'Logout', logout_path, class: 'button', method: 'delete' %>
+            </div>
+        <%- end -%>
     </main>
     <footer>
         <div>
@@ -56,9 +59,6 @@
             <nav>
                 <%- if @current_user.nil? -%>
                     <%= link_to 'Login', login_path, class: 'hover-hilite' %>
-                <%- else -%>
-                    <%= link_to @current_user.handle, member_path(@current_user), class: 'hover-hilite' %>
-                    <%= link_to 'Logout', logout_path, class: 'hover-hilite', method: 'delete' %>
                 <%- end -%>
                 <%= link_to 'Games', games_path, class: 'hover-hilite' %>
                 <%= link_to 'Members', members_path, class: 'hover-hilite' %>

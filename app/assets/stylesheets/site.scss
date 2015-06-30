@@ -60,45 +60,55 @@ h6 {
 body > main {
     z-index: 100;
     
-    > section,
-    > span > section {
-        > div > h2 {
-            color: $white-secondary;
-            
-            margin: 0px 0px 1rem 0px;
-        }
-        
-        .breakpoint-small & {
-            margin-bottom: $spacing-small;
-            padding: $pad-small;
-        }
-        
-        .breakpoint-medium & {
-            > div {
-                background: rgba($bg-color, 0.2);
-                
-                padding: $pad-medium;
-            }
-            
-            margin-bottom: $spacing-medium;
-        }
-        
-        .breakpoint-large & {
-            > div { padding: $pad-large; }
-            
-            margin-bottom: $spacing-large;
-        }
-    }
-    
-    > section > div {
-        .breakpoint-medium & { @extend %content-centered; }
-    }
-    
     .breakpoint-small & {
         background: rgba($bg-color, 0.2);
         
         padding: ($header-height-small * 2) 0px $pad-small 0px;
     }
+}
+
+p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    
+    &:first-child { margin-top: 0em; }
+    &:last-child { margin-bottom: 0em; }
+}
+
+.actions {
+    background: $bg-actions;
+    text-align: center;
+
+    margin: $pad-medium auto;
+    padding: $pad-medium 0px;
+    
+    .button {
+        margin-right: $pad-medium;
+        
+        &:last-child { margin-right: 0px; }
+    }
+    
+    body > main > & { width: $content-width-medium; }
+    
+    .breakpoint-small & { display: none; }
+    
+    .breakpoint-large & {
+        margin: $pad-large auto;
+        padding: $pad-large 0px;
+        
+        .button { margin-right: $pad-large; }
+    }
+    
+    .breakpoint-large body > main > & { width: $content-width-large; }
+    
+    .breakpoint-wide & {
+        margin: $pad-wide auto;
+        padding: $pad-wide 0px;
+        
+        .button { margin-right: $pad-wide; }
+    }
+    
+    .breakpoint-wide body > main > & { width: $content-width-wide; }
 }
 
 .button {
@@ -130,22 +140,37 @@ body > main {
     .breakpoint-wide & { padding: $pad-wide ($pad-wide / 2); }
 }
 
-.flash {
-    .flash-alert { background: rgba($green-900, 0.4); }
-    
-    .flash-error { background: rgba($red-900, 0.4); }
-
-    .flash-notice { background: rgba($indigo-900, 0.4); }
-    
+.content-section {
     .breakpoint-small & {
-        margin: $spacing-small auto;
+        margin-bottom: $spacing-small;
         padding: $pad-small;
     }
     
+    .breakpoint-medium & { margin-bottom: $spacing-medium; }
+    
+    .breakpoint-large & { margin-bottom: $spacing-large; }
+    
+    .breakpoint-wide & { margin-bottom: $spacing-wide; }
+}
+
+.content-section-body {
+    @extend %content-centered;
+    
+    h2 {
+        color: $white-secondary;
+        
+        margin: 0px 0px 1rem 0px;
+    }
+    
     .breakpoint-medium & {
-        margin: $spacing-medium auto;
+        background: rgba($bg-color, 0.2);
+        
         padding: $pad-medium;
     }
+    
+    .breakpoint-large & { padding: $pad-large; }
+    
+    .breakpoint-wide & { padding: $pad-wide; }
 }
 
 .top-bg {
@@ -161,6 +186,43 @@ body > main {
     .breakpoint-medium & { top: $header-height-medium; }
     
     .breakpoint-large & { top: 0px; }
+}
+
+
+#flash-section {
+    .flash {
+        max-width: $content-width-medium;
+        
+        margin: 0px auto 1em auto;
+        padding: 1em;
+        
+        &:last-child { margin-bottom: 0px; }
+    }
+
+    .flash-alert {
+        background: rgba($yellow-200, 0.6);
+        color: $black-secondary;
+    }
+    
+    .flash-error {
+        background: rgba($red-200, 0.6);
+        color: $black-secondary;
+    }
+
+    .flash-notice {
+        background: rgba($indigo-200, 0.6);
+        color: $black-secondary;
+    }
+    
+    .breakpoint-small & {
+        margin: $spacing-small auto;
+        padding: $pad-small;
+    }
+    
+    .breakpoint-medium & {
+        margin: $spacing-medium auto;
+        padding: $pad-medium;
+    }
 }
 
 
