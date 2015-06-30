@@ -69,3 +69,12 @@ role :db, %w(invironz@midgard)
 set :ssh_options, {
     auth_methods: %w(publickey password)
 }
+
+set :linked_dirs, fetch(:linked_dirs, []).push(
+    'public/system'
+)
+
+set :linked_files, fetch(:linked_files, []).push(
+    'db/development.sqlite3',
+    'db/staging.sqlite3'
+)
