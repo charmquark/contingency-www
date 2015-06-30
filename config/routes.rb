@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
     resources :games
-    resources :members
+    resources :members, constraints: {id: /[^\/]+/}
     resources :news_posts
 
     get     'login'     => 'sessions#new'       , as: :login

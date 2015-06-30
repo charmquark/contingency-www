@@ -1,10 +1,11 @@
 module MembersHelper
     def member_avatar(member, options = {})
         options     = options.symbolize_keys
-        with_handle = options.fetch(:handle, true)
+        no_title    = options.fetch :no_title, false
+        with_handle = options.fetch :handle, true
         
         img_options         = options.fetch :img, {}
-        img_options[:title] = options.fetch :title, member.handle unless with_handle
+        img_options[:title] = options.fetch :title, member.handle unless with_handle or no_title
         content             = member_avatar_img member, img_options
         
         content += content_tag(:span, member.handle, class: "member-handle") if with_handle
