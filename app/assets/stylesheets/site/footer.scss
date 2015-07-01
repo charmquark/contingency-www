@@ -44,7 +44,11 @@ body > footer {
         @include footer-dependant-sizes($pad-medium);
     }
     
-    .breakpoint-large & { @include footer-dependant-sizes($pad-large); }
+    .breakpoint-large & {
+        background: transparent;
+        
+        @include footer-dependant-sizes($pad-large);
+    }
     
     .breakpoint-wide & { @include footer-dependant-sizes($pad-wide); }
 }
