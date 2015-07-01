@@ -11,7 +11,12 @@
         </div>
     <%- end -%>
 
-    <%= form_for(@background_image, html: {multipart: true}, url: backgroundable_action_path(:create), method: :post) do |f| -%>
+    <%= form_for(@background_image,
+            html: {multipart: true},
+            url: poly_background_images_path,
+            method: :post
+        ) do |f|
+    -%>
         <div class="halfs-medium">
             <div class="field backgroundable-info">
                 <label><%= backgroundable.class.to_s.titleize %></label>
@@ -28,11 +33,11 @@
         <div class="actions">
             <%= f.submit class: 'button' %>
             <%= f.button 'Reset', class: 'button', type: :reset %>
-            <%= link_to 'Cancel', backgroundable_action_path, class: 'button' %>
+            <%= link_to 'Cancel', poly_background_images_path, class: 'button' %>
         </div>
     <%- end -%>
 <%- end -%>
 
 <%- content_for :user_actions do -%>
-    <%= link_to "Back to #{backgroundable.class.to_s.titleize}", backgroundable_path, class: 'button' %>
+    <%= link_to "Back to #{backgroundable_type.to_s.titleize}", backgroundable_path, class: 'button' %>
 <%- end -%>

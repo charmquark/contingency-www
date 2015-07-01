@@ -1,20 +1,23 @@
 class BackgroundImagesController < ApplicationController
+    
+    after_action :set_featured_background_image
+    
     def index
         @background_images = backgroundable.background_images
-        set_featured_background_image
     end
     
     def new
         admin_only do
             @background_image = backgroundable.background_images.build
-            set_featured_background_image
         end
     end
     
     def create
         admin_only do
-            if backgroundable.background_images.create(background_image_params) then
-                redirect_to backgroundable_action_path, notice: 'Background image was successfully created.'
+            @background_image = backgroundable.background_images.build background_image_params
+            if @background_image.save then
+                redirect_to poly_background_images_path,
+                    notice: 'Background image was successfully created.'
             else
                 render :new
             end
@@ -25,42 +28,25 @@ class BackgroundImagesController < ApplicationController
         admin_only do
             @background_image = BackgroundImage.find params[:id]
             @background_image.destroy
-            redirect_to backgroundable_action_path, notice: 'Background image was successfully destroyed.'
+            redirect_to poly_background_images_path,
+                notice: 'Background image was successfully destroyed.'
         end
     end
     
-    helper_method :backgroundable, :backgroundable_action_path, :backgroundable_path
+    helper_method :backgroundable, :backgroundable_type, :poly_background_images_path
 
     def backgroundable
         @backgroundable ||= set_backgroundable
     end
     
-    def backgroundable_action_path(action = :index, rec = nil)
-        rec ||= @background_image
-        case backgroundable_type
-        when :game
-            case action
-            when :new
-                return new_game_background_image_path(backgroundable)
-            when :destroy
-                return game_background_image_path(backgroundable, rec)
-            else
-                return game_background_images_path(backgroundable)
-            end
-        else
-            return nil
-        end
+    def backgroundable_type
+        @backgroundable_type ||= set_backgroundable_type
     end
     
-    def backgroundable_path
-        case backgroundable_type
-        when :game
-            return game_path params[:game_id]
-        else
-            return root_path
-        end
+    def poly_background_images_path
+        send "#{backgroundable_type}_background_images_path", backgroundable
     end
-    
+        
 private
 
     def background_image_params
@@ -69,10 +55,6 @@ private
         else
             return params
         end
-    end
-    
-    def backgroundable_type
-        @backgroundable_type ||= set_backgroundable_type
     end
     
     def set_backgroundable
