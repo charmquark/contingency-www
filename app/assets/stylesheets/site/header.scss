@@ -190,7 +190,7 @@ body > header {
     }
     
     .breakpoint-large & {
-        @include better-linear-gradient($bg-color, rgba($bg-color, 0));
+        //@include better-linear-gradient($bg-color, rgba($bg-color, 0));
         
         padding-bottom: $pad-large;
         

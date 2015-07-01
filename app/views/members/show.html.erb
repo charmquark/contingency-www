@@ -1,5 +1,10 @@
-<%= content_section 'member-info', title: @member.handle do -%>
-    <%= member_avatar_img @member -%>
+<%= content_row :medium, :halfs do -%>
+    <%= content_section 'member-info', title: @member.handle do -%>
+        <%= member_avatar_img @member -%>
+    <%- end -%>
+    
+    <%= content_section 'member-links', title: 'Related Links' do -%>
+    <%- end -%>
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>

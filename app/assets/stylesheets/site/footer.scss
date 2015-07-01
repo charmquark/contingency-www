@@ -23,7 +23,7 @@ body > footer {
     
     .breakpoint-medium & {
         background: $bg-color;
-        background: linear-gradient(rgba($bg-color, 0), $bg-color);
+        //background: linear-gradient(rgba($bg-color, 0), $bg-color);
         
         position: relative;
         
