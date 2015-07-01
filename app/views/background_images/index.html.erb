@@ -1,0 +1,15 @@
+<%= content_section 'background-images-index' do -%>
+    <ul>
+        <%- @background_images.each do |bg| -%>
+            <li>
+                <%= image_tag bg.image.url -%>
+                <%= icon_link_to :white, :delete, '', backgroundable_action_path(:destroy, bg), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </li>
+        <%- end -%>
+    </ul>
+<%- end -%>
+
+<%- content_for :user_actions do -%>
+    <%= link_to_if is_admin?, "New Background", backgroundable_action_path(:new), class: 'button' %>
+    <%= link_to "Back to #{backgroundable.class.to_s.titleize}", backgroundable_path, class: 'button' %>
+<%- end -%>

@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-    resources :games
+    resources :games do
+        resources :background_images, only: ['index', 'new', 'create', 'destroy'], format: false
+    end
+    
     resources :members, constraints: {id: /[^\/]+/}
     resources :news_posts
 
-    get     'login'     => 'sessions#new'       , as: :login
-    post    'login'     => 'sessions#create'    , as: :process_login
-    delete  'logout'    => 'sessions#destroy'   , as: :logout
+    get     'login'     => 'sessions#new'       , as: :login        , format: false
+    post    'login'     => 'sessions#create'    , as: :process_login, format: false
+    delete  'logout'    => 'sessions#destroy'   , as: :logout       , format: false
     
     root 'pages#home'
 

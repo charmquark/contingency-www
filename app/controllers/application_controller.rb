@@ -3,18 +3,22 @@ class ApplicationController < ActionController::Base
     # For APIs, you may want to use :null_session instead.
     protect_from_forgery with: :exception
     
-    helper_method :current_user, :is_admin?, :logged_in?
+    helper_method :current_user, :featured_background_image, :is_admin?, :logged_in?
     
     def current_user
         @current_user ||= Member.find_by id: session[:current_user_id]
     end
     
+    def featured_background_image
+        @featured_background_image ||= BackgroundImage.random.try(:first)
+    end
+    
     def is_admin?
-        current_user.try(:role) == 'admin'
+        @is_admin ||= current_user.try(:role) == 'admin'
     end
 
     def logged_in?
-        ! current_user.nil?
+        @logged_in ||= ! current_user.nil?
     end
 
 protected

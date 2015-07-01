@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629220520) do
+ActiveRecord::Schema.define(version: 20150630204706) do
+
+  create_table "background_images", force: :cascade do |t|
+    t.integer  "backgroundable_id"
+    t.string   "backgroundable_type"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "background_images", ["backgroundable_type", "backgroundable_id"], name: "index_background_images_on_polymorphic_backgroundable"
 
   create_table "games", force: :cascade do |t|
     t.string   "name"

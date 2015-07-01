@@ -1,5 +1,8 @@
 class Game < ActiveRecord::Base
     scope :random, -> { order 'random()' }
+
+    has_many :background_images, as: :backgroundable
+    has_many :news_post
     
     has_attached_file :banner,
         default_url: ''
@@ -15,8 +18,6 @@ class Game < ActiveRecord::Base
     validates :slug,
         presence: true,
         uniqueness: true
-    
-    has_many :news_post
     
     def to_param
         slug

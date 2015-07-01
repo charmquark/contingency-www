@@ -23,7 +23,7 @@
     <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %>-controller <%= action_name %>-action">
-    <img class="top-bg" src="/images/top-bg/<%= '%02d' % (Random.rand(3) + 1) %>.png">
+    <%= image_tag featured_background_image.image.url, id: 'featured-background-image' %>
     <header>
         <div>
             <h1><%= icon_link_to :white, 'contingency-symbol', 'The Contingency', root_path %></h1>

@@ -7,6 +7,7 @@ $font-forum:    'Forum', 'Roboto', sans-serif;
 
 $bg-actions:        rgba($cyan-900, 0.2);
 $bg-color:          $blue-grey-900;
+$bg-content:        rgba($bg-color, 0.6);
 $bg-contrast:       rgba($blue-grey-100, 0.2);
 $bg-icon:           rgba($bg-color, $alpha-black-icon);
 
@@ -25,18 +26,20 @@ $header-height-wide:    $header-height-large;
 
 $header-nav-link-width: 100px;
 
-$icons-available:   account, account-multiple, contingency-symbol, gamepad, home, logout, menu;
+$icons-available:   account, account-multiple, contingency-symbol, delete, gamepad, home, logout, menu;
 $icon-size:         $game-banner-height / 5;
 
-$link-hilite: $blue-grey-700;
+$link-bg:       rgba($blue-grey-900, 0.8);
+$link-hilite:   $blue-grey-700;
 
 $pad-small:     10px;
 $pad-medium:    10px;
 $pad-large:     20px;
 $pad-wide:      $pad-large;
 
-$member-avatar-width:   $game-banner-height;
-$member-avatar-height:  $member-avatar-width;
+$member-avatar-width:       $game-banner-height;
+$member-avatar-height:      $member-avatar-width;
+$member-avatar-handle-bg:   $black-hint;
 
 $spacing-small:     $pad-small * 1.5;
 $spacing-medium:    $pad-medium * 1.5;

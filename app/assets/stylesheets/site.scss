@@ -54,7 +54,7 @@ h4,
 h5,
 h6 {
     font-family: $font-forum;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 body > main {
@@ -63,7 +63,7 @@ body > main {
     z-index: 100;
     
     .breakpoint-small & {
-        background: rgba($bg-color, 0.2);
+        background: $bg-content;
         
         padding: ($header-height-small * 2) 0px $pad-small 0px;
     }
@@ -124,7 +124,8 @@ p {
 }
 
 .button {
-    background: $bg-icon;
+    //background: $bg-icon;
+    background: $link-bg;
     border-width: 0px;
     color: $white-icon;
     font-family: $font-lato;
@@ -175,7 +176,7 @@ p {
     }
     
     .breakpoint-medium & {
-        background: rgba($bg-color, 0.2);
+        background: $bg-content;
         
         padding: $pad-medium;
     }
@@ -186,22 +187,6 @@ p {
 }
 
 .breakpoint-small .hide-small { display: none; }
-
-.top-bg {
-    width: 100%;
-    
-    position: absolute;
-    left: 0px;
-    
-    z-index: -1;
-    
-    .breakpoint-small & { top: $header-height-small; }
-    
-    .breakpoint-medium & { top: $header-height-medium; }
-    
-    .breakpoint-large & { top: 0px; }
-}
-
 
 #flash-section {
     .flash {

@@ -16,7 +16,6 @@
 <%- end -%>
 
 <%= content_for :user_actions do -%>
-    <%- if is_admin? then -%>
-        <%= link_to 'Edit Game', edit_game_path(@game), class: 'button' -%>
-    <%- end -%>
+    <%= link_to_if is_admin?, 'Edit Game', edit_game_path(@game), class: 'button' %>
+    <%= link_to_if is_admin?, 'Backgrounds', game_background_images_path(@game), class: 'button' -%>
 <%- end -%>

@@ -52,7 +52,7 @@ private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
         # first try finding by handle, then fallback on raw id if needed
-        @member = Member.where(handle: params[:id]).first
+        @member = Member.find_by handle: params[:id]
         @member = Member.find params[:id] unless @member
     end
 
