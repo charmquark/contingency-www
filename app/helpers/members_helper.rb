@@ -29,7 +29,7 @@ module MembersHelper
     
     def members_avatars_list(members, img_options = {}, link_options = {})
         members.collect do |m|
-            member_avatar m, img_options.clone, link_options.clone
+            member_avatar m, img: img_options.clone, link: link_options.clone
         end
     end
 end

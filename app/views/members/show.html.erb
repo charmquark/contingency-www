@@ -9,6 +9,7 @@
 
 <%= content_row :large, :halfs do -%>
     <%= content_section 'member-related-games', title: 'Games' do -%>
+        <%= games_banners @member.games %>
     <%- end -%>
     
     <%= content_section 'member-related-media', title: 'Media' do -%>
@@ -19,5 +20,6 @@
     <%- admin_or @member do -%>
         <%= link_to 'Edit Member', edit_member_path(@member), class: 'button' -%>
         <%= link_to 'Backgrounds', member_background_images_path(@member), class: 'button' -%>
+        <%= link_to 'Games', member_game_memberships_path(@member), class: 'button' %>
     <%- end -%>
 <% end %>

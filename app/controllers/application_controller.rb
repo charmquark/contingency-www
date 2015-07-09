@@ -40,6 +40,21 @@ protected
             redirect_to(redir.nil? ? root_url : redir)
         end
     end
+    
+    def find_game(slug)
+        Game.find_by slug: slug
+    end
+    
+    def find_member(handle)
+        Member.find_by handle: handle
+    end
+    
+    def set_featured_background_image(bgable)
+        unless bgable.nil? then
+            bg = bgable.background_images.random
+            @featured_background_image = bg[0] if bg.any?
+        end
+    end
 
 private
 

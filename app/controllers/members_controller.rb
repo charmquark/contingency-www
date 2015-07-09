@@ -2,11 +2,11 @@ class MembersController < ApplicationController
     before_action :set_member, only: [:show, :edit, :update, :destroy]
 
     def index
-        @members = Member.all.sort {|a, b| a.handle.downcase <=> b.handle.downcase }
+        @members = Member.to_sorted Member.all
     end
 
     def show
-        set_featured_background_image
+        set_featured_background_image @member
     end
 
     def new
@@ -19,7 +19,7 @@ class MembersController < ApplicationController
 
     def edit
         admin_or @member do
-            set_featured_background_image
+            set_featured_background_image @member
         end
     end
 
@@ -54,9 +54,7 @@ class MembersController < ApplicationController
 private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
-        # first try finding by handle, then fallback on raw id if needed
-        @member = Member.find_by handle: params[:id]
-        @member = Member.find params[:id] unless @member
+        @member = find_member params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -67,13 +65,6 @@ private
             return params.require(:member).permit(:avatar, :biography, :handle, :email, :password, :password_confirmation)
         else
             return params
-        end
-    end
-
-    def set_featured_background_image
-        unless @member.nil? then
-            bg = @member.background_images.random
-            @featured_background_image = bg[0] if bg.any?
         end
     end
 

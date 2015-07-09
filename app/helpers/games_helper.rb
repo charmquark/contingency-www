@@ -24,7 +24,7 @@ module GamesHelper
     
     def games_banners_list(games, img_options = {}, link_options = {})
         games.collect do |g|
-            game_banner g, img_options.clone, link_options.clone
+            game_banner g, img: img_options.clone, link: link_options.clone
         end
     end
 end

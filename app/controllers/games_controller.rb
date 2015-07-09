@@ -7,7 +7,7 @@ class GamesController < ApplicationController
 
     def show
         unless @game.nil? then
-            set_featured_background_image
+            set_featured_background_image @game
         else
             redirect_to games_path
         end
@@ -19,7 +19,7 @@ class GamesController < ApplicationController
 
     def edit
         admin_only do
-            set_featured_background_image
+            set_featured_background_image @game
         end
     end
 
@@ -54,7 +54,7 @@ class GamesController < ApplicationController
 private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
-        @game = Game.find_by slug: params[:id]
+        @game = find_game params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -63,13 +63,6 @@ private
             return params.require(:game).permit(:name, :slug, :featured, :banner, :description)
         else
             return params
-        end
-    end
-    
-    def set_featured_background_image
-        unless @game.nil? then
-            bg = @game.background_images.random
-            @featured_background_image = bg[0] if bg.any?
         end
     end
 

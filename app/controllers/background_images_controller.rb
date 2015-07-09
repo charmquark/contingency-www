@@ -1,20 +1,20 @@
 class BackgroundImagesController < ApplicationController
     
     def index
-        set_featured_background_image
+        set_featured_background_image backgroundable
         @background_images = backgroundable.background_images
     end
     
     def new
         admin_only do
-            set_featured_background_image
+            set_featured_background_image backgroundable
             @background_image = backgroundable.background_images.build
         end
     end
     
     def create
         admin_only do
-            set_featured_background_image
+            set_featured_background_image backgroundable
             @background_image = backgroundable.background_images.build background_image_params
             if @background_image.save then
                 redirect_to poly_background_images_path,
@@ -27,7 +27,7 @@ class BackgroundImagesController < ApplicationController
     
     def destroy
         admin_only do
-            set_featured_background_image
+            set_featured_background_image backgroundable
             @background_image = BackgroundImage.find params[:id]
             @background_image.destroy
             redirect_to poly_background_images_path,
@@ -71,9 +71,9 @@ private
         if @backgroundable.nil? then
             case backgroundable_type
             when :game
-                @backgroundable = Game.find_by slug: params[:game_id]
+                @backgroundable = find_game params[:game_id]
             when :member
-                @backgroundable = Member.find_by handle: params[:member_id]
+                @backgroundable = find_member params[:member_id]
             end
         end
         @backgroundable
@@ -85,10 +85,6 @@ private
             @backgroundable_type = :member  if params.has_key? :member_id
         end
         @backgroundable_type
-    end
-    
-    def set_featured_background_image
-        @featured_background_image = backgroundable.background_images.random
     end
     
 end

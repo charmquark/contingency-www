@@ -1,0 +1,67 @@
+<%= content_section 'game-membership-form' do %>
+    <%- if @game_membership.errors.any? -%>
+        <div id="error_explanation">
+            <h2><%= pluralize(@game_membership.errors.count, "error") %> prohibited this game membership from being saved:</h2>
+
+            <ul>
+            <% @game_membership.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+            </ul>
+        </div>
+    <%- end -%>
+    
+    <%= form_for(@game_membership,
+            url: assoc_game_membership_path,
+            method: :post
+        ) do |f|
+    %>
+        <div class="halfs-medium">
+            <div class="field">
+                <%= f.label :game_id %>
+                <%- if assoc_type == :game then -%>
+                    <%= game_banner assoc %>
+                <%- else -%>
+                    <%= f.select(
+                        :game_id,
+                        Game.without_member(assoc).map {|g| [g.name, g.id] },
+                        {},
+                        {size: 6}
+                    ) %>
+                <%- end -%>
+            </div>
+            <div class="field">
+                <%= f.label :member_id %>
+                <%- if assoc_type == :member then -%>
+                    <%= member_avatar assoc %>
+                <%- else -%>
+                    <%= f.select(
+                        :member_id,
+                        Member.without_game(assoc).map {|m| [m.handle, m.id] },
+                        {},
+                        {size: 6}
+                    ) %>
+                <%- end -%>
+            </div>
+        </div>
+        <div class="actions">
+            <%= f.submit class: 'button', value: 'Save' %>
+            <%= f.button 'Reset', class: 'button', type: :reset %>
+            <%- case assoc_type -%>
+            <%- when :game -%>
+                <%= link_to 'Cancel', game_game_memberships_path(assoc), class: 'button' %>
+            <%- when :member -%>
+                <%= link_to 'Cancel', member_game_memberships_path(assoc), class: 'button' %>
+            <%- end -%>
+        </div>
+    <% end %>
+<% end %>
+
+<%- content_for :user_actions do -%>
+    <%- case assoc_type -%>
+    <%- when :game -%>
+        <%= link_to "Back to Game", game_path(assoc), class: 'button' %>
+    <%- when :member -%>
+        <%= link_to "Back to Member", member_path(assoc), class: 'button' %>
+    <%- end -%>
+<%- end -%>

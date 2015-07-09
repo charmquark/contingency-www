@@ -4,8 +4,12 @@ class Game < ActiveRecord::Base
     scope :not_featured, -> { where featured: false }
     
     scope :random, -> { order 'random()' }
+    
+    scope :without_member, ->(m) { Game.to_sorted(all.reject {|r| r.members.include? m }) }
 
     has_many :background_images, as: :backgroundable
+    has_many :game_memberships
+    has_many :members, through: :game_memberships
     has_many :news_post
     
     has_attached_file :banner,
@@ -24,5 +28,11 @@ class Game < ActiveRecord::Base
     
     def to_param
         slug
+    end
+    
+    def self.to_sorted(games)
+        games.sort do |a, b|
+            a.name.downcase <=> b.name.downcase
+        end
     end
 end

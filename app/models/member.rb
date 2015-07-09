@@ -5,7 +5,11 @@ class Member < ActiveRecord::Base
     
     scope :random, -> { order 'random()' }
     
+    scope :without_game, ->(g) { Member.to_sorted(all.reject {|r| r.games.include? g }) }
+    
     has_many :background_images, as: :backgroundable
+    has_many :game_memberships
+    has_many :games, through: :game_memberships
     
     has_attached_file :avatar,
         default_url: '/images/generic-member-avatar.jpg'
@@ -62,5 +66,11 @@ class Member < ActiveRecord::Base
             result.concat groups[r.symbol]
         end
         result
+    end
+    
+    def self.to_sorted(members)
+        members.sort do |a, b|
+            a.handle.downcase <=> b.handle.downcase
+        end
     end
 end
