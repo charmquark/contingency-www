@@ -1,4 +1,8 @@
 class Game < ActiveRecord::Base
+    scope :featured, -> { where featured: true }
+    
+    scope :not_featured, -> { where featured: false }
+    
     scope :random, -> { order 'random()' }
 
     has_many :background_images, as: :backgroundable

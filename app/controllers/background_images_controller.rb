@@ -88,7 +88,7 @@ private
     end
     
     def set_featured_background_image
-        @featured_background_image = backgroundable.background_images.random.try(:first)
+        @featured_background_image = backgroundable.background_images.random
     end
     
 end

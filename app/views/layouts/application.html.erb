@@ -23,7 +23,9 @@
     <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %>-controller <%= action_name %>-action">
-    <%= image_tag featured_background_image.image.url, id: 'featured-background-image' %>
+    <%- unless featured_background_image.nil? -%>
+        <%= image_tag featured_background_image.image.url, id: 'featured-background-image' %>
+    <%- end -%>
     <header>
         <div>
             <h1><%= icon_link_to :white, 'contingency-symbol', 'The Contingency', root_path %></h1>

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     end
     
     def featured_background_image
-        @featured_background_image ||= BackgroundImage.random.try(:first)
+        @featured_background_image ||= set_default_featured_background_image
     end
     
     def is_admin?
@@ -39,5 +39,12 @@ protected
             flash[:error] = "Permission denied."
             redirect_to(redir.nil? ? root_url : redir)
         end
+    end
+
+private
+
+    def set_default_featured_background_image
+        bg = BackgroundImage.random
+        @featured_background_image = bg[0] if bg.any?
     end
 end

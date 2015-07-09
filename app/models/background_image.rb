@@ -1,5 +1,5 @@
 class BackgroundImage < ActiveRecord::Base
-    #scope :random, -> { res = order('random()').limit(1); return res.empty? ? nil : res.first }
+    
     scope :random, -> { order('random()').limit(1) }
     
     belongs_to :backgroundable, polymorphic: true

@@ -67,7 +67,10 @@ private
     end
     
     def set_featured_background_image
-        @featured_background_image = @game.background_images.random.try(:first) unless @game.nil?
+        unless @game.nil? then
+            bg = @game.background_images.random
+            @featured_background_image = bg[0] if bg.any?
+        end
     end
 
 end
