@@ -6,10 +6,9 @@ class Member < ActiveRecord::Base
     scope :random, -> { order 'random()' }
     
     has_attached_file :avatar,
-        default_url: ''
+        default_url: '/images/generic-member-avatar.jpg'
     
     validates :avatar,
-        attachment_presence: true,
         attachment_content_type: { content_type: 'image/jpeg' }
     
     validates :handle,

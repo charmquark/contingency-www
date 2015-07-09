@@ -5,10 +5,9 @@ class Game < ActiveRecord::Base
     has_many :news_post
     
     has_attached_file :banner,
-        default_url: ''
+        default_url: '/images/generic-game-banner.jpg'
     
     validates :banner,
-        attachment_presence: true,
         attachment_content_type: { content_type: 'image/jpeg' }
     
     validates :name,

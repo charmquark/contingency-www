@@ -1,19 +1,17 @@
-<section>
-    <div>
-        <%= form_for(:session, url: process_login_path) do |f| %>
-            <div class="halfs-medium">
-                <div class="field">
-                    <%= f.label :handle %>
-                    <%= f.text_field :handle %>
-                </div>
-                <div class="field">
-                    <%= f.label :password %>
-                    <%= f.password_field :password %>
-                </div>
+<%= content_section 'login-form' do %>
+    <%= form_for(:session, url: process_login_path) do |f| %>
+        <div class="halfs-medium">
+            <div class="field">
+                <%= f.label :handle %>
+                <%= f.text_field :handle %>
             </div>
-            <div class="actions">
-                <%= f.submit 'Login', class: 'button' %>
+            <div class="field">
+                <%= f.label :password %>
+                <%= f.password_field :password %>
             </div>
-        <% end %>
-    </div>
-</section>
+        </div>
+        <div class="actions">
+            <%= f.submit 'Login', class: 'button' %>
+        </div>
+    <% end %>
+<% end %>
