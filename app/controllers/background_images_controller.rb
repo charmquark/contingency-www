@@ -1,19 +1,20 @@
 class BackgroundImagesController < ApplicationController
     
-    after_action :set_featured_background_image
-    
     def index
+        set_featured_background_image
         @background_images = backgroundable.background_images
     end
     
     def new
         admin_only do
+            set_featured_background_image
             @background_image = backgroundable.background_images.build
         end
     end
     
     def create
         admin_only do
+            set_featured_background_image
             @background_image = backgroundable.background_images.build background_image_params
             if @background_image.save then
                 redirect_to poly_background_images_path,
@@ -26,6 +27,7 @@ class BackgroundImagesController < ApplicationController
     
     def destroy
         admin_only do
+            set_featured_background_image
             @background_image = BackgroundImage.find params[:id]
             @background_image.destroy
             redirect_to poly_background_images_path,
@@ -50,7 +52,15 @@ class BackgroundImagesController < ApplicationController
 private
 
     def background_image_params
-        if is_admin? then
+        safe = false
+        case backgroundable_type
+        when :game
+            safe = is_admin?
+        when :member
+            safe = is_admin? or backgroundable == current_user
+        end
+        
+        if safe then
             return params.require(:background_image).permit(:image)
         else
             return params
@@ -62,6 +72,8 @@ private
             case backgroundable_type
             when :game
                 @backgroundable = Game.find_by slug: params[:game_id]
+            when :member
+                @backgroundable = Member.find_by handle: params[:member_id]
             end
         end
         @backgroundable
@@ -69,7 +81,8 @@ private
     
     def set_backgroundable_type
         if @backgroundable_type.nil? then
-            @backgroundable_type = :game if params.has_key? :game_id
+            @backgroundable_type = :game    if params.has_key? :game_id
+            @backgroundable_type = :member  if params.has_key? :member_id
         end
         @backgroundable_type
     end

@@ -49,7 +49,6 @@
             <div class="actions">
                 <%= yield :user_actions -%>
                 <%= link_to current_user.handle, member_path(current_user), class: 'button' %>
-                <%= link_to 'Logout', logout_path, class: 'button', method: 'delete' %>
             </div>
         <%- end -%>
     </main>
@@ -57,9 +56,9 @@
         <div>
             <div class="copyright">Copyright &copy; 2015, The Contingency. All rights reserved.</div>
             <nav>
-                <%- if @current_user.nil? -%>
+                <%= link_to_if logged_in?, 'Logout', logout_path, class: 'hover-hilite', method: 'delete' do %>
                     <%= link_to 'Login', login_path, class: 'hover-hilite' %>
-                <%- end -%>
+                <% end %>
                 <%= link_to 'Games', games_path, class: 'hover-hilite' %>
                 <%= link_to 'Members', members_path, class: 'hover-hilite' %>
             </nav>

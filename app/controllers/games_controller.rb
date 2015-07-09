@@ -7,7 +7,7 @@ class GamesController < ApplicationController
 
     def show
         unless @game.nil? then
-            @featured_background_image = @game.background_images.random.try(:first)
+            set_featured_background_image
         else
             redirect_to games_path
         end
@@ -19,7 +19,7 @@ class GamesController < ApplicationController
 
     def edit
         admin_only do
-            featured_background_image = @game.background_images.random
+            set_featured_background_image
         end
     end
 
@@ -65,4 +65,9 @@ private
             return params
         end
     end
+    
+    def set_featured_background_image
+        @featured_background_image = @game.background_images.random.try(:first) unless @game.nil?
+    end
+
 end

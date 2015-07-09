@@ -1,4 +1,12 @@
 module ApplicationHelper
+    def admin_only(&blk)
+        yield if is_admin?
+    end
+    
+    def admin_or(member, &blk)
+        yield if is_admin? or member == current_user
+    end
+    
     def content_row(bp, style = :halfs, options = {}, &blk)
         options = options.symbolize_keys
         options[:class] = "row-#{bp} row-of-#{style} #{options.fetch :class, ''}"

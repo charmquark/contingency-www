@@ -20,9 +20,11 @@
         <div class="halfs-medium">
             <div class="field backgroundable-info">
                 <label><%= backgroundable.class.to_s.titleize %></label>
-                <%- case backgroundable.class.to_s -%>
-                <%- when 'Game' -%>
+                <%- case backgroundable_type -%>
+                <%- when :game -%>
                     <%= game_banner backgroundable %>
+                <%- when :member -%>
+                    <%= member_avatar backgroundable %>
                 <%- end -%>
             </div>
             <div class="field">

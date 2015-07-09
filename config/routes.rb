@@ -3,7 +3,10 @@ Rails.application.routes.draw do
         resources :background_images, only: ['index', 'new', 'create', 'destroy'], format: false
     end
     
-    resources :members, constraints: {id: /[^\/]+/}
+    resources :members, constraints: {id: /[^\/]+/} do
+        resources :background_images, only: ['index', 'new', 'create', 'destroy'], format: false
+    end
+    
     resources :news_posts
 
     get     'login'     => 'sessions#new'       , as: :login        , format: false

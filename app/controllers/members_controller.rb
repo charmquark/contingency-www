@@ -6,6 +6,7 @@ class MembersController < ApplicationController
     end
 
     def show
+        set_featured_background_image
     end
 
     def new
@@ -17,7 +18,9 @@ class MembersController < ApplicationController
     end
 
     def edit
-        admin_or @member
+        admin_or @member do
+            set_featured_background_image
+        end
     end
 
     def create
@@ -66,4 +69,9 @@ private
             return params
         end
     end
+
+    def set_featured_background_image
+        @featured_background_image = @member.background_images.random.try(:first) unless @member.nil?
+    end
+
 end

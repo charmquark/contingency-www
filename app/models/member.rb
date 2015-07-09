@@ -5,6 +5,8 @@ class Member < ActiveRecord::Base
     
     scope :random, -> { order 'random()' }
     
+    has_many :background_images, as: :backgroundable
+    
     has_attached_file :avatar,
         default_url: '/images/generic-member-avatar.jpg'
     

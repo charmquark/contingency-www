@@ -16,7 +16,8 @@
 <%- end -%>
 
 <% content_for :user_actions do %>
-    <%- if is_admin? or (current_user == @member) then -%>
+    <%- admin_or @member do -%>
         <%= link_to 'Edit Member', edit_member_path(@member), class: 'button' -%>
+        <%= link_to 'Backgrounds', member_background_images_path(@member), class: 'button' -%>
     <%- end -%>
 <% end %>
