@@ -1,11 +1,13 @@
 class Game < ActiveRecord::Base
+    DEFAULT_BANNER_URL = '/images/generic-game-banner.jpg'
+    
     scope :featured, -> { where featured: true }
     
     scope :not_featured, -> { where featured: false }
     
     scope :random, -> { order 'random()' }
     
-    scope :without_member, ->(m) { Game.to_sorted(all.reject {|r| r.members.include? m }) }
+    scope :without_member, ->(m) { all.reject {|r| r.members.include? m } }
 
     has_many :background_images, as: :backgroundable
     has_many :game_memberships
@@ -13,7 +15,7 @@ class Game < ActiveRecord::Base
     has_many :news_post
     
     has_attached_file :banner,
-        default_url: '/images/generic-game-banner.jpg'
+        default_url: DEFAULT_BANNER_URL
     
     validates :banner,
         attachment_content_type: { content_type: 'image/jpeg' }

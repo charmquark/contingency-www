@@ -33,6 +33,7 @@
             <nav>
                 <%= icon_link_to :white, :gamepad, 'Games', games_path, class: 'hover-hilite' %>
                 <%= icon_link_to :white, 'account-multiple', 'Members', members_path, class: 'hover-hilite' %>
+                <%= icon_link_to :white, :newspaper, 'News', news_posts_path, class: 'hover-hilite' %>
             </nav>
         </div>
     </header>
@@ -63,6 +64,7 @@
                 <% end %>
                 <%= link_to 'Games', games_path, class: 'hover-hilite' %>
                 <%= link_to 'Members', members_path, class: 'hover-hilite' %>
+                <%= link_to 'News', news_posts_path, class: 'hover-hilite' %>
             </nav>
         </div>
     </footer>

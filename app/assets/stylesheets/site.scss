@@ -169,8 +169,11 @@ p {
 .content-section-body {
     @extend %content-centered;
     
+    @include clearfix;
+    
     h2 {
         color: $white-secondary;
+        text-align: center;
         
         margin: 0px 0px 1rem 0px;
     }
@@ -223,7 +226,6 @@ p {
         padding: $pad-medium;
     }
 }
-
 
 @import 'site/form';
 @import 'site/footer';

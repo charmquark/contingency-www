@@ -8,6 +8,7 @@ class GamesController < ApplicationController
     def show
         unless @game.nil? then
             set_featured_background_image @game
+            @news_post = NewsPost.where(game: @game).last
         else
             redirect_to games_path
         end

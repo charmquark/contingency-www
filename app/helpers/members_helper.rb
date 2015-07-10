@@ -32,4 +32,10 @@ module MembersHelper
             member_avatar m, img: img_options.clone, link: link_options.clone
         end
     end
+    
+    def members_select(f, members = nil)
+        members ||= Member.all
+        opts = Member.to_sorted(members).map {|m| [m.handle, m.id]}
+        f.select :member_id, opts, {}, {size: 6}
+    end
 end

@@ -1,4 +1,4 @@
-<%= content_section 'game-membership-form' do %>
+<%= content_section :form, title: 'New Game Membership' do %>
     <%- if @game_membership.errors.any? -%>
         <div id="error_explanation">
             <h2><%= pluralize(@game_membership.errors.count, "error") %> prohibited this game membership from being saved:</h2>
@@ -22,12 +22,7 @@
                 <%- if assoc_type == :game then -%>
                     <%= game_banner assoc %>
                 <%- else -%>
-                    <%= f.select(
-                        :game_id,
-                        Game.without_member(assoc).map {|g| [g.name, g.id] },
-                        {},
-                        {size: 6}
-                    ) %>
+                    <%= games_select f, Game.without_member(assoc) %>
                 <%- end -%>
             </div>
             <div class="field">
@@ -35,12 +30,7 @@
                 <%- if assoc_type == :member then -%>
                     <%= member_avatar assoc %>
                 <%- else -%>
-                    <%= f.select(
-                        :member_id,
-                        Member.without_game(assoc).map {|m| [m.handle, m.id] },
-                        {},
-                        {size: 6}
-                    ) %>
+                    <%= members_select f, Member.without_game(assoc) %>
                 <%- end -%>
             </div>
         </div>

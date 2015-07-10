@@ -1,4 +1,4 @@
-<%= content_section 'login-form' do %>
+<%= content_section :form, title: 'Login' do %>
     <%= form_for(:session, url: process_login_path) do |f| %>
         <div class="halfs-medium">
             <div class="field">

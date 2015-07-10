@@ -1,9 +1,12 @@
 <%= content_row :large, :halfs do -%>
     <%= content_section 'game-info', title: @game.name do -%>
-        <%= game_banner_img @game -%>
+        <div class="game-banner"> <%= game_banner_img @game -%></div>
     <%- end -%>
     
     <%= content_section 'game-related-news', title: 'Related News' do -%>
+        <%- unless @news_post.nil? then -%>
+            <%= render partial: 'news_posts/embed', locals: {news_post: @news_post} -%>
+        <%- end -%>
     <%- end -%>
 <%- end -%>
 

@@ -3,15 +3,13 @@
         <p>The Contingency is a community of friends united by a love of gaming and a general philosophy of curiosity, innovation, and hilarity. What began as a technical Minecraft server has expanded to encompass many kinds of experiences: survival games, shooters, minigames, building games, online board games, and more. Members often stream their activity at Twitch.tv and/or post videos to YouTube; and we love to interact with viewers. Depending on what's going on, we will sometimes invite viewers to tag along!</p>
     <%- end -%>
     
-    <%= content_section 'home-latest-news' do -%>
-        <h2>Latest News/Announcements</h2>
+    <%= content_section 'home-latest-news', title: 'Latest News' do -%>
         <%= render partial: 'news_posts/embed', locals: {news_post: @news_post} -%>
     <%- end -%>
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>
-    <%= content_section 'home-games' do -%>
-        <h2>Some Games We Enjoy</h2>
+    <%= content_section 'home-games', title: 'Some Games We Enjoy' do -%>
         <ul>
             <%- @games.each do |game| -%>
                 <li><%= game_banner game %></li>
@@ -20,8 +18,7 @@
         </ul>
     <%- end -%>
     
-    <%= content_section 'home-members' do -%>
-        <h2>Some of Our Members</h2>
+    <%= content_section 'home-members', title: 'Some of Our Members' do -%>
         <ul>
             <%- @members.each do |member| -%>
                 <li><%= member_avatar member %></li>

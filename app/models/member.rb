@@ -5,7 +5,7 @@ class Member < ActiveRecord::Base
     
     scope :random, -> { order 'random()' }
     
-    scope :without_game, ->(g) { Member.to_sorted(all.reject {|r| r.games.include? g }) }
+    scope :without_game, ->(g) { all.reject {|r| r.games.include? g } }
     
     has_many :background_images, as: :backgroundable
     has_many :game_memberships

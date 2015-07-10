@@ -3,8 +3,6 @@
 }
 
 form {
-    max-width: $content-width-medium;
-    
     margin: auto;
     
     position: relative;
@@ -180,4 +178,8 @@ form {
     .breakpoint-large & { @include form-dependant-sizes($pad-large, $spacing-large); }
 }
 
-#form-section h2 { text-align: center; }
+#form-section {
+    .breakpoint-medium & {
+        .content-section-body { max-width: $content-width-medium; }
+    }
+}

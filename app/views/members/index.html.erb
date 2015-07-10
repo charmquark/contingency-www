@@ -1,4 +1,4 @@
-<%= content_section 'members-index' do -%>
+<%= content_section 'members-index', title: 'Our Members' do -%>
     <ul>
         <%- @members.each do |member| -%>
             <li><%= member_avatar member -%></li>

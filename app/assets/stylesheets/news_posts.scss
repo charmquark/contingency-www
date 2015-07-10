@@ -86,3 +86,99 @@ article.news-post-embed {
         }
     }
 }
+
+#news-post-section {
+    .breakpoint-small & {
+        header {
+            margin-bottom: $spacing-small;
+        
+            .game-banner {
+                width: $game-banner-width / 2;
+                height: $game-banner-height / 2;
+            }
+            
+            .member-avatar {
+                width: $member-avatar-width / 2;
+                height: $member-avatar-height / 2;
+            }
+            
+            .news-post-date {
+                margin-bottom: $spacing-small;
+                
+                display: block;
+            }
+        }
+    }
+    
+    .breakpoint-medium & {
+        header {
+            margin-bottom: $spacing-medium;
+            
+            @include clearfix;
+            
+            .game-banner,
+            .member-avatar { float: right; }
+        }
+    }
+    
+    .breakpoint-large & {
+        header { margin-bottom: $spacing-large; }
+        
+        .content-section-body { max-width: $content-width-large; }
+    }
+    
+    .breakpoint-wide & {
+        header { margin-bottom: $spacing-wide; }
+    }
+}
+
+#news-posts-index-section {
+    .breakpoint-small & {
+        article {
+            margin-top: $spacing-small;
+            
+            &:first-child { margin-top: 0px; }
+        }
+    }
+    
+    .breakpoint-medium & {
+        article {
+            width: (($content-width-medium / 2) - $spacing-medium);
+            
+            margin-top: $spacing-medium;
+            
+            float: left;
+            
+            &:nth-child(even) { clear: left; }
+            
+            &:nth-child(odd) {
+                margin-left: $spacing-medium - ($pad-medium / 2);
+                
+                clear: right;
+            }
+            
+            &:nth-child(2),
+            &:nth-child(3) { margin-top: 0px; }
+        }
+    }
+    
+    .breakpoint-large & {
+        article {
+            width: (($content-width-large / 2) - $spacing-large);
+            
+            margin-top: $spacing-large;
+            
+            &:nth-child(odd) { margin-left: $spacing-large - ($pad-large / 2); }
+        }
+    }
+    
+    .breakpoint-wide & {
+        article {
+            width: (($content-width-wide / 2) - $spacing-wide );
+            
+            margin-top: $spacing-wide;
+            
+            &:nth-child(odd) { margin-left: $spacing-wide - ($pad-wide / 2); }
+        }
+    }
+}
