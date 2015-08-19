@@ -26,6 +26,7 @@ article.news-post-embed {
             padding: $pad-small;
             
             .game-banner,
+            .generic,
             .member-avatar { display: none; }
         }
         
@@ -35,6 +36,14 @@ article.news-post-embed {
             padding: $pad-medium ($pad-medium + ($member-avatar-width / 2)) $pad-medium $pad-medium;
             
             .game-banner {
+                position: absolute;
+                top: $member-avatar-height / 2;
+                right: 0px;
+            }
+            
+            .generic {
+                @include size($member-avatar-height / 2);
+                
                 position: absolute;
                 top: $member-avatar-height / 2;
                 right: 0px;
@@ -88,24 +97,37 @@ article.news-post-embed {
 }
 
 #news-post-section {
+    header {
+        position: relative;
+        
+        .news-post-date {
+            text-align: center;
+            
+            display: block;
+        }
+    }
+
     .breakpoint-small & {
         header {
             margin-bottom: $spacing-small;
-        
+            padding-top: ($game-banner-height / 2) + $pad-small;
+            
             .game-banner {
                 width: $game-banner-width / 2;
                 height: $game-banner-height / 2;
+                
+                position: absolute;
+                top: 0px;
+                right: 0px;
             }
             
             .member-avatar {
                 width: $member-avatar-width / 2;
                 height: $member-avatar-height / 2;
-            }
-            
-            .news-post-date {
-                margin-bottom: $spacing-small;
                 
-                display: block;
+                position: absolute;
+                top: 0px;
+                left: 0px;
             }
         }
     }
@@ -113,18 +135,35 @@ article.news-post-embed {
     .breakpoint-medium & {
         header {
             margin-bottom: $spacing-medium;
+            padding: 0px (($game-banner-width / 2) + $pad-medium);
             
             @include clearfix;
             
-            .game-banner,
-            .member-avatar { float: right; }
+            .game-banner {
+                width: $game-banner-width / 2;
+                height: $game-banner-height / 2;
+                
+                position: absolute;
+                top: 0px;
+                right: 0px;
+            }
+            
+            .member-avatar {
+                width: $member-avatar-width / 2;
+                height: $member-avatar-height / 2;
+                
+                position: absolute;
+                top: 0px;
+                left: 0px;
+            }
         }
     }
     
     .breakpoint-large & {
-        header { margin-bottom: $spacing-large; }
-        
-        .content-section-body { max-width: $content-width-large; }
+        header {
+            margin-bottom: $spacing-large;
+            padding: 0px (($game-banner-width / 2) + $pad-large);
+        }
     }
     
     .breakpoint-wide & {
