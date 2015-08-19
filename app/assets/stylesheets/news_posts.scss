@@ -172,7 +172,7 @@ article.news-post-embed {
         }
     }
     
-    .breakpoint-wide & {
+    /*.breakpoint-wide & {
         article {
             width: (($content-width-wide / 2) - $spacing-wide );
             
@@ -180,5 +180,5 @@ article.news-post-embed {
             
             &:nth-child(odd) { margin-left: $spacing-wide - ($pad-wide / 2); }
         }
-    }
+    }*/
 }

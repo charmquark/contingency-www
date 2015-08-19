@@ -14,28 +14,18 @@
     > img { @include size(100%); }
 }
 
-
-#games-index-section,
-#member-games-index-section {
-    .breakpoint-medium & {
-        .game-description p {
-            width: auto;
-            height: $game-banner-height * 1.25;
+#games-index-section {
+    .game-description {
+        .breakpoint-small & { display: none; }
         
+        .breakpoint-medium & {
+            width: 100%;
+            height: $game-banner-height * 2;
+            
+            padding: 1rem;
+            
             font-size: 0.8rem;
             line-height: 1rem;
-            margin: $pad-small;
-            
-            display: inline-block;
-            overflow: hidden;
         }
-    }
-    
-    .breakpoint-large & {
-        ul { width: $game-banner-width * 4; }
-    }
-    
-    .breakpoint-wide & {
-        ul { width: $game-banner-width * 6; }
     }
 }

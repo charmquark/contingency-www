@@ -47,14 +47,3 @@
         .breakpoint-small & { font-size: ($member-avatar-height / 25) * 2; }
     }
 }
-
-#members-index-section,
-#game-members-index-section {
-    .breakpoint-large & {
-        ul { width: $member-avatar-width * 8; }
-    }
-    
-    .breakpoint-wide & {
-        ul { width: $member-avatar-width * 12; }
-    }
-}

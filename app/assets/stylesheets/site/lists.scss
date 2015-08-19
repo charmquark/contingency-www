@@ -14,6 +14,8 @@ li a[data-method=delete] {
 
 ul.packed {
     list-style-type: none;
+    
+    max-width: 100%;
 
     font-size: 0px;
     margin: 0px auto;
@@ -37,6 +39,8 @@ ul.packed {
     }
     
     .breakpoint-small & {
+        width: 100%;
+        
         &.of-games li { @include size(50% auto); }
         
         &.of-members li { @include size(33% auto); }
@@ -49,8 +53,6 @@ ul.packed {
     }
     
     .breakpoint-medium & {
-        width: auto;
-        
         &.of-games {
             width: $game-banner-width * 3;
             
@@ -83,7 +85,12 @@ ul.packed {
     }
     
     .breakpoint-large & {
-        &.of-games,
-        &.of-members { width: 100%; }
+        &.of-games { width: $game-banner-width * 4; }
+        &.of-members { width: $member-avatar-width * 8; }
+    }
+    
+    .breakpoint-wide & { 
+        &.of-games { width: $game-banner-width * 6; }
+        &.of-members { width: $member-avatar-width * 12; }
     }
 }

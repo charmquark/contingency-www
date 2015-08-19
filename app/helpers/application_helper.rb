@@ -27,6 +27,13 @@ module ApplicationHelper
         content_tag :section, body.html_safe, options
     end
     
+    def form_section(options = {}, &blk)
+        options = options.symbolize_keys
+        options[:class] = "limit-medium #{options.fetch :class, ''}"
+        
+        content_section :form, options, &blk
+    end
+    
     def icon(color, which, options = {})
         options = options.symbolize_keys
         options[:class] = "icon icon-#{color} icon-#{which} " + options.fetch(:class, '')

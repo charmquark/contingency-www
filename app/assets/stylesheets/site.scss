@@ -213,6 +213,8 @@ p {
 .content-section-body {
     @extend %content-centered;
     
+    position: relative;
+    
     @include clearfix;
     
     h2 {
@@ -232,6 +234,10 @@ p {
     
     .breakpoint-wide & { padding: $pad-wide; }
 }
+
+.breakpoint-medium .content-section.limit-medium .content-section-body { max-width: $content-width-medium; }
+
+.breakpoint-large .content-section.limit-large .content-section-body { max-width: $content-width-large; }
 
 .breakpoint-small .hide-small { display: none; }
 

@@ -1,4 +1,4 @@
-<%= content_section 'members-index', title: 'Our Members' do -%>
+<%= content_section 'members-index', class: 'limit-large', title: 'Our Members' do -%>
     <%= render partial: 'members/list', locals: {members: @members, show_delete: true} %>
 <%- end -%>
 

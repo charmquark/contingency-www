@@ -178,8 +178,3 @@ form {
     .breakpoint-large & { @include form-dependant-sizes($pad-large, $spacing-large); }
 }
 
-#form-section {
-    .breakpoint-medium & {
-        .content-section-body { max-width: $content-width-medium; }
-    }
-}
