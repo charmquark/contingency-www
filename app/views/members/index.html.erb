@@ -1,13 +1,9 @@
 <%= content_section 'members-index', title: 'Our Members' do -%>
-    <ul>
-        <%- @members.each do |member| -%>
-            <li><%= member_avatar member -%></li>
-        <%- end -%>
-    </ul>
+    <%= render partial: 'members/list', locals: {members: @members, show_delete: true} %>
 <%- end -%>
 
 <% content_for :user_actions do %>
     <%- if is_admin? then -%>
-        <%= link_to 'New Member', new_member_path, class: 'button' -%>
+        <%= icon_link_to :white, 'account-plus', 'New Member', new_member_path, class: 'button' -%>
     <%- end -%>
 <% end %>

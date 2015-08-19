@@ -1,7 +1,7 @@
 class GameMembershipsController < ApplicationController
     def index
         set_featured_background_image assoc
-        #@game_memberships = assoc.game_memberships
+        @game_memberships = assoc.game_memberships
     end
     
     def new
@@ -17,10 +17,29 @@ class GameMembershipsController < ApplicationController
             @game_membership = assoc.game_memberships.build game_membership_params
             if @game_membership.save then
                 redirect_to assoc_game_membership_path,
-                    notice: 'Game membership successfully saved.'
+                    notice: 'Game Membership successfully saved.'
             else
                 render :new
             end
+        end
+    end
+    
+    def destroy
+        admin_only do
+            case assoc_type
+            when :game
+                @game = find_game params[:game_id]
+                @member = find_member params[:id]
+            when :member
+                @game = find_game params[:id]
+                @member = find_member params[:member_id]
+            end
+            @game_membership = GameMembership.find_by game: @game, member: @member
+            unless @game_membership.nil? then
+                @game_membership.destroy
+                flash.notice = 'Game Membership was removed.'
+            end
+            redirect_to assoc_game_membership_path
         end
     end
     

@@ -9,7 +9,7 @@
 
 <%= content_row :large, :halfs do -%>
     <%= content_section 'member-related-games', title: 'Games' do -%>
-        <%= games_banners @member.games %>
+        <%= render partial: 'games/list', locals: {games: @games} %>
     <%- end -%>
     
     <%= content_section 'member-related-media', title: 'Media' do -%>
@@ -18,8 +18,15 @@
 
 <% content_for :user_actions do %>
     <%- admin_or @member do -%>
-        <%= link_to 'Edit Member', edit_member_path(@member), class: 'button' -%>
-        <%= link_to 'Backgrounds', member_background_images_path(@member), class: 'button' -%>
-        <%= link_to 'Games', member_game_memberships_path(@member), class: 'button' %>
+        <%= icon_link_to :white, :settings, 'Edit Member', edit_member_path(@member), class: 'button' %>
+        <%= icon_link_to :white, 'image-area', 'Backgrounds', member_background_images_path(@member), class: 'button' %>
+        <%= icon_link_to :white, 'gamepad-multiple', 'Games', member_game_memberships_path(@member), class: 'button' %>
+        <%= icon_link_to :white, :delete,
+            'Delete Member',
+            member_path(@member),
+            class: 'button danger',
+            method: :delete,
+            data: {confirm: 'Are you sure?'}
+        %>
     <%- end -%>
 <% end %>

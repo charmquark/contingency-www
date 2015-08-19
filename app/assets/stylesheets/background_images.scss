@@ -26,6 +26,8 @@
         
         width: 49%;
         
+        position: relative;
+        
         float: left;
         
         &:nth-child(even) { float: right; }

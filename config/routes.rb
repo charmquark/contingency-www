@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  resources :game_memberships
     resources :games do
         resources :background_images, only: ['index', 'new', 'create', 'destroy'], format: false
         resources :game_memberships, path: 'members', only: ['index', 'new', 'create', 'destroy'], format: false
     end
     
-    resources :members, constraints: {id: /[^\/]+/} do
+    resources :members, constraints: {member_id: /[^\/]+/} do
         resources :background_images, only: ['index', 'new', 'create', 'destroy'], format: false
         resources :game_memberships, path: 'games', only: ['index', 'new', 'create', 'destroy'], format: false
     end

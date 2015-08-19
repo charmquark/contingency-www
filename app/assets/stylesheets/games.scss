@@ -15,140 +15,27 @@
 }
 
 
-#games-index-section {
-    li { float: left; }
-    
-    ul {
-        list-style-type: none;
-        
-        margin: 0px;
-        padding: 0px;
-        
-        @include clearfix;
-    }
-
-
-    .breakpoint-small & {
-        li { width: 50%; }
-        
-        ul { font-size: 0px; }
-        
-        .game-banner { @include size(100%); }
-        
-        .game-description { display: none; }
-    }
-    
-    
+#games-index-section,
+#member-games-index-section {
     .breakpoint-medium & {
-        li {
-            border-bottom: 1px $white-divider solid;
-            
-            width: 100%;
-            
-            padding: $pad-medium 0px;
-            
-            @include clearfix;
-            
-            &:first-child { padding-top: 0px; }
-            
-            &:last-child { 
-                border-width: 0px;
-                
-                padding-bottom: 0px;
-            }
-        }
+        .game-description p {
+            width: auto;
+            height: $game-banner-height * 1.25;
         
-        .game-description {
-            width: $content-width-medium - $game-banner-width - ($pad-medium * 3);
-            
             font-size: 0.8rem;
+            line-height: 1rem;
+            margin: $pad-small;
             
-            float: right;
+            display: inline-block;
+            overflow: hidden;
         }
     }
-    
     
     .breakpoint-large & {
-        li {
-            border-width: 0px;
-            
-            width: 49%;
-            
-            position: relative;
-            
-            padding: $pad-large 0px;
-            
-            clear: left;
-            
-            &:first-child { padding-top: $pad-large; }
-            
-            &:nth-child(even) {
-                clear: right;
-                float: right;
-            }
-        }
-        
-        .game-banner {
-            width: $game-banner-width / 2;
-            height: $game-banner-height / 2;
-        }
-        
-        .game-description {
-            width: 100%;
-            
-            float: none;
-        }
+        ul { width: $game-banner-width * 4; }
     }
-    
-    
-    .csstransforms.breakpoint-large & {
-        li { min-height: $game-banner-width + ($pad-large * 2); }
-        
-        .game-banner {
-            @include size($game-banner-width $game-banner-height);
-            
-            position: absolute;
-            top: $pad-large;
-            left: 0px;
-            
-            @include transform(rotate(-90deg));
-            @include transform-origin(bottom);
-        }
-        
-        .game-description { padding-left: $game-banner-height + $pad-large; }
-    }
-    
     
     .breakpoint-wide & {
-        li {
-            padding: $pad-wide 0px;
-            
-            &:first-child { padding-top: $pad-wide; }
-        }
-        
-        .game-banner { @include size($game-banner-width $game-banner-height); }
-        
-        .game-description {
-            width: ($content-width-wide * 0.49) - $game-banner-width - ($pad-wide * 2);
-            
-            font-size: 1rem;
-            
-            float: right;
-        }
-    }
-    
-    
-    .csstransforms.breakpoint-wide & {
-        li { min-height: $game-banner-width + ($pad-wide * 2); }
-        
-        .game-banner { top: $pad-wide; }
-        
-        .game-description {
-            width: 100%;
-            
-            padding-left: $game-banner-height + $pad-wide;
-            
-            float: none;
-        }
+        ul { width: $game-banner-width * 6; }
     }
 }

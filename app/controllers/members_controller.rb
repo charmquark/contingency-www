@@ -6,11 +6,16 @@ class MembersController < ApplicationController
     end
 
     def show
-        set_featured_background_image @member
+        unless @member.nil? then
+            set_featured_background_image @member
+            @games = Game.to_sorted @member.games
+        else
+            redirect_to members_path
+        end
     end
 
     def new
-        admin_only do
+        admin_only members_path do
             @member = Member.new
             @member.rank = ContingencyRanks::DEFAULT
             @member.role = ContingencyRoles::DEFAULT
@@ -24,10 +29,10 @@ class MembersController < ApplicationController
     end
 
     def create
-        admin_only do
+        admin_only members_path do
             @member = Member.new member_params
             if @member.save
-                redirect_to @member, notice: 'Member was successfully created.'
+                redirect_to @member, notice: member_notice('was successfully created.')
             else
                 render :new
             end
@@ -37,7 +42,7 @@ class MembersController < ApplicationController
     def update
         admin_or @member do
             if @member.update(member_params)
-                redirect_to @member, notice: 'Member was successfully updated.'
+                redirect_to @member, notice: member_notice('was successfully updated.')
             else
                 render :edit
             end
@@ -45,9 +50,9 @@ class MembersController < ApplicationController
     end
 
     def destroy
-        admin_only do
+        admin_only members_path do
             @member.destroy
-            redirect_to members_url, notice: 'Member was successfully destroyed.'
+            redirect_to members_url, notice: member_notice('was successfully destroyed.')
         end
     end
 
@@ -68,4 +73,7 @@ private
         end
     end
 
+    def member_notice(tail)
+        "The Member &ldquo;#{@member.handle}&rdquo; #{tail}"
+    end
 end

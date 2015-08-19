@@ -12,7 +12,7 @@
 
 <%= content_row :large, :halfs do -%>
     <%= content_section 'game-related-members', title: 'Players' do -%>
-        <%= members_avatars @game.members %>
+        <%= render partial: 'members/list', locals: {members: @members} %>
     <%- end -%>
     
     <%= content_section 'game-related-media', title: 'Media' do -%>
@@ -21,8 +21,15 @@
 
 <%= content_for :user_actions do -%>
     <%- admin_only do -%>
-        <%= link_to 'Edit Game', edit_game_path(@game), class: 'button' %>
-        <%= link_to 'Backgrounds', game_background_images_path(@game), class: 'button' -%>
-        <%= link_to 'Members', game_game_memberships_path(@game), class: 'button' %>
+        <%= icon_link_to :white, :settings, 'Edit Game', edit_game_path(@game), class: 'button' %>
+        <%= icon_link_to :white, 'image-area', 'Backgrounds', game_background_images_path(@game), class: 'button' %>
+        <%= icon_link_to :white, 'account-multiple', 'Members', game_game_memberships_path(@game), class: 'button' %>
+        <%= icon_link_to :white, :delete,
+            'Delete Game',
+            game_path(@game),
+            method: :delete,
+            class: 'button danger',
+            data: { confirm: 'Are you sure?' }
+        %>
     <%- end -%>
 <%- end -%>

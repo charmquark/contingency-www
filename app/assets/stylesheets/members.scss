@@ -44,56 +44,17 @@
         
         display: inline-block;
         
-        .breakpoint-small & { display: none; }
+        .breakpoint-small & { font-size: ($member-avatar-height / 25) * 2; }
     }
 }
 
-#members-index-section {
-    li { float: left; }
-    
-    ul {
-        list-style-type: none;
-        
-        font-size: 0px;
-        margin: 0px;
-        padding: 0px;
-        
-        @include clearfix;
-    }
-    
-    
-    .breakpoint-small & {
-        li { width: 33%; }
-        
-        .member-avatar { @include size(100%); }
-        
-        .member-handle {
-            background: $black-icon;
-            
-            font-size: 0.7rem;
-            
-            display: block;
-        }
-    }
-    
-    
-    .breakpoint-medium & {
-        li {
-            text-align: center;
-            
-            width: 20%;
-            
-            margin: $spacing-medium auto;
-        }
-    }
-    
-    
+#members-index-section,
+#game-members-index-section {
     .breakpoint-large & {
-        li { width: 14.25%; }
+        ul { width: $member-avatar-width * 8; }
     }
-    
     
     .breakpoint-wide & {
-        li { width: 10%; }
+        ul { width: $member-avatar-width * 12; }
     }
 }

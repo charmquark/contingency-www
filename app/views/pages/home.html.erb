@@ -10,20 +10,10 @@
 
 <%= content_row :large, :halfs do -%>
     <%= content_section 'home-games', title: 'Some Games We Enjoy' do -%>
-        <ul>
-            <%- @games.each do |game| -%>
-                <li><%= game_banner game %></li>
-            <%- end -%>
-            <li class="see-all"><%= link_to 'All Games', games_path, class: 'button' %></li>
-        </ul>
+        <%= render partial: 'games/list', locals: {games: @games, see_all: true} %>
     <%- end -%>
     
     <%= content_section 'home-members', title: 'Some of Our Members' do -%>
-        <ul>
-            <%- @members.each do |member| -%>
-                <li><%= member_avatar member %></li>
-            <%- end -%>
-            <li class="see-all"><%= link_to 'All Members', members_path, class: 'button' %></li>
-        </ul>
+        <%= render partial: 'members/list', locals: {members: @members, see_all: true} %>
     <%- end -%>
 <%- end -%>

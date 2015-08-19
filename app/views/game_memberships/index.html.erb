@@ -1,20 +1,31 @@
 <%- case assoc_type -%>
 <%- when :game -%>
-    <%= content_section 'index-game-members', title: "Members for #{@assoc.name}" do -%>
-        <%= members_avatars @assoc.members %>
+    <%= content_section 'game-members-index', title: "Members for #{@assoc.name}" do -%>
+        <%= render partial: 'members/list', locals: {members: @assoc.members} %>
     <%- end -%>
 
     <%- content_for :user_actions do -%>
-        <%= link_to_if is_admin?, "Add Member", new_game_game_membership_path(@assoc), class: 'button' %>
-        <%= link_to "Back to Game", game_path(@assoc), class: 'button' %>
+        <%- if is_admin? then -%>
+            <%= icon_link_to :white, :plus, "Add Member", new_game_game_membership_path(@assoc), class: 'button' %>
+        <%- end -%>
+        <%= icon_link_to :white, 'keyboard-backspace', "Back to Game", game_path(@assoc), class: 'button' %>
     <%- end -%>
 <%- when :member -%>
-    <%= content_section 'index-member-games', title: "Games for #{@assoc.handle}" do -%>
-        <%= games_banners @assoc.games %>
+    <%= content_section 'member-games-index', title: "Games for #{@assoc.handle}" do -%>
+        <ul class="of-games packed">
+            <%- @game_memberships.each do |gm| -%>
+                <li>
+                    <%= game_banner gm.game %>
+                    <%= icon_delete_link :white, '', member_game_membership_path(gm.member, gm.game) %>
+                </li>
+            <%- end -%>
+        </ul>
     <%- end -%>
 
     <%- content_for :user_actions do -%>
-        <%= link_to_if is_admin?, "Add Game", new_member_game_membership_path(@assoc), class: 'button' %>
-        <%= link_to "Back to Member", member_path(@assoc), class: 'button' %>
+        <%- if is_admin? then -%>
+            <%= icon_link_to :white, :plus, "Add Game", new_member_game_membership_path(@assoc), class: 'button' %>
+        <%- end -%>
+        <%= icon_link_to :white, 'keyboard-backspace', "Back to Member", member_path(@assoc), class: 'button' %>
     <%- end -%>
 <%- end -%>

@@ -1,0 +1,41 @@
+#flash-section {
+    .content-section-body { background: transparent; }
+
+    .flash {
+        color: $black-text;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0px 0px 4px $white-secondary;
+        
+        max-width: $content-width-medium;
+        
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        margin: 0px auto 1rem auto;
+        padding: 1rem;
+        
+        &:last-child { margin-bottom: 0px; }
+    }
+
+    .flash-alert {
+        background: rgba($yellow-200, 0.8);
+    }
+    
+    .flash-error {
+        background: rgba($red-200, 0.8);
+    }
+
+    .flash-notice {
+        background: rgba($indigo-200, 0.8);
+    }
+    
+    .breakpoint-small & {
+        margin: $spacing-small auto;
+        padding: $pad-small;
+    }
+    
+    .breakpoint-medium & {
+        margin: $spacing-medium auto;
+        padding: $pad-medium;
+    }
+}

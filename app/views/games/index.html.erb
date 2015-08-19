@@ -1,16 +1,9 @@
 <%= content_section 'games-index', title: 'The Games We Play' do -%>
-    <ul>
-        <%- @games.each do |game| -%>
-            <li>
-                <%= game_banner game -%>
-                <div class="game-description"><%= render_markdown game.description -%></div>
-            </li>
-        <%- end -%>
-    </ul>
+    <%= render partial: 'games/list', locals: {games: @games, show_delete: is_admin?, show_desc: true} %>
 <%- end -%>
 
 <% content_for :user_actions do %>
     <%- if is_admin? then -%>
-        <%= link_to 'New Game', new_game_path, class: 'button' %>
+        <%= icon_link_to :white, 'gamepad-plus', 'New Game', new_game_path, class: 'button' %>
     <%- end -%>
 <% end %>

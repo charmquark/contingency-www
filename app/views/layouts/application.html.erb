@@ -31,7 +31,7 @@
             <h1><%= icon_link_to :white, 'contingency-symbol', 'The Contingency', root_path %></h1>
             <%= icon :white, :menu %>
             <nav>
-                <%= icon_link_to :white, :gamepad, 'Games', games_path, class: 'hover-hilite' %>
+                <%= icon_link_to :white, 'gamepad-multiple', 'Games', games_path, class: 'hover-hilite' %>
                 <%= icon_link_to :white, 'account-multiple', 'Members', members_path, class: 'hover-hilite' %>
                 <%= icon_link_to :white, :newspaper, 'News', news_posts_path, class: 'hover-hilite' %>
             </nav>
@@ -42,7 +42,7 @@
             <%= content_section :flash do -%>
                 <%- %w(alert error notice).each do |ftype| -%>
                     <%- if flash[ftype.to_sym] then -%>
-                        <div class="flash flash-<%= ftype %>"><%= flash[ftype.to_sym] %></div>
+                        <div class="flash flash-<%= ftype %>"><%= flash[ftype.to_sym].html_safe %></div>
                     <%- end -%>
                 <%- end -%>
             <%- end -%>
@@ -51,7 +51,7 @@
         <%- if logged_in? then -%>
             <div class="actions">
                 <%= yield :user_actions -%>
-                <%= link_to current_user.handle, member_path(current_user), class: 'button' %>
+                <%= icon_link_to :white, :account, current_user.handle, member_path(current_user), class: 'button' %>
             </div>
         <%- end -%>
     </main>

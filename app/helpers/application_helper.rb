@@ -20,7 +20,7 @@ module ApplicationHelper
         options[:class] = "content-section #{options.fetch :class, ''}"
         
         title = options.delete :title
-        body = title.nil? ? '' : content_tag(:h2, title)
+        body = title.nil? ? '' : content_tag(:h2, title.html_safe)
         body += block_given? ? capture(&blk) : ''
         
         body = content_tag :div, body.html_safe, class: 'content-section-body'
@@ -37,6 +37,13 @@ module ApplicationHelper
         options = options.symbolize_keys
         options[:class] = options.fetch(:class, '') + ' icon-2x'
         icon which, options
+    end
+    
+    def icon_delete_link(color, text, href, options = {})
+        options = options.symbolize_keys
+        options[:data] = {:confirm => 'Are you sure?'}
+        options[:method] = :delete
+        icon_link_to color, :delete, text, href, options
     end
     
     def icon_link_to(color, which, text, href, options = {})

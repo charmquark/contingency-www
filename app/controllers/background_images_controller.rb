@@ -18,7 +18,7 @@ class BackgroundImagesController < ApplicationController
             @background_image = backgroundable.background_images.build background_image_params
             if @background_image.save then
                 redirect_to poly_background_images_path,
-                    notice: 'Background image was successfully created.'
+                    notice: background_image_notice('was successfully created.')
             else
                 render :new
             end
@@ -31,7 +31,7 @@ class BackgroundImagesController < ApplicationController
             @background_image = BackgroundImage.find params[:id]
             @background_image.destroy
             redirect_to poly_background_images_path,
-                notice: 'Background image was successfully destroyed.'
+                notice: background_image_notice('was successfully destroyed.')
         end
     end
     
@@ -87,4 +87,7 @@ private
         @backgroundable_type
     end
     
+    def background_image_notice(tail)
+        "The Background Image #{tail}"
+    end
 end

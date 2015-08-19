@@ -29,7 +29,7 @@ class Game < ActiveRecord::Base
         uniqueness: true
     
     def to_param
-        slug
+        CGI.escape slug
     end
     
     def self.to_sorted(games)

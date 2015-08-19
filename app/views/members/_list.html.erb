@@ -1,0 +1,20 @@
+<%- show_delete ||= false -%>
+<%- see_all ||= false -%>
+<ul class="of-members packed">
+    <%- members.each do |member| -%>
+        <li>
+            <%= member_avatar member -%>
+            <%- if show_delete then -%>
+                <%= icon_link_to :white, :delete,
+                    '',
+                    member_path(member),
+                    method: :delete,
+                    data: {confirm: 'Are you sure?'}
+                %>
+            <%- end -%>
+        </li>
+    <%- end -%>
+    <%- if see_all then -%>
+        <li class="see-all"><%= link_to 'All Members', members_path, class: 'button' %></li>
+    <%- end -%>
+</ul>

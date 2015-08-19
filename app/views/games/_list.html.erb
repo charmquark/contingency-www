@@ -1,0 +1,25 @@
+<%- show_delete ||= false %>
+<%- show_desc ||= false %>
+<%- see_all ||= false %>
+<ul class="of-games packed">
+    <%- games.each do |game| -%>
+        <li>
+            <%= game_banner game -%>
+            <%- if show_desc then -%>
+                <div class="game-description"><%= render_markdown game.description -%></div>
+            <%- end -%>
+            <%- if show_delete then -%>
+                <%= icon_link_to :white,
+                    :delete,
+                    '',
+                    game_path(game),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' }
+                %>
+            <%- end -%>
+        </li>
+    <%- end -%>
+    <%- if see_all then -%>
+        <li class="see-all"><%= link_to 'All Games', games_path, class: 'button' %></li>
+    <%- end -%>
+</ul>

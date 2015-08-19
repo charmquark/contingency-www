@@ -24,7 +24,7 @@ en:
         label:
             game:
                 banner:         "Banner Image (500×250 JPEG)"
-                description:    "Long Description (Markdown formatted)"
+                description:    "Description (Markdown formatted)"
                 featured:       "Featured"
                 name:           "Name"
                 slug:           "Slug"

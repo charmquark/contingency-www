@@ -2,33 +2,34 @@ class GamesController < ApplicationController
     before_action :set_game, only: [:show, :edit, :update, :destroy]
 
     def index
-        @games = Game.all.order :name
+        @games = Game.to_sorted Game.all
     end
 
     def show
         unless @game.nil? then
             set_featured_background_image @game
             @news_post = NewsPost.where(game: @game).last
+            @members = Member.to_sorted @game.members
         else
             redirect_to games_path
         end
     end
 
     def new
-        admin_only { @game = Game.new }
+        admin_only(games_path) { @game = Game.new }
     end
 
     def edit
-        admin_only do
+        admin_only games_path do
             set_featured_background_image @game
         end
     end
 
     def create
-        admin_only do
+        admin_only games_path do
             @game = Game.new game_params
             if @game.save
-                redirect_to @game, notice: 'Game was successfully created.'
+                redirect_to @game, notice: game_notice('was successfully created.')
             else
                 render :new
             end
@@ -36,9 +37,9 @@ class GamesController < ApplicationController
     end
 
     def update
-        admin_only do
+        admin_only games_path do
             if @game.update(game_params)
-                redirect_to @game, notice: 'Game was successfully updated.'
+                redirect_to @game, notice: game_notice('was successfully updated.')
             else
                 render :edit
             end
@@ -46,9 +47,9 @@ class GamesController < ApplicationController
     end
 
     def destroy
-        admin_only do
+        admin_only games_path do
             @game.destroy
-            redirect_to games_url, notice: 'Game was successfully destroyed.'
+            redirect_to games_url, notice: game_notice('was successfully destroyed.')
         end
     end
 
@@ -67,4 +68,7 @@ private
         end
     end
 
+    def game_notice(tail)
+        "The Game &ldquo;#{@game.name}&rdquo; #{tail}"
+    end
 end

@@ -1,0 +1,89 @@
+li a[data-method=delete] {
+    .breakpoint-small & { display: none; }
+    
+    .breakpoint-medium & {
+        @include size(auto);
+        
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        
+        .icon { background-color: $black-icon; }
+    }
+}
+
+ul.packed {
+    list-style-type: none;
+
+    font-size: 0px;
+    margin: 0px auto;
+    padding: 0px;
+    
+    @include clearfix;
+    display: block;
+    
+    li {
+        position: relative;
+        
+        float: left;
+        
+        a {
+            @include size(100%);
+            
+            display: inline-block;
+        }
+        
+        &.see-all a { font-size: 20px; }
+    }
+    
+    .breakpoint-small & {
+        &.of-games li { @include size(50% auto); }
+        
+        &.of-members li { @include size(33% auto); }
+        
+        li.see-all {
+            width: 100%;
+            
+            margin: $spacing-small 0px;
+        }
+    }
+    
+    .breakpoint-medium & {
+        width: auto;
+        
+        &.of-games {
+            width: $game-banner-width * 3;
+            
+            li {
+                @include size($game-banner-width auto);
+                
+                &.see-all a {
+                    height: $game-banner-height;
+                    
+                    line-height: $game-banner-height;
+                    padding: 0px;
+                }
+            }
+        }
+        
+        &.of-members {
+            width: $member-avatar-width * 6;
+            
+            li {
+                @include size($member-avatar-width auto);
+                
+                &.see-all a {
+                    height: $member-avatar-height;
+                    
+                    line-height: $member-avatar-height;
+                    padding: 0px;
+                }
+            }
+        }
+    }
+    
+    .breakpoint-large & {
+        &.of-games,
+        &.of-members { width: 100%; }
+    }
+}

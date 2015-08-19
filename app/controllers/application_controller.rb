@@ -37,7 +37,8 @@ protected
             yield if block_given?
         else
             flash[:error] = "Permission denied."
-            redirect_to(redir.nil? ? root_url : redir)
+            alt_redir = member.nil? ? root_url : member_url(member)
+            redirect_to(redir.nil? ? alt_redir : redir)
         end
     end
     

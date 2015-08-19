@@ -81,8 +81,6 @@ p {
     background: $bg-actions;
     
     max-width: 94%;
-
-    .button:last-child { margin-right: 0px; }
     
     .breakpoint-small & {
         margin: $pad-small auto;
@@ -91,49 +89,46 @@ p {
         .button { margin: $pad-small; }
     }
     
-    .breakpoint-small body > main > & { width: $content-width-small; }
+    //.breakpoint-small body > main > & { width: $content-width-small; }
+    .breakpoint-small body > main > & { display: none; }
     
     .breakpoint-medium & {
         text-align: center;
         
         margin: $pad-medium auto;
-        padding: $pad-medium 0px;
         
-        .button { margin-right: $pad-medium; }
+        .button { margin: $pad-medium; }
     }
     
     .breakpoint-medium body > main > & { width: $content-width-medium; }
     
     .breakpoint-large & {
         margin: $pad-large auto;
-        padding: $pad-large 0px;
         
-        .button { margin-right: $pad-large; }
+        .button { margin: $pad-large; }
     }
     
     .breakpoint-large body > main > & { width: $content-width-large; }
     
     .breakpoint-wide & {
         margin: $pad-wide auto;
-        padding: $pad-wide 0px;
         
-        .button { margin-right: $pad-wide; }
+        .button { margin: $pad-wide; }
     }
     
     .breakpoint-wide body > main > & { width: $content-width-wide; }
 }
 
 .button {
-    //background: $bg-icon;
     background: $link-bg;
     border-width: 0px;
     color: $white-icon;
     font-family: $font-lato;
     font-weight: lighter;
     text-align: center;
-
+    vertical-align: middle;
+    
     font-size: 20px;
-    line-height: 1;
     
     position: relative;
     
@@ -142,15 +137,64 @@ p {
     &:hover {
         background: $link-hilite;
         color: $white-text;
+        
+        .icon { opacity: 1; }
     }
     
-    .breakpoint-small & { padding: $pad-small; }
+    &.danger {
+        box-shadow: 0px 0px 4px 2px $red-900;
+        
+        &:hover { background: $red-900; }
+    }
     
-    .breakpoint-medium & { padding: $pad-medium; }
+    .icon { margin-right: 5px; }
     
-    .breakpoint-large & { padding: $pad-large ($pad-large / 2); }
+    .icon,
+    .text {
+        vertical-align: middle;
+        
+        position: relative;
+    }
     
-    .breakpoint-wide & { padding: $pad-wide ($pad-wide / 2); }
+    .breakpoint-small & {
+        height: 20px + ($pad-small * 2);
+
+        line-height: 20px + ($pad-small * 2);
+        padding: 0px $pad-small;
+        
+        .icon,
+        .text { top: -4px; }
+    }
+    
+    .breakpoint-medium & {
+        height: 20px + ($pad-medium * 2);
+
+        line-height: 20px + ($pad-medium * 2);
+        padding: 0px $pad-medium;
+        
+        .icon,
+        .text { top: -2px; }
+    }
+    
+    .breakpoint-large & {
+        height: 20px + ($pad-large * 2);
+        
+        line-height: 20px + ($pad-large * 2);
+        padding: 0px $pad-large;
+        
+        .icon,
+        .text { top: -2px; }
+    }
+    
+    .breakpoint-wide & {
+        height: 20px + ($pad-wide * 2);
+        
+        line-height: 20px + ($pad-wide * 2);
+        padding: 0px $pad-wide;
+        
+        .icon,
+        .text { top: -2px; }
+    }
 }
 
 .content-section {
@@ -191,44 +235,11 @@ p {
 
 .breakpoint-small .hide-small { display: none; }
 
-#flash-section {
-    .flash {
-        max-width: $content-width-medium;
-        
-        margin: 0px auto 1em auto;
-        padding: 1em;
-        
-        &:last-child { margin-bottom: 0px; }
-    }
 
-    .flash-alert {
-        background: rgba($yellow-200, 0.6);
-        color: $black-secondary;
-    }
-    
-    .flash-error {
-        background: rgba($red-200, 0.6);
-        color: $black-secondary;
-    }
-
-    .flash-notice {
-        background: rgba($indigo-200, 0.6);
-        color: $black-secondary;
-    }
-    
-    .breakpoint-small & {
-        margin: $spacing-small auto;
-        padding: $pad-small;
-    }
-    
-    .breakpoint-medium & {
-        margin: $spacing-medium auto;
-        padding: $pad-medium;
-    }
-}
-
+@import 'site/flash';
 @import 'site/form';
 @import 'site/footer';
 @import 'site/header';
 @import 'site/icons';
+@import 'site/lists';
 @import 'site/rows';

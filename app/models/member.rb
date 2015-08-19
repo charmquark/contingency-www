@@ -48,7 +48,7 @@ class Member < ActiveRecord::Base
     
     
     def to_param
-        ERB::Util.html_escape handle
+        CGI.escape handle
     end
     
     def self.to_rank_groups(members)
