@@ -3,13 +3,7 @@
         <%- @background_images.each do |bg| -%>
             <li>
                 <%= image_tag bg.image.url -%>
-                <%= icon_link_to :white,
-                    :delete,
-                    '',
-                    poly_background_image_path(bg),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' }
-                %>
+                <%= icon_delete_link :white, '', poly_background_image_path(bg) %>
             </li>
         <%- end -%>
     </ul>

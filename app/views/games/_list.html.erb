@@ -9,13 +9,7 @@
                 <div class="game-description"><%= render_markdown game.description -%></div>
             <%- end -%>
             <%- if show_delete then -%>
-                <%= icon_link_to :white,
-                    :delete,
-                    '',
-                    game_path(game),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' }
-                %>
+                <%= icon_delete_link :white, '', game_path(game) %>
             <%- end -%>
         </li>
     <%- end -%>

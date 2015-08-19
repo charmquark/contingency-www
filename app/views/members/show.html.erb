@@ -21,12 +21,6 @@
         <%= icon_link_to :white, :settings, 'Edit Member', edit_member_path(@member), class: 'button' %>
         <%= icon_link_to :white, 'image-area', 'Backgrounds', member_background_images_path(@member), class: 'button' %>
         <%= icon_link_to :white, 'gamepad-multiple', 'Games', member_game_memberships_path(@member), class: 'button' %>
-        <%= icon_link_to :white, :delete,
-            'Delete Member',
-            member_path(@member),
-            class: 'button danger',
-            method: :delete,
-            data: {confirm: 'Are you sure?'}
-        %>
+        <%= icon_delete_link :white, 'Delete Member', member_path(@member), class: 'button danger' %>
     <%- end -%>
 <% end %>

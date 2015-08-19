@@ -24,12 +24,6 @@
         <%= icon_link_to :white, :settings, 'Edit Game', edit_game_path(@game), class: 'button' %>
         <%= icon_link_to :white, 'image-area', 'Backgrounds', game_background_images_path(@game), class: 'button' %>
         <%= icon_link_to :white, 'account-multiple', 'Members', game_game_memberships_path(@game), class: 'button' %>
-        <%= icon_link_to :white, :delete,
-            'Delete Game',
-            game_path(@game),
-            method: :delete,
-            class: 'button danger',
-            data: { confirm: 'Are you sure?' }
-        %>
+        <%= icon_delete_link :white, 'Delete Game', game_path(@game), class: 'button danger' %>
     <%- end -%>
 <%- end -%>

@@ -1,31 +1,47 @@
-<%- case assoc_type -%>
-<%- when :game -%>
-    <%= content_section 'game-members-index', title: "Members for #{@assoc.name}" do -%>
-        <%= render partial: 'members/list', locals: {members: @assoc.members} %>
-    <%- end -%>
+<%- 
+    data = nil
+    case assoc_type
+    when :game
+        data = {
+            add_path:   new_game_game_membership_path(@assoc),
+            add_text:   'Add Member',
+            back_path:  game_path(@assoc),
+            back_text:  'Back to Game',
+            item:       ->(gm) { member_avatar gm.member },
+            item_path:  ->(gm) { game_game_membership_path gm.game, gm.member },
+            list_class: 'of-members',
+            section_id: 'game-members',
+            title:      "Members for #{@assoc.name}"
+        }
+    when :member
+        data = {
+            add_path:   new_member_game_membership_path(@assoc),
+            add_text:   'Add Game',
+            back_path:  member_path(@assoc),
+            back_text:  'Back to Member',
+            item:       ->(gm) { game_banner gm.game },
+            item_path:  ->(gm) { member_game_membership_path gm.member, gm.game },
+            list_class: 'of-games',
+            section_id: 'member-games',
+            title:      "Games for #{@assoc.handle}"
+        }
+    end
+-%>
 
-    <%- content_for :user_actions do -%>
-        <%- if is_admin? then -%>
-            <%= icon_link_to :white, :plus, "Add Member", new_game_game_membership_path(@assoc), class: 'button' %>
+<%= content_section "#{data[:section_id]}-index", title: data[:title] do -%>
+    <ul class="<%= data[:list_class] %> packed">
+        <%- @game_memberships.each do |gm| -%>
+            <li>
+                <%= data[:item][gm] %>
+                <%= icon_delete_link :white, '', data[:item_path][gm] %>
+            </li>
         <%- end -%>
-        <%= icon_link_to :white, 'keyboard-backspace', "Back to Game", game_path(@assoc), class: 'button' %>
-    <%- end -%>
-<%- when :member -%>
-    <%= content_section 'member-games-index', title: "Games for #{@assoc.handle}" do -%>
-        <ul class="of-games packed">
-            <%- @game_memberships.each do |gm| -%>
-                <li>
-                    <%= game_banner gm.game %>
-                    <%= icon_delete_link :white, '', member_game_membership_path(gm.member, gm.game) %>
-                </li>
-            <%- end -%>
-        </ul>
-    <%- end -%>
+    </ul>
+<%- end -%>
 
-    <%- content_for :user_actions do -%>
-        <%- if is_admin? then -%>
-            <%= icon_link_to :white, :plus, "Add Game", new_member_game_membership_path(@assoc), class: 'button' %>
-        <%- end -%>
-        <%= icon_link_to :white, 'keyboard-backspace', "Back to Member", member_path(@assoc), class: 'button' %>
+<%- content_for :user_actions do -%>
+    <%- admin_only do -%>
+        <%= icon_link_to :white, :plus, data[:add_text], data[:add_path], class: 'button' %>
     <%- end -%>
+    <%= icon_link_to :white, 'keyboard-backspace', data[:back_text], data[:back_path], class: 'button' %>
 <%- end -%>
