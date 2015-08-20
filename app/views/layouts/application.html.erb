@@ -22,7 +22,7 @@
     
     <%= csrf_meta_tags %>
 </head>
-<body class="<%= controller_name %>-controller <%= action_name %>-action">
+<body class="<%= controller_name %>-controller <%= action_name %>-action <%= yield :body_class %>">
     <%- unless featured_background_image.nil? -%>
         <%= image_tag featured_background_image.image.url, id: 'featured-background-image' %>
     <%- end -%>
@@ -31,9 +31,9 @@
             <h1><%= icon_link_to :white, 'contingency-symbol', 'The Contingency', root_path %></h1>
             <%= icon :white, :menu %>
             <nav>
-                <%= icon_link_to :white, 'gamepad-multiple', 'Games', games_path, class: 'hover-hilite' %>
-                <%= icon_link_to :white, 'account-multiple', 'Members', members_path, class: 'hover-hilite' %>
-                <%= icon_link_to :white, :newspaper, 'News', news_posts_path, class: 'hover-hilite' %>
+                <%= icon_link_to :white, 'gamepad-multiple', 'Games', games_path, id: 'header-nav-games', class: 'hover-hilite' %>
+                <%= icon_link_to :white, 'account-multiple', 'Members', members_path, id: 'header-nav-members', class: 'hover-hilite' %>
+                <%= icon_link_to :white, :newspaper, 'News', news_posts_path, id: 'header-nav-news-posts', class: 'hover-hilite' %>
             </nav>
         </div>
     </header>

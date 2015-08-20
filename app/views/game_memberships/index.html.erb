@@ -29,6 +29,7 @@
 -%>
 
 <%- content_for :title do -%><%= data[:title] %> | <%- end -%>
+<%- content_for :body_class do -%>game_memberships-assoc-<%= assoc_type %><%- end -%>
 
 <%= content_section "#{data[:section_id]}-index", class: 'limit-medium', title: data[:title] do -%>
     <ul class="<%= data[:list_class] %> packed">

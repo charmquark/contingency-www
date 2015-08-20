@@ -206,3 +206,11 @@ body > header {
         @include header-dependant-sizes($header-height-wide);
     }
 }
+
+.background_images-controller.background_images-assoc-game > header nav a#header-nav-games,
+.background_images-controller.background_images-assoc-member > header nav a#header-nav-members,
+.game_memberships-controller.game_memberships-assoc-game > header nav a#header-nav-games,
+.game_memberships-controller.game_memberships-assoc-member > header nav a#header-nav-members,
+.games-controller > header nav a#header-nav-games,
+.members-controller > header nav a#header-nav-members,
+.news_posts-controller > header nav a#header-nav-news-posts { background: $bg-current; }

@@ -1,4 +1,5 @@
 <%- content_for :title do -%>New Game Membership | <%- end -%>
+<%- content_for :body_class do -%>game_memberships-assoc-<%= assoc_type %><%- end -%>
 
 <%= form_section title: 'New Game Membership' do %>
     <%- if @game_membership.errors.any? -%>
@@ -52,8 +53,8 @@
 <%- content_for :user_actions do -%>
     <%- case assoc_type -%>
     <%- when :game -%>
-        <%= link_to "Back to Game", game_path(assoc), class: 'button' %>
+        <%= icon_link_to :white, 'keyboard-backspace', 'Back to Game', game_path(assoc), class: 'button' %>
     <%- when :member -%>
-        <%= link_to "Back to Member", member_path(assoc), class: 'button' %>
+        <%= icon_link_to :white, 'keyboard-backspace', 'Back to Member', member_path(assoc), class: 'button' %>
     <%- end -%>
 <%- end -%>
