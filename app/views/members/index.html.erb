@@ -1,7 +1,7 @@
 <%- content_for :title do -%>Members | <%- end -%>
 
 <%= content_section 'members-index', class: 'limit-large', title: 'Our Members' do -%>
-    <%= render partial: 'members/list', locals: {members: @members, show_delete: true} %>
+    <%= render partial: 'members/list', locals: {members: @members, show_delete: is_admin?} %>
 <%- end -%>
 
 <% content_for :user_actions do %>
