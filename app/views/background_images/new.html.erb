@@ -1,3 +1,5 @@
+<%- content_for :title do -%>New Background for <%= backgroundable_title %> | <%- end -%>
+
 <%= form_section title: 'New Background Image' do -%>
     <%- if @background_image.errors.any? -%>
         <div id="error_explanation">

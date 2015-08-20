@@ -1,3 +1,5 @@
+<%- content_for :title do -%><%= @member.handle %> | Members | <%- end -%>
+
 <%= content_row :medium, :halfs do -%>
     <%= content_section 'member-info', title: @member.handle do -%>
         <div class="member-avatar"><%= member_avatar_img @member -%></div>

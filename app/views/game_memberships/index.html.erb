@@ -28,6 +28,8 @@
     end
 -%>
 
+<%- content_for :title do -%><%= data[:title] %> | <%- end -%>
+
 <%= content_section "#{data[:section_id]}-index", class: 'limit-medium', title: data[:title] do -%>
     <ul class="<%= data[:list_class] %> packed">
         <%- @game_memberships.each do |gm| -%>

@@ -1,3 +1,5 @@
+<%- content_for :title do -%>Member Login | <%- end -%>
+
 <%= form_section title: 'Login' do %>
     <%= form_for(:session, url: process_login_path) do |f| %>
         <div class="halfs-medium">

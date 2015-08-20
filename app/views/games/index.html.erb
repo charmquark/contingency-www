@@ -1,3 +1,5 @@
+<%- content_for :title do -%>Games | <%- end -%>
+
 <%= content_section 'games-index', title: 'The Games We Play' do -%>
     <%= render partial: 'games/list', locals: {games: @games, show_delete: is_admin?, show_desc: true} %>
 <%- end -%>

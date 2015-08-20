@@ -1,3 +1,5 @@
+<%- content_for :title do -%>News | <%- end -%>
+
 <%= content_section 'news-posts-index', class: 'limit-large', title: 'Recent News' do -%>
     <%- @news_posts.each do |post| -%>
         <%= render partial: 'news_posts/embed', locals: {news_post: post} -%>

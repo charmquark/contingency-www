@@ -1,3 +1,5 @@
+<%- content_for :title do -%>Editing News Post | <%- end -%>
+
 <%= form_section title: "Editing News Post: #{@news_post.title}" do -%>
     <%= render 'form' %>
 <%- end -%>

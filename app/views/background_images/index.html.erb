@@ -1,3 +1,5 @@
+<%- content_for :title do -%>Backgrounds for <%= backgroundable_title %> | <%- end -%>
+
 <%= content_section 'background-images-index', title: "Background Images for #{backgroundable_title}" do -%>
     <ul>
         <%- @background_images.each do |bg| -%>

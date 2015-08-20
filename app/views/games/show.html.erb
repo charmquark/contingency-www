@@ -1,3 +1,5 @@
+<%- content_for :title do -%><%= @game.name %> | Games | <%- end -%>
+
 <%= content_row :large, :halfs do -%>
     <%= content_section 'game-info', title: @game.name do -%>
         <div class="game-banner"> <%= game_banner_img @game -%></div>
