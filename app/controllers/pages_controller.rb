@@ -1,11 +1,13 @@
 class PagesController < ApplicationController
     def home
-        @games = Game.to_sorted Game.featured
+        @games = Game.featured
+        @games += Game.not_featured.random.limit(1) if @games.length.even?
+        @games = Game.to_sorted @games
 
         @members = Member.core
-        nc = (@games.length * 2) - @members.length
-        nc = 2 if nc <= 0
-        @members = Member.to_sorted(@members + Member.not_core.random.limit(nc))
+        m = 11 - @members.length
+        @members += Member.not_core.random.limit(m) if m > 0
+        @members = Member.to_sorted @members
         
         @news_post = NewsPost.last
     end
