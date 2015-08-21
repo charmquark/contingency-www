@@ -5,7 +5,7 @@
         <header>
             <h2><%= @news_post.title %></h2>
             <span class="news-post-date"><%= @news_post.created_at.to_formatted_s :news_post %></span>
-            <%= member_avatar @news_post.member %>
+            <%= member_avatar @news_post.member, handle: false %>
             <%= game_banner @news_post.game unless @news_post.game.nil? %>
         </header>
         <main>

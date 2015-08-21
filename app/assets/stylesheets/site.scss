@@ -63,7 +63,7 @@ body > main {
     z-index: 100;
     
     .breakpoint-small & {
-        background: $bg-content;
+        background: $bg-content-small;
         
         padding: ($header-height-small * 2) 0px $pad-small 0px;
     }
@@ -89,7 +89,6 @@ p {
         .button { margin: $pad-small; }
     }
     
-    //.breakpoint-small body > main > & { width: $content-width-small; }
     .breakpoint-small body > main > & { display: none; }
     
     .breakpoint-medium & {
@@ -222,6 +221,12 @@ p {
         text-align: center;
         
         margin: 0px 0px 1rem 0px;
+    }
+    
+    .breakpoint-small & {
+        h2 {
+            background: $bg-content;
+        }
     }
     
     .breakpoint-medium & {

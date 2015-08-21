@@ -5,16 +5,19 @@ module GamesHelper
         img_options = options.fetch(:img, {}).symbolize_keys
         content     = game_banner_img game, img_options
         
-        link_options = options.fetch(:link, {}).symbolize_keys
-
-        link_classes            = "game-banner"
-        link_classes            = "#{link_classes} #{game.featured ? 'game-featured' : ''}" unless game.nil?
-        link_options[:class]    = "#{link_classes} #{link_options.fetch :class, ''}"
+        container_class = 'game-banner'
+        container_class += ' game-featured' if not game.nil? and game.featured
         
-        unless game.nil? then
-            link_to content, game, link_options
+        link_options = options.fetch :link, {}
+        if link_options.is_a? Hash then
+            link_options            = link_options.symbolize_keys
+            link_options[:class]    = "#{container_class} #{link_options.fetch :class, ''}"
+            
+            link_param = game.nil? ? games_path : game
+            
+            link_to content, link_param, link_options
         else
-            link_to content, games_path, link_options
+            content_tag :div, content, class: container_class
         end
     end
     
@@ -27,16 +30,6 @@ module GamesHelper
         image_tag url, options
     end
     
-    def games_banners(games, img_options = {}, link_options = {})
-        games_banners_list(games, img_options, link_options).join('').html_safe
-    end
-    
-    def games_banners_list(games, img_options = {}, link_options = {})
-        games.collect do |g|
-            game_banner g, img: img_options.clone, link: link_options.clone
-        end
-    end
-    
     def games_select(f, games = nil, options = {}, html_options = {}, &blk)
         games ||= Game.all
         
@@ -46,5 +39,5 @@ module GamesHelper
         so = Game.to_sorted(games).map {|g| [g.name, g.id]}
         f.select :game_id, so, options, html_options, &blk
     end
-    
+   
 end

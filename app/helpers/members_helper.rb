@@ -10,10 +10,17 @@ module MembersHelper
         
         content += content_tag(:span, member.handle, class: "member-handle") if with_handle
 
-        link_classes            = "member-avatar member-rank-#{member.rank} "
-        link_options            = options.fetch :link, {}
-        link_options[:class]    = link_classes + link_options.fetch(:class, '')
-        link_to content, member, link_options
+        container_class = "member-avatar member-rank-#{member.rank}"
+        
+        link_options = options.fetch :link, {}
+        if link_options.is_a? Hash then
+            link_options            = link_options.symbolize_keys
+            link_options[:class]    = "#{container_class} #{link_options.fetch :class, ''}"
+            
+            link_to content, member, link_options
+        else
+            content_tag :div, content, class: container_class
+        end
     end
     
     def member_avatar_img(member, options = {})
@@ -21,16 +28,6 @@ module MembersHelper
         options[:alt]   = options.fetch(:alt, member.handle)
         
         image_tag member.avatar.url, options
-    end
-    
-    def members_avatars(members, img_options = {}, link_options = {})
-        members_avatars_list(members, img_options, link_options).join('').html_safe
-    end
-    
-    def members_avatars_list(members, img_options = {}, link_options = {})
-        members.collect do |m|
-            member_avatar m, img: img_options.clone, link: link_options.clone
-        end
     end
     
     def members_select(f, members = nil)

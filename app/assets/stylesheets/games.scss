@@ -12,6 +12,11 @@
     }
     
     > img { @include size(100%); }
+    
+    .breakpoint-medium & {
+        max-width: $game-banner-width;
+        max-height: $game-banner-height;
+    }
 }
 
 #games-index-section {
@@ -26,6 +31,38 @@
             
             font-size: 0.8rem;
             line-height: 1rem;
+        }
+    }
+}
+
+.games-controller.show-action {
+    #game-info-section {
+        position: relative;
+        
+        .breakpoint-small & {
+            .game-banner {
+                margin: 0px auto;
+                
+                display: block;
+            }
+            
+            .game-description { margin-top: $spacing-small; }
+        }
+        
+        .breakpoint-medium & {
+            @include clearfix;
+            
+            .game-banner { float: left; }
+            
+            .game-description { margin-left: $game-banner-width + $spacing-medium; }
+        }
+        
+        .breakpoint-large & {
+            .game-description { margin-left: $game-banner-width + $spacing-large; }
+        }
+        
+        .breakpoint-wide & {
+            .game-description { margin-left: $game-banner-width + $spacing-wide; }
         }
     }
 }

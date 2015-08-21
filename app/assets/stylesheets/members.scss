@@ -1,6 +1,8 @@
 .member-avatar {
     width: $member-avatar-width;
+    max-width: $member-avatar-width;
     height: $member-avatar-height;
+    max-height: $member-avatar-height;
     
     position: relative;
     
@@ -47,3 +49,64 @@
         .breakpoint-small & { font-size: ($member-avatar-height / 25) * 2; }
     }
 }
+
+.members-controller.show-action {
+    #member-info-section {
+        position: relative;
+        
+        .breakpoint-small & {
+            .member-avatar {
+                margin: 0px auto;
+                
+                display: block;
+            }
+            
+            .member-biography { margin-top: $spacing-small; }
+        }
+        
+        .breakpoint-medium & {
+            .member-avatar { float: left; }
+            
+            .member-biography { margin-left: $member-avatar-width + $spacing-medium; }
+        }
+        
+        .breakpoint-large & {
+            .member-biography { margin-left: $member-avatar-width + $spacing-large; }
+        }
+        
+        .breakpoint-wide & {
+            .member-biography { margin-left: $member-avatar-width + $spacing-wide; }
+        }
+    }
+}
+
+
+/*.games-controller.show-action {
+    #game-info-section {
+        position: relative;
+        
+        .breakpoint-small & {
+            .game-banner {
+                margin: 0px auto;
+                
+                display: block;
+            }
+            
+            .game-description { margin-top: $spacing-small; }
+        }
+        
+        .breakpoint-medium & {
+            .game-banner { float: left; }
+            
+            .game-description { margin-left: $game-banner-width + $spacing-medium; }
+        }
+        
+        .breakpoint-large & {
+            .game-description { margin-left: $game-banner-width + $spacing-large; }
+        }
+        
+        .breakpoint-wide & {
+            .game-description { margin-left: $game-banner-width + $spacing-wide; }
+        }
+    }
+}*/

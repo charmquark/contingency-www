@@ -1,8 +1,9 @@
 <%- content_for :title do -%><%= @game.name %> | Games | <%- end -%>
 
 <%= content_row :large, :halfs do -%>
-    <%= content_section 'game-info', title: @game.name do -%>
-        <div class="game-banner"> <%= game_banner_img @game -%></div>
+    <%= content_section 'game-info' do -%>
+        <%= game_banner @game, link: false %>
+        <div class="game-description"><%= render_markdown @game.description -%></div>
     <%- end -%>
     
     <%= content_section 'game-related-news', title: 'Related News' do -%>
@@ -13,11 +14,11 @@
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>
-    <%= content_section 'game-related-members', title: 'Players' do -%>
+    <%= content_section 'game-players', title: 'Players' do -%>
         <%= render partial: 'members/list', locals: {members: @members} %>
     <%- end -%>
     
-    <%= content_section 'game-related-media', title: 'Media' do -%>
+    <%= content_section 'game-recent-videos', title: 'Recent Videos' do -%>
     <%- end -%>
 <%- end -%>
 

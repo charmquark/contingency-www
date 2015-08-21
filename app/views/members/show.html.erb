@@ -1,20 +1,22 @@
 <%- content_for :title do -%><%= @member.handle %> | Members | <%- end -%>
 
-<%= content_row :medium, :halfs do -%>
-    <%= content_section 'member-info', title: @member.handle do -%>
-        <div class="member-avatar"><%= member_avatar_img @member -%></div>
+<%= content_row :large, :halfs do -%>
+    <%= content_section 'member-info' do -%>
+        <%= member_avatar @member, link: false %>
+        <div class="member-biography"><%= render_markdown @member.biography %></div>
     <%- end -%>
     
-    <%= content_section 'member-links', title: 'Related Links' do -%>
+    <%= content_section 'member-external-links' do -%>
+        nada
     <%- end -%>
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>
-    <%= content_section 'member-related-games', title: 'Games' do -%>
+    <%= content_section 'member-games', title: 'Games' do -%>
         <%= render partial: 'games/list', locals: {games: @games} %>
     <%- end -%>
     
-    <%= content_section 'member-related-media', title: 'Media' do -%>
+    <%= content_section 'member-recent-videos', title: 'Recent Videos' do -%>
     <%- end -%>
 <%- end -%>
 
