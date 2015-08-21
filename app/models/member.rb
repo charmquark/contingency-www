@@ -8,7 +8,7 @@ class Member < ActiveRecord::Base
     scope :without_game, ->(g) { all.reject {|r| r.games.include? g } }
     
     has_many :background_images, as: :backgroundable
-    has_many :game_memberships
+    has_many :game_memberships, dependent: :destroy
     has_many :games, through: :game_memberships
     
     has_attached_file :avatar,
