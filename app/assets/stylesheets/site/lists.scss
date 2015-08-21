@@ -21,6 +21,8 @@ ul.packed {
     margin: 0px auto;
     padding: 0px;
     
+    position: relative;
+    
     @include clearfix;
     display: block;
     
@@ -52,7 +54,9 @@ ul.packed {
         }
     }
     
-    .breakpoint-medium & {
+    .breakpoint-medium &,
+    .breakpoint-large .limit-medium &,
+    .breakpoint-wide .limit-medium & {
         &.of-games {
             width: $game-banner-width * 3;
             
@@ -84,7 +88,8 @@ ul.packed {
         }
     }
     
-    .breakpoint-large & {
+    .breakpoint-large &,
+    .breakpoint-wide .limit-large & {
         &.of-games { width: $game-banner-width * 4; }
         &.of-members { width: $member-avatar-width * 8; }
     }
