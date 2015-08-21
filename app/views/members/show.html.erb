@@ -3,18 +3,21 @@
 <%= content_section 'member-info' do -%>
     <%= member_avatar @member, link: false %>
     <%- twitch_fragment = @member.twitch_fragment -%>
-    <%- unless twitch_fragment.nil? then -%>
-        <div
-            class="member-live-indicator"
-            data-fragment="<%= twitch_fragment %>"
-            data-url="<%= external_link_twitch_channel_url twitch_fragment %>"
-        ></div>
-    <%- end -%>
     <div class="member-external-links">
         <%- ExternalLink.to_sorted(@member.external_links).each do |el| -%>
             <%= link_to external_link_icon(el), external_link_resource_url(el) %>
         <%- end -%>
     </div>
+    <%- unless twitch_fragment.nil? then -%>
+        <a
+            class="member-twitch-indicator"
+            href="<%= external_link_twitch_channel_url twitch_fragment %>"
+            data-fragment="<%= twitch_fragment %>"
+        >
+            <span>Live Now @ Twitch:&nbsp;&nbsp;<span class="twitch-info-title"></span></span>
+            <span>Playing&nbsp;&nbsp;<span class="twitch-info-game"></span>&nbsp;&nbsp;with <span class="twitch-info-viewers"></span> viewers.</span>
+        </a>
+    <%- end -%>
     <div class="member-biography"><%= render_markdown @member.biography %></div>
 <%- end -%>
 

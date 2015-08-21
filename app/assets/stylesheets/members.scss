@@ -1,3 +1,34 @@
+ul.of-members {
+    .member-avatar-twitch-indicator {
+        display: none;
+        
+        .breakpoint-medium &.show {
+            background: $color-twitch-light-grey;
+            opacity: $alpha-white-icon;
+            text-align: center;
+            
+            @include size(35px);
+            
+            font-size: 0px;
+            line-height: 0px;
+            
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 0px;
+            
+            display: block;
+            
+            &:hover { opacity: 1; }
+            
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
 .member-avatar {
     width: $member-avatar-width;
     max-width: $member-avatar-width;
@@ -54,6 +85,37 @@
     #member-info-section {
         position: relative;
         
+        .member-twitch-indicator {
+            display: none;
+            
+            &.show {
+                background-color: $color-twitch-light-grey;
+                background-image: url('/images/external-sites/twitch-indicator.png');
+                background-position: bottom right;
+                background-repeat: no-repeat;
+                color: $color-twitch-dark-grey;
+                
+                margin-bottom: 1rem;
+                padding: 1rem;
+                
+                position: relative;
+
+                display: block;
+                    
+                > span {
+                    display: block;
+                }
+                
+                .twitch-info-game,
+                .twitch-info-title {
+                    color: $color-twitch-purple;
+                    font-weight: bold;
+                }
+                
+                .twitch-info-preview { outline: 1px $color-twitch-dark-grey solid; }
+            }
+        }
+        
         .breakpoint-small & {
             .member-avatar {
                 margin: 0px auto;
@@ -64,6 +126,21 @@
             .member-biography { margin-top: $spacing-small; }
             
             .member-external-links { text-align: center; }
+            
+            .member-twitch-indicator {
+                &.show {
+                    background-size: 25%;
+                    
+                    padding-bottom: 2.5rem;
+                    
+                    > span { margin-bottom: 0.25rem; }
+                    
+                    .twitch-info-preview {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+            }
         }
         
         .breakpoint-medium & {
@@ -71,7 +148,8 @@
             
             .member-avatar { float: left; }
             
-            .member-biography { margin-left: $member-avatar-width + $spacing-medium; }
+            .member-biography,
+            .member-twitch-indicator { margin-left: $member-avatar-width + $spacing-medium; }
             
             .member-external-links {
                 text-align: center;
@@ -93,14 +171,46 @@
                     float: left;
                 }
             }
+            
+            .member-twitch-indicator {
+                &.show {
+                    background-size: 125px;
+                    
+                    height: calc(180px + 2rem);
+                    
+                    @include clearfix;
+                    
+                    > span {
+                        font-size: 0.8rem;
+                        line-height: 1.3rem;
+                        margin-bottom: 1rem;
+                        margin-left: calc(320px + 1rem);
+                    }
+                    
+                    .twitch-info-game,
+                    .twitch-info-title {
+                        font-size: 1rem;
+                    }
+                    
+                    .twitch-info-preview {
+                        position: absolute;
+                        top: 1rem;
+                        left: 1rem;
+                        
+                        display: block;
+                    }
+                }
+            }
         }
         
         .breakpoint-large & {
-            .member-biography { margin-left: $member-avatar-width + $spacing-large; }
+            .member-biography,
+            .member-twitch-indicator { margin-left: $member-avatar-width + $spacing-large; }
         }
         
         .breakpoint-wide & {
-            .member-biography { margin-left: $member-avatar-width + $spacing-wide; }
+            .member-biography,
+            .member-twitch-indicator { margin-left: $member-avatar-width + $spacing-wide; }
         }
     }
 }
