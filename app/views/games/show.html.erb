@@ -33,7 +33,7 @@
 
 <%= content_for :user_actions do -%>
     <%- admin_only do -%>
-        <%= icon_link_to :white, 'image-area', 'Backgrounds', game_background_images_path(@game), class: 'button' %>
+        <%= icon_link_to :white, 'image-area', 'Manage Backgrounds', game_background_images_path(@game), class: 'button' %>
         <%= icon_delete_link :white, 'Delete Game', game_path(@game), class: 'button danger' %>
     <%- end -%>
 <%- end -%>

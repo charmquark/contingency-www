@@ -37,7 +37,7 @@
                 <%- end -%>
             </div>
         </div>
-        <%= user-actions -%>
+        <%= user_actions do -%>
             <%= f.submit class: 'button', value: 'Save' %>
             <%= f.button 'Reset', class: 'button', type: :reset %>
             <%= link_to 'Cancel', assoc_path, class: 'button' %>

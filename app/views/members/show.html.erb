@@ -39,7 +39,7 @@
 
 <% content_for :user_actions do %>
     <%- admin_only do -%>
-        <%= icon_link_to :white, 'image-area', 'Manage Member Backgrounds', member_background_images_path(@member), class: 'button' %>
+        <%= icon_link_to :white, 'image-area', 'Manage Backgrounds', member_background_images_path(@member), class: 'button' %>
         <%= icon_delete_link :white, 'Delete Member', member_path(@member), class: 'button danger' %>
     <%- end -%>
 <% end %>

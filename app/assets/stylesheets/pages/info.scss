@@ -1,0 +1,102 @@
+.pages-controller.info-action {
+    .content-section-body {
+        max-width: $content-width-large;
+        
+        a {
+            color: rgba($cyan-200, $alpha-white-text);
+            text-decoration: underline;
+        }
+        
+        img {
+            &.exhibit {
+                outline: 1px $white-divider solid;
+                
+                width: 250px;
+                
+                position: relative;
+                
+                &:hover {
+                    width: 500px;
+                }
+            }
+            
+            &.right { margin-left: 1rem; }
+        }
+        
+        li {
+            margin-bottom: 1rem;
+            
+            &:last-child { margin-bottom: 0px; }
+        }
+        
+        .icon {
+            background-color: $black-icon;
+            vertical-align: middle;
+        }
+    }
+    
+    .for-admins {
+        border-left: 1rem rgba($red-900, 0.8) solid;
+        
+        padding: 1rem 0.5rem;
+        
+        @include clearfix;
+    }
+    
+    .right { float: right; }
+    
+    #table-of-contents {
+        background: rgba($cyan-900, 0.9);
+        border-left: 2rem $cyan-700 solid;
+        list-style-type: none;
+        text-align: right;
+        
+        width: 15rem;
+        
+        padding: 1rem;
+        
+        position: fixed;
+        top: 64px;
+        right: -13rem;
+
+        display: none;
+        z-index: 2000;
+        
+        &:hover {
+            right: 0rem;
+        }
+        
+        li a {
+            width: 100%;
+            
+            padding: 0.5rem;
+            
+            display: inline-block;
+            
+            &:hover { background: rgba($cyan-700, 0.4); }
+        }
+        
+        &:before {
+            content: "Table of Contents";
+            vertical-align: middle;
+            
+            line-height: 1;
+            
+            position: absolute;
+            top: 50%;
+            left: -5rem;
+            
+            transform: rotate(-90deg);
+            
+            z-index: 2500;
+        }
+        
+        .breakpoint-large & { display: block; }
+        
+        .breakpoint-wide & {
+            right: 1rem;
+            
+            &:hover { right: 1rem; }
+        }
+    }
+}

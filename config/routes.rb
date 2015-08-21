@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     post    'login'     => 'sessions#create'    , as: :process_login, format: false
     delete  'logout'    => 'sessions#destroy'   , as: :logout       , format: false
     
+    get 'info' => 'pages#info', as: :info, format: false
+    
     root 'pages#home'
 
     # Example of regular route:

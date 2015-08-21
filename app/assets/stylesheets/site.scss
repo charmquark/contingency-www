@@ -225,6 +225,14 @@ p {
         margin: 0px 0px 1rem 0px;
     }
     
+    h3 {
+        border-bottom: 1pt $white-divider solid;
+        color: $white-secondary;
+        
+        margin: 1rem 0px 0.5rem 0px;
+        padding-left: 1rem;
+    }
+    
     .breakpoint-small & {
         h2 {
             background: $bg-content;

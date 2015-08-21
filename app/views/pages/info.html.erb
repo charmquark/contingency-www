@@ -1,0 +1,102 @@
+<ul id="table-of-contents">
+    <li><%= link_to 'Background Images', '#info-background-images-section' %></li>
+    <li><%= link_to 'External Links', '#info-external-links-section' %></li>
+    <li><%= link_to 'Games', '#info-games-section' %></li>
+    <li><%= link_to 'Game Memberships', '#info-game-memberships-section' %></li>
+    <li><%= link_to 'Members', '#info-members-section' %></li>
+    <li><%= link_to 'News Posts', '#info-news-posts-section' %></li>
+    <li><%= link_to 'Videos', '#info-videos-section' %></li>
+</ul>
+
+<%= content_section 'info-intro', title: 'Introduction to the Manual' do -%>
+    <p>This manual exists to help you make full use of the site. While there's nothing terribly complex, it never hurts to be aware of the details. Each section corresponds to one of the types of information currently supported by the site, and gives relevant information for how to manage those resources as both a regular user and an administrator. If you have any question that isn't resolved by the manual, please let me know so it can be updated/improved.</p>
+    
+    <div class="for-admins">
+        <p>Information intended for administrators will appear with a red band along the left side, like this paragraph. Regular users can ignore it or read it as they see fit.</p>
+    </div>
+<%- end -%>
+
+<%= content_section 'info-background-images', title: 'Background Images' do -%>
+    <p>Background Images can be added to Games and Members. Backgrounds for Games will be used on that Game's page(s), as well as the home page and any other page without any associated backgrounds. Backgrounds for Members are used <em>only</em> on that Member's page(s). If you have an image you believe is suitable, it's perfectly fine to submit it for both your Member page and the relevant Game.</p>
+    
+    <p>At the moment, regular members are asked to send any images they'd like to submit as a background, either for a Game or for their Member page(s), to an administrator. There is a small amount of editing that must be done before adding the image. Eventually this may become automated so that you can submit images directly to the site yourself.</p>
+    
+    <div class="for-admins">
+        <p>An XCF template for Background Images is <%= link_to 'provided for download', '/info/background_image_template.xcf' %>. If your editor of choice does not work with XCF files, forward any image you receive to someone who can do the edit. Right now no other format is available.</p>
+        
+        <%= image_tag '/images/info/background-images.management1.jpg', class: 'exhibit right' %>
+        <p>You will be able to access Background Image management in one of two ways. You can either click on any <%= icon :white, 'image-area' %> action icons on Game banners and Member avatars, or click on the <em>Manage Backgrounds</em> action button at the bottom of any Game or Member profile page. Doing either of these things will take you to the Background Image index for the Game or Member you acted on.</p>
+        
+        <p>From here you can delete a background by clicking the <%= icon :white, :delete %> action icon on the Background Image preview, or add a new background by clicking the <em>Add New Background</em> action button. There is no limit, at this time, on the number of backgrounds a Game or Member can have. When exporting a background from the template, check that it meets these criteria:</p>
+        
+        <ul>
+            <li>Make sure the &ldquo;site-bg&rdquo; layer is hidden.</li>
+            <li>Make sure the resolution is still 1920x720.</li>
+            <li>Make sure to export as PNG with alpha preserved.</li>
+        </ul>
+    </div>
+<%- end -%>
+
+<%= content_section 'info-external-links', title: 'External Links' do -%>
+    <%= image_tag '/images/info/external-links.management1.jpg', class: 'exhibit right' %>
+    <p>External Links lead to an account on some other site, such as Twitch or YouTube. To manage External Links first navigate to your Member profile page, then click on the <em>Manage External Links</em> action button at the bottom of the personal information section (the top section). This will take you to the External Links index page for your Member account (or for admins, the account whose profile you came from).</p>
+    
+    <p>There are a limited number of supported sites, currently including: Beam, Facebook, Google+, Player.me, Steam, Twitter, Twitch, and YouTube. You can also add one link to an arbitrary URL. If you have any slots remaining, the <em>Add New Link</em> action button will be available at the bottom of the list. To remove an existing link, click the <%= icon :white, :delete %> action icon at the left of the link.</p>
+    
+    <p>When adding a new External Link, you will need to specify two pieces of information. First is the <em>site</em>, which you will simply select from the list of provided options. If you already have a link to a particular site, it will not be in the list, so you don't have to worry about any accidents. Second is the <em>fragment</em>; this is the unique string that identifies the external account (e.g. your username, channel id, etc). As an example, if you are VibeRaider and you want to add your Twitter, you would first click the Twitter site option, then enter &ldquo;VibeRaiderLP&rdquo; as the fragment.</p>
+    
+    <p>There is special support for Twitch. If you have provided a link to your Twitch channel, and are currently live, an indicator will appear on your Member avatar throughout the site, and a preview panel will apear above your biography on your Member profile page. Clicking anywhere on either of these will send users straight to your channel. (Note that clicking the normal Twitch link on your profile will go to your Twitch profile page.) Given sufficient interest, it may be possible to add similar support for other services in the future.</p>
+<%- end -%>
+
+<%= content_section 'info-games', title: 'Games' do -%>
+    <p>Games listed are currently limited to those played by at least a few members of Contingency together in some fashion. In the future it may be made possible to add other games to the system for display on Member pages, given a good reason to do so (such as frequent playing on live streams, or an ongoing video series). Regular members are not able to add Games to the site at this time.</p>
+    
+    <div class="for-admins">
+        <p>To add a Game to the site, first navigate to the Games index page, then click on the <em>Add New Game</em> action button at the bottom of the page. Fill out the form, keeping the following in mind:</p>
+        <ul>
+            <li>The Name field should be filled out with the proper canonical name of the Game. For example, enter &ldquo;Counter-Strike: Global Offensive&rdquo; and not &ldquo;CS:GO&rdquo;, enter &ldquo;ARK Survival Evolved&rdquo; and not just &ldquo;Ark&rdquo;.</li>
+            <li>The Slug field sets the short abbreviation that will be used in URLs. Keep it short and simple, so long as it makes sense. For example, the Slug for Minecraft would be just &ldquo;mc&rdquo;, while the Slug for &ldquo;Space Engineers&rdquo; would be &ldquo;speng&rdquo;.</li>
+            <li>Attributes. Currently there is only one attribute: &ldquo;Featured&rdquo;. Its only effect is to force the Game to appear on the home page, and should generally be reserved for particularly popular (among ourselves) titles. Other attributes may be added in the future (such as one for use on Games only meant to appear in Member profiles and not on their own).</li>
+            <li>Banner Image. This is the image that represents the Game throughout the site, and should ideally feature some variant of an official logo over a screenshot or promotional art. It must be a JPEG, and exactly 500x250. It is not appropriate to leave the default generic banner in place.</li>
+            <li>Description. This can be any quick, short explanation of the game, generally no more than two or three sentences. If too long, it will not display properly on the Games index page. In the future it may become possible to specify both short and long descriptions, with the short used on the index and the short on the Game profile. This may be formatted using <%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics' %>.</li>
+        </ul>
+        <p>To remove a Game from the entire site, first navigate to the Game's profile page. Then click on the red bordered <em>Delete Game</em> action button at the bottom of the page. This cannot be undone.</p>
+    </div>
+<%- end -%>
+
+<%= content_section 'info-game-memberships', title: 'Game Memberships' do -%>
+    <p>A &ldquo;Game Membership&rdquo; is simply an association between a Game and a Member, indicating that the Member is a participant in that Game. They will be listed on each others' profile page.</p>
+    
+    <div class="for-admins">
+        <p>To add a Game Membership first navigate to either the Game's or the Member's profile. Click on the <em>Add Game Membership</em> action button on the bottom of the list of memberships (the second section). You will be presented the New Game Membership form, with either the Game or Member locked in (according to which profile you came from). Simply select the association from the provided list.</p>
+        <p>To remove a Game Membership, simply click on the <%= icon :white, :delete %> action icon appearing on a Game banner when on a Member profile page, or on a Member avatar when on a Game profile page.</p>
+    </div>
+<%- end -%>
+
+<%= content_section 'info-members', title: 'Members' do -%>
+    <p>Members are anyone who is actively part of the Contingency family in one capacity or another. Members have a profile page at <em>thecontingency.org/members/HANDLE</em> where &ldquo;handle&rdquo; is simply a common name by which they are known (e.g. Nukewarhead, poporp, HarmonyinB). You may access various settings for your own profile by navigating to it (there is a convenience link provided in the header navigation when logged in) and clicking the <em>Edit Member</em> action button on the bottom of your personal information section (the top section). You will be able to change the following:</p>
+    <ul>
+        <li>Handle. You can change this to essentially anything you like. Bear in mind this is an identifying mark and determines your profile's URL. At this time there is no support for multiple aliases to a single Member. Also, while I doubt this will be an issue, you should not put characters such as slash marks in your Handle.</li>
+        <li>Email. At the moment this is not being used for anything, but in the future you may be provided with occasional notifications, or other features. Feel free to enter &ldquo;bob@example.com&rdquo; if you want.</li>
+        <li>Password. You can change your password at any time by entering your new password in both this field, and the Password Confirmation field next to it. To keep your password, simply leave this field blank.</li>
+        <li>Avatar Image. You are able to change your own avatar, bearing in mind that it <em>must</em> be a JPEG and exactly 250x250.</li>
+        <li>Biography. Provide any sort of descriptive information about yourself. There is no hard upper limit on how long your biography may be, but try to be reasonable. Long biographies will not break profile pages; the personal information section will limit its size and add scrollbars as needed. This may be formatted using <%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics' %>, but please use at least second level headings, if you use any at all.</li>
+    </ul>
+    
+    <div class="for-admins">
+        <p>Admins may edit any Member's account by using the <em>Edit Member</em> action button on that Member's profile page. When doing so you will have access to two additional settings: Rank and Role. Role is used to grant or remove administrative access. Rank is only used, at this time, for moving a Member into or out of the &ldquo;core&rdquo; group.</p>
+        <p>To add a new Member, navigate to the Members index page and click on the <em>Add New Member</em> action button at the bottom of the page. To remove a Member from the entire site, naviage to the Member's profile page and click on the red bordered <em>Delete Member</em> action button at the bottom of the page. This cannot be undone.</p>
+    </div>
+<%- end -%>
+
+<%= content_section 'info-news-posts', title: 'News Posts' do -%>
+    <p>News Posts are used for publishing updates and announcements regarding Contingency in general, or its game servers. Only administrators are able to create News Posts.</p>
+    
+    <div class="for-admins">
+        <p>To add a News Post, navigate to the News index page and click on the <em>Add New Post</em> action button at the bottom of the page. Provide a title, and optionally associate the post with a Game. Then write the post content in the Short Body and Long Body fields. The Short Body is used for posts embedded in other pages, such as on the home page. When viewing the entire News Post, the contents of the Short Body will be rendered, followed immediately by the Long Body, with no separator.</p>
+        <p>You may use <%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics' %> to format News Posts.</p>
+    </div>
+<%- end -%>
+
+<%= content_section 'info-videos', title: 'Videos' do -%>
+<%- end -%>
