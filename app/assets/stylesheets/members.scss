@@ -85,6 +85,13 @@ ul.of-members {
     #member-info-section {
         position: relative;
         
+        .member-biography {
+            max-height: $member-avatar-height * 4;
+            
+            overflow-x: none;
+            overflow-y: scroll;
+        }
+        
         .member-twitch-indicator {
             display: none;
             
