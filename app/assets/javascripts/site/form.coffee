@@ -62,7 +62,7 @@ init_radio_group = (form, container)->
 select_radio = (container, control)->
     current = container.data 'current'
     if current != control
-        current.removeClass 'checked'
+        current.removeClass 'checked' if current?
         container.data 'current', control
         control.addClass 'checked'
 

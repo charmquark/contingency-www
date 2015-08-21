@@ -18,6 +18,8 @@ $content-width-medium:  800px;
 $content-width-large:   1110px;
 $content-width-wide:    1610px;
 
+$external-link-size:    60px;
+
 $game-banner-width:     250px;
 $game-banner-height:    $game-banner-width / 2;
 
@@ -28,7 +30,7 @@ $header-height-wide:    $header-height-large;
 
 $header-nav-link-width: 100px;
 
-$icons-available:   account, account-multiple, account-plus, contingency-symbol, delete, file-document-box, gamepad, gamepad-multiple, gamepad-plus, home, image-area, keyboard-backspace, logout, menu, newspaper, plus, settings;
+$icons-available:   account, account-multiple, account-plus, contingency-symbol, delete, file-document-box, gamepad, gamepad-multiple, gamepad-plus, home, image-area, keyboard-backspace, link, logout, menu, newspaper, plus, settings;
 //$icon-size:         $game-banner-height / 5;
 $icon-size:         24px;
 

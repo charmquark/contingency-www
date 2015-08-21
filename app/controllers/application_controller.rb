@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     # For APIs, you may want to use :null_session instead.
     protect_from_forgery with: :exception
     
-    helper_method :current_user, :featured_background_image, :is_admin?, :logged_in?
+    helper_method :current_user, :featured_background_image, :is_admin?, :is_admin_or?, :logged_in?
     
     def current_user
         @current_user ||= Member.find_by id: session[:current_user_id]
@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     
     def is_admin?
         @is_admin ||= current_user.try(:role) == 'admin'
+    end
+    
+    def is_admin_or?(member)
+        is_admin? or (member == current_user)
     end
 
     def logged_in?
@@ -33,7 +37,7 @@ protected
     end
     
     def admin_or(member, redir = nil, &blk)
-        if is_admin? or (member == @current_user) then
+        if is_admin_or? member then
             yield if block_given?
         else
             flash[:error] = "Permission denied."

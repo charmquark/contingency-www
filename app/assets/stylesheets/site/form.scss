@@ -75,16 +75,18 @@ form {
             background: rgba($link-hilite, 0.2);
             border-radius: 0.5rem;
             
-            &.halfs {
+            &.halfs,
+            &.thirds {
                 position: relative;
                 
                 @include clearfix;
                 
-                > div {
-                    width: 50%;
-                    float: left;
-                }
+                > div { float: left; }
             }
+            
+            &.halfs > div { width: 50%; }
+            
+            &.thirds > div { width: 33%; }
             
             > div {
                 padding: 0.8rem 0.6rem;

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709220301) do
+ActiveRecord::Schema.define(version: 20150821065643) do
 
   create_table "background_images", force: :cascade do |t|
     t.integer  "backgroundable_id"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20150709220301) do
   end
 
   add_index "background_images", ["backgroundable_type", "backgroundable_id"], name: "index_background_images_on_polymorphic_backgroundable"
+
+  create_table "external_links", force: :cascade do |t|
+    t.integer  "member_id"
+    t.string   "site"
+    t.string   "fragment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "external_links", ["member_id"], name: "index_external_links_on_member_id"
 
   create_table "game_memberships", force: :cascade do |t|
     t.integer  "game_id"

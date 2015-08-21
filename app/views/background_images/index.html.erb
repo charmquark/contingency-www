@@ -16,5 +16,5 @@
     <%- if is_admin? then -%>
         <%= icon_link_to :white, :plus, "New Background", new_poly_background_image_path, class: 'button' %>
     <%- end -%>
-    <%= link_to "Back to #{backgroundable_type.to_s.titleize}", backgroundable_path, class: 'button' %>
+    <%= icon_link_to :white, 'keyboard-backspace', "Back to #{backgroundable_type.to_s.titleize}", backgroundable_path, class: 'button' %>
 <%- end -%>

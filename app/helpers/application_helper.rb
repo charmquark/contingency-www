@@ -4,7 +4,7 @@ module ApplicationHelper
     end
     
     def admin_or(member, &blk)
-        yield if is_admin? or member == current_user
+        yield if is_admin_or? member
     end
     
     def content_row(bp, style = :halfs, options = {}, &blk)

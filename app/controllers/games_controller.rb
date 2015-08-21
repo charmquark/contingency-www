@@ -49,7 +49,7 @@ class GamesController < ApplicationController
     def destroy
         admin_only games_path do
             @game.destroy
-            redirect_to games_url, notice: game_notice('was successfully destroyed.')
+            redirect_to games_url, notice: game_notice('was successfully deleted.')
         end
     end
 

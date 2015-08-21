@@ -62,12 +62,37 @@
             }
             
             .member-biography { margin-top: $spacing-small; }
+            
+            .member-external-links { text-align: center; }
         }
         
         .breakpoint-medium & {
+            @include clearfix;
+            
             .member-avatar { float: left; }
             
             .member-biography { margin-left: $member-avatar-width + $spacing-medium; }
+            
+            .member-external-links {
+                text-align: center;
+                
+                width: $member-avatar-width;
+                
+                font-size: 0px;
+                
+                clear: left;
+                float: left;
+                
+                a {
+                    text-align: center;
+                    
+                    @include size(50% $external-link-size);
+                    
+                    display: inline-block;
+                    
+                    float: left;
+                }
+            }
         }
         
         .breakpoint-large & {
@@ -79,34 +104,3 @@
         }
     }
 }
-
-
-/*.games-controller.show-action {
-    #game-info-section {
-        position: relative;
-        
-        .breakpoint-small & {
-            .game-banner {
-                margin: 0px auto;
-                
-                display: block;
-            }
-            
-            .game-description { margin-top: $spacing-small; }
-        }
-        
-        .breakpoint-medium & {
-            .game-banner { float: left; }
-            
-            .game-description { margin-left: $game-banner-width + $spacing-medium; }
-        }
-        
-        .breakpoint-large & {
-            .game-description { margin-left: $game-banner-width + $spacing-large; }
-        }
-        
-        .breakpoint-wide & {
-            .game-description { margin-left: $game-banner-width + $spacing-wide; }
-        }
-    }
-}*/

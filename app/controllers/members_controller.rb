@@ -52,7 +52,7 @@ class MembersController < ApplicationController
     def destroy
         admin_only members_path do
             @member.destroy
-            redirect_to members_url, notice: member_notice('was successfully destroyed.')
+            redirect_to members_url, notice: member_notice('was successfully deleted.')
         end
     end
 

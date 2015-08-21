@@ -1,14 +1,13 @@
 <%- content_for :title do -%><%= @member.handle %> | Members | <%- end -%>
 
-<%= content_row :large, :halfs do -%>
-    <%= content_section 'member-info' do -%>
-        <%= member_avatar @member, link: false %>
-        <div class="member-biography"><%= render_markdown @member.biography %></div>
-    <%- end -%>
-    
-    <%= content_section 'member-external-links' do -%>
-        nada
-    <%- end -%>
+<%= content_section 'member-info' do -%>
+    <%= member_avatar @member, link: false %>
+    <div class="member-external-links">
+        <%- @member.external_links.each do |el| -%>
+            <%= link_to external_link_icon(el), external_link_resource_url(el) %>
+        <%- end -%>
+    </div>
+    <div class="member-biography"><%= render_markdown @member.biography %></div>
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>
@@ -24,6 +23,7 @@
     <%- admin_or @member do -%>
         <%= icon_link_to :white, :settings, 'Edit Member', edit_member_path(@member), class: 'button' %>
         <%= icon_link_to :white, 'image-area', 'Backgrounds', member_background_images_path(@member), class: 'button' %>
+        <%= icon_link_to :white, :link, 'Links', member_external_links_path(@member), class: 'button' %>
         <%= icon_link_to :white, 'gamepad-multiple', 'Games', member_game_memberships_path(@member), class: 'button' %>
         <%= icon_delete_link :white, 'Delete Member', member_path(@member), class: 'button danger' %>
     <%- end -%>

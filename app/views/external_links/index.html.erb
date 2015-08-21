@@ -1,0 +1,27 @@
+<%- content_for :title do -%>External Links | <%= @member.handle %> | <%- end -%>
+
+<%= content_section 'external-links-index', title: "External Links for #{@member.handle}" do -%>
+    <table>
+        <%- ExternalLink.to_sorted(@external_links).each do |el| -%>
+            <tr>
+                <td class="external-link-actions">
+                    <%= icon_delete_link :white, '', member_external_link_path(@member, el) %>
+                </td>
+                <td class="external-link-site-cell">
+                    <%= external_link_icon el %>
+                    <%= el.site_name %>
+                </td>
+                <td class="external-link-fragment-cell"><%= h el.fragment %></td>
+            </tr>
+        <%- end -%>
+    </table>
+<%- end -%>
+
+<%- content_for :user_actions do -%>
+    <%- admin_or @member do -%>
+        <%- if ExternalLink.available_sites_for(@member).length > 0 then -%>
+            <%= icon_link_to :white, :plus, "New Link", new_member_external_link_path(@member), class: 'button' %>
+        <%- end -%>
+    <%- end -%>
+    <%= icon_link_to :white, 'keyboard-backspace', "Back to Member", member_path(@member), class: 'button' %>
+<%- end -%>

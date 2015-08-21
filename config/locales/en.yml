@@ -22,6 +22,10 @@
 en:
     helpers:
         label:
+            external_link:
+                fragment:   "Identifier for External Resource (e.g., username or channel id)"
+                site:       "External Resource"
+            
             game:
                 banner:         "Banner Image (500×250 JPEG)"
                 description:    "Description (Markdown formatted)"
