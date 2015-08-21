@@ -15,13 +15,13 @@
             </tr>
         <%- end -%>
     </table>
+    <%= user_actions is_admin_or?(@member) do -%>
+        <%- if ExternalLink.available_sites_for(@member).length > 0 then -%>
+            <%= icon_link_to :white, :plus, "Add New Link", new_member_external_link_path(@member), class: 'button' %>
+        <%- end -%>
+    <%- end -%>
 <%- end -%>
 
 <%- content_for :user_actions do -%>
-    <%- admin_or @member do -%>
-        <%- if ExternalLink.available_sites_for(@member).length > 0 then -%>
-            <%= icon_link_to :white, :plus, "New Link", new_member_external_link_path(@member), class: 'button' %>
-        <%- end -%>
-    <%- end -%>
     <%= icon_link_to :white, 'keyboard-backspace', "Back to Member", member_path(@member), class: 'button' %>
 <%- end -%>

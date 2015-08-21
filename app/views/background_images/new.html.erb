@@ -5,15 +5,13 @@
     <%- if @background_image.errors.any? -%>
         <div id="error_explanation">
             <h2><%= pluralize(@background_image.errors.count, "error") %> prohibited this game from being saved:</h2>
-
             <ul>
-            <% @background_image.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
+                <% @background_image.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
             </ul>
         </div>
     <%- end -%>
-
     <%= form_for(@background_image,
             html: {multipart: true},
             url: poly_background_images_path,
@@ -35,11 +33,11 @@
                 <%= f.file_field :image %>
             </div>
         </div>
-        <div class="actions">
+        <%= user_actions do -%>
             <%= f.submit class: 'button' %>
             <%= f.button 'Reset', class: 'button', type: :reset %>
             <%= link_to 'Cancel', poly_background_images_path, class: 'button' %>
-        </div>
+        <%- end -%>
     <%- end -%>
 <%- end -%>
 

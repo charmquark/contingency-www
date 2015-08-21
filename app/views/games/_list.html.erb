@@ -1,4 +1,3 @@
-<%- show_delete ||= false %>
 <%- show_desc ||= false %>
 <%- see_all ||= false %>
 <ul class="of-games packed">
@@ -8,7 +7,10 @@
             <%- if show_desc then -%>
                 <div class="game-description"><%= render_markdown game.description -%></div>
             <%- end -%>
-            <%- if show_delete then -%>
+            <%= user_action_icons is_admin?,
+                settings: edit_game_path(game),
+                'image-area' => game_background_images_path(game) do
+            -%>
                 <%= icon_delete_link :white, '', game_path(game) %>
             <%- end -%>
         </li>

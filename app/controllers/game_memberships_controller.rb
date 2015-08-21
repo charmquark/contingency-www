@@ -1,8 +1,8 @@
 class GameMembershipsController < ApplicationController
-    def index
-        set_featured_background_image assoc
-        @game_memberships = assoc.game_memberships
-    end
+    #def index
+    #    set_featured_background_image assoc
+    #    @game_memberships = assoc.game_memberships
+    #end
     
     def new
         admin_only do
@@ -16,8 +16,9 @@ class GameMembershipsController < ApplicationController
             set_featured_background_image assoc
             @game_membership = assoc.game_memberships.build game_membership_params
             if @game_membership.save then
-                redirect_to assoc_game_memberships_path,
-                    notice: 'Game Membership successfully saved.'
+                #redirect_to assoc_game_memberships_path,
+                #    notice: 'Game Membership successfully saved.'
+                redirect_to assoc_path, notice: 'Game Membership successfully added.'
             else
                 render :new
             end
@@ -39,11 +40,12 @@ class GameMembershipsController < ApplicationController
                 @game_membership.destroy
                 flash.notice = 'Game Membership was removed.'
             end
-            redirect_to assoc_game_memberships_path
+            #redirect_to assoc_game_memberships_path
+            redirect_to assoc_path
         end
     end
     
-    helper_method :assoc, :assoc_game_memberships_path, :assoc_type
+    helper_method :assoc, :assoc_game_memberships_path, :assoc_path, :assoc_type
     
     def assoc
         @assoc ||= set_assoc
@@ -51,6 +53,10 @@ class GameMembershipsController < ApplicationController
     
     def assoc_game_memberships_path
         send "#{assoc_type}_game_memberships_path", assoc
+    end
+    
+    def assoc_path
+        send "#{assoc_type}_path", assoc
     end
     
     def assoc_type

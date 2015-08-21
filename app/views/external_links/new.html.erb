@@ -33,11 +33,11 @@
             <%= f.label :fragment %>
             <%= f.text_field :fragment %>
         </div>
-        <div class="actions">
+        <%= user_actions do -%>
             <%= f.submit class: 'button' %>
             <%= f.button 'Reset', class: 'button', type: :reset %>
             <%= link_to 'Cancel', member_external_links_path(@member), class: 'button' %>
-        </div>
+        <%- end -%>
     <%- end -%>
 <%- end -%>
 

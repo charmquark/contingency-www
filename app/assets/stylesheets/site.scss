@@ -80,10 +80,12 @@ p {
 .actions {
     background: $bg-actions;
     
-    max-width: 94%;
+    margin: 0px auto;
+    
+    clear: both;
     
     .breakpoint-small & {
-        margin: $pad-small auto;
+        margin-top: $pad-small;
         padding: $pad-small 0px;
         
         .button { margin: $pad-small; }
@@ -94,7 +96,7 @@ p {
     .breakpoint-medium & {
         text-align: center;
         
-        margin: $pad-medium auto;
+        margin-top: $pad-medium;
         
         .button { margin: $pad-medium; }
     }
@@ -102,7 +104,7 @@ p {
     .breakpoint-medium body > main > & { width: $content-width-medium; }
     
     .breakpoint-large & {
-        margin: $pad-large auto;
+        margin-top: $pad-large;
         
         .button { margin: $pad-large; }
     }
@@ -110,7 +112,7 @@ p {
     .breakpoint-large body > main > & { width: $content-width-large; }
     
     .breakpoint-wide & {
-        margin: $pad-wide auto;
+        margin-top: $pad-wide;
         
         .button { margin: $pad-wide; }
     }

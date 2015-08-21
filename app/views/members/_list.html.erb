@@ -1,12 +1,16 @@
-<%- show_delete ||= false -%>
 <%- show_twitch_indicator ||= false -%>
 <%- see_all ||= false -%>
 <ul class="of-members packed">
     <%- members.each do |member| -%>
         <li>
             <%= member_avatar member -%>
-            <%- if show_delete then -%>
-                <%= icon_delete_link :white, '', member_path(member) %>
+            <%= user_action_icons is_admin_or?(member),
+                settings: edit_member_path(member) do
+            -%>
+                <%- admin_only do -%>
+                    <%= icon_link_to :white, 'image-area', '', member_background_images_path(member) %>
+                    <%= icon_delete_link :white, '', member_path(member) %>
+                <%- end -%>
             <%- end -%>
             <%- if show_twitch_indicator then -%>
                 <%- fragment = member.twitch_fragment -%>

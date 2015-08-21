@@ -37,24 +37,10 @@
                 <%- end -%>
             </div>
         </div>
-        <div class="actions">
+        <%= user-actions -%>
             <%= f.submit class: 'button', value: 'Save' %>
             <%= f.button 'Reset', class: 'button', type: :reset %>
-            <%- case assoc_type -%>
-            <%- when :game -%>
-                <%= link_to 'Cancel', game_game_memberships_path(assoc), class: 'button' %>
-            <%- when :member -%>
-                <%= link_to 'Cancel', member_game_memberships_path(assoc), class: 'button' %>
-            <%- end -%>
-        </div>
+            <%= link_to 'Cancel', assoc_path, class: 'button' %>
+        <%- end -%>
     <% end %>
 <% end %>
-
-<%- content_for :user_actions do -%>
-    <%- case assoc_type -%>
-    <%- when :game -%>
-        <%= icon_link_to :white, 'keyboard-backspace', 'Back to Game', game_path(assoc), class: 'button' %>
-    <%- when :member -%>
-        <%= icon_link_to :white, 'keyboard-backspace', 'Back to Member', member_path(assoc), class: 'button' %>
-    <%- end -%>
-<%- end -%>

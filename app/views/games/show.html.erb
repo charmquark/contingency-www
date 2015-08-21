@@ -4,6 +4,11 @@
     <%= content_section 'game-info' do -%>
         <%= game_banner @game, link: false %>
         <div class="game-description"><%= render_markdown @game.description -%></div>
+        <%- admin_only do -%>
+            <div class="actions">
+                <%= icon_link_to :white, :settings, 'Edit Game', edit_game_path(@game), class: 'button' %>
+            </div>
+        <%- end -%>
     <%- end -%>
     
     <%= content_section 'game-related-news', title: 'Related News' do -%>
@@ -15,7 +20,11 @@
 
 <%= content_row :large, :halfs do -%>
     <%= content_section 'game-players', title: 'Players' do -%>
-        <%= render partial: 'members/list', locals: {members: @members} %>
+        <%= render partial: 'game_memberships/list', locals: {
+            assoc: @game,
+            assoc_type: :game,
+            game_memberships: GameMembership.sort_by_member(@game.game_memberships)
+        } %>
     <%- end -%>
     
     <%= content_section 'game-recent-videos', title: 'Recent Videos' do -%>
@@ -24,9 +33,7 @@
 
 <%= content_for :user_actions do -%>
     <%- admin_only do -%>
-        <%= icon_link_to :white, :settings, 'Edit Game', edit_game_path(@game), class: 'button' %>
         <%= icon_link_to :white, 'image-area', 'Backgrounds', game_background_images_path(@game), class: 'button' %>
-        <%= icon_link_to :white, 'account-multiple', 'Members', game_game_memberships_path(@game), class: 'button' %>
         <%= icon_delete_link :white, 'Delete Game', game_path(@game), class: 'button danger' %>
     <%- end -%>
 <%- end -%>

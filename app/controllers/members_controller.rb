@@ -8,7 +8,6 @@ class MembersController < ApplicationController
     def show
         unless @member.nil? then
             set_featured_background_image @member
-            @games = Game.to_sorted @member.games
         else
             redirect_to members_path
         end

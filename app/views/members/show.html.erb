@@ -19,11 +19,18 @@
         </a>
     <%- end -%>
     <div class="member-biography"><%= render_markdown @member.biography %></div>
+    <%= user_actions is_admin_or?(@member) do -%>
+        <%= icon_link_to :white, :settings, 'Edit Member', edit_member_path(@member), class: 'button' %>
+        <%= icon_link_to :white, :link, 'Manage External Links', member_external_links_path(@member), class: 'button' %>
+    <%- end -%>
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>
     <%= content_section 'member-games', title: 'Games' do -%>
-        <%= render partial: 'games/list', locals: {games: @games} %>
+        <%= render partial: 'game_memberships/list', locals: {
+            assoc: @member,
+            assoc_type: :member
+        } %>
     <%- end -%>
     
     <%= content_section 'member-recent-videos', title: 'Recent Videos' do -%>
@@ -31,11 +38,8 @@
 <%- end -%>
 
 <% content_for :user_actions do %>
-    <%- admin_or @member do -%>
-        <%= icon_link_to :white, :settings, 'Edit Member', edit_member_path(@member), class: 'button' %>
-        <%= icon_link_to :white, 'image-area', 'Backgrounds', member_background_images_path(@member), class: 'button' %>
-        <%= icon_link_to :white, :link, 'Links', member_external_links_path(@member), class: 'button' %>
-        <%= icon_link_to :white, 'gamepad-multiple', 'Games', member_game_memberships_path(@member), class: 'button' %>
+    <%- admin_only do -%>
+        <%= icon_link_to :white, 'image-area', 'Manage Member Backgrounds', member_background_images_path(@member), class: 'button' %>
         <%= icon_delete_link :white, 'Delete Member', member_path(@member), class: 'button danger' %>
     <%- end -%>
 <% end %>

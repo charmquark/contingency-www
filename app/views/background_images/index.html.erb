@@ -6,15 +6,17 @@
         <%- @background_images.each do |bg| -%>
             <li>
                 <%= image_tag bg.image.url -%>
-                <%= icon_delete_link :white, '', poly_background_image_path(bg) %>
+                <%= user_action_icons is_admin? do -%>
+                    <%= icon_delete_link :white, '', poly_background_image_path(bg) %>
+                <%- end -%>
             </li>
         <%- end -%>
     </ul>
+    <%= user_actions is_admin? do -%>
+        <%= icon_link_to :white, :plus, "Add New Background", new_poly_background_image_path, class: 'button' %>
+    <%- end -%>
 <%- end -%>
 
 <%- content_for :user_actions do -%>
-    <%- if is_admin? then -%>
-        <%= icon_link_to :white, :plus, "New Background", new_poly_background_image_path, class: 'button' %>
-    <%- end -%>
     <%= icon_link_to :white, 'keyboard-backspace', "Back to #{backgroundable_type.to_s.titleize}", backgroundable_path, class: 'button' %>
 <%- end -%>

@@ -64,6 +64,22 @@ module ApplicationHelper
         markdown.render(source).html_safe
     end
     
+    def user_actions(condition = true, &blk)
+        return unless condition
+        body = block_given? ? capture(&blk) : ''
+        content_tag :div, body, class: 'actions'
+    end
+    
+    def user_action_icons(condition = true, acts = {}, &blk)
+        return unless condition
+        body = ''
+        acts.each_pair do |i, p|
+            body += icon_link_to :white, i, '', p
+        end
+        body += block_given? ? capture(&blk) : ''
+        content_tag :div, body.html_safe, class: 'action-icons'
+    end
+    
     def with_user(&blk)
         yield unless @current_user.nil?
     end

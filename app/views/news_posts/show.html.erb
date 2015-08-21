@@ -5,16 +5,16 @@
         <header>
             <h2><%= @news_post.title %></h2>
             <span class="news-post-date"><%= @news_post.created_at.to_formatted_s :news_post %></span>
-            <%= member_avatar @news_post.member, handle: false %>
+            <%= member_avatar @news_post.member, handle: false unless @news_post.member.nil? %>
             <%= game_banner @news_post.game unless @news_post.game.nil? %>
         </header>
         <main>
             <%= render_news @news_post, true %>
         </main>
     </article>
+    <%= user_actions is_admin? do -%>
+        <%= icon_link_to :white, :settings, 'Edit News Post', edit_news_post_path(@news_post), class: 'button' %>
+        <%= icon_delete_link :white, 'Delete News Post', news_post_path(@news_post), class: 'button danger' %>
+    <% end %>
 <%- end -%>
 
-<% content_for :user_actions do %>
-    <%= icon_link_to :white, :settings, 'Edit News Post', edit_news_post_path(@news_post), class: 'button' %>
-    <%= icon_delete_link :white, 'Delete News Post', news_post_path(@news_post), class: 'button danger' %>
-<% end %>
