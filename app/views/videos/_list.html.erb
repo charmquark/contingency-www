@@ -6,7 +6,7 @@
 </ul>
 <%- if show_actions then -%>
     <%= user_actions is_admin_or?(show_actions) do -%>
-        <%= icon_link_to :white, :plus, 'Add Video', new_member_video_path(@member), class: 'button' %>
+        <%= icon_link_to :white, :plus, 'Add New Video', new_member_video_path(@member), class: 'button' %>
         <%= icon_link_to :white, :video, 'Manage Videos', member_videos_path(@member), class: 'button' %>
     <%- end -%>
 <%- end -%>

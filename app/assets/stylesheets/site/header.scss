@@ -214,4 +214,5 @@ body > header {
 .game_memberships-controller.game_memberships-assoc-member > header nav a#header-nav-members,
 .games-controller > header nav a#header-nav-games,
 .members-controller > header nav a#header-nav-members,
-.news_posts-controller > header nav a#header-nav-news-posts { background: $bg-current; }
+.news_posts-controller > header nav a#header-nav-news-posts,
+.videos-controller > header nav a#header-nav-members { background: $bg-current; }

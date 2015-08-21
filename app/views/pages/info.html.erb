@@ -54,6 +54,7 @@
     <p>Games listed are currently limited to those played by at least a few members of Contingency together in some fashion. In the future it may be made possible to add other games to the system for display on Member pages, given a good reason to do so (such as frequent playing on live streams, or an ongoing video series). Regular members are not able to add Games to the site at this time.</p>
     
     <div class="for-admins">
+        <%= image_tag '/images/info/games.form1.jpg', class: 'exhibit right' %>
         <p>To add a Game to the site, first navigate to the Games index page, then click on the <em>Add New Game</em> action button at the bottom of the page. Fill out the form, keeping the following in mind:</p>
         <ul>
             <li>The Name field should be filled out with the proper canonical name of the Game. For example, enter &ldquo;Counter-Strike: Global Offensive&rdquo; and not &ldquo;CS:GO&rdquo;, enter &ldquo;ARK Survival Evolved&rdquo; and not just &ldquo;Ark&rdquo;.</li>
@@ -76,6 +77,7 @@
 <%- end -%>
 
 <%= content_section 'info-members', title: 'Members' do -%>
+    <%= image_tag '/images/info/members.form1.jpg', class: 'exhibit right' %>
     <p>Members are anyone who is actively part of the Contingency family in one capacity or another. Members have a profile page at <em>thecontingency.org/members/HANDLE</em> where &ldquo;handle&rdquo; is simply a common name by which they are known (e.g. Nukewarhead, poporp, HarmonyinB). You may access various settings for your own profile by navigating to it (there is a convenience link provided in the header navigation when logged in) and clicking the <em>Edit Member</em> action button on the bottom of your personal information section (the top section). You will be able to change the following:</p>
     <ul>
         <li>Handle. You can change this to essentially anything you like. Bear in mind this is an identifying mark and determines your profile's URL. At this time there is no support for multiple aliases to a single Member. Also, while I doubt this will be an issue, you should not put characters such as slash marks in your Handle.</li>
@@ -95,10 +97,26 @@
     <p>News Posts are used for publishing updates and announcements regarding Contingency in general, or its game servers. Only administrators are able to create News Posts.</p>
     
     <div class="for-admins">
+        <%= image_tag '/images/info/news-posts.form1.jpg', class: 'exhibit right' %>
         <p>To add a News Post, navigate to the News index page and click on the <em>Add New Post</em> action button at the bottom of the page. Provide a title, and optionally associate the post with a Game. Then write the post content in the Short Body and Long Body fields. The Short Body is used for posts embedded in other pages, such as on the home page. When viewing the entire News Post, the contents of the Short Body will be rendered, followed immediately by the Long Body, with no separator.</p>
         <p>You may use <%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics' %> to format News Posts.</p>
     </div>
 <%- end -%>
 
 <%= content_section 'info-videos', title: 'Videos' do -%>
+    <p>At this time only YouTube videos are supported. Given sufficient interest, and the availability of the appropriate API's, this may be expanded in the future. Videos are added to Members, but may optionally be associated with a Game when added. Associated Videos appear on Game and Member profile pages in the third section.</p>
+    
+    <%= image_tag '/images/info/videos.form1.jpg', class: 'exhibit right' %>
+    <p>To add a Video, navigate to your profile (there is a convenience link provided in the header navigation when logged in) and click on the <em>Add New Video</em> action button at the bottom of the Recent Videos section. Optionally choose a Game to associate with the Video from the provided list. If you do not intend to associate the Video to a particular Game, either leave the list untouched, or select the blank entry at the top. In the Fragment field enter the YouTube video ID. This is the part of the video's URL that comes after the <em>youtube.com/watch?v=</em> or <em>youtu.be/</em>.</p>
+    
+    <p>Note there is no method currently to associate a Video to a Game after it has been added. This should be made available in the future. For now, make sure you select the Game when adding the Video, if you intend it to be linked.</p>
+
+    <div class="sep"></div>
+    
+    <%= image_tag '/images/info/videos.management1.jpg', class: 'exhibit right' %>
+    <p>You can also click on the <em>Manage Videos</em> action button to see the Videos index page. Here you will find a second <em>Add New Video</em> action button with identical functionality. You are also able to delete Videos from your account on this page, by clicking the <%= icon :white, :delete %> action icon next to the Video you want to remove.</p>
+    
+    <div class="for-admins">
+        <p>As an admin, navigating to any Member's profile page will permit you to add or manage their associated Videos.</p>
+    </div>
 <%- end -%>

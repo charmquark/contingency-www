@@ -7,6 +7,14 @@
             text-decoration: underline;
         }
         
+        div.sep {
+            height: 0px;
+            
+            margin: 1rem auto;
+            
+            clear: both;
+        }
+        
         img {
             &.exhibit {
                 outline: 1px $white-divider solid;
@@ -21,6 +29,8 @@
             }
             
             &.right { margin-left: 1rem; }
+            
+            &.exhibit.right { clear: right; }
         }
         
         li {
