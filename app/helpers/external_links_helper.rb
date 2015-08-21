@@ -9,6 +9,10 @@ module ExternalLinksHelper
         case el.site.to_sym
         when :beam_pro
             "https://beam.pro/#{frag}"
+        when :facebook
+            "https://www.facebook.com/#{frag}"
+        when :gplus
+            "https://plus.google.com/#{frag}/about"
         when :player_me
             "https://player.me/#{frag}"
         when :steam
