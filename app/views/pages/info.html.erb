@@ -19,6 +19,16 @@
 <%- end -%>
 
 <%= content_section 'info-background-images', title: 'Background Images' do -%>
+    <ul class="paths">
+        <li>GET: /games/SLUG/background_images</li>
+        <li>POST: /games/SLUG/background_images</li>
+        <li>GET: /games/SLUG/background_images/new</li>
+        <li>DELETE: /games/SLUG/background_images/ID</li>
+        <li>GET: /members/HANDLE/background_images</li>
+        <li>POST: /members/HANDLE/background_images</li>
+        <li>GET: /members/HANDLE/background_images/new</li>
+        <li>DELETE: /members/HANDLE/background_images/ID</li>
+    </ul>
     <p>Background Images can be added to Games and Members. Backgrounds for Games will be used on that Game's page(s), as well as the home page and any other page without any associated backgrounds. Backgrounds for Members are used <em>only</em> on that Member's page(s). If you have an image you believe is suitable, it's perfectly fine to submit it for both your Member page and the relevant Game.</p>
     
     <p>At the moment, regular members are asked to send any images they'd like to submit as a background, either for a Game or for their Member page(s), to an administrator. There is a small amount of editing that must be done before adding the image. Eventually this may become automated so that you can submit images directly to the site yourself.</p>
@@ -40,6 +50,13 @@
 <%- end -%>
 
 <%= content_section 'info-external-links', title: 'External Links' do -%>
+    <ul class="paths">
+        <li>GET: /members/HANDLE/external_links</li>
+        <li>POST: /members/HANDLE/external_links</li>
+        <li>GET: /members/HANDLE/external_links/new</li>
+        <li>DELETE: /members/HANDLE/external_links/SITE</li>
+    </ul>
+
     <%= image_tag '/images/info/external-links.management1.jpg', class: 'exhibit right' %>
     <p>External Links lead to an account on some other site, such as Twitch or YouTube. To manage External Links first navigate to your Member profile page, then click on the <em>Manage External Links</em> action button at the bottom of the personal information section (the top section). This will take you to the External Links index page for your Member account (or for admins, the account whose profile you came from).</p>
     
@@ -51,6 +68,17 @@
 <%- end -%>
 
 <%= content_section 'info-games', title: 'Games' do -%>
+    <ul class="paths">
+        <li>GET: /games</li>
+        <li>POST: /games</li>
+        <li>GET: /games/new</li>
+        <li>GET: /games/SLUG/edit</li>
+        <li>GET /games/SLUG</li>
+        <li>PATCH: /games/SLUG</li>
+        <li>PUT: /games/SLUG</li>
+        <li>DELETE: /games/SLUG</li>
+    </ul>
+
     <p>Games listed are currently limited to those played by at least a few members of Contingency together in some fashion. In the future it may be made possible to add other games to the system for display on Member pages, given a good reason to do so (such as frequent playing on live streams, or an ongoing video series). Regular members are not able to add Games to the site at this time.</p>
     
     <div class="for-admins">
@@ -68,6 +96,15 @@
 <%- end -%>
 
 <%= content_section 'info-game-memberships', title: 'Game Memberships' do -%>
+    <ul class="paths">
+        <li>POST: /games/SLUG/members</li>
+        <li>GET: /games/SLUG/members/new</li>
+        <li>DELETE: /games/SLUG/members/HANDLE</li>
+        <li>POST: /members/HANDLE/games</li>
+        <li>GET: /members/HANDLE/games/new</li>
+        <li>DELETE: /members/HANDLE/games/SLUG</li>
+    </ul>
+
     <p>A &ldquo;Game Membership&rdquo; is simply an association between a Game and a Member, indicating that the Member is a participant in that Game. They will be listed on each others' profile page.</p>
     
     <div class="for-admins">
@@ -77,6 +114,17 @@
 <%- end -%>
 
 <%= content_section 'info-members', title: 'Members' do -%>
+    <ul class="paths">
+        <li>GET: /members</li>
+        <li>POST: /members</li>
+        <li>GET: /members/new</li>
+        <li>GET: /members/HANDLE/edit</li>
+        <li>GET /members/HANDLE</li>
+        <li>PATCH: /members/HANDLE</li>
+        <li>PUT: /members/HANDLE</li>
+        <li>DELETE: /members/HANDLE</li>
+    </ul>
+
     <%= image_tag '/images/info/members.form1.jpg', class: 'exhibit right' %>
     <p>Members are anyone who is actively part of the Contingency family in one capacity or another. Members have a profile page at <em>thecontingency.org/members/HANDLE</em> where &ldquo;handle&rdquo; is simply a common name by which they are known (e.g. Nukewarhead, poporp, HarmonyinB). You may access various settings for your own profile by navigating to it (there is a convenience link provided in the header navigation when logged in) and clicking the <em>Edit Member</em> action button on the bottom of your personal information section (the top section). You will be able to change the following:</p>
     <ul>
@@ -94,6 +142,17 @@
 <%- end -%>
 
 <%= content_section 'info-news-posts', title: 'News Posts' do -%>
+    <ul class="paths">
+        <li>GET: /news_posts</li>
+        <li>POST: /news_posts</li>
+        <li>GET: /news_posts/new</li>
+        <li>GET: /news_posts/ID/edit</li>
+        <li>GET /news_posts/ID</li>
+        <li>PATCH: /news_posts/ID</li>
+        <li>PUT: /news_posts/ID</li>
+        <li>DELETE: /news_posts/ID</li>
+    </ul>
+
     <p>News Posts are used for publishing updates and announcements regarding Contingency in general, or its game servers. Only administrators are able to create News Posts.</p>
     
     <div class="for-admins">
@@ -104,6 +163,13 @@
 <%- end -%>
 
 <%= content_section 'info-videos', title: 'Videos' do -%>
+    <ul class="paths">
+        <li>GET: /members/HANDLE/videos</li>
+        <li>POST: /members/HANDLE/videos</li>
+        <li>GET: /members/HANDLE/videos/new</li>
+        <li>DELETE: /members/HANDLE/videos/ID</li>
+    </ul>
+
     <p>At this time only YouTube videos are supported. Given sufficient interest, and the availability of the appropriate API's, this may be expanded in the future. Videos are added to Members, but may optionally be associated with a Game when added. Associated Videos appear on Game and Member profile pages in the third section.</p>
     
     <%= image_tag '/images/info/videos.form1.jpg', class: 'exhibit right' %>

@@ -39,6 +39,29 @@
             &:last-child { margin-bottom: 0px; }
         }
         
+        ul.paths {
+            color: $yellow-100;
+            list-style-type: none;
+            
+            width: 100%;
+            
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            line-height: 1rem;
+            margin: 0px 0px 1rem 0px;
+            padding: 1rem;
+            
+            @include clearfix;
+            
+            li {
+                width: 33%;
+                
+                margin-bottom: 0.25rem;
+                
+                float: left;
+            }
+        }
+        
         .icon {
             background-color: $black-icon;
             vertical-align: middle;
