@@ -11,7 +11,7 @@
                     <%= external_link_icon el %>
                     <%= el.site_name %>
                 </td>
-                <td class="external-link-fragment-cell"><%= h el.fragment %></td>
+                <td class="external-link-fragment-cell"><%= external_link_resource_url_text(el).html_safe %></td>
             </tr>
         <%- end -%>
     </table>

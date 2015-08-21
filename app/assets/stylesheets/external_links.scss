@@ -1,3 +1,16 @@
+.external-link-url {
+    color: rgba($cyan-200, $alpha-white-text);
+    
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+    
+    .external-link-fragment {
+        color: $white-text;
+        
+        font-size: 1.2rem;
+    }
+}
+
 .external-site-icon {
     @include size($external-link-size);
 }

@@ -1,5 +1,8 @@
 class ExternalLink < ActiveRecord::Base
     SITE_NAMES = {
+        beam_pro:   'Beam',
+        player_me:  'Player.me',
+        steam:      'Steam',
         twitter:    'Twitter',
         twitch:     'Twitch',
         youtube:    'YouTube',

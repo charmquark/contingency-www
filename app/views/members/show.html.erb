@@ -2,8 +2,16 @@
 
 <%= content_section 'member-info' do -%>
     <%= member_avatar @member, link: false %>
+    <%- twitch_fragment = @member.twitch_fragment -%>
+    <%- unless twitch_fragment.nil? then -%>
+        <div
+            class="member-live-indicator"
+            data-fragment="<%= twitch_fragment %>"
+            data-url="<%= external_link_twitch_channel_url twitch_fragment %>"
+        ></div>
+    <%- end -%>
     <div class="member-external-links">
-        <%- @member.external_links.each do |el| -%>
+        <%- ExternalLink.to_sorted(@member.external_links).each do |el| -%>
             <%= link_to external_link_icon(el), external_link_resource_url(el) %>
         <%- end -%>
     </div>

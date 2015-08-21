@@ -52,6 +52,13 @@ class Member < ActiveRecord::Base
         CGI.escape handle
     end
     
+    
+    def twitch_fragment
+        el = ExternalLink.find_by member: self, site: :twitch
+        el.nil? ? nil : el.fragment
+    end
+    
+    
     def self.to_rank_groups(members)
         result = Hash.new {|hash, key| hash[key] = [] }
         members.each do |member|
