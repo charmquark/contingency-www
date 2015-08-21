@@ -9,7 +9,6 @@ class GamesController < ApplicationController
         unless @game.nil? then
             set_featured_background_image @game
             @news_post = NewsPost.where(game: @game).last
-            @members = Member.to_sorted @game.members
         else
             redirect_to games_path
         end

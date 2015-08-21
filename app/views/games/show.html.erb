@@ -27,7 +27,8 @@
         } %>
     <%- end -%>
     
-    <%= content_section 'game-recent-videos', title: 'Recent Videos' do -%>
+    <%= content_section 'game-recent-videos', class: 'hide-small', title: 'Recent Videos' do -%>
+        <%= render partial: 'videos/list', locals: {videos: @game.videos.recent} %>
     <%- end -%>
 <%- end -%>
 

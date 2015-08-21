@@ -33,7 +33,8 @@
         } %>
     <%- end -%>
     
-    <%= content_section 'member-recent-videos', title: 'Recent Videos' do -%>
+    <%= content_section 'member-recent-videos', class: 'hide-small', title: 'Recent Videos' do -%>
+        <%= render partial: 'videos/list', locals: {videos: @member.videos.recent, show_actions: @member} %>
     <%- end -%>
 <%- end -%>
 

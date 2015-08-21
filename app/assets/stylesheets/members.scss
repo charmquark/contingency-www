@@ -89,7 +89,7 @@ ul.of-members {
             max-height: $member-avatar-height * 4;
             
             overflow-x: none;
-            overflow-y: scroll;
+            overflow-y: auto;
         }
         
         .member-twitch-indicator {

@@ -1,0 +1,45 @@
+<%- content_for :title do -%>New Video | <%= @member.handle %> | <%- end -%>
+
+<%= form_section title: "New Video" do -%>
+    <%- if @video.errors.any? -%>
+        <div id="error_explanation">
+            <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
+            
+            <ul>
+                <% @video.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <%- end -%>
+    
+    <%= form_for(@video,
+            url: member_videos_path(@member),
+            method: :post
+        ) do |f|
+    -%>
+        <div class="halfs-medium">
+            <div class="field">
+                <%= f.label :game_id %>
+                <%= games_select f, Game.all, {include_blank: true} %>
+            </div>
+            <div class="field">
+                <%= f.label :member_id %>
+                <%= member_avatar @member %>
+            </div>
+        </div>
+        <div class="field">
+            <%= f.label :fragment %>
+            <%= f.text_field :fragment %>
+        </div>
+        <%= user_actions do -%>
+            <%= f.submit class: 'button' %>
+            <%= f.button 'Reset', class: 'button', type: :reset %>
+            <%= link_to 'Cancel', member_videos_path(@member), class: 'button' %>
+        <%- end -%>
+    <%- end -%>
+<%- end -%>
+
+<%- content_for :user_actions do -%>
+    <%= icon_link_to :white, 'keyboard-backspace', "Back to Member", member_path(@member), class: 'button' %>
+<%- end -%>

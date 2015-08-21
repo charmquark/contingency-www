@@ -85,10 +85,15 @@ p {
     clear: both;
     
     .breakpoint-small & {
-        margin-top: $pad-small;
-        padding: $pad-small 0px;
         
-        .button { margin: $pad-small; }
+        display: none;
+        
+        #form-section & {
+            margin-top: $pad-small;
+            padding: $pad-small 0px;
+            
+            .button { margin: $pad-small; }
+        }
     }
     
     .breakpoint-small body > main > & { display: none; }

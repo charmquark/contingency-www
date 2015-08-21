@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821065643) do
+ActiveRecord::Schema.define(version: 20150821183808) do
 
   create_table "background_images", force: :cascade do |t|
     t.integer  "backgroundable_id"
@@ -91,5 +91,16 @@ ActiveRecord::Schema.define(version: 20150821065643) do
 
   add_index "news_posts", ["game_id"], name: "index_news_posts_on_game_id"
   add_index "news_posts", ["member_id"], name: "index_news_posts_on_member_id"
+
+  create_table "videos", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "member_id"
+    t.string   "fragment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "videos", ["game_id"], name: "index_videos_on_game_id"
+  add_index "videos", ["member_id"], name: "index_videos_on_member_id"
 
 end

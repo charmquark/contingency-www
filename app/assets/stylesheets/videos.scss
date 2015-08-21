@@ -1,0 +1,21 @@
+iframe.youtube-player {
+    display: inline-block;
+    
+    .breakpoint-small & {
+        display: none;
+    }
+    
+    .breakpoint-medium & {
+        @include size(sixteen-by-nine($game-banner-width));
+    }
+    
+    .breakpoint-wide & {
+        @include size(sixteen-by-nine($game-banner-width * 1.5));
+    }
+}
+
+#videos-index-section .video-info-cell > span {
+    margin-left: 1rem;
+    
+    &.video-info-channel { color: $cyan-200; }
+}

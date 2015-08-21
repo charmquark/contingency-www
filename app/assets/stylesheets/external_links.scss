@@ -35,10 +35,6 @@
     }
 
     tr {
-        //&:nth-child(even) { background: rgba($black, 0.1); }
-        
-        //&:nth-child(odd) { background: rgba($white, 0.05); }
-        
         &:hover { background: rgba($cyan-900, 0.2); }
     }
 }

@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
-    resources :games do
+    resources :games, format: false do
         resources :background_images, only: ['index', 'new', 'create', 'destroy'], format: false
         resources :game_memberships, path: 'members', only: ['new', 'create', 'destroy'], format: false
     end
     
-    resources :members, constraints: {member_id: /[^\/]+/} do
+    resources :members, constraints: {member_id: /[^\/]+/}, format: false do
         resources :background_images, only: ['index', 'new', 'create', 'destroy'], format: false
         resources :external_links, only: ['index', 'new', 'create', 'destroy'], format: false
         resources :game_memberships, path: 'games', only: ['new', 'create', 'destroy'], format: false
+        resources :videos, only: ['index', 'new', 'create', 'destroy'], format: false
     end
     
-    resources :news_posts
+    resources :news_posts, format: false
 
     get     'login'     => 'sessions#new'       , as: :login        , format: false
     post    'login'     => 'sessions#create'    , as: :process_login, format: false
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
     
     get 'info' => 'pages#info', as: :info, format: false
     
-    root 'pages#home'
+    root 'pages#home', format: false
 
     # Example of regular route:
     #   get 'products/:id' => 'catalog#view'

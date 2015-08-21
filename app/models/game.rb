@@ -13,6 +13,7 @@ class Game < ActiveRecord::Base
     has_many :game_memberships, dependent: :destroy
     has_many :members, through: :game_memberships
     has_many :news_post
+    has_many :videos
     
     has_attached_file :banner,
         default_url: DEFAULT_BANNER_URL

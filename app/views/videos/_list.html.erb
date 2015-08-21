@@ -1,0 +1,12 @@
+<%- show_actions ||= false -%>
+<ul class="of-videos packed">
+    <%- videos.each do |vid| -%>
+        <li><%= render partial: 'videos/iframe', locals: {video: vid} %></li>
+    <%- end -%>
+</ul>
+<%- if show_actions then -%>
+    <%= user_actions is_admin_or?(show_actions) do -%>
+        <%= icon_link_to :white, :plus, 'Add Video', new_member_video_path(@member), class: 'button' %>
+        <%= icon_link_to :white, :video, 'Manage Videos', member_videos_path(@member), class: 'button' %>
+    <%- end -%>
+<%- end -%>

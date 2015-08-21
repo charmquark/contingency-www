@@ -1,0 +1,22 @@
+<%- content_for :title do -%>Videos | <%= @member.handle %> | <%- end -%>
+
+<%= content_section 'videos-index', title: "Videos for #{@member.handle}" do -%>
+    <table>
+        <%- @videos.each do |vid| -%>
+            <tr>
+                <td class="video-actions">
+                    <%= icon_delete_link :white, '', member_video_path(@member, vid) %>
+                </td>
+                <td class="video-fragment-cell"><%= vid.fragment %></td>
+                <td class="video-info-cell" data-youtube-info="<%= vid.fragment %>"></td>
+            </tr>
+        <%- end -%>
+    </table>
+    <%= user_actions is_admin_or?(@member) do -%>
+        <%= icon_link_to :white, :plus, "Add New Video", new_member_video_path(@member), class: 'button' %>
+    <%- end -%>
+<%- end -%>
+
+<%- content_for :user_actions do -%>
+    <%= icon_link_to :white, 'keyboard-backspace', "Back to Member", member_path(@member), class: 'button' %>
+<%- end -%>

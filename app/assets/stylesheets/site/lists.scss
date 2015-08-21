@@ -33,6 +33,8 @@ ul.packed {
         
         &.of-members li { @include size(33% auto); }
         
+        &.of-videos { display: none; }
+        
         li.see-all {
             width: 100%;
             
@@ -72,17 +74,38 @@ ul.packed {
                 }
             }
         }
+        
+        &.of-videos {
+            width: $game-banner-width * 3;
+            
+            li {
+                @include size(sixteen-by-nine($game-banner-width));
+                
+                &.see-all a {
+                    height: $game-banner-height;
+                    
+                    line-height: $game-banner-height;
+                    padding: 0px;
+                }
+            }
+        }
     }
     
     .breakpoint-large &,
     .breakpoint-wide .limit-large & {
-        &.of-games { width: $game-banner-width * 4; }
-        &.of-members { width: $member-avatar-width * 8; }
+        &.of-games { width: $game-banner-width * 2; }
+        &.of-members { width: $member-avatar-width * 4; }
+        &.of-videos { width: $game-banner-width * 2; }
     }
     
     .breakpoint-wide & { 
-        &.of-games { width: $game-banner-width * 6; }
-        &.of-members { width: $member-avatar-width * 12; }
+        &.of-games { width: $game-banner-width * 3; }
+        &.of-members { width: $member-avatar-width * 6; }
+        &.of-videos {
+            width: $game-banner-width * 3;
+            
+            li { @include size(sixteen-by-nine($game-banner-width * 1.5)); }
+        }
     }
 }
 

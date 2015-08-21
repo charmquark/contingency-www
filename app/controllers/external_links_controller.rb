@@ -20,7 +20,7 @@ class ExternalLinksController < ApplicationController
     
     def create
         admin_or @member do
-            @external_link = @member.external_links.build external_link_params(true)
+            @external_link = @member.external_links.build external_link_params
             if @external_link.save then
                 redirect_to member_external_links_path(@member), notice: external_link_notice('was successfully added.')
             else
@@ -42,10 +42,9 @@ private
         "#{@external_link.site_name} link #{tail}"
     end
 
-    def external_link_params(allow_site = false)
+    def external_link_params
         if is_admin_or? @member then
-            permitted = allow_site ? [:fragment, :site] : [:fragment]
-            params.require(:external_link).permit(*permitted)
+            params.require(:external_link).permit(:fragment, :site)
         else
             params
         end

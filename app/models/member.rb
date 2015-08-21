@@ -11,6 +11,7 @@ class Member < ActiveRecord::Base
     has_many :external_links, dependent: :destroy
     has_many :game_memberships, dependent: :destroy
     has_many :games, through: :game_memberships
+    has_many :videos
     
     has_attached_file :avatar,
         default_url: '/images/generic-member-avatar.jpg'
