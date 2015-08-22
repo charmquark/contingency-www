@@ -9,11 +9,15 @@
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>
-    <%= content_section 'home-games', title: 'Some Games We Enjoy' do -%>
-        <%= render partial: 'games/list', locals: {games: @games, see_all: true} %>
-    <%- end -%>
+    <% cache Game.cache_key_for_all do %>
+        <%= content_section 'home-games', title: 'Some Games We Enjoy' do -%>
+            <%= render partial: 'games/list', locals: {games: Game.for_home, see_all: true} %>
+        <%- end -%>
+    <% end %>
     
-    <%= content_section 'home-members', title: 'Some of Our Members' do -%>
-        <%= render partial: 'members/list', locals: {members: @members, see_all: true} %>
-    <%- end -%>
+    <% cache Member.cache_key_for_all do %>
+        <%= content_section 'home-members', title: 'Some of Our Members' do -%>
+            <%= render partial: 'members/list', locals: {members: Member.for_home, see_all: true} %>
+        <%- end -%>
+    <% end %>
 <%- end -%>

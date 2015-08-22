@@ -1,34 +1,36 @@
-<%- 
-    gm_data = nil
-    case assoc_type
-    when :game
-        gm_data = {
-            add_path:   new_game_game_membership_path(assoc),
-            item:       ->(gm) { member_avatar gm.member },
-            items:      GameMembership.sort_by_member(assoc.game_memberships),
-            item_path:  ->(gm) { game_game_membership_path gm.game, gm.member },
-            list_class: 'of-members'
-        }
-    when :member
-        gm_data = {
-            add_path:   new_member_game_membership_path(assoc),
-            item:       ->(gm) { game_banner gm.game },
-            items:      GameMembership.sort_by_game(assoc.game_memberships),
-            item_path:  ->(gm) { member_game_membership_path gm.member, gm.game },
-            list_class: 'of-games'
-        }
-    end
--%>
-<ul class="<%= gm_data[:list_class] %> packed">
-    <%- gm_data[:items].each do |gm| -%>
-        <li>
-            <%= gm_data[:item][gm] %>
-            <%= user_action_icons is_admin? do -%>
-                <%= icon_delete_link :white, '', gm_data[:item_path][gm] %>
-            <%- end -%>
-        </li>
+<% cache_unless is_admin?, GameMembership.cache_key_for_assoc(assoc, assoc_type) do %>
+    <%- 
+        gm_data = nil
+        case assoc_type
+        when :game
+            gm_data = {
+                add_path:   new_game_game_membership_path(assoc),
+                item:       ->(gm) { member_avatar gm.member },
+                items:      GameMembership.sort_by_member(assoc.game_memberships),
+                item_path:  ->(gm) { game_game_membership_path gm.game, gm.member },
+                list_class: 'of-members'
+            }
+        when :member
+            gm_data = {
+                add_path:   new_member_game_membership_path(assoc),
+                item:       ->(gm) { game_banner gm.game },
+                items:      GameMembership.sort_by_game(assoc.game_memberships),
+                item_path:  ->(gm) { member_game_membership_path gm.member, gm.game },
+                list_class: 'of-games'
+            }
+        end
+    -%>
+    <ul class="<%= gm_data[:list_class] %> packed">
+        <%- gm_data[:items].each do |gm| -%>
+            <li>
+                <%= gm_data[:item][gm] %>
+                <%= user_action_icons is_admin? do -%>
+                    <%= icon_delete_link :white, '', gm_data[:item_path][gm] %>
+                <%- end -%>
+            </li>
+        <%- end -%>
+    </ul>
+    <%= user_actions is_admin? do -%>
+        <%= icon_link_to :white, :plus, 'Add Game Membership', gm_data[:add_path], class: 'button' %>
     <%- end -%>
-</ul>
-<%= user_actions is_admin? do -%>
-    <%= icon_link_to :white, :plus, 'Add Game Membership', gm_data[:add_path], class: 'button' %>
-<%- end -%>
+<% end %>

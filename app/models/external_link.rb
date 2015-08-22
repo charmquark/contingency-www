@@ -14,7 +14,8 @@ class ExternalLink < ActiveRecord::Base
     VALID_SITES = SITE_NAMES.keys.sort
     
     
-    belongs_to :member
+    belongs_to :member,
+        touch: true
     
     
     validates :fragment,

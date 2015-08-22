@@ -1,9 +1,4 @@
 class GameMembershipsController < ApplicationController
-    #def index
-    #    set_featured_background_image assoc
-    #    @game_memberships = assoc.game_memberships
-    #end
-    
     def new
         admin_only do
             set_featured_background_image assoc

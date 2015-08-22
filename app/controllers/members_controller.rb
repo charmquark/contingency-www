@@ -6,11 +6,7 @@ class MembersController < ApplicationController
     end
 
     def show
-        unless @member.nil? then
-            set_featured_background_image @member
-        else
-            redirect_to members_path
-        end
+        redirect_to members_path if @member.nil?
     end
 
     def new
@@ -22,9 +18,7 @@ class MembersController < ApplicationController
     end
 
     def edit
-        admin_or @member do
-            set_featured_background_image @member
-        end
+        admin_or @member
     end
 
     def create
@@ -59,6 +53,7 @@ private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
         @member = find_member params[:id]
+        set_featured_background_image @member unless @member.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

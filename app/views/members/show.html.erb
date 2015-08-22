@@ -1,24 +1,26 @@
 <%- content_for :title do -%><%= @member.handle %> | Members | <%- end -%>
 
 <%= content_section 'member-info' do -%>
-    <%= member_avatar @member, link: false %>
-    <%- twitch_fragment = @member.twitch_fragment -%>
-    <div class="member-external-links">
-        <%- ExternalLink.to_sorted(@member.external_links).each do |el| -%>
-            <%= link_to external_link_icon(el), external_link_resource_url(el) %>
+    <% cache @member do %>
+        <%= member_avatar @member, link: false %>
+        <%- twitch_fragment = @member.twitch_fragment -%>
+        <div class="member-external-links">
+            <%- ExternalLink.to_sorted(@member.external_links).each do |el| -%>
+                <%= link_to external_link_icon(el), external_link_resource_url(el) %>
+            <%- end -%>
+        </div>
+        <%- unless twitch_fragment.nil? then -%>
+            <a
+                class="member-twitch-indicator"
+                href="<%= external_link_twitch_channel_url twitch_fragment %>"
+                data-fragment="<%= twitch_fragment %>"
+            >
+                <span>Live Now @ Twitch:&nbsp;&nbsp;<span class="twitch-info-title"></span></span>
+                <span>Playing&nbsp;&nbsp;<span class="twitch-info-game"></span>&nbsp;&nbsp;with <span class="twitch-info-viewers"></span> viewers.</span>
+            </a>
         <%- end -%>
-    </div>
-    <%- unless twitch_fragment.nil? then -%>
-        <a
-            class="member-twitch-indicator"
-            href="<%= external_link_twitch_channel_url twitch_fragment %>"
-            data-fragment="<%= twitch_fragment %>"
-        >
-            <span>Live Now @ Twitch:&nbsp;&nbsp;<span class="twitch-info-title"></span></span>
-            <span>Playing&nbsp;&nbsp;<span class="twitch-info-game"></span>&nbsp;&nbsp;with <span class="twitch-info-viewers"></span> viewers.</span>
-        </a>
-    <%- end -%>
-    <div class="member-biography"><%= render_markdown @member.biography %></div>
+        <div class="member-biography"><%= render_markdown @member.biography %></div>
+    <% end %>
     <%= user_actions is_admin_or?(@member) do -%>
         <%= icon_link_to :white, :settings, 'Edit Member', edit_member_path(@member), class: 'button' %>
         <%= icon_link_to :white, :link, 'Manage External Links', member_external_links_path(@member), class: 'button' %>
@@ -33,9 +35,11 @@
         } %>
     <%- end -%>
     
-    <%= content_section 'member-recent-videos', class: 'hide-small', title: 'Recent Videos' do -%>
-        <%= render partial: 'videos/list', locals: {videos: @member.videos.recent, show_actions: @member} %>
-    <%- end -%>
+    <% cache_unless logged_in?, Video.cache_key_for_member(@member) do %>
+        <%= content_section 'member-recent-videos', class: 'hide-small', title: 'Recent Videos' do -%>
+            <%= render partial: 'videos/list', locals: {videos: @member.videos.recent, show_actions: @member} %>
+        <%- end -%>
+    <% end %>
 <%- end -%>
 
 <% content_for :user_actions do %>

@@ -6,15 +6,29 @@ class Member < ActiveRecord::Base
     scope :random, -> { order 'random()' }
     
     scope :without_game, ->(g) { all.reject {|r| r.games.include? g } }
+
     
-    has_many :background_images, as: :backgroundable
-    has_many :external_links, dependent: :destroy
-    has_many :game_memberships, dependent: :destroy
-    has_many :games, through: :game_memberships
+    has_secure_password
+    
+    
+    has_many :background_images,
+        as: :backgroundable
+    
+    has_many :external_links,
+        dependent: :destroy
+
+    has_many :game_memberships,
+        {dependent: :destroy},
+        -> { includes :game }
+
+    has_many :news_post
+    
     has_many :videos
+    
     
     has_attached_file :avatar,
         default_url: '/images/generic-member-avatar.jpg'
+    
     
     validates :avatar,
         attachment_content_type: { content_type: 'image/jpeg' }
@@ -28,10 +42,6 @@ class Member < ActiveRecord::Base
     
     validates :role,
         presence: true
-
-    has_many :news_post
-
-    has_secure_password
     
     
     def is_admin?
@@ -57,6 +67,21 @@ class Member < ActiveRecord::Base
     def twitch_fragment
         el = ExternalLink.find_by member: self, site: :twitch
         el.nil? ? nil : el.fragment
+    end
+    
+    
+    def self.cache_key_for_all
+        count = Member.count
+        max_updated_at = Member.maximum(:updated_at).try(:utc).try(:to_s, :number)
+        "members/all-#{count}-#{max_updated_at}"
+    end
+    
+    
+    def self.for_home
+        members = Member.core
+        m = 11 - members.length
+        members += Member.not_core.random.limit(m) if m > 0
+        Member.to_sorted members
     end
     
     

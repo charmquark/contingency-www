@@ -5,8 +5,6 @@ class ExternalLinksController < ApplicationController
     def index
         admin_or @member do
             set_featured_background_image @member
-            
-            @external_links = @member.external_links
         end
     end
     

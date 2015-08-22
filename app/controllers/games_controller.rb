@@ -6,22 +6,17 @@ class GamesController < ApplicationController
     end
 
     def show
-        unless @game.nil? then
-            set_featured_background_image @game
-            @news_post = NewsPost.where(game: @game).last
-        else
-            redirect_to games_path
-        end
+        redirect_to games_path if @game.nil?
     end
 
     def new
-        admin_only(games_path) { @game = Game.new }
+        admin_only games_path do
+            @game = Game.new
+        end
     end
 
     def edit
-        admin_only games_path do
-            set_featured_background_image @game
-        end
+        admin_only games_path
     end
 
     def create
@@ -56,6 +51,7 @@ private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
         @game = find_game params[:id]
+        set_featured_background_image @game unless @game.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

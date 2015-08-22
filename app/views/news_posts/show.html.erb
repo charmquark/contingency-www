@@ -1,17 +1,19 @@
 <%- content_for :title do -%><%= @news_post.title %> | News | <%- end -%>
 
 <%= content_section 'news-post', class: 'limit-large' do -%>
-    <article>
-        <header>
-            <h2><%= @news_post.title %></h2>
-            <span class="news-post-date"><%= @news_post.created_at.to_formatted_s :news_post %></span>
-            <%= member_avatar @news_post.member, handle: false unless @news_post.member.nil? %>
-            <%= game_banner @news_post.game unless @news_post.game.nil? %>
-        </header>
-        <main>
-            <%= render_news @news_post, true %>
-        </main>
-    </article>
+    <% cache @news_post do %>
+        <article>
+            <header>
+                <h2><%= @news_post.title %></h2>
+                <span class="news-post-date"><%= @news_post.created_at.to_formatted_s :news_post %></span>
+                <%= member_avatar @news_post.member, handle: false unless @news_post.member.nil? %>
+                <%= game_banner @news_post.game unless @news_post.game.nil? %>
+            </header>
+            <main>
+                <%= render_news @news_post, true %>
+            </main>
+        </article>
+    <% end %>
     <%= user_actions is_admin? do -%>
         <%= icon_link_to :white, :settings, 'Edit News Post', edit_news_post_path(@news_post), class: 'button' %>
         <%= icon_delete_link :white, 'Delete News Post', news_post_path(@news_post), class: 'button danger' %>

@@ -2,38 +2,42 @@
 
 <%= content_row :large, :halfs do -%>
     <%= content_section 'game-info' do -%>
-        <%= game_banner @game, link: false %>
-        <div class="game-description"><%= render_markdown @game.description -%></div>
+        <% cache @game do %>
+            <%= game_banner @game, link: false %>
+            <div class="game-description"><%= render_markdown @game.description -%></div>
+        <% end %>
         <%- admin_only do -%>
-            <div class="actions">
+            <%= user_actions do %>
                 <%= icon_link_to :white, :settings, 'Edit Game', edit_game_path(@game), class: 'button' %>
-            </div>
+            <%- end -%>
         <%- end -%>
     <%- end -%>
-    
-    <%= content_section 'game-related-news', title: 'Related News' do -%>
-        <%- unless @news_post.nil? then -%>
-            <%= render partial: 'news_posts/embed', locals: {news_post: @news_post} -%>
+
+    <% cache NewsPost.cache_key_for_game(@game) do %>
+        <%= content_section 'game-related-news', title: 'Related News' do -%>
+            <%- post = NewsPost.where(game: @game).last -%>
+            <%= render partial: 'news_posts/embed', locals: {news_post: post} -%>
         <%- end -%>
-    <%- end -%>
+    <% end %>
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>
     <%= content_section 'game-players', title: 'Players' do -%>
         <%= render partial: 'game_memberships/list', locals: {
             assoc: @game,
-            assoc_type: :game,
-            game_memberships: GameMembership.sort_by_member(@game.game_memberships)
+            assoc_type: :game
         } %>
     <%- end -%>
     
-    <%= content_section 'game-recent-videos', class: 'hide-small', title: 'Recent Videos' do -%>
-        <%= render partial: 'videos/list', locals: {videos: @game.videos.recent} %>
-    <%- end -%>
+    <% cache Video.cache_key_for_game(@game) do %>
+        <%= content_section 'game-recent-videos', class: 'hide-small', title: 'Recent Videos' do -%>
+            <%= render partial: 'videos/list', locals: {videos: @game.videos.recent} %>
+        <%- end -%>
+    <% end %>
 <%- end -%>
 
-<%= content_for :user_actions do -%>
-    <%- admin_only do -%>
+<%- admin_only do -%>
+    <%= content_for :user_actions do -%>
         <%= icon_link_to :white, 'image-area', 'Manage Backgrounds', game_background_images_path(@game), class: 'button' %>
         <%= icon_delete_link :white, 'Delete Game', game_path(@game), class: 'button danger' %>
     <%- end -%>

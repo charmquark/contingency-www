@@ -2,7 +2,7 @@
 
 <%= content_section 'external-links-index', title: "External Links for #{@member.handle}" do -%>
     <table>
-        <%- ExternalLink.to_sorted(@external_links).each do |el| -%>
+        <%- ExternalLink.to_sorted(@member.external_links).each do |el| -%>
             <tr>
                 <td class="external-link-actions">
                     <%= icon_delete_link :white, '', member_external_link_path(@member, el) %>

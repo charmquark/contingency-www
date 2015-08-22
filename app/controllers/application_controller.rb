@@ -3,10 +3,13 @@ class ApplicationController < ActionController::Base
     # For APIs, you may want to use :null_session instead.
     protect_from_forgery with: :exception
     
+    before_action :set_current_user
+    
     helper_method :current_user, :featured_background_image, :is_admin?, :is_admin_or?, :logged_in?
     
     def current_user
-        @current_user ||= Member.find_by id: session[:current_user_id]
+        #@current_user ||= Member.find_by id: session[:current_user_id]
+        @current_user
     end
     
     def featured_background_image
@@ -18,7 +21,7 @@ class ApplicationController < ActionController::Base
     end
     
     def is_admin_or?(member)
-        is_admin? or (member == current_user)
+        @is_admin_or ||= is_admin? or (member == current_user)
     end
 
     def logged_in?
@@ -62,6 +65,10 @@ protected
     end
 
 private
+
+    def set_current_user
+        @current_user = Member.find_by id: session[:current_user_id]
+    end
 
     def set_default_featured_background_image
         bg = BackgroundImage.random

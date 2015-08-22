@@ -1,7 +1,9 @@
 <%- content_for :title do -%>Games | <%- end -%>
 
 <%= content_section 'games-index', title: 'The Games We Play' do -%>
-    <%= render partial: 'games/list', locals: {games: @games, show_desc: true} %>
+    <% cache_unless is_admin?, Game.cache_key_for_all do %>
+        <%= render partial: 'games/list', locals: {games: @games, show_desc: true} %>
+    <% end %>
     <%= user_actions is_admin? do -%>
         <%= icon_link_to :white, 'gamepad-plus', 'Add New Game', new_game_path, class: 'button' %>
     <%- end -%>

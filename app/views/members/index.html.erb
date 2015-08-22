@@ -1,10 +1,9 @@
 <%- content_for :title do -%>Members | <%- end -%>
 
 <%= content_section 'members-index', class: 'limit-large', title: 'Our Members' do -%>
-    <%= render partial: 'members/list', locals: {
-        members: @members,
-        show_twitch_indicator: true
-    } %>
+    <% cache_unless is_admin?, Member.cache_key_for_all do %>
+        <%= render partial: 'members/list', locals: {members: @members, show_twitch_indicator: true} %>
+    <% end %>
     <%= user_actions is_admin? do -%>
         <%= icon_link_to :white, 'account-plus', 'Add New Member', new_member_path, class: 'button' -%>
     <%- end -%>
