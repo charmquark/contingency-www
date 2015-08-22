@@ -20,6 +20,9 @@ class Member < ActiveRecord::Base
     has_many :game_memberships,
         {dependent: :destroy},
         -> { includes :game }
+    
+    has_many :games,
+        through: :game_memberships
 
     has_many :news_post
     

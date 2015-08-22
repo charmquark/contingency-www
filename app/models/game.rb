@@ -17,6 +17,9 @@ class Game < ActiveRecord::Base
         {dependent: :destroy},
         -> { includes :member }
     
+    has_many :members,
+        through: :game_memberships
+    
     has_many :news_post
     
     has_many :videos
