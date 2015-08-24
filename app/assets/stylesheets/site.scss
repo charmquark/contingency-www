@@ -149,12 +149,13 @@ p {
     position: relative;
     
     display: inline-block;
+    z-index: 1000;
     
     &:hover {
         background: $link-hilite;
         color: $white-text;
         
-        transform: scale(1.1);
+        transform: scale(1.05);
         
         .icon {
             background-color: $black-icon;
@@ -227,7 +228,7 @@ p {
         }
     }
     
-    .csstransforms3d &:hover { box-shadow: 0px 0.5rem 1rem 0.25rem $black-secondary; }
+    .csstransforms &:hover { box-shadow: 0px 0.5rem 1rem 0.25rem $black-secondary; }
 }
 
 .clear { clear: both; }
