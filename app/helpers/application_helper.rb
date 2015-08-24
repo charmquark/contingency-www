@@ -1,12 +1,4 @@
 module ApplicationHelper
-    def admin_only(&blk)
-        yield if is_admin?
-    end
-    
-    def admin_or(member, &blk)
-        yield if is_admin_or? member
-    end
-    
     def content_row(bp, style = :halfs, options = {}, &blk)
         options = options.symbolize_keys
         options[:class] = "row-#{bp} row-of-#{style} #{options.fetch :class, ''}"
@@ -40,47 +32,43 @@ module ApplicationHelper
         content_tag :span, '', options
     end
     
-    def icon_2x(color, which, options = {})
-        options = options.symbolize_keys
-        options[:class] = options.fetch(:class, '') + ' icon-2x'
-        icon which, options
-    end
-    
     def icon_delete_link(color, text, href, options = {})
         options = options.symbolize_keys
-        options[:data] = {:confirm => 'Are you sure?'}
+        options[:data] = {:confirm => 'Are you sure? This deletion cannot be undone.'}
         options[:method] = :delete
         icon_link_to color, :delete, text, href, options
     end
     
     def icon_link_to(color, which, text, href, options = {})
-        link_to(icon(color, which) + content_tag(:span, text, class: 'text'), href, options)
+        disp = icon color, which
+        disp += content_tag :span, text, class: 'text' unless text.empty?
+        link_to(disp, href, options)
     end
     
     def render_markdown(source)
-        markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-            no_intra_emphasis: true
-        )
+        markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML, no_intra_emphasis: true
         markdown.render(source).html_safe
     end
     
     def user_actions(condition = true, &blk)
-        return unless condition
-        body = block_given? ? capture(&blk) : ''
-        content_tag :div, body, class: 'actions'
+        if condition then
+            body = block_given? ? capture(&blk) : ''
+            content_tag :div, body, class: 'actions'
+        else
+            ''
+        end
     end
     
     def user_action_icons(condition = true, acts = {}, &blk)
-        return unless condition
-        body = ''
-        acts.each_pair do |i, p|
-            body += icon_link_to :white, i, '', p
+        if condition then
+            body = ''
+            acts.each_pair do |icn, pth|
+                body += icon_link_to :white, icn, '', pth
+            end
+            body += capture &blk if block_given?
+            content_tag :div, body.html_safe, class: 'action-icons'
+        else
+            ''
         end
-        body += block_given? ? capture(&blk) : ''
-        content_tag :div, body.html_safe, class: 'action-icons'
-    end
-    
-    def with_user(&blk)
-        yield unless @current_user.nil?
     end
 end

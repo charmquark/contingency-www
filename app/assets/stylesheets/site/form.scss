@@ -23,7 +23,6 @@ form {
     select,
     textarea {
         background: $blue-grey-200;
-        border-radius: 0.5rem;
         border-width: 0px;
         color: $black-text;
         
@@ -73,7 +72,6 @@ form {
         .check-group,
         .radio-group {
             background: rgba($link-hilite, 0.2);
-            border-radius: 0.5rem;
             
             &.halfs,
             &.thirds {
@@ -93,7 +91,6 @@ form {
                 
                 &.checked {
                     background: rgba($blue-grey-700, 0.4);
-                    border-radius: 0.5rem;
                     
                     .toggle > span { background: $bg-color; }
                 }
@@ -180,3 +177,5 @@ form {
     .breakpoint-large & { @include form-dependant-sizes($pad-large, $spacing-large); }
 }
 
+button.button,
+input.button { border-width: 0px; }

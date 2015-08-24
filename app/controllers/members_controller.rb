@@ -1,8 +1,12 @@
 class MembersController < ApplicationController
+    MEMBER_PERMITTED = [:avatar, :biography, :handle, :email, :password, :password_confirmation]
+    ADMIN_PERMITTED = [:rank, :role]
+    
+    
     before_action :set_member, only: [:show, :edit, :update, :destroy]
 
+
     def index
-        @members = Member.to_sorted Member.all
     end
 
     def show
@@ -24,7 +28,7 @@ class MembersController < ApplicationController
     def create
         admin_only members_path do
             @member = Member.new member_params
-            if @member.save
+            if @member.save then
                 redirect_to @member, notice: member_notice('was successfully created.')
             else
                 render :new
@@ -34,7 +38,7 @@ class MembersController < ApplicationController
 
     def update
         admin_or @member do
-            if @member.update(member_params)
+            if @member.update member_params then
                 redirect_to @member, notice: member_notice('was successfully updated.')
             else
                 render :edit
@@ -50,24 +54,19 @@ class MembersController < ApplicationController
     end
 
 private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_member
-        @member = find_member params[:id]
-        set_featured_background_image @member unless @member.nil?
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-        if is_admin? then
-            return params.require(:member).permit(:avatar, :biography, :handle, :email, :password, :password_confirmation, :rank, :role)
-        elsif @member == current_user then
-            return params.require(:member).permit(:avatar, :biography, :handle, :email, :password, :password_confirmation)
-        else
-            return params
-        end
+        permitted = MEMBER_PERMITTED
+        permitted += ADMIN_PERMITTED if is_admin?
+        params.require(:member).permit(permitted)
     end
 
     def member_notice(tail)
         "The Member &ldquo;#{@member.handle}&rdquo; #{tail}"
+    end
+
+    def set_member
+        @member = find_member params[:id]
+        set_featured_background_image @member unless @member.nil?
     end
 end

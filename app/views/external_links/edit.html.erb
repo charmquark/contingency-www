@@ -1,6 +1,6 @@
-<%- content_for :title do -%>New External Link | <%= @member.handle %> | <%- end -%>
+<%- content_for :title do -%>Edit <%= @external_link.site_name %> Link | <%= @member.handle %> | <%- end -%>
 
-<%= form_section title: "New External Link for #{@member.handle}" do -%>
+<%= form_section title: "Edit #{@external_link.site_name} Link for #{@member.handle}" do -%>
     <%- if @external_link.errors.any? -%>
         <div id="error_explanation">
             <h2><%= pluralize(@external_link.errors.count, "error") %> prohibited this external link from being saved:</h2>
@@ -14,20 +14,14 @@
     <%- end -%>
     
     <%= form_for(@external_link,
-            url: member_external_links_path(@member),
-            method: :post
+            url: member_external_link_path(@member, @external_link),
+            method: :patch
         ) do |f|
     -%>
         <div class="field">
             <%= f.label :site %>
-            <div class="radio-group thirds">
-                <% ExternalLink.available_sites_for(@member).each do |site| %>
-                    <div>
-                        <%= f.radio_button :site, site %>
-                        <label><%= ExternalLink::SITE_NAMES[site.to_sym] %></label>
-                    </div>
-                <% end %>
-            </div>
+            <%= external_link_icon @external_link %>
+            <%= @external_link.site_name %>
         </div>
         <div class="field">
             <%= f.label :fragment %>

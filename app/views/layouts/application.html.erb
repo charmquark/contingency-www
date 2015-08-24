@@ -35,7 +35,7 @@
                 <%= icon_link_to :white, 'account-multiple', 'Members', members_path, id: 'header-nav-members', class: 'hover-hilite' %>
                 <%= icon_link_to :white, :newspaper, 'News', news_posts_path, id: 'header-nav-news-posts', class: 'hover-hilite' %>
                 <%- if logged_in? then -%>
-                    <%= icon_link_to :white, :account, current_user.handle, member_path(current_user), class: 'hover-hilite' %>
+                    <%= icon_link_to :white, :account, @current_user.handle, member_path(@current_user), class: 'hover-hilite' %>
                 <%- end -%>
             </nav>
         </div>
@@ -51,9 +51,6 @@
             <%- end -%>
         <%- end -%>
         <%= yield %>
-        <%= user_actions logged_in? do -%>
-            <%= yield :user_actions -%>
-        <%- end -%>
     </main>
     <footer>
         <div>

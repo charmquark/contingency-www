@@ -1,22 +1,20 @@
-<%- content_for :title do -%>Backgrounds for <%= backgroundable_title %> | <%- end -%>
-<%- content_for :body_class do -%>background_images-assoc-<%= backgroundable_type %><%- end -%>
+<%- content_for :title do -%>Backgrounds for <%= @backgroundable.name %> | <%- end -%>
 
-<%= content_section 'background-images-index', title: "Background Images for #{backgroundable_title}" do -%>
+<%= content_section 'background-images-index', title: "Background Images for #{@backgroundable.name}" do -%>
     <ul>
-        <%- @background_images.each do |bg| -%>
+        <%- @backgroundable.background_images.each do |bg| -%>
             <li>
                 <%= image_tag bg.image.url -%>
-                <%= user_action_icons is_admin? do -%>
-                    <%= icon_delete_link :white, '', poly_background_image_path(bg) %>
+                <%= user_action_icons is_admin_or?(@backgroundable) do -%>
+                    <%= icon_delete_link :white, '', polymorphic_path([@backgroundable, bg]) %>
                 <%- end -%>
             </li>
         <%- end -%>
     </ul>
-    <%= user_actions is_admin? do -%>
-        <%= icon_link_to :white, :plus, "Add New Background", new_poly_background_image_path, class: 'button' %>
+    <%= user_actions do -%>
+        <%- if is_admin? then -%>
+            <%= icon_link_to :white, :plus, "Add New Background", new_polymorphic_path([@backgroundable, BackgroundImage]), class: 'button' %>
+        <%- end -%>
+        <%= icon_link_to :white, 'keyboard-backspace', "Back to #{backgroundable_type.model_name.human}", polymorphic_path(@backgroundable), class: 'button' %>
     <%- end -%>
-<%- end -%>
-
-<%- content_for :user_actions do -%>
-    <%= icon_link_to :white, 'keyboard-backspace', "Back to #{backgroundable_type.to_s.titleize}", backgroundable_path, class: 'button' %>
 <%- end -%>

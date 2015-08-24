@@ -14,8 +14,45 @@ iframe.youtube-player {
     }
 }
 
-#videos-index-section .video-info-cell > span {
+#videos-index-section {
+    table { width: 100%; }
+    
+    td {
+        width: auto;
+        
+        padding: 1rem 0rem;
+        
+        &.video-fragment-cell { padding: 1rem 0.5rem; }
+        
+        &.video-info-cell > span.video-info-channel {
+            color: $cyan-200;
+            
+            margin-right: 1rem;
+        }
+        
+        &.video-actions {
+            text-align: center;
+            
+            > a {
+                margin-right: 5px;
+                
+                &:last-child { margin-right: 0px; }
+            }
+        }
+    }
+    
+    tr {
+        border-bottom: 1px $black-divider solid;
+        
+        &:last-child { border-bottom-width: 0px; }
+        
+        &:hover { background: rgba($cyan-900, 0.2); }
+    }
+}
+
+/*#videos-index-section .video-info-cell > span {
     margin-left: 1rem;
     
     &.video-info-channel { color: $cyan-200; }
-}
+}*/
+

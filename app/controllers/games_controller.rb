@@ -2,7 +2,6 @@ class GamesController < ApplicationController
     before_action :set_game, only: [:show, :edit, :update, :destroy]
 
     def index
-        @games = Game.to_sorted Game.all
     end
 
     def show

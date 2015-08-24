@@ -1,23 +1,25 @@
 module GamesHelper
-    def game_banner(game = nil, options = {})
-        options = options.symbolize_keys
-        
-        img_options = options.fetch(:img, {}).symbolize_keys
-        content     = game_banner_img game, img_options
-        
-        container_class = 'game-banner'
-        container_class += ' game-featured' if not game.nil? and game.featured
-        
-        link_options = options.fetch :link, {}
-        if link_options.is_a? Hash then
-            link_options            = link_options.symbolize_keys
-            link_options[:class]    = "#{container_class} #{link_options.fetch :class, ''}"
+    def game_banner(game, options = {})
+        unless game.nil? then
+            options = options.symbolize_keys
             
-            link_param = game.nil? ? games_path : game
+            img_options = options.fetch(:img, {}).symbolize_keys
+            content     = game_banner_img game, img_options
             
-            link_to content, link_param, link_options
+            container_class = 'game-banner'
+            container_class += ' game-featured' if game.featured
+            
+            link_options = options.fetch :link, {}
+            if link_options.is_a? Hash then
+                link_options            = link_options.symbolize_keys
+                link_options[:class]    = "#{container_class} #{link_options.fetch :class, ''}"
+                
+                link_to content, game, link_options
+            else
+                content_tag :div, content, class: container_class
+            end
         else
-            content_tag :div, content, class: container_class
+            ''
         end
     end
     
@@ -36,7 +38,7 @@ module GamesHelper
         html_options = html_options.symbolize_keys
         html_options[:size] = html_options.fetch :size, 6
         
-        so = Game.to_sorted(games).map {|g| [g.name, g.id]}
+        so = games.sort.map {|g| [g.name, g.id]}
         f.select :game_id, so, options, html_options, &blk
     end
    

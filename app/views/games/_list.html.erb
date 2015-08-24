@@ -7,10 +7,6 @@
             <%- if show_desc then -%>
                 <div class="game-description"><%= render_markdown game.description -%></div>
             <%- end -%>
-            <%= user_action_icons is_admin?,
-                settings: edit_game_path(game),
-                'image-area' => game_background_images_path(game)
-            %>
         </li>
     <%- end -%>
     <%- if see_all then -%>

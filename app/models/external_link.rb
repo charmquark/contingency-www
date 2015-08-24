@@ -11,7 +11,7 @@ class ExternalLink < ActiveRecord::Base
         www:        'Web'
     }
     
-    VALID_SITES = SITE_NAMES.keys.sort
+    VALID_SITES = SITE_NAMES.keys.map(&:to_s).sort
     
     
     belongs_to :member,
@@ -28,6 +28,10 @@ class ExternalLink < ActiveRecord::Base
         presence: true
     
     
+    def <=>(other_el)
+        site <=> other_el.site
+    end
+    
     def to_param
         site
     end
@@ -36,14 +40,7 @@ class ExternalLink < ActiveRecord::Base
         SITE_NAMES[site.to_sym]
     end
     
-    def self.available_sites_for(m)
-        current = m.external_links.reject {|el| el.site.nil? }.collect {|el| el.site.to_sym }
-        VALID_SITES - current
-    end
-    
-    def self.to_sorted(external_links)
-        external_links.sort do |a, b|
-            a.site <=> b.site
-        end
+    def self.available_sites_for(member)
+        VALID_SITES - member.external_links.map(&:site)
     end
 end

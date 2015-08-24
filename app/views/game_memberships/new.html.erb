@@ -1,5 +1,5 @@
 <%- content_for :title do -%>New Game Membership | <%- end -%>
-<%- content_for :body_class do -%>game_memberships-assoc-<%= assoc_type %><%- end -%>
+<%- content_for :body_class do -%>game_memberships-assoc-<%= @assoc_type %><%- end -%>
 
 <%= form_section title: 'New Game Membership' do %>
     <%- if @game_membership.errors.any? -%>
@@ -15,32 +15,32 @@
     <%- end -%>
     
     <%= form_for(@game_membership,
-            url: assoc_game_memberships_path,
+            url: polymorphic_path([@assoc, GameMembership]),
             method: :post
         ) do |f|
     %>
         <div class="halfs-medium">
             <div class="field">
                 <%= f.label :game_id %>
-                <%- if assoc_type == :game then -%>
-                    <%= game_banner assoc %>
+                <%- if @assoc_type == Game then -%>
+                    <%= game_banner @assoc %>
                 <%- else -%>
-                    <%= games_select f, Game.without_member(assoc) %>
+                    <%= games_select f, Game.without_member(@assoc) %>
                 <%- end -%>
             </div>
             <div class="field">
                 <%= f.label :member_id %>
-                <%- if assoc_type == :member then -%>
-                    <%= member_avatar assoc %>
+                <%- if @assoc_type == Member then -%>
+                    <%= member_avatar @assoc %>
                 <%- else -%>
-                    <%= members_select f, Member.without_game(assoc) %>
+                    <%= members_select f, Member.without_game(@assoc) %>
                 <%- end -%>
             </div>
         </div>
         <%= user_actions do -%>
             <%= f.submit class: 'button', value: 'Save' %>
             <%= f.button 'Reset', class: 'button', type: :reset %>
-            <%= link_to 'Cancel', assoc_path, class: 'button' %>
+            <%= link_to 'Cancel', polymorphic_path(@assoc), class: 'button' %>
         <%- end -%>
     <% end %>
 <% end %>

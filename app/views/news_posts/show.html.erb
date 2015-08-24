@@ -1,7 +1,7 @@
 <%- content_for :title do -%><%= @news_post.title %> | News | <%- end -%>
 
 <%= content_section 'news-post', class: 'limit-large' do -%>
-    <% cache @news_post do %>
+    <% record_cache @news_post do %>
         <article>
             <header>
                 <h2><%= @news_post.title %></h2>

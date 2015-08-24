@@ -4,28 +4,24 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     
     before_action :set_current_user
+
     
-    helper_method :current_user, :featured_background_image, :is_admin?, :is_admin_or?, :logged_in?
-    
-    def current_user
-        #@current_user ||= Member.find_by id: session[:current_user_id]
-        @current_user
-    end
+    helper_method :featured_background_image, :is_admin?, :is_admin_or?, :logged_in?
     
     def featured_background_image
-        @featured_background_image ||= set_default_featured_background_image
+        @featured_background_image ||= BackgroundImage.random.first
     end
     
     def is_admin?
-        @is_admin ||= current_user.try(:role) == 'admin'
+        @is_admin ||= @current_user.try(:role) == 'admin'
     end
     
     def is_admin_or?(member)
-        @is_admin_or ||= is_admin? or (member == current_user)
+        is_admin? || (member == @current_user)
     end
 
     def logged_in?
-        @logged_in ||= ! current_user.nil?
+        @logged_in ||= ! @current_user.nil?
     end
 
 protected
@@ -58,20 +54,13 @@ protected
     end
     
     def set_featured_background_image(bgable)
-        unless bgable.nil? then
-            bg = bgable.background_images.random
-            @featured_background_image = bg[0] if bg.any?
-        end
+        @featured_background_image = bgable.background_images.random.first unless bgable.nil?
     end
 
 private
 
     def set_current_user
-        @current_user = Member.find_by id: session[:current_user_id]
-    end
-
-    def set_default_featured_background_image
-        bg = BackgroundImage.random
-        @featured_background_image = bg[0] if bg.any?
+        user_id = session[:current_user_id]
+        @current_user = user_id.nil? ? nil : Member.find(user_id)
     end
 end

@@ -4,7 +4,6 @@ ul.of-members {
         
         .breakpoint-medium &.show {
             background: $color-twitch-light-grey;
-            opacity: $alpha-white-icon;
             text-align: center;
             
             @include size(35px);
@@ -25,6 +24,13 @@ ul.of-members {
                 width: 100%;
                 height: 100%;
             }
+        }
+    }
+    
+    .breakpoint-medium.csstransforms3d & > li {
+        &:hover .member-avatar-twitch-indicator.show {
+            box-shadow: 0px 2px 4px 1px #000;
+            transform: scale(1.1);
         }
     }
 }
@@ -220,4 +226,29 @@ ul.of-members {
             .member-twitch-indicator { margin-left: $member-avatar-width + $spacing-wide; }
         }
     }
+}
+
+
+.games-controller.show-action,
+.members-controller.index-action,
+.members-controller.show-action,
+.pages-controller.home-action {
+    ul.of-games,
+    ul.of-members {
+        > li {
+            &:hover {
+                box-shadow: 0px 0.2rem 0.4rem 0.2rem $black-secondary;
+                
+                transform: scale(1.1);
+                z-index: 10000;
+            }
+        }
+    }
+}
+
+.games-controller.index-action ul.of-games > li:hover .game-banner {
+    box-shadow: 0px 0.2rem 0.4rem 0.2rem $black-secondary;
+            
+    transform: scale(1.1);
+    z-index: 10000;
 }

@@ -12,7 +12,12 @@
     &.icon-black {
         opacity: $alpha-black-icon;
         
-        &:hover { opacity: $alpha-black-text; }
+        &:hover {
+            background-color: $white-icon;
+            opacity: $alpha-black-text;
+        }
+        
+        &.icon-delete:hover { background-color: rgba($red-900, $alpha-white-icon); }
         
         @each $icon in $icons-available {
             &.icon-#{$icon} { background-image: url("/images/icons/#{$icon}-black.png"); }
@@ -22,7 +27,12 @@
     &.icon-white {
         opacity: $alpha-white-icon;
         
-        &:hover { opacity: $alpha-white-text; }
+        &:hover {
+            background-color: $black-icon;
+            opacity: $alpha-white-text;
+        }
+        
+        &.icon-delete:hover { background-color: rgba($red-900, $alpha-black-icon); }
         
         @each $icon in $icons-available {
             &.icon-#{$icon} { background-image: url("/images/icons/#{$icon}-white.png"); }

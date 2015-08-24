@@ -1,7 +1,6 @@
-<%- content_for :title do -%>New Background | <%= backgroundable_title %> | <%- end -%>
-<%- content_for :body_class do -%>background_images-assoc-<%= backgroundable_type %><%- end -%>
+<%- content_for :title do -%>New Background | <%= backgroundable.name %> | <%- end -%>
 
-<%= form_section title: "New Background Image for #{backgroundable_title}" do -%>
+<%= form_section title: "New Background Image for #{backgroundable.name}" do -%>
     <%- if @background_image.errors.any? -%>
         <div id="error_explanation">
             <h2><%= pluralize(@background_image.errors.count, "error") %> prohibited this game from being saved:</h2>
@@ -14,17 +13,17 @@
     <%- end -%>
     <%= form_for(@background_image,
             html: {multipart: true},
-            url: poly_background_images_path,
+            url: polymorphic_path([@backgroundable, BackgroundImage]),
             method: :post
         ) do |f|
     -%>
         <div class="halfs-medium">
             <div class="field backgroundable-info">
-                <label><%= backgroundable.class.to_s.titleize %></label>
-                <%- case backgroundable_type -%>
-                <%- when :game -%>
+                <label><%= backgroundable_type.model_name.human %></label>
+                <%- case backgroundable_type.model_name.to_s -%>
+                <%- when 'Game' -%>
                     <%= game_banner backgroundable %>
-                <%- when :member -%>
+                <%- when 'Member' -%>
                     <%= member_avatar backgroundable %>
                 <%- end -%>
             </div>
@@ -36,11 +35,7 @@
         <%= user_actions do -%>
             <%= f.submit class: 'button' %>
             <%= f.button 'Reset', class: 'button', type: :reset %>
-            <%= link_to 'Cancel', poly_background_images_path, class: 'button' %>
+            <%= link_to 'Cancel', polymorphic_path([@backgroundable, BackgroundImage]), class: 'button' %>
         <%- end -%>
     <%- end -%>
-<%- end -%>
-
-<%- content_for :user_actions do -%>
-    <%= icon_link_to :white, 'keyboard-backspace', "Back to #{backgroundable_type.to_s.titleize}", backgroundable_path, class: 'button' %>
 <%- end -%>

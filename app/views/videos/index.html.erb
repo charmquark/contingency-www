@@ -12,11 +12,14 @@
             </tr>
         <%- end -%>
     </table>
-    <%= user_actions is_admin_or?(@member) do -%>
-        <%= icon_link_to :white, :plus, "Add New Video", new_member_video_path(@member), class: 'button' %>
+    <%- limit_reached = @videos.length >= 9 -%>
+    <%- if limit_reached then -%>
+        <p class="notice">You have reached the limit of Videos allowed per Member. You will need to remove at least one Video before adding more.</p>
     <%- end -%>
-<%- end -%>
-
-<%- content_for :user_actions do -%>
-    <%= icon_link_to :white, 'keyboard-backspace', "Back to Member", member_path(@member), class: 'button' %>
+    <%= user_actions is_admin_or?(@member) do -%>
+        <%- unless limit_reached then -%>
+            <%= icon_link_to :white, :plus, "Add New Video", new_member_video_path(@member), class: 'button' %>
+        <%- end -%>
+        <%= icon_link_to :white, 'keyboard-backspace', "Back to Member", member_path(@member), class: 'button' %>
+    <%- end -%>
 <%- end -%>

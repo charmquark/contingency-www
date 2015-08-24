@@ -1,11 +1,12 @@
 <%- content_for :title do -%>External Links | <%= @member.handle %> | <%- end -%>
 
-<%= content_section 'external-links-index', title: "External Links for #{@member.handle}" do -%>
+<%= content_section 'external-links-index', class: 'limit-large', title: "External Links for #{@member.handle}" do -%>
     <table>
-        <%- ExternalLink.to_sorted(@member.external_links).each do |el| -%>
+        <%- @member.external_links.sort.each do |el| -%>
             <tr>
                 <td class="external-link-actions">
                     <%= icon_delete_link :white, '', member_external_link_path(@member, el) %>
+                    <%= icon_link_to :white, :settings, '', edit_member_external_link_path(@member, el) %>
                 </td>
                 <td class="external-link-site-cell">
                     <%= external_link_icon el %>
@@ -15,13 +16,14 @@
             </tr>
         <%- end -%>
     </table>
+    <%- sites_available = ExternalLink.available_sites_for(@member).length > 0 -%>
+    <%- unless sites_available then -%>
+        <p class="notice">You have set an External Link for all currently supported sites.</p>
+    <%- end -%>
     <%= user_actions is_admin_or?(@member) do -%>
-        <%- if ExternalLink.available_sites_for(@member).length > 0 then -%>
+        <%- if sites_available then -%>
             <%= icon_link_to :white, :plus, "Add New Link", new_member_external_link_path(@member), class: 'button' %>
         <%- end -%>
+        <%= icon_link_to :white, 'keyboard-backspace', "Back to Member", member_path(@member), class: 'button' %>
     <%- end -%>
-<%- end -%>
-
-<%- content_for :user_actions do -%>
-    <%= icon_link_to :white, 'keyboard-backspace', "Back to Member", member_path(@member), class: 'button' %>
 <%- end -%>

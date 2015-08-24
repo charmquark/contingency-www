@@ -75,10 +75,20 @@ p {
     
     &:first-child { margin-top: 0em; }
     &:last-child { margin-bottom: 0em; }
+    
+    &.notice {
+        background: rgba($yellow-200, 0.4);
+        color: $black-text;
+        
+        font-size: 1.5rem;
+        line-height: 1.7rem;
+        padding: 2rem;
+    }
 }
 
 .actions {
     background: $bg-actions;
+    border-radius: 0.5rem;
     
     margin: 0px auto;
     
@@ -127,7 +137,7 @@ p {
 
 .button {
     background: $link-bg;
-    border-width: 0px;
+    border: 1px $black-secondary solid;
     color: $white-icon;
     font-family: $font-lato;
     font-weight: lighter;
@@ -144,14 +154,15 @@ p {
         background: $link-hilite;
         color: $white-text;
         
-        .icon { opacity: 1; }
+        transform: scale(1.1);
+        
+        .icon {
+            background-color: $black-icon;
+            opacity: 1;
+        }
     }
     
-    &.danger {
-        box-shadow: 0px 0px 4px 2px $red-900;
-        
-        &:hover { background: $red-900; }
-    }
+    &.see-all { box-shadow: none; }
     
     .icon { margin-right: 5px; }
     
@@ -203,6 +214,24 @@ p {
     }
 }
 
+.actions .button {
+    border-radius: 0.5rem;
+    border-width: 2px;
+    box-shadow: 0px 0px 1rem 0.25rem $black-secondary;
+    
+    &.danger {
+        border-color: rgba($red-900, $alpha-black-secondary);
+        
+        &:hover {
+            .icon-delete { background-color: rgba($red-900, $alpha-black-icon); }
+        }
+    }
+    
+    .csstransforms3d &:hover { box-shadow: 0px 0.5rem 1rem 0.25rem $black-secondary; }
+}
+
+.clear { clear: both; }
+
 .content-section {
     .breakpoint-small & {
         margin-bottom: $spacing-small;
@@ -246,6 +275,7 @@ p {
     
     .breakpoint-medium & {
         background: $bg-content;
+        border-radius: 0.5rem;
         
         padding: $pad-medium;
     }

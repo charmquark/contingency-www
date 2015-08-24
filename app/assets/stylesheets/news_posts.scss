@@ -59,11 +59,14 @@ article.news-post-embed {
     
     > main {
         font-size: 0.8rem;
+        margin-top: 1rem;
         
         .breakpoint-medium & {
-            min-height: ($game-banner-height / 2) + $pad-medium;
+            height: $game-banner-height * 1.3;
+            //min-height: ($game-banner-height / 2) + $pad-medium;
             
-            margin-right: ($game-banner-width / 2) + $pad-medium;
+            margin-right: ($game-banner-width / 2);
+            padding-right: 1rem;
         }
     }
     
@@ -89,9 +92,9 @@ article.news-post-embed {
         }
         
         > main {
-            min-height: ($game-banner-width / 2) + $pad-medium;
+            //min-height: ($game-banner-width / 2) + $pad-medium;
             
-            margin-right: ($game-banner-height / 2) + $pad-medium;
+            margin-right: ($game-banner-height / 2);
         }
     }
 }

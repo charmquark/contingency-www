@@ -4,10 +4,6 @@
     <%- members.each do |member| -%>
         <li>
             <%= member_avatar member -%>
-            <%= user_action_icons is_admin?,
-                settings: edit_member_path(member),
-                'image-area' => member_background_images_path(member)
-            -%>
             <%- if show_twitch_indicator then -%>
                 <%- fragment = member.twitch_fragment -%>
                 <%- unless fragment.nil? then -%>

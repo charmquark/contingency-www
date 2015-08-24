@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
                 redirect_to :back
             end
         else
-            flash[:error] = "Already logged in as #{current_user.handle}."
+            flash[:error] = "Already logged in as #{@current_user.handle}."
             redirect_to root_url
         end
     end

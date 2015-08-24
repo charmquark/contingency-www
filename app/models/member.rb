@@ -5,8 +5,8 @@ class Member < ActiveRecord::Base
     
     scope :random, -> { order 'random()' }
     
-    scope :without_game, ->(g) { all.reject {|r| r.games.include? g } }
-
+    scope :without_game, ->(g) { all - g.members }
+    
     
     has_secure_password
     
@@ -24,7 +24,7 @@ class Member < ActiveRecord::Base
     has_many :games,
         through: :game_memberships
 
-    has_many :news_post
+    has_many :news_posts
     
     has_many :videos
     
@@ -47,18 +47,18 @@ class Member < ActiveRecord::Base
         presence: true
     
     
+    def <=>(other_member)
+        handle.downcase <=> other_member.handle.downcase
+    end
+
+
+    def name
+        handle
+    end
+    
+    
     def is_admin?
         role == 'admin'
-    end
-    
-    
-    def rank_obj
-        ContingencyRanks.from_sym rank
-    end
-    
-    
-    def role_obj
-        ContingencyRoles.from_sym role
     end
     
     
@@ -70,44 +70,5 @@ class Member < ActiveRecord::Base
     def twitch_fragment
         el = ExternalLink.find_by member: self, site: :twitch
         el.nil? ? nil : el.fragment
-    end
-    
-    
-    def self.cache_key_for_all
-        count = Member.count
-        max_updated_at = Member.maximum(:updated_at).try(:utc).try(:to_s, :number)
-        "members/all-#{count}-#{max_updated_at}"
-    end
-    
-    
-    def self.for_home
-        members = Member.core
-        m = 11 - members.length
-        members += Member.not_core.random.limit(m) if m > 0
-        Member.to_sorted members
-    end
-    
-    
-    def self.to_rank_groups(members)
-        result = Hash.new {|hash, key| hash[key] = [] }
-        members.each do |member|
-            result[member.rank.to_sym] << member
-        end
-        result
-    end
-    
-    def self.to_rank_order(members)
-        groups = to_rank_groups members
-        result = []
-        ContingencyRanks::RANKS.each do |r|
-            result.concat groups[r.symbol]
-        end
-        result
-    end
-    
-    def self.to_sorted(members)
-        members.sort do |a, b|
-            a.handle.downcase <=> b.handle.downcase
-        end
     end
 end

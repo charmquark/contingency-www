@@ -1,7 +1,15 @@
 class BackgroundImagesController < ApplicationController
+    BACKGROUNDABLES = {
+        game_id:    Game,
+        member_id:  Member
+    }
+    
+    
+    before_action :set_backgroundable
+    
     
     def index
-        @background_images = backgroundable.background_images
+        admin_or backgroundable
     end
     
     def new
@@ -12,10 +20,12 @@ class BackgroundImagesController < ApplicationController
     
     def create
         admin_only do
-            @background_image = backgroundable.background_images.build background_image_params
+            @background_image = backgroundable.background_images.build(
+                params.require(:background_image).permit(:image)
+            )
             if @background_image.save then
-                redirect_to poly_background_images_path,
-                    notice: background_image_notice('was successfully created.')
+                redirect_to polymorphic_path([@backgroundable, BackgroundImage]),
+                    notice: 'The Background Image was successfully added.'
             else
                 render :new
             end
@@ -23,68 +33,41 @@ class BackgroundImagesController < ApplicationController
     end
     
     def destroy
-        admin_only do
+        admin_or backgroundable do
             @background_image = BackgroundImage.find params[:id]
             @background_image.destroy
-            redirect_to poly_background_images_path,
-                notice: background_image_notice('was successfully destroyed.')
+            redirect_to polymorphic_path([@backgroundable, BackgroundImage]),
+                notice: 'The Background Image was successfully destroyed.'
         end
     end
     
-    helper_method :backgroundable, :backgroundable_type, :poly_background_images_path
+    
+    helper_method :backgroundable, :backgroundable_type, :backgroundable_type_name
 
     def backgroundable
         @backgroundable ||= set_backgroundable
     end
     
     def backgroundable_type
-        @backgroundable_type ||= set_backgroundable_type
-    end
-    
-    def poly_background_images_path
-        send "#{backgroundable_type}_background_images_path", backgroundable
-    end
-        
-private
-
-    def background_image_params
-        safe = false
-        case backgroundable_type
-        when :game
-            safe = is_admin?
-        when :member
-            safe = is_admin? or (backgroundable == current_user)
-        end
-        
-        if safe then
-            return params.require(:background_image).permit(:image)
-        else
-            return params
-        end
-    end
-    
-    def set_backgroundable
-        if @backgroundable.nil? then
-            case backgroundable_type
-            when :game
-                @backgroundable = find_game params[:game_id]
-            when :member
-                @backgroundable = find_member params[:member_id]
-            end
-        end
-        set_featured_background_image @backgroundable unless @backgroundable.nil?
-        @backgroundable
-    end
-    
-    def set_backgroundable_type
-        if @backgroundable_type.nil? then
-            @backgroundable_type = :game    if params.has_key? :game_id
-            @backgroundable_type = :member  if params.has_key? :member_id
-        end
         @backgroundable_type
     end
     
-    def background_image_notice(tail)
-        "The Background Image #{tail}"
+    def backgroundable_type_name
+        @backgroundable_type_name ||= @backgroundable_type.model_name.param_key
+    end
+
+    
+private
+
+    def set_backgroundable
+        BACKGROUNDABLES.each_pair do |key, model|
+            if params.has_key?(key) then
+                @backgroundable_type = model
+                tn = backgroundable_type_name
+                @backgroundable = send "find_#{tn}", params["#{tn}_id".to_sym]
+                set_featured_background_image @backgroundable
+                break
+            end
+        end
     end
 end

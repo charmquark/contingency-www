@@ -1,11 +1,11 @@
 <%- content_for :title do -%><%= @member.handle %> | Members | <%- end -%>
 
 <%= content_section 'member-info' do -%>
-    <% cache @member do %>
+    <% record_cache @member do %>
         <%= member_avatar @member, link: false %>
         <%- twitch_fragment = @member.twitch_fragment -%>
         <div class="member-external-links">
-            <%- ExternalLink.to_sorted(@member.external_links).each do |el| -%>
+            <%- @member.external_links.sort.each do |el| -%>
                 <%= link_to external_link_icon(el), external_link_resource_url(el) %>
             <%- end -%>
         </div>
@@ -21,30 +21,23 @@
         <%- end -%>
         <div class="member-biography"><%= render_markdown @member.biography %></div>
     <% end %>
+    <div class="clear"></div>
     <%= user_actions is_admin_or?(@member) do -%>
         <%= icon_link_to :white, :settings, 'Edit Member', edit_member_path(@member), class: 'button' %>
         <%= icon_link_to :white, :link, 'Manage External Links', member_external_links_path(@member), class: 'button' %>
+        <%= icon_link_to :white, 'image-area', 'Manage Backgrounds', member_background_images_path(@member), class: 'button' %>
+        <%- if is_admin? then -%>
+            <%= icon_delete_link :white, 'Delete Member', member_path(@member), class: 'button danger' %>
+        <%- end -%>
     <%- end -%>
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>
     <%= content_section 'member-games', title: 'Games' do -%>
-        <%= render partial: 'game_memberships/list', locals: {
-            assoc: @member,
-            assoc_type: :member
-        } %>
+        <%= render partial: 'game_memberships/list', locals: {assoc: @member} %>
     <%- end -%>
     
-    <% cache_unless logged_in?, Video.cache_key_for_member(@member) do %>
-        <%= content_section 'member-recent-videos', class: 'hide-small', title: 'Recent Videos' do -%>
-            <%= render partial: 'videos/list', locals: {videos: @member.videos.recent, show_actions: @member} %>
-        <%- end -%>
-    <% end %>
-<%- end -%>
-
-<% content_for :user_actions do %>
-    <%- admin_only do -%>
-        <%= icon_link_to :white, 'image-area', 'Manage Backgrounds', member_background_images_path(@member), class: 'button' %>
-        <%= icon_delete_link :white, 'Delete Member', member_path(@member), class: 'button danger' %>
+    <%= content_section 'member-recent-videos', class: 'hide-small', title: 'Recent Videos' do -%>
+        <%= render partial: 'videos/list', locals: {assoc: @member, show_actions: true} %>
     <%- end -%>
-<% end %>
+<%- end -%>

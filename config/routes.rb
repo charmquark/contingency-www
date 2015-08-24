@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     
     resources :members, constraints: {member_id: /[^\/]+/}, format: false do
         resources :background_images, only: ['index', 'new', 'create', 'destroy'], format: false
-        resources :external_links, only: ['index', 'new', 'create', 'destroy'], format: false
+        resources :external_links, only: ['index', 'new', 'create', 'edit', 'update', 'destroy'], format: false
         resources :game_memberships, path: 'games', only: ['new', 'create', 'destroy'], format: false
         resources :videos, only: ['index', 'new', 'create', 'destroy'], format: false
     end
