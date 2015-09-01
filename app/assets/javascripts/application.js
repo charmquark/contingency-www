@@ -1,6 +1,6 @@
 //= require modernizr/modernizr-dev.min
 //= require_self
-//= require jquery
+//= require jquery2
 //= require jquery_ujs
 //= require metaquery/metaquery.min
 //= require_tree .
