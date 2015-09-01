@@ -14,7 +14,7 @@ class VideosController < ApplicationController
     def create
         @video = @member.videos.build video_params
         if @video.save then
-            redirect_to member_path(@member),
+            redirect_to member_videos_path(@member),
                 notice: 'The Video was successfully added.'
         else
             render :new

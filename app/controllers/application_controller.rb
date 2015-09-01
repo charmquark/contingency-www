@@ -46,7 +46,7 @@ protected
     end
     
     def admin_or(member, redir = nil, msg = DEFAULT_REDIRECT_ERROR_MSG, &blk)
-        redir ||= member_url(member)
+        redir ||= member
         enforce is_admin_or?(member), redir, msg, &blk
     end
     
@@ -55,7 +55,7 @@ protected
             yield if block_given?
         else
             flash[:error] = msg unless msg.blank?
-            redir ||= root_url
+            redir ||= root_path
             redirect_to redir
         end
     end

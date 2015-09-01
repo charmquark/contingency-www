@@ -21,7 +21,7 @@
         <%- end -%>
         <%= icon_link_to :white, 'keyboard-backspace',
             "Back to #{@backgroundable_type.model_name.human}",
-            polymorphic_path(@backgroundable),
+            @backgroundable,
             class: 'button'
         %>
     <%- end -%>

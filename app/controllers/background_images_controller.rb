@@ -66,12 +66,12 @@ private
     end
     
     def wrap_admin(&blk)
-        admin_only polymorphic_path(@backgroundable), &blk
+        admin_only @backgroundable, &blk
     end
     
     def wrap_admin_or_backgroundable(&blk)
         admin_or @backgroundable,
-            polymorphic_path(@backgroundable),
+            @backgroundable,
             redirect_error_msg,
             &blk
     end

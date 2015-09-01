@@ -1,32 +1,38 @@
 class SessionsController < ApplicationController
+    around_action :wrap_not_logged_in, only: [:new, :create]
+    
+    
     def new
         session[:current_user_id] = nil
     end
 
     def create
-        unless logged_in? then
-            session_params      = params.require(:session).permit(:handle, :password)
-            member_handle       = session_params.fetch :handle, nil
-            password_candidate  = session_params.fetch :password, nil
-            
-            member = Member.find_by(handle: member_handle)
-            if member.try(:authenticate, password_candidate) then
-                session[:current_user_id] = member.id
-                flash[:notice] = "You have been logged in as #{member.handle}."
-                redirect_to root_url
-            else
-                flash[:error] = "Login attempt failed."
-                redirect_to :back
-            end
+        session_params = params.require(:session).permit(:handle, :password)
+        member = find_member session_params.fetch(:handle, nil)
+        if member.try(:authenticate, session_params.fetch(:password, nil)) then
+            @current_user = member
+            session[:current_user_id] = member.id
+            redirect_to root_path, notice: "You have logged in as #{member.handle}."
         else
-            flash[:error] = "Already logged in as #{current_user.handle}."
-            redirect_to root_url
+            redirect_to root_path, flash: {error: "Login attempt failed."}
         end
     end
 
     def destroy
-        @current_user = session[:current_user_id] = nil
-        flash[:notice] = "You have been logged out."
-        redirect_to root_url
+        enforce logged_in?, nil, nil do
+            @current_user = session[:current_user_id] = nil
+            redirect_to root_path, notice: "You have been logged out."
+        end
+    end
+    
+    
+private
+
+
+    def wrap_not_logged_in(&blk)
+        enforce !logged_in?,
+            :back,
+            "You are already logged in. To switch accounts, logout first.",
+            &blk
     end
 end

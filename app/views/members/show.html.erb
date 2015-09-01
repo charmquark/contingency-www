@@ -27,7 +27,7 @@
         <%= icon_link_to :white, :link, 'Manage External Links', member_external_links_path(@member), class: 'button' %>
         <%= icon_link_to :white, 'image-area', 'Manage Backgrounds', member_background_images_path(@member), class: 'button' %>
         <%- if is_admin? then -%>
-            <%= icon_delete_link :white, 'Delete Member', member_path(@member), class: 'button danger' %>
+            <%= icon_delete_link :white, 'Delete Member', @member, class: 'button danger' %>
         <%- end -%>
     <%- end -%>
 <%- end -%>

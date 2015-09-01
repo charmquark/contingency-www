@@ -36,7 +36,7 @@ class NewsPostsController < ApplicationController
 
     def destroy
         @news_post.destroy
-        redirect_to news_posts_url,
+        redirect_to news_posts_path,
             notice: 'The News Post was successfully removed.'
     end
 

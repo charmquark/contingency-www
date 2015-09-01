@@ -64,7 +64,7 @@ private
     def wrap_admin_or_member(&blk)
         set_member
         admin_or @member,
-            member_path(@member),
+            @member,
             redirect_error_msg,
             &blk
     end

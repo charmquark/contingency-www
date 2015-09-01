@@ -35,7 +35,7 @@ class GamesController < ApplicationController
 
     def destroy
         @game.destroy
-        redirect_to games_url, notice: game_notice('was successfully deleted.')
+        redirect_to games_path, notice: game_notice('was successfully deleted.')
     end
 
 

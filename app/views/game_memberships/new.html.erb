@@ -39,7 +39,7 @@
         <%= user_actions do -%>
             <%= f.submit class: 'button', value: 'Save' %>
             <%= f.button 'Reset', class: 'button', type: :reset %>
-            <%= link_to 'Cancel', polymorphic_path(@assoc), class: 'button' %>
+            <%= link_to 'Cancel', @assoc, class: 'button' %>
         <%- end -%>
     <% end %>
 <% end %>
