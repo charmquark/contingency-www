@@ -36,7 +36,7 @@ module MembersHelper
     
     def members_select(f, members = nil)
         members ||= Member.all
-        opts = members.sort.map {|m| [m.handle, m.id]}
+        opts = members.map {|m| [m.handle, m.id]}
         f.select :member_id, opts, {}, {size: 6}
     end
 end

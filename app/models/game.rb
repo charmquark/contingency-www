@@ -1,6 +1,9 @@
 class Game < ActiveRecord::Base
     DEFAULT_BANNER_URL = '/images/generic-game-banner.jpg'
     
+    
+    default_scope -> { order 'lower(name)' }
+    
     scope :featured, -> { where featured: true }
     
     scope :not_featured, -> { where featured: false }

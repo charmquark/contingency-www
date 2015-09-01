@@ -52,7 +52,7 @@ private
     end
 
     def game_notice(tail)
-        "The Game &ldquo;#{game.name}&rdquo; #{tail}"
+        "The Game &ldquo;#{@game.name}&rdquo; #{tail}"
     end
     
     def wrap_admin_only(&blk)

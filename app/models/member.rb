@@ -1,4 +1,6 @@
 class Member < ActiveRecord::Base
+    default_scope -> { order 'lower(handle)' }
+    
     scope :core, -> { where(rank: :core) }
     
     scope :not_core, -> { where.not(rank: :core) }
@@ -50,7 +52,10 @@ class Member < ActiveRecord::Base
     def <=>(other_member)
         handle.downcase <=> other_member.handle.downcase
     end
-
+    
+    def >(other_member)
+        (self <=> other_member) > 0
+    end
 
     def name
         handle
@@ -68,7 +73,6 @@ class Member < ActiveRecord::Base
     
     
     def twitch_fragment
-        el = ExternalLink.find_by member: self, site: :twitch
-        el.nil? ? nil : el.fragment
+        external_links.where(site: 'twitch').take.try(:fragment)
     end
 end

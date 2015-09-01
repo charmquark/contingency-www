@@ -2,7 +2,7 @@
 
 <%= content_section 'games-index', title: 'The Games We Play' do -%>
     <% model_cache_unless is_admin?, Game do %>
-        <%= render partial: 'games/list', locals: {games: Game.all.sort, show_desc: true} %>
+        <%= render partial: 'games/list', locals: {games: Game.all, show_desc: true} %>
     <% end %>
     <%= user_actions is_admin? do -%>
         <%= icon_link_to :white, 'gamepad-plus', 'Add New Game', new_game_path, class: 'button' %>

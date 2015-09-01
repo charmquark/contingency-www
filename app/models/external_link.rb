@@ -14,6 +14,9 @@ class ExternalLink < ActiveRecord::Base
     VALID_SITES = SITE_NAMES.keys.map(&:to_s).sort
     
     
+    default_scope -> { order 'site' }
+    
+    
     belongs_to :member,
         touch: true
     

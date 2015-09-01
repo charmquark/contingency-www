@@ -38,7 +38,7 @@ module GamesHelper
         html_options = html_options.symbolize_keys
         html_options[:size] = html_options.fetch :size, 6
         
-        so = games.sort.map {|g| [g.name, g.id]}
+        so = games.map {|g| [g.name, g.id]}
         f.select :game_id, so, options, html_options, &blk
     end
    
