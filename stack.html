@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>contingency-www Tech Stack</title>
+    
+    <link href="css/stack.css" rel="stylesheet" />
+    
+    <script src="js/lib.js"></script>
+    
+    <script>
+        ENTRIES = [
+            {
+                title: 'Development Languages / Libraries / Tools',
+                items: [
+                    ['Bourbon', '4.2.3', 'SASS mixin library', 'bourbon.io'],
+                    ['Bundler', '1.10.2', 'dependencies management', 'bundler.io'],
+                    ['Capistrano', '3.4.0', 'remote server automation and deployment', 'capistranorb.com'],
+                    ['CoffeeScript', '2.4.1', 'clean JavaScript-targeting scripting language', 'coffeescript.org'],
+                    ['libv8', '3.16.14.7', 'gem binary distribution of the V8 JavaScript engine', 'github.com/cowboyd/libv8'],
+                    ['RAKE', '10.4.2', 'task/command system', 'github.com/ruby/rake'],
+                    ['Ruby', '2.0.0_p645', 'programming language', 'ruby-lang.org'],
+                    ['SASS', '3.4.14', 'CSS extension language', 'sass-lang.com'],
+                    ['Thor', '0.19.1', 'toolkit for command-line interfaces', 'whatisthor.com']
+                ]
+            },
+            {
+                title: 'Back-End / Framework',
+                items: [
+                    ['nginx', '1.8.0', 'front facing http server', 'wiki.nginx.org'],
+                    ['puma', '2.11.3', 'application server', 'puma.io'],
+                    ['Rack', '1.6.1', 'web server application interface', 'rack.github.io'],
+                    ['Ruby on Rails', '4.2.1', 'application framework', 'rubyonrails.org'],
+                    ['SQLite', '3.8.10.2', 'relational database manager/library', 'sqlite.org'],
+                ]
+            },
+            {
+                title: 'Main Framework Components / Libraries',
+                items: [
+                    ['AREL', '6.0.0', 'SQL AST manager', 'github.com/rails/arel'],
+                    ['builder', '3.2.2', 'builder objects markup and structures (RIP Jim ☹)', 'github.com/jimweirich/builder'],
+                    ['erubis', '2.7.0', 'an eRuby implementation (better alternative to ERB)', 'kuwata-lab.com/erubis/'],
+                    ['jbuilder', '2.2.16', 'create JSON via builder-style DSL', 'github.com/rails/jbuilder'],
+                    ['loofah', '2.0.2', 'HTML/XML manipulation and transformation', 'https://github.com/flavorjones/loofah'],
+                    ['gem mail', '2.6.3', 'clean email library for Ruby', 'github.com/mikel/mail'],
+                    ['sprockets', '3.1.0', 'Rack assets packaging', 'github.com/sstephenson/sprockets'],
+                    ['web-console', '2.1.2', 'embed debugging console in browser', 'github.com/rails/web-console']
+                ]
+            },
+            {
+                title: 'Application Libraries / Tools',
+                items: [
+                    ['gem bcrypt', '3.1.10', 'secure hash algorithm for passwords', 'github.com/codahale/bcrypt-ruby'],
+                    ['gem byebug', '5.0.0', 'invasive Ruby 2 debugger', 'github.com/deivid-rodriguez/byebug'],
+                    ['dotenv', '2.0.1', 'loads environment variables from .env', 'github.com/bkeepers/dotenv'],
+                    ['paperclip', '4.2.1', 'file attachment library for ActiveRecord', 'github.com/thoughtbot/paperclip'],
+                    ['redcarpet', '3.3.2', 'Markdown library', 'github.com/vmg/redcarpet'],
+                    ['spring', '1.3.6', 'application preloader', 'github.com/rails/spring'],
+                    ['gem sqlite3', '1.3.10', 'SQLite3 interface for Ruby', 'github.com/sparklemotion/sqlite3-ruby'],
+                    ['therubyracer', '0.12.2', 'embed V8 in Ruby', 'github.com/cowboyd/therubyracer'],
+                    ['gem uglifier', '2.7.1', 'UglifyJS wrapper for Ruby', 'github.com/lautis/uglifier'],
+                    ['UglifyJS 2', '2.4.16', 'JavaScript minifier/compressor', 'github.com/mishoo/UglifyJS2']
+                ]
+            },
+            {
+                title: 'Front-End',
+                items: [
+                    ['jquery', '2.1.1', 'JavaScript library', 'jquery.com'],
+                    ['metaquery', '1.2.0', 'declarative responsive breakpoints', 'github.com/benschwarz/metaquery'],
+                    ['modernizr', '2.8.3', 'browser feature detection and shims', 'modernizr.com'],
+                    ['turbolinks', '2.5.3', 'fast body-only AJAX page loads', 'github.com/rails/turbolinks'],
+                    ['matchmedia', '0.2.0', 'window.matchMedia polyfill', 'github.com/paulirish/matchMedia.js/']
+                ]
+            }
+        ];
+    </script>
+</head>
+<body>
+    <header id="body-header">
+        <h1><i>contingency-www</i> Tech Stack</h1>
+    </header>
+    <main id="body-main">
+        <a id="link-to-top" href="#table-of-contents"></a>
+    </main>
+    <script>
+        var toc_list = element('ul');
+        var main = document.getElementById('body-main');
+        main.appendChild(element('section',
+            [element('h2', 'Table of Contents'), toc_list],
+            {id: 'table-of-contents'}
+        ));
+
+        for (entry_idx = 0; entry_idx < ENTRIES.length; ++entry_idx) {
+            var entry = ENTRIES[entry_idx];
+            
+            toc_list.appendChild(element('li',
+                element('a', entry.title, {href: '#section-' + entry_idx})
+            ));
+
+            var table = element('table');
+            main.appendChild(element('section',
+                [element('h2', entry.title), table],
+                {id: 'section-' + entry_idx}
+            ));
+            
+            for (item_idx = 0; item_idx < entry.items.length; ++item_idx) {
+                var item = entry.items[item_idx];
+                table.appendChild(element('tr', [
+                    element('td', item[0]),
+                    element('td', item[1]),
+                    element('td', item[2]),
+                    element('td', 
+                        element('a', item[3], {href: 'http://' + item[3], target: '_blank'})
+                    )
+                ]));
+            }
+        }
+    </script>
+</body>
+</html>
