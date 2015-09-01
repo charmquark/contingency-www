@@ -1,55 +1,57 @@
 class VideosController < ApplicationController
-    before_action :set_member
+    around_action :wrap_admin_or_member
+    around_action :wrap_quota, only: [:new, :create]
+    
     
     def index
-        admin_or @member do
-            set_featured_background_image @member
-            
-            @videos = @member.videos
-        end
+        @videos = @member.videos
     end
     
     def new
-        admin_or @member do
-            set_featured_background_image @member
-            
-            @video = @member.videos.build
-        end
+        @video = @member.videos.build
     end
     
     def create
-        admin_or @member do
-            @video = @member.videos.build video_params
-            if @video.save then
-                redirect_to member_path(@member),
-                    notice: 'Video was successfully added.'
-            else
-                render :new
-            end
+        @video = @member.videos.build video_params
+        if @video.save then
+            redirect_to member_path(@member),
+                notice: 'The Video was successfully added.'
+        else
+            render :new
         end
     end
     
     def destroy
-        admin_or @member do
-            @video = Video.find_by id: params[:id], member: @member
-            @video.destroy
-            redirect_to member_videos_path(@member),
-                notice: 'Video was successfully removed.'
-        end
+        @video = Video.find_by id: params[:id], member: @member
+        @video.destroy
+        redirect_to member_videos_path(@member),
+            notice: 'The Video was successfully removed.'
     end
+
 
 private
 
+
     def set_member
         @member = find_member params[:member_id]
+        set_featured_backgroundable @member
     end
     
     def video_params
-        if is_admin_or? @member then
-            params.require(:video).permit(:fragment, :game_id)
-        else
-            params
-        end
+        params.require(:video).permit(:fragment, :game_id)
+    end
+    
+    def wrap_admin_or_member(&blk)
+        set_member
+        admin_or @member, @member, &blk
+    end
+    
+    def wrap_quota(&blk)
+        count = @member.videos.count
+        enforce count < Video::MEMBER_QUOTA,
+            member_videos_path(@member),
+            "The maximum number of Videos per Member has been reached. Please remove one or more Videos from this account before adding any more.",
+            &blk
     end
 end
 

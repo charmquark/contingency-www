@@ -1,4 +1,5 @@
 class NewsPostsController < ApplicationController
+    around_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
     before_action :set_news_post, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -8,44 +9,35 @@ class NewsPostsController < ApplicationController
     end
 
     def new
-        admin_only do
-            @news_post = @current_user.news_posts.build
-        end
+        @news_post = current_user.news_posts.build
     end
 
     def create
-        admin_only do
-            @news_post = @current_user.news_posts.build news_post_params
-            if @news_post.save then
-                redirect_to @news_post,
-                    notice: 'News post was successfully created.'
-            else
-                render :new
-            end
+        @news_post = current_user.news_posts.build news_post_params
+        if @news_post.save then
+            redirect_to @news_post,
+                notice: 'The News Post was successfully added.'
+        else
+            render :new
         end
     end
 
     def edit
-        admin_only
     end
 
     def update
-        admin_only do
-            if @news_post.update(news_post_params) then
-                redirect_to @news_post,
-                    notice: 'News post was successfully updated.'
-            else
-                render :edit
-            end
+        if @news_post.update(news_post_params) then
+            redirect_to @news_post,
+                notice: 'The News Post was successfully updated.'
+        else
+            render :edit
         end
     end
 
     def destroy
-        admin_only do
-            @news_post.destroy
-            redirect_to news_posts_url,
-                notice: 'News post was successfully destroyed.'
-        end
+        @news_post.destroy
+        redirect_to news_posts_url,
+            notice: 'The News Post was successfully removed.'
     end
 
     

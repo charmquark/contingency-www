@@ -1,6 +1,6 @@
-<%- content_for :title do -%>New Background | <%= backgroundable.name %> | <%- end -%>
+<%- content_for :title do -%>New Background | <%= @backgroundable.name %> | <%- end -%>
 
-<%= form_section title: "New Background Image for #{backgroundable.name}" do -%>
+<%= form_section title: "New Background Image for #{@backgroundable.name}" do -%>
     <%- if @background_image.errors.any? -%>
         <div id="error_explanation">
             <h2><%= pluralize(@background_image.errors.count, "error") %> prohibited this game from being saved:</h2>
@@ -19,12 +19,12 @@
     -%>
         <div class="halfs-medium">
             <div class="field backgroundable-info">
-                <label><%= backgroundable_type.model_name.human %></label>
-                <%- case backgroundable_type.model_name.to_s -%>
+                <label><%= @backgroundable_type.model_name.human %></label>
+                <%- case @backgroundable_type.model_name -%>
                 <%- when 'Game' -%>
-                    <%= game_banner backgroundable %>
+                    <%= game_banner @backgroundable %>
                 <%- when 'Member' -%>
-                    <%= member_avatar backgroundable %>
+                    <%= member_avatar @backgroundable %>
                 <%- end -%>
             </div>
             <div class="field">

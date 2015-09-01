@@ -5,16 +5,24 @@
         <%- @backgroundable.background_images.each do |bg| -%>
             <li>
                 <%= image_tag bg.image.url -%>
-                <%= user_action_icons is_admin_or?(@backgroundable) do -%>
-                    <%= icon_delete_link :white, '', polymorphic_path([@backgroundable, bg]) %>
-                <%- end -%>
+                <%= user_action_icons is_admin_or?(@backgroundable),
+                    delete: polymorphic_path([@backgroundable, bg])
+                %>
             </li>
         <%- end -%>
     </ul>
     <%= user_actions do -%>
         <%- if is_admin? then -%>
-            <%= icon_link_to :white, :plus, "Add New Background", new_polymorphic_path([@backgroundable, BackgroundImage]), class: 'button' %>
+            <%= icon_link_to :white, :plus,
+                "Add New Background",
+                new_polymorphic_path([@backgroundable, BackgroundImage]),
+                class: 'button'
+            %>
         <%- end -%>
-        <%= icon_link_to :white, 'keyboard-backspace', "Back to #{backgroundable_type.model_name.human}", polymorphic_path(@backgroundable), class: 'button' %>
+        <%= icon_link_to :white, 'keyboard-backspace',
+            "Back to #{@backgroundable_type.model_name.human}",
+            polymorphic_path(@backgroundable),
+            class: 'button'
+        %>
     <%- end -%>
 <%- end -%>

@@ -1,4 +1,7 @@
 class Video < ActiveRecord::Base
+    MEMBER_QUOTA = 9
+    
+    
     scope :recent, -> { order(id: 'desc').limit(6) }
     
     

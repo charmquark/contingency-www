@@ -34,7 +34,7 @@ module ApplicationHelper
     
     def icon_delete_link(color, text, href, options = {})
         options = options.symbolize_keys
-        options[:data] = {:confirm => 'Are you sure? This deletion cannot be undone.'}
+        options[:data] = {:confirm => 'Are you sure? This action cannot be undone.'}
         options[:method] = :delete
         icon_link_to color, :delete, text, href, options
     end
@@ -46,8 +46,7 @@ module ApplicationHelper
     end
     
     def render_markdown(source)
-        markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML, no_intra_emphasis: true
-        markdown.render(source).html_safe
+        $markdown.render(source).html_safe
     end
     
     def user_actions(condition = true, &blk)
@@ -63,7 +62,11 @@ module ApplicationHelper
         if condition then
             body = ''
             acts.each_pair do |icn, pth|
-                body += icon_link_to :white, icn, '', pth
+                if icn == :delete then
+                    body += icon_delete_link :white, '', pth
+                else
+                    body += icon_link_to :white, icn, '', pth
+                end
             end
             body += capture &blk if block_given?
             content_tag :div, body.html_safe, class: 'action-icons'

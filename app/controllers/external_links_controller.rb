@@ -1,57 +1,55 @@
 class ExternalLinksController < ApplicationController
-    before_action :set_member
+    around_action :wrap_admin_or_member
     before_action :set_external_link, only: [:edit, :update, :destroy]
     
+    redirect_error_msg_table index: ''
+
+    
     def index
-        admin_or @member
     end
     
     def new
-        admin_or @member do
-            @external_link = @member.external_links.build
-        end
+        @external_link = @member.external_links.build
     end
     
     def create
-        admin_or @member do
-            @external_link = @member.external_links.build(external_link_params(:fragment, :site))
-            if @external_link.save then
-                redirect_to member_external_links_path(@member), notice: external_link_notice('was successfully added.')
-            else
-                render :new
-            end
+        @external_link = @member.external_links.build(external_link_params(:fragment, :site))
+        if @external_link.save then
+            redirect_to_index 'was successfully added.'
+        else
+            render :new
         end
     end
     
     def edit
-        admin_or @member
     end
     
     def update
-        admin_or @member do
-            if @external_link.update(external_link_params(:fragment)) then
-                redirect_to member_external_links_path(@member), notice: external_link_notice('was successfully updated.')
-            else
-                render :edit
-            end
+        if @external_link.update(external_link_params(:fragment)) then
+            redirect_to_index 'was successfully updated.'
+        else
+            render :edit
         end
     end
     
     def destroy
-        admin_or @member do
-            @external_link.destroy
-            redirect_to member_external_links_path(@member), notice: external_link_notice('was successfully deleted.')
-        end
+        @external_link.destroy
+        redirect_to_index 'was successfully removed.'
     end
+
 
 private
 
-    def external_link_notice(tail)
-        "#{@external_link.site_name} link #{tail}"
-    end
-    
+
     def external_link_params(*permitted)
         params.require(:external_link).permit(*permitted)
+    end
+    
+    def redirect_to_index(notice_tail)
+        redirect_to(
+            member_external_links_path(@member),
+            notice: "#{@external_link.site_name} link #{notice_tail}"
+        )
     end
 
     def set_external_link
@@ -60,6 +58,14 @@ private
     
     def set_member
         @member = find_member params[:member_id]
-        set_featured_background_image @member
+        set_featured_backgroundable @member
+    end
+    
+    def wrap_admin_or_member(&blk)
+        set_member
+        admin_or @member,
+            member_path(@member),
+            redirect_error_msg,
+            &blk
     end
 end

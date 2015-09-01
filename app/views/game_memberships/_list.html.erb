@@ -13,9 +13,9 @@
         <%- game_memberships_sorted(assoc).each do |gm| -%>
             <li>
                 <%= render_game_membership assoc, gm %>
-                <%= user_action_icons is_admin? do -%>
-                    <%= icon_delete_link :white, '', polymorphic_path([assoc, gm]) %>
-                <%- end -%>
+                <%= user_action_icons is_admin?,
+                    delete: polymorphic_path([assoc, gm])
+                %>
             </li>
         <%- end -%>
     </ul>
