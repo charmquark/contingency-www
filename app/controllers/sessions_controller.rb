@@ -10,8 +10,7 @@ class SessionsController < ApplicationController
         session_params = params.require(:session).permit(:handle, :password)
         member = find_member session_params.fetch(:handle, nil)
         if member.try(:authenticate, session_params.fetch(:password, nil)) then
-            @current_user = member
-            session[:current_user_id] = member.id
+            login_user member
             redirect_to root_path, notice: "You have logged in as #{member.handle}."
         else
             redirect_to root_path, flash: {error: "Login attempt failed."}
@@ -20,7 +19,7 @@ class SessionsController < ApplicationController
 
     def destroy
         enforce logged_in?, nil, nil do
-            @current_user = session[:current_user_id] = nil
+            logout_user
             redirect_to root_path, notice: "You have been logged out."
         end
     end
@@ -31,7 +30,7 @@ private
 
     def wrap_not_logged_in(&blk)
         enforce !logged_in?,
-            :back,
+            root_path,
             "You are already logged in. To switch accounts, logout first.",
             &blk
     end

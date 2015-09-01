@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     DEFAULT_REDIRECT_ERROR_MSG = 'You do not have sufficient permission to do that.'
+    SESSION_TIME_TO_LIVE = 1.hour
 
 
     # Prevent CSRF attacks by raising an exception.
@@ -66,6 +67,15 @@ protected
     
     def find_member(handle)
         Member.find_by handle: handle
+    end
+    
+    def login_user(member)
+        @current_user = member
+        session[:current_user_id] = member.id
+    end
+    
+    def logout_user
+        @current_user = session[:current_user_id] = nil
     end
     
     def redirect_error_msg
