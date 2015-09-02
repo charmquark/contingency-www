@@ -6,7 +6,7 @@
         <%- twitch_link = nil -%>
         <div class="member-external-links z-shadow-1">
             <%- @member.external_links.each do |el| -%>
-                <%= link_to external_link_icon(el), external_link_resource_url(el) %>
+                <%= link_to external_link_icon(el), external_link_resource_url(el), target: '_blank' %>
                 <%- twitch_link = el if el.site == 'twitch' -%>
             <%- end -%>
         </div>
@@ -17,6 +17,7 @@
                 class="member-twitch-indicator z-shadow-1"
                 href="<%= external_link_twitch_channel_url fragment %>"
                 data-fragment="<%= fragment %>"
+                target="_blank"
             >
                 <span>Live Now @ Twitch:&nbsp;&nbsp;<span class="twitch-info-title"></span></span>
                 <span>Playing&nbsp;&nbsp;<span class="twitch-info-game"></span>&nbsp;&nbsp;with <span class="twitch-info-viewers"></span> viewers.</span>
