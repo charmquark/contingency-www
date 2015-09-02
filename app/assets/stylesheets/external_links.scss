@@ -14,6 +14,8 @@
 .external-site-icon {
     @extend .hover-zoom;
     
+    vertical-align: middle;
+    
     @include size($icon-size-lg);
 }
 
@@ -24,11 +26,7 @@
         width: auto;
         padding: 0.5rem 0rem;
         
-        &.external-link-site-cell {
-            padding: 0.5rem;
-            
-            img { vertical-align: middle; }
-        }
+        &.external-link-site-cell { padding: 0.5rem; }
         
         &.external-link-actions {
             text-align: center;
