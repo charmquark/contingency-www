@@ -5,6 +5,6 @@
         <%= render partial: 'members/list', locals: {members: Member.all, show_twitch_indicator: true} %>
     <% end %>
     <%= user_actions is_admin? do -%>
-        <%= icon_link_to :white, 'account-plus', 'Add New Member', new_member_path, class: 'button' -%>
+        <%= action_link_to 'account-plus', 'Add Member', new_member_path -%>
     <%- end -%>
 <%- end -%>

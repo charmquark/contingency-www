@@ -1,48 +1,30 @@
 module ApplicationHelper
+    CONTENT_SECTION_OPTIONS = {class: ['content-section']}
+    FORM_SECTION_OPTIONS    = {class: ['limit-medium']}
+    
+    
     def content_row(bp, style = :halfs, options = {}, &blk)
-        options = options.symbolize_keys
-        options[:class] = "row-#{bp} row-of-#{style} #{options.fetch :class, ''}"
+        options.symbolize_keys!.union! class: "row-#{bp} row-of-#{style}"
         body = block_given? ? capture(&blk) : ''
         content_tag :span, body, options
     end
     
+    
     def content_section(id = nil, options = {}, &blk)
-        options = options.symbolize_keys
+        options.symbolize_keys!.union! CONTENT_SECTION_OPTIONS
         options[:id] = "#{id}-section" unless id.nil?
-        options[:class] = "content-section #{options.fetch :class, ''}"
         
         title = options.delete :title
         body = title.nil? ? '' : content_tag(:h2, title.html_safe)
         body += block_given? ? capture(&blk) : ''
         
         body = content_tag :div, body.html_safe, class: 'content-section-body'
-        content_tag :section, body.html_safe, options
+        content_tag :section, body, options
     end
     
     def form_section(options = {}, &blk)
-        options = options.symbolize_keys
-        options[:class] = "limit-medium #{options.fetch :class, ''}"
-        
+        options.symbolize_keys!.union! FORM_SECTION_OPTIONS
         content_section :form, options, &blk
-    end
-    
-    def icon(color, which, options = {})
-        options = options.symbolize_keys
-        options[:class] = "icon icon-#{color} icon-#{which} " + options.fetch(:class, '')
-        content_tag :span, '', options
-    end
-    
-    def icon_delete_link(color, text, href, options = {})
-        options = options.symbolize_keys
-        options[:data] = {:confirm => 'Are you sure? This action cannot be undone.'}
-        options[:method] = :delete
-        icon_link_to color, :delete, text, href, options
-    end
-    
-    def icon_link_to(color, which, text, href, options = {})
-        disp = icon color, which
-        disp += content_tag :span, text, class: 'text' unless text.empty?
-        link_to(disp, href, options)
     end
     
     def render_markdown(source)
@@ -53,23 +35,6 @@ module ApplicationHelper
         if condition then
             body = block_given? ? capture(&blk) : ''
             content_tag :div, body, class: 'actions'
-        else
-            ''
-        end
-    end
-    
-    def user_action_icons(condition = true, acts = {}, &blk)
-        if condition then
-            body = ''
-            acts.each_pair do |icn, pth|
-                if icn == :delete then
-                    body += icon_delete_link :white, '', pth
-                else
-                    body += icon_link_to :white, icn, '', pth
-                end
-            end
-            body += capture &blk if block_given?
-            content_tag :div, body.html_safe, class: 'action-icons'
         else
             ''
         end

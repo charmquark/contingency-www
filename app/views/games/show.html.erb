@@ -8,9 +8,9 @@
         <% end %>
         <div class="clear"></div>
         <%= user_actions is_admin? do %>
-            <%= icon_link_to :white, :settings, 'Edit Game', edit_game_path(@game), class: 'button' %>
-            <%= icon_link_to :white, 'image-area', 'Manage Backgrounds', game_background_images_path(@game), class: 'button' %>
-            <%= icon_delete_link :white, 'Delete Game', @game, class: 'button danger' %>
+            <%= action_link_to :settings, 'Edit', edit_game_path(@game) %>
+            <%= action_link_to 'image-area', 'Backgrounds', game_background_images_path(@game) %>
+            <%= action_delete_link 'Delete', @game %>
         <%- end -%>
     <%- end -%>
 

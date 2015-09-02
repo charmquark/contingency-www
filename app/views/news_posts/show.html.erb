@@ -15,8 +15,8 @@
         </article>
     <% end %>
     <%= user_actions is_admin? do -%>
-        <%= icon_link_to :white, :settings, 'Edit News Post', edit_news_post_path(@news_post), class: 'button' %>
-        <%= icon_delete_link :white, 'Delete News Post', @news_post, class: 'button danger' %>
+        <%= action_link_to :settings, 'Edit', edit_news_post_path(@news_post) %>
+        <%= action_delete_link 'Delete', @news_post %>
     <% end %>
 <%- end -%>
 

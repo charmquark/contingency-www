@@ -1,4 +1,5 @@
 <%- content_for :title do -%>Backgrounds for <%= @backgroundable.name %> | <%- end -%>
+<%- content_for :body_class do -%>background_images-assoc-<%= @backgroundable_type.model_name.param_key %> <%- end -%>
 
 <%= content_section 'background-images-index', title: "Background Images for #{@backgroundable.name}" do -%>
     <ul>
@@ -13,16 +14,14 @@
     </ul>
     <%= user_actions do -%>
         <%- if is_admin? then -%>
-            <%= icon_link_to :white, :plus,
-                "Add New Background",
-                new_polymorphic_path([@backgroundable, BackgroundImage]),
-                class: 'button'
+            <%= action_link_to :plus,
+                "Add Background",
+                new_polymorphic_path([@backgroundable, BackgroundImage])
             %>
         <%- end -%>
-        <%= icon_link_to :white, 'keyboard-backspace',
+        <%= action_link_to 'keyboard-backspace',
             "Back to #{@backgroundable_type.model_name.human}",
-            @backgroundable,
-            class: 'button'
+            @backgroundable
         %>
     <%- end -%>
 <%- end -%>

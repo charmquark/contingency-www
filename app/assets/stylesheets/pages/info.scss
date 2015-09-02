@@ -24,8 +24,7 @@
                 position: relative;
                 
                 &:hover {
-                    //width: 500px;
-                    transform: scale(3, 3) translate(-33%);
+                    @include transform(scale(3, 3) translate(-33%));
                     z-index: 10000;
                 }
             }
@@ -121,7 +120,7 @@
             top: 50%;
             left: -5rem;
             
-            transform: rotate(-90deg);
+            @include transform(rotate(-90deg));
             
             z-index: 2500;
         }

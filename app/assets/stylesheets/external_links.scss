@@ -12,11 +12,9 @@
 }
 
 .external-site-icon {
-    vertical-align: middle;
+    @extend .hover-zoom;
     
-    @include size($external-link-size);
-    
-    &:hover { transform: scale(1.5); }
+    @include size($icon-size-lg);
 }
 
 #external-links-index-section {
@@ -26,7 +24,11 @@
         width: auto;
         padding: 0.5rem 0rem;
         
-        &.external-link-site-cell { padding: 0.5rem; }
+        &.external-link-site-cell {
+            padding: 0.5rem;
+            
+            img { vertical-align: middle; }
+        }
         
         &.external-link-actions {
             text-align: center;

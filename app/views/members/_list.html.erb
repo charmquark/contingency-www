@@ -2,7 +2,7 @@
 <%- see_all ||= false -%>
 <ul class="of-members packed">
     <%- members.each do |member| -%>
-        <li>
+        <li class="hover-zoom z-level-0">
             <%= member_avatar member -%>
             <%- if show_twitch_indicator then -%>
                 <%- fragment = member.twitch_fragment -%>
@@ -17,6 +17,6 @@
         </li>
     <%- end -%>
     <%- if see_all then -%>
-        <li class="see-all"><%= link_to 'All Members', members_path, class: 'button' %></li>
+        <li class="hover-zoom see-all z-level-0"><%= link_to 'All Members', members_path %></li>
     <%- end -%>
 </ul>

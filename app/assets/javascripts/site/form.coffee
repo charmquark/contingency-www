@@ -11,7 +11,7 @@ $(document).on 'page:change', ->
         $('.check-group', form).each ->
             init_check_group form, $ this
         
-        $('[data-focus]').focus();
+        $('[data-focus]').focus()
 
 
 init_check_group = (form, container)->

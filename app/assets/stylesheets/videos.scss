@@ -1,9 +1,7 @@
 iframe.youtube-player {
-    display: inline-block;
+    @extend %hide-small;
     
-    .breakpoint-small & {
-        display: none;
-    }
+    display: inline-block;
     
     .breakpoint-medium & {
         @include size(sixteen-by-nine($game-banner-width));
@@ -49,10 +47,3 @@ iframe.youtube-player {
         &:hover { background: rgba($cyan-900, 0.2); }
     }
 }
-
-/*#videos-index-section .video-info-cell > span {
-    margin-left: 1rem;
-    
-    &.video-info-channel { color: $cyan-200; }
-}*/
-

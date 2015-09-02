@@ -2,18 +2,19 @@
 
 <%= content_section 'member-info' do -%>
     <% record_cache @member do %>
-        <%= member_avatar @member, link: false %>
+        <%= member_avatar @member, img: {class: 'z-shadow-1'}, link: false, handle: false %>
         <%- twitch_link = nil -%>
-        <div class="member-external-links">
+        <div class="member-external-links z-shadow-1">
             <%- @member.external_links.each do |el| -%>
                 <%= link_to external_link_icon(el), external_link_resource_url(el) %>
                 <%- twitch_link = el if el.site == 'twitch' -%>
             <%- end -%>
         </div>
+        <h2><%= @member.handle %></h2>
         <%- unless twitch_link.nil? then -%>
             <%- fragment = twitch_link.fragment -%>
             <a
-                class="member-twitch-indicator"
+                class="member-twitch-indicator z-shadow-1"
                 href="<%= external_link_twitch_channel_url fragment %>"
                 data-fragment="<%= fragment %>"
             >
@@ -25,11 +26,11 @@
     <% end %>
     <div class="clear"></div>
     <%= user_actions is_admin_or?(@member) do -%>
-        <%= icon_link_to :white, :settings, 'Edit Member', edit_member_path(@member), class: 'button' %>
-        <%= icon_link_to :white, :link, 'Manage External Links', member_external_links_path(@member), class: 'button' %>
-        <%= icon_link_to :white, 'image-area', 'Manage Backgrounds', member_background_images_path(@member), class: 'button' %>
+        <%= action_link_to :settings, 'Edit', edit_member_path(@member)  %>
+        <%= action_link_to :link, 'Links', member_external_links_path(@member) %>
+        <%= action_link_to 'image-area', 'Backgrounds', member_background_images_path(@member) %>
         <%- if is_admin? then -%>
-            <%= icon_delete_link :white, 'Delete Member', @member, class: 'button danger' %>
+            <%= action_delete_link 'Delete', @member %>
         <%- end -%>
     <%- end -%>
 <%- end -%>

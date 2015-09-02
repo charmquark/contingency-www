@@ -1,0 +1,92 @@
+%action-button {
+    @extend .hover-zoom, .z-level-1;
+    
+    background: $bg-action;
+    border-width: 0px;
+    color: $white-text;
+    font-family: $font-lato;
+    font-weight: lighter;
+    text-align: center;
+    vertical-align: middle;
+    
+    height: 40px;
+    
+    font-size: 20px;
+    line-height: 40px;
+    margin-top: 20px;
+    margin-right: 20px;
+    padding: 0px 10px;
+    
+    position: relative;
+    
+    display: inline-block;
+    
+    &.danger { background: $bg-action-danger; }
+    
+    &:hover {
+        background: $bg-action-hover;
+        
+        z-index: 2000;
+        
+        &.danger { background: $bg-action-danger-hover; }
+    }
+    
+    .icon,
+    .text {
+        vertical-align: middle;
+        
+        position: relative;
+    }
+    
+    .icon {
+        margin-right: 5px;
+        
+        top: -3px;
+    }
+    
+    .text { top: -4px; }
+    
+    &:last-child { margin-right: 0px; }
+}
+
+form {
+    input[type=file] {
+        &::-webkit-file-upload-button {
+            @extend %action-button;
+            
+            cursor: pointer;
+            
+            display: block;
+            transition-duration: 0.25s;
+        }
+    }
+}
+
+.action-icons {
+    background: $black-icon;
+    
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    
+    &:hover { background: $black-text; }
+}
+
+.actions {
+    @extend %hide-small;
+    
+    .breakpoint-medium & {
+        text-align: center;
+        
+        font-size: 0px;
+        margin: 0px auto;
+        
+        clear: both;
+    }
+    
+    body > main > & { width: $content-width-medium; }
+    
+    a,
+    button,
+    input { @extend %action-button; }
+}

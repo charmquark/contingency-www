@@ -1,49 +1,12 @@
-ul.of-members {
-    .member-avatar-twitch-indicator {
-        display: none;
-        
-        .breakpoint-medium &.show {
-            background: $color-twitch-light-grey;
-            text-align: center;
-            
-            @include size(35px);
-            
-            font-size: 0px;
-            line-height: 0px;
-            
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            right: 0px;
-            
-            display: block;
-            
-            &:hover { opacity: 1; }
-            
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-    
-    .breakpoint-medium.csstransforms3d & > li {
-        &:hover .member-avatar-twitch-indicator.show {
-            box-shadow: 0px 2px 4px 1px #000;
-            transform: scale(1.1);
-        }
-    }
-}
-
 .member-avatar {
     width: $member-avatar-width;
-    max-width: $member-avatar-width;
     height: $member-avatar-height;
-    max-height: $member-avatar-height;
     
     position: relative;
     
     display: inline-block;
+    
+    overflow: hidden;
     
     &.half-size {
         width: $member-avatar-width / 2;
@@ -57,21 +20,20 @@ ul.of-members {
     }
     
     > .member-handle {
-        background: $member-avatar-handle-bg;
+        background: $black-secondary;
         color: $white-text;
         font-weight: bold;
         text-align: center;
-        //text-shadow: 0px 0px 5px $black-text;
         text-shadow:
-            -1px -1px 0px $black-secondary,
-             1px -1px 0px $black-secondary,
-            -1px  1px 0px $black-secondary,
-             1px  1px 0px $black-secondary;
+            -1px -1px 4px #000,
+             1px -1px 4px #000,
+            -1px  1px 4px #000,
+             1px  1px 4px #000;
         
         width: 100%;
         height: $member-avatar-height / 6;
         
-        font-size: ($member-avatar-height / 25) * 2.5;
+        font-size: 13px;
         letter-spacing: 0.5px;
         line-height: $member-avatar-height / 6;
         padding-bottom: 5px;
@@ -82,8 +44,11 @@ ul.of-members {
         right: 0px;
         
         display: inline-block;
-        
-        .breakpoint-small & { font-size: ($member-avatar-height / 25) * 2; }
+    }
+    
+    .breakpoint-medium & {
+        max-width: $member-avatar-width;
+        max-height: $member-avatar-height;
     }
 }
 
@@ -91,14 +56,32 @@ ul.of-members {
     #member-info-section {
         position: relative;
         
+        .member-avatar {
+            z-index: 10;
+            
+            img {
+                border-radius: 50%;
+                
+                @include transform(rotateZ(-15deg));
+            }
+        }
+        
         .member-biography {
+            @extend %card;
+            
             max-height: $member-avatar-height * 4;
             
             overflow-x: none;
             overflow-y: auto;
         }
         
+        .member-external-links {
+            font-size: 0px;
+        }
+        
         .member-twitch-indicator {
+            outline: 1px $color-twitch-dark-grey solid;
+            
             display: none;
             
             &.show {
@@ -107,9 +90,6 @@ ul.of-members {
                 background-position: bottom right;
                 background-repeat: no-repeat;
                 color: $color-twitch-dark-grey;
-                
-                margin-bottom: 1rem;
-                padding: 1rem;
                 
                 position: relative;
 
@@ -138,15 +118,25 @@ ul.of-members {
             
             .member-biography { margin-top: $spacing-small; }
             
-            .member-external-links { text-align: center; }
+            .member-external-links {
+                text-align: center;
+                
+                margin-top: $spacing-small;
+                
+                .icon { margin: 0px $spacing-small; }
+            }
             
             .member-twitch-indicator {
                 &.show {
                     background-size: 25%;
                     
-                    padding-bottom: 2.5rem;
+                    margin-bottom: $spacing-small;
+                    padding: $pad-small;
                     
-                    > span { margin-bottom: 0.25rem; }
+                    > span {
+                        margin-bottom: $pad-small;;
+                        margin-right: 120px;
+                    }
                     
                     .twitch-info-preview {
                         width: 100%;
@@ -165,21 +155,18 @@ ul.of-members {
             .member-twitch-indicator { margin-left: $member-avatar-width + $spacing-medium; }
             
             .member-external-links {
+                background: $bg-content;
                 text-align: center;
                 
                 width: $member-avatar-width;
                 
-                font-size: 0px;
+                margin-top: $spacing-medium;
                 
                 clear: left;
                 float: left;
                 
                 a {
                     text-align: center;
-                    
-                    @include size(50% $external-link-size);
-                    
-                    display: inline-block;
                     
                     float: left;
                 }
@@ -191,13 +178,14 @@ ul.of-members {
                     
                     height: calc(180px + 2rem);
                     
+                    margin-bottom: $spacing-medium;
+                    padding: $pad-medium;
+                    
                     @include clearfix;
                     
                     > span {
-                        font-size: 0.8rem;
-                        line-height: 1.3rem;
-                        margin-bottom: 1rem;
-                        margin-left: calc(320px + 1rem);
+                        margin-bottom: $pad-medium;
+                        margin-left: 320px + $pad-medium;
                     }
                     
                     .twitch-info-game,
@@ -219,36 +207,54 @@ ul.of-members {
         .breakpoint-large & {
             .member-biography,
             .member-twitch-indicator { margin-left: $member-avatar-width + $spacing-large; }
-        }
-        
-        .breakpoint-wide & {
-            .member-biography,
-            .member-twitch-indicator { margin-left: $member-avatar-width + $spacing-wide; }
+            
+            .member-external-links { margin-top: $spacing-large; }
         }
     }
 }
 
-
-.games-controller.show-action,
-.members-controller.index-action,
-.members-controller.show-action,
-.pages-controller.home-action {
-    ul.of-games,
-    ul.of-members {
-        > li {
-            &:hover {
-                box-shadow: 0px 0.2rem 0.4rem 0.2rem $black-secondary;
-                
-                transform: scale(1.1);
-                z-index: 10000;
+ul.packed.of-members {
+    .member-avatar-twitch-indicator {
+        display: none;
+        
+        .breakpoint-medium &.show {
+            background: $color-twitch-light-grey;
+            text-align: center;
+            
+            @include size(35px);
+            
+            font-size: 0px;
+            line-height: 0px;
+            
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 0px;
+            
+            display: block;
+            
+            &:hover { opacity: 1; }
+            
+            img {
+                width: 100%;
+                height: 100%;
             }
         }
     }
-}
-
-.games-controller.index-action ul.of-games > li:hover .game-banner {
-    box-shadow: 0px 0.2rem 0.4rem 0.2rem $black-secondary;
+    
+    .breakpoint-small & {
+        > li {
+            &:not(.see-all) { @include size(33% auto); }
+        }
+        
+        .member-avatar { @include size(100%); }
+    }
+    
+    .breakpoint-medium & {
+        > li.see-all {
+            @include size($member-avatar-width $member-avatar-height);
             
-    transform: scale(1.1);
-    z-index: 10000;
+            a { line-height: $member-avatar-height; }
+        }
+    }
 }

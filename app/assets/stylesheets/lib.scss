@@ -25,6 +25,16 @@
     }
 }
 
+%card {
+    @extend .z-shadow-1;
+    
+    background: rgba($bg-color, 0.8);
+    
+    .breakpoint-small & { padding: $pad-small / 2; }
+    
+    .breakpoint-medium & { padding: $pad-medium / 2; }
+}
+
 %content-centered {
     .breakpoint-small & { @include margin-centered($content-width-small); }
     
@@ -33,4 +43,8 @@
     .breakpoint-large & { @include margin-centered($content-width-large); }
     
     .breakpoint-wide & { @include margin-centered($content-width-wide); }
+}
+
+%hide-small {
+    .breakpoint-small & { display: none; }
 }

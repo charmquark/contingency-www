@@ -11,7 +11,7 @@
     -%>
     <ul class="<%= list_class %> packed">
         <%- game_memberships_sorted(assoc).each do |gm| -%>
-            <li>
+            <li class="hover-zoom z-level-0">
                 <%= render_game_membership assoc, gm %>
                 <%= user_action_icons is_admin?,
                     delete: polymorphic_path([assoc, gm])
@@ -21,5 +21,5 @@
     </ul>
 <% end %>
 <%= user_actions is_admin? do -%>
-    <%= icon_link_to :white, :plus, 'Add Game Membership', new_polymorphic_path([assoc, GameMembership]), class: 'button' %>
+    <%= action_link_to :plus, 'Add', new_polymorphic_path([assoc, GameMembership]) %>
 <%- end -%>

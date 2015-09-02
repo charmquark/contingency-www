@@ -1,41 +1,18 @@
 .icon {
-    @include size($icon-size);
-    
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
+    opacity: $alpha-white-icon;
+
+    @include size($icon-size-sm);
     
     display: inline-block;
     
-    &.icon-2x { @include size($icon-size * 2); }
+    &:hover { opacity: $alpha-white-text; }
     
-    &.icon-black {
-        opacity: $alpha-black-icon;
-        
-        &:hover {
-            background-color: $white-icon;
-            opacity: $alpha-black-text;
-        }
-        
-        &.icon-delete:hover { background-color: rgba($red-900, $alpha-white-icon); }
-        
-        @each $icon in $icons-available {
-            &.icon-#{$icon} { background-image: url("/images/icons/#{$icon}-black.png"); }
-        }
-    }
-    
-    &.icon-white {
-        opacity: $alpha-white-icon;
-        
-        &:hover {
-            background-color: $black-icon;
-            opacity: $alpha-white-text;
-        }
-        
-        &.icon-delete:hover { background-color: rgba($red-900, $alpha-black-icon); }
-        
-        @each $icon in $icons-available {
-            &.icon-#{$icon} { background-image: url("/images/icons/#{$icon}-white.png"); }
-        }
+    &.icon-lg { @include size($icon-size-lg); }
+
+    @each $icon in $icons-available {
+        &.icon-#{$icon} { background-image: url("/images/icons/#{$icon}.png"); }
     }
 }

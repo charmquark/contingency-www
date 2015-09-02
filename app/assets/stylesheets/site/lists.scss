@@ -2,127 +2,71 @@ ul.packed {
     list-style-type: none;
     
     max-width: 100%;
-
+    
     font-size: 0px;
     margin: 0px auto;
     padding: 0px;
     
-    position: relative;
-    
     @include clearfix;
     display: block;
     
-    li {
+    > li {
         position: relative;
         
+        display: inline-block;
         float: left;
         
-        a {
-            @include size(100%);
+        &.see-all {
+            background: $bg-action;
+            font-weight: lighter;
+            text-align: center;
             
-            display: inline-block;
+            &:hover { background: $bg-action-hover; }
+            
+            a {
+                @include size(100%);
+                
+                font-size: 1rem;
+                
+                display: inline-block;
+            }
         }
-        
-        &.see-all a { font-size: 20px; }
     }
+    
+    .action-icons { @extend %hide-small; }
     
     .breakpoint-small & {
         width: 100%;
         
-        &.of-games li { @include size(50% auto); }
-        
-        &.of-members li { @include size(33% auto); }
-        
-        &.of-videos { display: none; }
-        
-        li.see-all {
+        > li.see-all {
             width: 100%;
+            height: 60px;
             
-            margin: $spacing-small 0px;
+            line-height: 60px;
+            margin-top: $spacing-small;
+            
+            clear: both;
+            display: block;
+            float: none;
+        }
+    }
+    
+    .breakpoint-medium & {
+        > li {
+            &:hover {
+                .game-banner img,
+                .member-avatar img {
+                    @include transform(scale(1.25) rotateZ(6deg));
+                }
+            }
         }
     }
     
     .breakpoint-medium &,
-    .breakpoint-large .limit-medium &,
-    .breakpoint-wide .limit-medium & {
-        &.of-games {
-            width: $game-banner-width * 3;
-            
-            li {
-                @include size($game-banner-width auto);
-                
-                &.see-all a {
-                    height: $game-banner-height;
-                    
-                    line-height: $game-banner-height;
-                    padding: 0px;
-                }
-            }
-        }
-        
-        &.of-members {
-            width: $member-avatar-width * 6;
-            
-            li {
-                @include size($member-avatar-width auto);
-                
-                &.see-all a {
-                    height: $member-avatar-height;
-                    
-                    line-height: $member-avatar-height;
-                    padding: 0px;
-                }
-            }
-        }
-        
-        &.of-videos {
-            width: $game-banner-width * 3;
-            
-            li {
-                @include size(sixteen-by-nine($game-banner-width));
-                
-                &.see-all a {
-                    height: $game-banner-height;
-                    
-                    line-height: $game-banner-height;
-                    padding: 0px;
-                }
-            }
-        }
-    }
+    .breakpoint-large .limit-medium & { width: $game-banner-width * 3; }
     
     .breakpoint-large &,
-    .breakpoint-wide .limit-large & {
-        &.of-games { width: $game-banner-width * 4; }
-        &.of-members { width: $member-avatar-width * 8; }
-        &.of-videos { width: $game-banner-width * 2; }
-    }
+    .breakpoint-wide .limit-large & { width: $game-banner-width * 4; }
     
-    .breakpoint-wide & { 
-        &.of-games { width: $game-banner-width * 6; }
-        &.of-members { width: $member-avatar-width * 12; }
-        &.of-videos {
-            width: $game-banner-width * 3;
-            
-            li { @include size(sixteen-by-nine($game-banner-width * 1.5)); }
-        }
-    }
-}
-
-ul li .action-icons {
-    background-color: $black-icon;
-    
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    
-    a {
-        @include size($icon-size);
-        
-        margin-right: 5px;
-        
-        &:last-child { margin-right: 0px; }
-    }
-    
-    .breakpoint-small & { display: none; }
+    .breakpoint-wide & { width: $game-banner-width * 6; }
 }

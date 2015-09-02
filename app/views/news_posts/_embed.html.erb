@@ -15,7 +15,7 @@
                 <%= render_news news_post %>
             </main>
             <%- unless news_post.long_body.nil? or news_post.long_body.empty? then -%>
-                <%= link_to 'Read More', news_post, class: 'button read-more' %>
+                <%= link_to 'Read More', news_post, class: 'read-more' %>
             <%- end %>
         </article>
     <% end %>

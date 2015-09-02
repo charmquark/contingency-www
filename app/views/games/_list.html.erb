@@ -2,7 +2,7 @@
 <%- see_all ||= false %>
 <ul class="of-games packed">
     <%- games.each do |game| -%>
-        <li>
+        <li class="hover-zoom z-level-0">
             <%= game_banner game -%>
             <%- if show_desc then -%>
                 <div class="game-description"><%= render_markdown game.description -%></div>
@@ -10,6 +10,6 @@
         </li>
     <%- end -%>
     <%- if see_all then -%>
-        <li class="see-all"><%= link_to 'All Games', games_path, class: 'button' %></li>
+        <li class="hover-zoom see-all z-level-0"><%= link_to 'All Games', games_path %></li>
     <%- end -%>
 </ul>

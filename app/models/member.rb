@@ -68,7 +68,7 @@ class Member < ActiveRecord::Base
     
     
     def to_param
-        CGI.escape handle
+        handle
     end
     
     

@@ -1,40 +1,5 @@
-@mixin header-dependant-sizes($ht) {
-    $-nav-icon-sz: $ht / 1.5;
-    
-    > div {
-        height: $ht;
-        
-        h1 {
-            font-size: $ht / 2;
-            line-height: $ht;
-            
-            .icon { @include size($ht * 0.666666); }
-        }
-
-        nav {
-            a {
-                height: $ht;
-                
-                font-size: $ht / 4;
-                line-height: $ht;
-                
-                .icon {
-                    @include size($-nav-icon-sz);
-                    
-                    left: (($header-nav-link-width - $-nav-icon-sz) / 2);
-                }
-                
-                .text { top: $ht / 4; }
-            }
-        }
-    }
-}
-
 body > header {
-    color: $white-icon;
-
-    width: 100%;
-    height: auto;
+    @include size(100% auto);
     
     z-index: 1000;
     
@@ -43,169 +8,179 @@ body > header {
         
         @include clearfix;
         
-        a {
-            .text { color: $white-icon; }
+        font-size: 0px;
+    }
+    
+    h1 {
+        margin: 0px;
+        
+        display: inline-block;
+        
+        .icon {
+            vertical-align: middle;
             
-            &:hover {
-                .icon { opacity: 1; }
-                
-                .text { color: $white; }
-            }
+            position: relative;
         }
         
-        h1 {
-            margin: 0px;
-            
-            display: inline-block;
-            
-            .icon {
-                vertical-align: middle;
-                
-                position: relative;
-            }
-            
-            .text { vertical-align: middle; }
-        }
+        .text { vertical-align: middle; }
     }
     
     .breakpoint-small &,
     .breakpoint-medium & {
         background: $bg-color;
-
+        
         position: fixed;
         top: 0px;
         left: 0px;
         right: 0px;
+        
+        h1 {
+            vertical-align: top;
+            
+            .icon { margin-right: 5px; }
+        }
     }
-
+    
     .breakpoint-small & {
         > div {
             height: $header-height-small;
             
-            margin: ($pad-small / 2) 0px;
             padding: 0px $pad-small;
+        }
+        
+        h1 {
+            font-size: $header-height-small * 0.6;
+            line-height: $header-height-small;
             
-            h1 {
-                font-size: 20px;
-                line-height: 30px;
-                
-                .icon {
-                    @include size(30px);
-                    
-                    margin-right: 5px;
-                }
-            }
+            .icon { @include size($header-height-small * 0.8); }
+        }
+        
+        nav {
+            @extend .z-shadow-2;
             
-            nav {
-                background: $link-hilite;
+            background: $cyan-900;
+            
+            @include size(100% auto);
+            
+            font-size: $header-height-small * 0.8;
+            padding-top: $header-height-small;
+            
+            position: absolute;
+            top: 0px;
+            left: 100%;
+            
+            z-index: -1;
+            
+            &.nav-open { left: 0px; }
+            
+            &:before {
+                background: $black-divider;
+                content: "";
                 
-                width: 100%;
-                height: auto;
+                @include size(100% $header-height-small);
                 
-                font-size: 30px;
-                padding-top: $header-height-small;
-
                 position: absolute;
                 top: 0px;
-                left: 100%;
+                left: 0px;
+                right: 0px;
                 
+                display: block;
                 z-index: -1;
-                
-                &.nav-open { left: 0px; }
-                
-                a {
-                    text-align: right;
-                    
-                    margin: $pad-small 0px;
-                    padding: ($pad-small / 2) $pad-small;
-                    
-                    display: block;
-                    
-                    &:after {
-                        color: $white-icon;
-                        content: "\2023";
-                        
-                        margin-left: 5px;
-                    }
-                    
-                    &:hover:after { color: $white; }
-                    
-                    .icon { display: none; }
-                }
             }
             
-            .icon-menu {
-                @include size(30px);
+            a {
+                color: $white-secondary;
+                text-align: right;
                 
-                float: right;
+                padding: $pad-small;
                 
-                transition-property: transform;
+                display: block;
                 
-                &.nav-open { @include transform(rotate(360deg)); }
+                &:after {
+                    content: "\2023";
+                    
+                    margin-left: 5px;
+                }
+                
+                .icon { display: none; }
             }
+        }
+        
+        .icon-menu {
+            @include size($header-height-small);
+            
+            float: right;
+            
+            &.nav-open { @include transform(rotate(360deg) scale(1.10)); }
         }
     }
     
     .breakpoint-medium & {
-        @include header-dependant-sizes($header-height-medium);
-        
         > div {
-            position: relative;
+            height: $header-height-medium;
+        }
+        
+        h1 {
+            font-size: $header-height-medium * 0.50;
+            line-height: $header-height-medium;
             
-            h1 {
-                margin: 0px;
-                
-                .icon { margin-right: 5px; }
-            }
+            .icon { @include size($header-height-medium * 0.8); }
+        }
+        
+        nav {
+            float: right;
             
-            nav {
-                float: right;
+            a {
+                text-align: center;
                 
-                a {
-                    font-weight: bold;
-                    text-align: center;
+                @include size(($header-height-medium * 2) $header-height-medium);
+                
+                position: relative;
+                
+                display: inline-block;
+                
+                &:hover { background: $link-hilite; }
+                
+                .icon,
+                .text {
+                    width: 100%;
                     
-                    width: $header-nav-link-width;
-
-                    position: relative;
+                    position: absolute;
+                    left: 0px;
+                    right: 0px;
                     
-                    display: inline-block;
-                    
-                    .icon {
-                        position: absolute;
-                        top: 0px;
-                    }
-                    
-                    .text {
-                        position: relative;
-                        
-                        display: inline-block;
-                    }
+                    display: block;
                 }
                 
+                .icon {
+                    height: $header-height-medium / 2;
+                    
+                    top: 5px;
+                }
+                
+                .text {
+                    height: 1rem;
+                    
+                    font-size: 1rem;
+                    line-height: 1rem;
+                    
+                    bottom: 5px;
+                }
             }
-            
-            .icon-menu { display: none; }
         }
+        
+        .icon-menu { display: none; }
     }
     
     .breakpoint-large & {
-        //@include better-linear-gradient($bg-color, rgba($bg-color, 0));
         background: transparent;
         
-        padding-bottom: $pad-large;
+        margin-bottom: $spacing-large;
         
         position: static;
-        
-        @include header-dependant-sizes($header-height-large);
-    }
-    
-    .breakpoint-wide & {
-        padding-bottom: $pad-wide;
-        
-        @include header-dependant-sizes($header-height-wide);
     }
 }
+
 
 .background_images-controller.background_images-assoc-game > header nav a#header-nav-games,
 .background_images-controller.background_images-assoc-member > header nav a#header-nav-members,

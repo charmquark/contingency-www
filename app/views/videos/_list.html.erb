@@ -7,6 +7,6 @@
     </ul>
 <%- end -%>
 <%= user_actions(show_actions && is_admin_or?(assoc)) do %>
-    <%= icon_link_to :white, :plus, 'Add New Video', new_polymorphic_path([assoc, Video]), class: 'button' %>
-    <%= icon_link_to :white, :video, 'Manage Videos', polymorphic_path([assoc, Video]), class: 'button' %>
+    <%= action_link_to :plus, 'Add Video', new_polymorphic_path([assoc, Video]) %>
+    <%= action_link_to :video, 'Videos', polymorphic_path([assoc, Video]) %>
 <%- end -%>

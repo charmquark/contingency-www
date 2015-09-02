@@ -5,49 +5,83 @@ $font-forum:    'Forum', 'Roboto', sans-serif;
 
 @import 'config/colors';
 
-$bg-actions:        rgba($cyan-900, 0.2);
-$bg-color:          $blue-grey-900;
-$bg-content:        rgba($bg-color, 0.6);
-$bg-content-small:  rgba($bg-color, 0.2);
-$bg-contrast:       rgba($blue-grey-100, 0.2);
-$bg-current:        rgba($cyan-900, 0.6);
-$bg-icon:           rgba($bg-color, $alpha-black-icon);
+$action-color: $cyan-900;
 
-$content-width-small:   800px;
-$content-width-medium:  800px;
-$content-width-large:   1110px;
-$content-width-wide:    1610px;
+$bg-action:                 rgba($action-color, 0.2);
+$bg-action-danger:          rgba($red-900, 0.2);
+$bg-action-hover:           $action-color;
+$bg-action-danger-hover:    rgba($red-900, 0.6);
+$bg-color:                  $blue-grey-900;
+$bg-content:                rgba($bg-color, 0.6);
+$bg-content-small:          rgba($bg-color, 0.2);
+$bg-contrast:               rgba($blue-grey-100, 0.2);
+$bg-current:                rgba($cyan-900, 0.6);
+$bg-icon:                   rgba($bg-color, $alpha-black-icon);
+
+$content-width-small:   500px;
+$content-width-medium:  760px;
+$content-width-large:   1080px;
+$content-width-wide:    1560px;
+
+$content-width-map: (
+    small:  $content-width-small,
+    medium: $content-width-medium,
+    large:  $content-width-large,
+    wide:   $content-width-wide
+);
+
+$content-width-halfs-medium:    760px;
+$content-width-halfs-large:     1080px;
+$content-width-halfs-wide:      1560px;
 
 $external-link-size:    60px;
 
-$game-banner-width:     250px;
+$font-size-action:      20px;
+
+$game-banner-width:     240px;
 $game-banner-height:    $game-banner-width / 2;
 
 $header-height-small:   30px;
-$header-height-medium:  45px;
+$header-height-medium:  60px;
 $header-height-large:   60px;
 $header-height-wide:    $header-height-large;
 
-$header-nav-link-width: 100px;
-
 $icons-available:   account, account-multiple, account-plus, contingency-symbol, delete, file-document-box, gamepad, gamepad-multiple, gamepad-plus, home, image-area, keyboard-backspace, link, logout, menu, newspaper, plus, settings, video;
-//$icon-size:         $game-banner-height / 5;
-$icon-size:         24px;
+
+$icon-size-sm:  30px;
+$icon-size-lg:  60px;
 
 $link-bg-alpha: 0.8;
 $link-bg:       rgba($blue-grey-900, $link-bg-alpha);
 $link-hilite:   $blue-grey-700;
 
 $pad-small:     10px;
-$pad-medium:    10px;
-$pad-large:     20px;
-$pad-wide:      $pad-large;
+$pad-medium:    20px;
+
+$pad-map: (
+    small:  $pad-small,
+    medium: $pad-medium,
+    large:  $pad-medium,
+    wide:   $pad-medium
+);
 
 $member-avatar-width:       $game-banner-height;
 $member-avatar-height:      $member-avatar-width;
 $member-avatar-handle-bg:   $black-hint;
 
-$spacing-small:     $pad-small * 1.5;
-$spacing-medium:    $pad-medium * 1.5;
-$spacing-large:     $pad-large * 1.5;
-$spacing-wide:      $pad-wide * 1.5;
+$spacing-small:     10px;
+$spacing-medium:    20px;
+$spacing-large:     40px;
+
+$spacing-map: (
+    small:  $spacing-small,
+    medium: $spacing-medium,
+    large:  $spacing-large,
+    wide:   $spacing-large
+);
+
+
+
+$content-width-halfs-medium-column: ($content-width-medium / 2) - ($spacing-medium / 2);
+$content-width-halfs-large-column:  ($content-width-large / 2) - ($spacing-large / 2);
+$content-width-halfs-wide-column:   ($content-width-wide / 2) - ($spacing-large / 2);

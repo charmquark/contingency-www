@@ -10,8 +10,8 @@
     <!-- metaquery breakpoints -->
     <meta name="breakpoint" content="small" media="(max-width: 799px)">
     <meta name="breakpoint" content="medium" media="(min-width: 800px)">
-    <meta name="breakpoint" content="large" media="(min-width: 1150px)">
-    <meta name="breakpoint" content="wide" media="(min-width: 1660px)">
+    <meta name="breakpoint" content="large" media="(min-width: 1160px)">
+    <meta name="breakpoint" content="wide" media="(min-width: 1640px)">
     <meta name="breakpoint" content="retina" media="(-webkit-min-device-pixel-ratio: 2)">
     
     <title><%= yield :title %>The Contingency</title>
@@ -28,14 +28,14 @@
     <%- end -%>
     <header>
         <div>
-            <h1><%= icon_link_to :white, 'contingency-symbol', 'The Contingency', root_path %></h1>
-            <%= icon :white, :menu %>
+            <h1><%= icon_link_to 'contingency-symbol', 'The Contingency', root_path %></h1>
+            <%= icon :menu %>
             <nav>
-                <%= icon_link_to :white, 'gamepad-multiple', 'Games', games_path, id: 'header-nav-games', class: 'hover-hilite' %>
-                <%= icon_link_to :white, 'account-multiple', 'Members', members_path, id: 'header-nav-members', class: 'hover-hilite' %>
-                <%= icon_link_to :white, :newspaper, 'News', news_posts_path, id: 'header-nav-news-posts', class: 'hover-hilite' %>
+                <%= icon_link_to 'gamepad-multiple', 'Games', games_path, id: 'header-nav-games' %>
+                <%= icon_link_to 'account-multiple', 'Members', members_path, id: 'header-nav-members' %>
+                <%= icon_link_to :newspaper, 'News', news_posts_path, id: 'header-nav-news-posts' %>
                 <%- if logged_in? then -%>
-                    <%= icon_link_to :white, :account, current_user.handle, current_user, class: 'hover-hilite' %>
+                    <%= icon_link_to :account, current_user.handle, current_user %>
                 <%- end -%>
             </nav>
         </div>
@@ -56,12 +56,12 @@
         <div>
             <div class="copyright">Copyright &copy; 2015, The Contingency. All rights reserved.</div>
             <nav>
-                <%= link_to_if logged_in?, 'Logout', logout_path, class: 'hover-hilite', method: 'delete' do %>
-                    <%= link_to 'Login', login_path, class: 'hover-hilite' %>
+                <%= link_to_if logged_in?, 'Logout', logout_path, method: 'delete' do %>
+                    <%= link_to 'Login', login_path %>
                 <% end %>
-                <%= link_to 'Games', games_path, class: 'hover-hilite' %>
-                <%= link_to 'Members', members_path, class: 'hover-hilite' %>
-                <%= link_to 'News', news_posts_path, class: 'hover-hilite' %>
+                <%= link_to 'Games', games_path %>
+                <%= link_to 'Members', members_path %>
+                <%= link_to 'News', news_posts_path %>
             </nav>
         </div>
     </footer>

@@ -5,7 +5,7 @@
         <%- @videos.each do |vid| -%>
             <tr>
                 <td class="video-actions">
-                    <%= icon_delete_link :white, '', member_video_path(@member, vid) %>
+                    <%= icon_delete_link '', member_video_path(@member, vid) %>
                 </td>
                 <td class="video-fragment-cell"><%= vid.fragment %></td>
                 <td class="video-info-cell" data-youtube-info="<%= vid.fragment %>"></td>
@@ -18,8 +18,8 @@
     <%- end -%>
     <%= user_actions is_admin_or?(@member) do -%>
         <%- unless limit_reached then -%>
-            <%= icon_link_to :white, :plus, "Add New Video", new_member_video_path(@member), class: 'button' %>
+            <%= action_link_to :plus, "Add Video", new_member_video_path(@member) %>
         <%- end -%>
-        <%= icon_link_to :white, 'keyboard-backspace', "Back to Member", @member, class: 'button' %>
+        <%= action_link_to 'keyboard-backspace', "Back to Member", @member %>
     <%- end -%>
 <%- end -%>

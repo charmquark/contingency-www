@@ -8,7 +8,7 @@
     font-smooth: always;
     
     @include prefixer(overflow-scrolling, touch, webkit);
-    @include prefixer(transition-duration, 0.4s, moz o webkit);
+    @include prefixer(transition-duration, 0.25s, moz o webkit);
     @include prefixer(transition-timing-function, linear, moz o webkit);
 }
 
@@ -16,12 +16,7 @@ html,
 body { @include size(100%); }
 
 body {
-    background-attachment: fixed;
-    background-color: $black;
-    background-image: url('/images/site-bg.jpg');
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: darken($blue-grey-900, 13%);
     color: $white-text;
     font-family: $font-lato;
     font-weight: normal;
@@ -31,9 +26,14 @@ body {
     .breakpoint-small & { font-size: 14px; }
     
     .breakpoint-medium & {
+        background-attachment: fixed;
+        background-image: url('/images/site-bg.jpg');
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        background-size: cover;
         font-size: 16px;
         
-        padding-top: $header-height-medium * 2;
+        padding-top: $header-height-medium + $spacing-medium;
     }
     
     .breakpoint-large & { padding-top: 0px; }
@@ -42,8 +42,6 @@ body {
 a {
     color: $white-text;
     text-decoration: none;
-    
-    &.hover-hilite:hover { background: $link-hilite; }
 }
 
 h,
@@ -57,15 +55,19 @@ h6 {
     font-weight: normal;
 }
 
+h1 { font-size: 2rem; }
+
+h2 { font-size: 1.5rem; }
+
 body > main {
     min-height: 514px;
     
     z-index: 100;
     
     .breakpoint-small & {
-        background: $bg-content-small;
+        //background: $bg-content-small;
         
-        padding: ($header-height-small * 2) 0px $pad-small 0px;
+        padding-top: $header-height-small + $spacing-small;
     }
 }
 
@@ -86,149 +88,6 @@ p {
     }
 }
 
-.actions {
-    background: $bg-actions;
-    
-    margin: 0px auto;
-    
-    clear: both;
-    
-    .breakpoint-small & {
-        
-        display: none;
-        
-        #form-section & {
-            margin-top: $pad-small;
-            padding: $pad-small 0px;
-            
-            .button { margin: $pad-small; }
-        }
-    }
-    
-    .breakpoint-small body > main > & { display: none; }
-    
-    .breakpoint-medium & {
-        text-align: center;
-        
-        margin-top: $pad-medium;
-        
-        .button { margin: $pad-medium; }
-    }
-    
-    .breakpoint-medium body > main > & { width: $content-width-medium; }
-    
-    .breakpoint-large & {
-        margin-top: $pad-large;
-        
-        .button { margin: $pad-large; }
-    }
-    
-    .breakpoint-large body > main > & { width: $content-width-large; }
-    
-    .breakpoint-wide & {
-        margin-top: $pad-wide;
-        
-        .button { margin: $pad-wide; }
-    }
-    
-    .breakpoint-wide body > main > & { width: $content-width-wide; }
-}
-
-.button {
-    background: $link-bg;
-    border: 1px $black-secondary solid;
-    color: $white-icon;
-    font-family: $font-lato;
-    font-weight: lighter;
-    text-align: center;
-    vertical-align: middle;
-    
-    font-size: 20px;
-    
-    position: relative;
-    
-    display: inline-block;
-    z-index: 1000;
-    
-    &:hover {
-        background: $link-hilite;
-        color: $white-text;
-        
-        transform: scale(1.05);
-        
-        .icon {
-            background-color: $black-icon;
-            opacity: 1;
-        }
-    }
-    
-    &.see-all { box-shadow: none; }
-    
-    .icon { margin-right: 5px; }
-    
-    .icon,
-    .text {
-        vertical-align: middle;
-        
-        position: relative;
-    }
-    
-    .breakpoint-small & {
-        height: 20px + ($pad-small * 2);
-
-        line-height: 20px + ($pad-small * 2);
-        padding: 0px $pad-small;
-        
-        .icon,
-        .text { top: -4px; }
-    }
-    
-    .breakpoint-medium & {
-        height: 20px + ($pad-medium * 2);
-
-        line-height: 20px + ($pad-medium * 2);
-        padding: 0px $pad-medium;
-        
-        .icon,
-        .text { top: -2px; }
-    }
-    
-    .breakpoint-large & {
-        height: 20px + ($pad-large * 2);
-        
-        line-height: 20px + ($pad-large * 2);
-        padding: 0px $pad-large;
-        
-        .icon,
-        .text { top: -2px; }
-    }
-    
-    .breakpoint-wide & {
-        height: 20px + ($pad-wide * 2);
-        
-        line-height: 20px + ($pad-wide * 2);
-        padding: 0px $pad-wide;
-        
-        .icon,
-        .text { top: -2px; }
-    }
-}
-
-.actions .button {
-    border-width: 2px;
-    box-shadow: 0px 0px 1rem 0.25rem $black-secondary;
-    
-    &.danger {
-        border-color: rgba($red-900, $alpha-black-secondary);
-        
-        &:hover {
-            .icon-delete { background-color: rgba($red-900, $alpha-black-icon); }
-        }
-    }
-    
-    .csstransforms &:hover { box-shadow: 0px 0.5rem 1rem 0.25rem $black-secondary; }
-}
-
 .clear { clear: both; }
 
 .content-section {
@@ -240,8 +99,6 @@ p {
     .breakpoint-medium & { margin-bottom: $spacing-medium; }
     
     .breakpoint-large & { margin-bottom: $spacing-large; }
-    
-    .breakpoint-wide & { margin-bottom: $spacing-wide; }
 }
 
 .content-section-body {
@@ -252,10 +109,16 @@ p {
     @include clearfix;
     
     h2 {
-        color: $white-secondary;
+        border-bottom: 1px $white-divider solid;
         text-align: center;
         
-        margin: 0px 0px 1rem 0px;
+        height: 1.5rem;
+
+        letter-spacing: 1px;
+        line-height: 2rem;
+        
+        position: relative;
+        top: -0.5rem;
     }
     
     h3 {
@@ -268,7 +131,9 @@ p {
     
     .breakpoint-small & {
         h2 {
-            background: $bg-content;
+            background: $bg-color;
+            
+            margin-bottom: $spacing-small / 2;
         }
     }
     
@@ -276,20 +141,23 @@ p {
         background: $bg-content;
         
         padding: $pad-medium;
+        
+        h2 { margin-bottom: $spacing-medium / 2; }
     }
     
-    .breakpoint-large & { padding: $pad-large; }
-    
-    .breakpoint-wide & { padding: $pad-wide; }
+    .breakpoint-large & {
+        h2 { margin-bottom: $spacing-large / 2; }
+    }
 }
 
 .breakpoint-medium .content-section.limit-medium .content-section-body { max-width: $content-width-medium; }
 
 .breakpoint-large .content-section.limit-large .content-section-body { max-width: $content-width-large; }
 
-.breakpoint-small .hide-small { display: none; }
+.breakpoint-small .hide-small { @extend %hide-small; }
 
 
+@import 'site/actions';
 @import 'site/flash';
 @import 'site/form';
 @import 'site/footer';
@@ -297,3 +165,4 @@ p {
 @import 'site/icons';
 @import 'site/lists';
 @import 'site/rows';
+@import 'site/z';

@@ -1,16 +1,6 @@
 <%- content_for :title do -%>New Background | <%= @backgroundable.name %> | <%- end -%>
 
 <%= form_section title: "New Background Image for #{@backgroundable.name}" do -%>
-    <%- if @background_image.errors.any? -%>
-        <div id="error_explanation">
-            <h2><%= pluralize(@background_image.errors.count, "error") %> prohibited this game from being saved:</h2>
-            <ul>
-                <% @background_image.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-            </ul>
-        </div>
-    <%- end -%>
     <%= form_for(@background_image,
             html: {multipart: true},
             url: polymorphic_path([@backgroundable, BackgroundImage]),
@@ -33,9 +23,9 @@
             </div>
         </div>
         <%= user_actions do -%>
-            <%= f.submit class: 'button' %>
-            <%= f.button 'Reset', class: 'button', type: :reset %>
-            <%= link_to 'Cancel', polymorphic_path([@backgroundable, BackgroundImage]), class: 'button' %>
+            <%= f.submit 'Save' %>
+            <%= f.button 'Reset', type: :reset %>
+            <%= link_to 'Cancel', polymorphic_path([@backgroundable, BackgroundImage]) %>
         <%- end -%>
     <%- end -%>
 <%- end -%>

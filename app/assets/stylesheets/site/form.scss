@@ -1,4 +1,4 @@
-@mixin form-dependant-sizes($pad, $spacing) {
+@mixin form-dependant-sizes($spacing) {
     .field { margin-bottom: $spacing; }
 }
 
@@ -6,17 +6,6 @@ form {
     margin: auto;
     
     position: relative;
-    
-    input[type=file] {
-        &::-webkit-file-upload-button {
-            @extend .button;
-            
-            cursor: pointer;
-            
-            display: block;
-            transition-duration: 0.4s;
-        }
-    }
     
     input[type=text],
     input[type=password],
@@ -144,19 +133,23 @@ form {
         }
     }
     
+    .games-select { height: $game-banner-height; }
+    
+    .members-select { height: $member-avatar-height; }
+    
     .breakpoint-small & {
-        @include form-dependant-sizes($pad-small, $spacing-small);
-        
         padding: 0px $pad-small;
         
         .check-group,
         .radio-group {
             label { font-size: 0.6rem; }
         }
+        
+        .field { margin-bottom: $spacing-small; }
     }
     
     .breakpoint-medium & {
-        @include form-dependant-sizes($pad-medium, $spacing-medium);
+        .field { margin-bottom: $spacing-medium; }
         
         .halfs-medium {
             position: relative;
@@ -174,8 +167,7 @@ form {
         }
     }
 
-    .breakpoint-large & { @include form-dependant-sizes($pad-large, $spacing-large); }
+    .breakpoint-large & {
+        .field { margin-bottom: $spacing-large; }
+    }
 }
-
-button.button,
-input.button { border-width: 0px; }

@@ -1,18 +1,7 @@
 <%- content_for :title do -%>New Game Membership | <%- end -%>
+<%- content_for :body_class do -%>game_memberships-assoc-<%= @assoc_type.model_name.param_key %> <%- end -%>
 
 <%= form_section title: 'New Game Membership' do %>
-    <%- if @game_membership.errors.any? -%>
-        <div id="error_explanation">
-            <h2><%= pluralize(@game_membership.errors.count, "error") %> prohibited this game membership from being saved:</h2>
-
-            <ul>
-            <% @game_membership.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
-            </ul>
-        </div>
-    <%- end -%>
-    
     <%= form_for(@game_membership,
             url: polymorphic_path([@assoc, GameMembership]),
             method: :post
@@ -37,9 +26,9 @@
             </div>
         </div>
         <%= user_actions do -%>
-            <%= f.submit class: 'button', value: 'Save' %>
-            <%= f.button 'Reset', class: 'button', type: :reset %>
-            <%= link_to 'Cancel', @assoc, class: 'button' %>
+            <%= f.submit 'Save' %>
+            <%= f.button 'Reset', type: :reset %>
+            <%= link_to 'Cancel', @assoc %>
         <%- end -%>
     <% end %>
 <% end %>

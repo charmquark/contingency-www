@@ -1,16 +1,4 @@
 <%= form_for(@news_post) do |f| %>
-    <% if @news_post.errors.any? %>
-    <div id="error_explanation">
-        <h2><%= pluralize(@news_post.errors.count, "error") %> prohibited this news_post from being saved:</h2>
-
-        <ul>
-            <% @news_post.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
-    </div>
-    <% end %>
-
     <div class="field">
         <%= f.label :title %><br>
         <%= f.text_field :title %>
@@ -34,8 +22,8 @@
         <%= f.text_area :long_body %>
     </div>
     <div class="actions">
-        <%= f.submit class: 'button' %>
-        <%= f.button 'Reset', class: 'button', type: :reset %>
-        <%= link_to 'Cancel', (action_name == 'edit' ? @news_post : news_posts_path), class: 'button' %>
+        <%= f.submit 'Save' %>
+        <%= f.button 'Reset', type: :reset %>
+        <%= link_to 'Cancel', (action_name == 'edit' ? @news_post : news_posts_path) %>
     </div>
 <% end %>

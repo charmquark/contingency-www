@@ -6,6 +6,8 @@
     
     display: inline-block;
     
+    overflow: hidden;
+    
     &.half-size {
         width: $game-banner-width / 2;
         height: $game-banner-height / 2;
@@ -20,18 +22,41 @@
 }
 
 #games-index-section {
-    .game-description {
-        .breakpoint-small & { display: none; }
-        
-        .breakpoint-medium & {
-            width: 100%;
-            height: $game-banner-height * 2;
+    ul.packed > li {
+        .game-description { @extend %hide-small; }
+    }
+
+    .breakpoint-medium & {
+        .game-description {
+            background: $bg-content;
             
-            padding: 1rem;
+            width: $game-banner-width - $pad-medium;
+            height: $game-banner-height * 2;
+
+            margin: 0px auto;
+            padding: $pad-medium / 2;
             
             font-size: 0.8rem;
             line-height: 1rem;
         }
+        
+        ul.packed > li {
+            width: $game-banner-width;
+            
+            margin-bottom: $spacing-medium;
+            
+            &:hover .game-description {
+                background: $bg-color;
+                
+                width: 100%;
+                
+                padding: ($pad-medium / 2) $pad-medium;
+            }
+        }
+    }
+    
+    .breakpoint-large & {
+        ul.packed > li { margin-bottom: $spacing-large; }
     }
 }
 
@@ -60,9 +85,23 @@
         .breakpoint-large & {
             .game-description { margin-left: $game-banner-width + $spacing-large; }
         }
+    }
+}
+
+ul.packed.of-games {
+    .breakpoint-small & {
+        > li {
+            &:not(.see-all) { @include size(50% auto); }
+        }
         
-        .breakpoint-wide & {
-            .game-description { margin-left: $game-banner-width + $spacing-wide; }
+        .game-banner { @include size(100%); }
+    }
+    
+    .breakpoint-medium & {
+        > li.see-all {
+            @include size($game-banner-width $game-banner-height);
+            
+            a { line-height: $game-banner-height; }
         }
     }
 }

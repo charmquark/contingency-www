@@ -1,14 +1,16 @@
 <%- content_for :title do -%>News | <%- end -%>
 
-<%= content_section 'news-posts-index', class: 'limit-large', title: 'Recent News' do -%>
+<%= content_section 'news-posts-index', title: 'Recent News' do -%>
     <% model_cache NewsPost do %>
-        <%- NewsPost.recent.each do |post| -%>
-            <%= render partial: 'news_posts/embed', locals: {news_post: post} -%>
-        <%- end -%>
+        <div class="news-posts-list">
+            <%- NewsPost.recent.each do |post| -%>
+                <%= render partial: 'news_posts/embed', locals: {news_post: post} -%>
+            <%- end -%>
+        </div>
     <% end %>
     <div class="clear"></div>
     <%= user_actions is_admin? do -%>
-        <%= icon_link_to :white, :plus, 'Add New Post', new_news_post_path, class: 'button' %>
+        <%= icon_link_to :plus, 'Add News Post', new_news_post_path %>
     <% end %>
 <%- end -%>
 

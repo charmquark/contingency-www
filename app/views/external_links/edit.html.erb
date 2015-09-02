@@ -1,18 +1,6 @@
 <%- content_for :title do -%>Edit <%= @external_link.site_name %> Link | <%= @member.handle %> | <%- end -%>
 
 <%= form_section title: "Edit #{@external_link.site_name} Link for #{@member.handle}" do -%>
-    <%- if @external_link.errors.any? -%>
-        <div id="error_explanation">
-            <h2><%= pluralize(@external_link.errors.count, "error") %> prohibited this external link from being saved:</h2>
-            
-            <ul>
-                <% @external_link.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-            </ul>
-        </div>
-    <%- end -%>
-    
     <%= form_for(@external_link,
             url: member_external_link_path(@member, @external_link),
             method: :patch
@@ -28,9 +16,9 @@
             <%= f.text_field :fragment %>
         </div>
         <%= user_actions do -%>
-            <%= f.submit class: 'button' %>
-            <%= f.button 'Reset', class: 'button', type: :reset %>
-            <%= link_to 'Cancel', member_external_links_path(@member), class: 'button' %>
+            <%= f.submit 'Save' %>
+            <%= f.button 'Reset', type: :reset %>
+            <%= link_to 'Cancel', member_external_links_path(@member) %>
         <%- end -%>
     <%- end -%>
 <%- end -%>
