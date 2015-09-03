@@ -11,7 +11,7 @@
 </ul>
 
 <%= content_section 'info-intro', title: 'Introduction to the Manual' do -%>
-    <p>This manual exists to help you make full use of the site. While there's nothing terribly complex, it never hurts to be aware of the details. Each section corresponds to one of the types of information currently supported by the site, and gives relevant information for how to manage those resources as both a regular user and an administrator. If you have any question that isn't resolved by the manual, please let me know so it can be updated/improved.</p>
+    <p>This manual exists to help you make full use of the site. While there's nothing terribly complex, it never hurts to be aware of the details. Each section corresponds to one of the types of resources currently supported by the site, and gives relevant information for how to manage those resources as both a regular user and an administrator. If you have any question that isn't resolved by the manual, please let me know so it can be updated/improved.</p>
     
     <div class="for-admins">
         <p>Information intended for administrators will appear with a red band along the left side, like this paragraph. Regular users can ignore it or read it as they see fit.</p>
@@ -19,50 +19,37 @@
 <%- end -%>
 
 <%= content_section 'info-background-images', title: 'Background Images' do -%>
-    <ul class="paths">
-        <li>GET: /games/SLUG/background_images</li>
-        <li>POST: /games/SLUG/background_images</li>
-        <li>GET: /games/SLUG/background_images/new</li>
-        <li>DELETE: /games/SLUG/background_images/ID</li>
-        <li>GET: /members/HANDLE/background_images</li>
-        <li>POST: /members/HANDLE/background_images</li>
-        <li>GET: /members/HANDLE/background_images/new</li>
-        <li>DELETE: /members/HANDLE/background_images/ID</li>
-    </ul>
-    <p>Background Images can be added to Games and Members. Backgrounds for Games will be used on that Game's page(s), as well as the home page and any other page without any associated backgrounds. Backgrounds for Members are used <em>only</em> on that Member's page(s). If you have an image you believe is suitable, it's perfectly fine to submit it for both your Member page and the relevant Game.</p>
+    <p>Background Images can be added to Games and Members. Backgrounds for Games will be used on that Game's page(s), as well as the home page and any other page without any associated Backgrounds. Backgrounds for Members are used <em>only</em> on that Member's page(s). If you have an image you believe is suitable, it's perfectly fine to submit it for both your Member page and any relevant Game.</p>
     
-    <p>At the moment, regular members are asked to send any images they'd like to submit as a background, either for a Game or for their Member page(s), to an administrator. There is a small amount of editing that must be done before adding the image. Eventually this may become automated so that you can submit images directly to the site yourself.</p>
+    <p>At the moment, regular members are asked to send any images they'd like to submit as a background, either for a Game or for their Member page(s), to an administrator. There is a small amount of editing that must be done before adding the image. Eventually this may become automated.</p>
+    
+    <h3>Background Image Management</h3>
+    
+    <p>If you are an administrator, or feel confident in your ability to apply a very simple edit, you can download the XCF template for Backgrounds <%= link_to 'from here', '/info/background_image_template.xcf' %>. Ask an administrator for instructions. No other format is currently available, so if your editor of choice does not work with XCF files, you will need to send any images you want used to an administrator to be processed and added.</p>
+    
+    <%= image_tag '/images/info/background-images.management1.jpg', class: 'exhibit right' %>
+    <%= image_tag '/images/info/background-images.management2.jpg', class: 'exhibit right' %>
+    <p>You can access your account's associated images by first navigating to your Member profile page (a convenient link is provided in the header when logged in), then clicking the <%= icon 'image-area' %> <em>Backgrounds</em> action button at the bottom of the information section (the top section). From here you can add a new image by clicking the <%= icon :plus %> <em>Add Background</em> action button, or remove an image by clicking the <%= icon :delete %> action icon on the image preview. There is no limit at this time on the number of Backgrounds you can have.</p>
     
     <div class="for-admins">
-        <p>An XCF template for Background Images is <%= link_to 'provided for download', '/info/background_image_template.xcf' %>. If your editor of choice does not work with XCF files, forward any image you receive to someone who can do the edit. Right now no other format is available.</p>
-        
-        <%= image_tag '/images/info/background-images.management1.jpg', class: 'exhibit right' %>
-        <p>You will be able to access Background Image management in one of two ways. You can either click on any <%= icon :white, 'image-area' %> action icons on Game banners and Member avatars, or click on the <em>Manage Backgrounds</em> action button at the bottom of any Game or Member profile page. Doing either of these things will take you to the Background Image index for the Game or Member you acted on.</p>
-        
-        <p>From here you can delete a background by clicking the <%= icon :white, :delete %> action icon on the Background Image preview, or add a new background by clicking the <em>Add New Background</em> action button. There is no limit, at this time, on the number of backgrounds a Game or Member can have. When exporting a background from the template, check that it meets these criteria:</p>
-        
-        <ul>
-            <li>Make sure the &ldquo;site-bg&rdquo; layer is hidden.</li>
-            <li>Make sure the resolution is still 1920x720.</li>
-            <li>Make sure to export as PNG with alpha preserved.</li>
-        </ul>
+        <p>Administrators can access the Backgrounds for a Game in the same manner, by clicking the <%= icon 'image-area' %> <em>Backgrounds</em> action button on the Game profile page.</p>
     </div>
+    
+    <p>When exporting a background from the template, double-check that it meets these criteria:</p>
+    
+    <ul>
+        <li>Make sure the &ldquo;site-bg&rdquo; later is hidden.</li>
+        <li>Make sure the resolution is still 1920×720.</li>
+        <li>Make sure to export as PNG with alpha preserved.</li>
+    </ul>
 <%- end -%>
 
 <%= content_section 'info-external-links', title: 'External Links' do -%>
-    <ul class="paths">
-        <li>GET: /members/HANDLE/external_links</li>
-        <li>POST: /members/HANDLE/external_links</li>
-        <li>GET: /members/HANDLE/external_links/new</li>
-        <li>DELETE: /members/HANDLE/external_links/SITE</li>
-    </ul>
-
-    <%= image_tag '/images/info/external-links.management1.jpg', class: 'exhibit right' %>
-    <p>External Links lead to an account on some other site, such as Twitch or YouTube. To manage External Links first navigate to your Member profile page, then click on the <em>Manage External Links</em> action button at the bottom of the personal information section (the top section). This will take you to the External Links index page for your Member account (or for admins, the account whose profile you came from).</p>
+    <p>External Links lead to an account on some other site, such as Twitch or YouTube. To manage External Links first navigate to your Member profile page, then click on the <%= icon :link %> <em>Links</em> action button at the bottom of the information section (the top section). This will take you to the External Links index page for your Member account (or for admins, the account whose profile you came from).</p>
     
-    <p>There are a limited number of supported sites, currently including: Beam, Facebook, Google+, Player.me, Steam, Twitter, Twitch, and YouTube. You can also add one link to an arbitrary URL. If you have any slots remaining, the <em>Add New Link</em> action button will be available at the bottom of the list. To remove an existing link, click the <%= icon :white, :delete %> action icon at the left of the link.</p>
+    <p>There are a limited number of supported sites, currently including: Beam, Facebook, Google+, Player.me, Steam, Twitter, Twitch, and YouTube. You can also add one link to an arbitrary URL. If you have any slots remaining, the <%= icon :plus %><em>Add Link</em> action button will be available at the bottom of the list. To remove an existing link, click the <%= icon :delete %> action icon at the left of the link. To modify a link, click the <%= icon :settings %> action icon.</p>
     
-    <p>When adding a new External Link, you will need to specify two pieces of information. First is the <em>site</em>, which you will simply select from the list of provided options. If you already have a link to a particular site, it will not be in the list, so you don't have to worry about any accidents. Second is the <em>fragment</em>; this is the unique string that identifies the external account (e.g. your username, channel id, etc). As an example, if you are VibeRaider and you want to add your Twitter, you would first click the Twitter site option, then enter &ldquo;VibeRaiderLP&rdquo; as the fragment.</p>
+    <p>When adding or updating an External Link, you will need to specify two pieces of information. First is the <em>site</em>, which you will simply select from the list of provided options. If you already have a link to a particular site, it will not be in the list, so you don't have to worry about any accidents. Second is the <em>fragment</em>; this is the unique string that identifies the external account (e.g. your username, channel id, etc). As an example, if you are VibeRaider and you want to add your Twitter, you would first click the Twitter site option, then enter &ldquo;VibeRaiderLP&rdquo; as the fragment.</p>
 
     <%= image_tag '/images/info/external-links.twitch1.jpg', class: 'exhibit right' %>
     <p>There is special support for Twitch. If you have provided a link to your Twitch channel, and are currently live, an indicator will appear on your Member avatar throughout the site, and a preview panel will apear above your biography on your Member profile page. Clicking anywhere on either of these will send users straight to your channel. (Note that clicking the normal Twitch link on your profile will go to your Twitch profile page.) Given sufficient interest, it may be possible to add similar support for other services in the future.</p>
@@ -110,7 +97,7 @@
     
     <div class="for-admins">
         <p>To add a Game Membership first navigate to either the Game's or the Member's profile. Click on the <em>Add Game Membership</em> action button on the bottom of the list of memberships (the second section). You will be presented the New Game Membership form, with either the Game or Member locked in (according to which profile you came from). Simply select the association from the provided list.</p>
-        <p>To remove a Game Membership, simply click on the <%= icon :white, :delete %> action icon appearing on a Game banner when on a Member profile page, or on a Member avatar when on a Game profile page.</p>
+        <p>To remove a Game Membership, simply click on the <%= icon :delete %> action icon appearing on a Game banner when on a Member profile page, or on a Member avatar when on a Game profile page.</p>
     </div>
 <%- end -%>
 
@@ -181,7 +168,7 @@
     <div class="sep"></div>
     
     <%= image_tag '/images/info/videos.management1.jpg', class: 'exhibit right' %>
-    <p>You can also click on the <em>Manage Videos</em> action button to see the Videos index page. Here you will find a second <em>Add New Video</em> action button with identical functionality. You are also able to delete Videos from your account on this page, by clicking the <%= icon :white, :delete %> action icon next to the Video you want to remove.</p>
+    <p>You can also click on the <em>Manage Videos</em> action button to see the Videos index page. Here you will find a second <em>Add New Video</em> action button with identical functionality. You are also able to delete Videos from your account on this page, by clicking the <%= icon :delete %> action icon next to the Video you want to remove.</p>
     
     <div class="for-admins">
         <p>As an admin, navigating to any Member's profile page will permit you to add or manage their associated Videos.</p>

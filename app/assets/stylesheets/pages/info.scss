@@ -21,6 +21,8 @@
                 
                 width: 250px;
                 
+                margin-bottom: 1rem;
+                
                 position: relative;
                 
                 &:hover {
@@ -73,8 +75,6 @@
         border-left: 1rem rgba($red-900, 0.8) solid;
         
         padding: 1rem 0.5rem;
-        
-        @include clearfix;
     }
     
     .right { float: right; }
