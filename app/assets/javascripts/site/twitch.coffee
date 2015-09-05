@@ -1,5 +1,5 @@
 $(document).on 'page:change', ->
-    $('#member_show_twitch-preview').each ->
+    $('#member-show-twitch_preview').each ->
         preview = $ this
         twitch_fetch
             url: twitch_data_url_for preview
@@ -12,7 +12,7 @@ $(document).on 'page:change', ->
                     $('.viewers', preview).text stream.viewers
                     preview.addClass 'show'
     
-    $('.twitch-indicator').each ->
+    $('.twitch_indicator').each ->
         indicator = $ this
         twitch_fetch
             url: twitch_data_url_for indicator
