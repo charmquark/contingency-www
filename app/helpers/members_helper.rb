@@ -32,7 +32,7 @@ module MembersHelper
             link_to(
                 image_tag('external-sites/twitch-avatar-indicator.png'),
                 external_link_twitch_channel_url(fragment),
-                class: 'twitch-indicator',
+                class: 'twitch_indicator',
                 data: {fragment: fragment},
                 target: '_blank'
             )
