@@ -1,5 +1,6 @@
-<%- content_for :title do -%>New Game Membership | <%- end -%>
-<%- content_for :body_class do -%>game_memberships-assoc-<%= @assoc_type.model_name.param_key %> <%- end -%>
+<%- title 'New Game Membership' -%>
+
+<%- content_for :body_class, "game_memberships-assoc-#{@assoc_type.model_name.param_key}" -%>
 
 <%= form_section title: 'New Game Membership' do %>
     <%= form_for(@game_membership,
@@ -7,28 +8,26 @@
             method: :post
         ) do |f|
     %>
-        <div class="halfs-medium">
+        <div class="halfs">
             <div class="field">
                 <%= f.label :game_id %>
                 <%- if @assoc_type == Game then -%>
                     <%= game_banner @assoc %>
                 <%- else -%>
-                    <%= games_select f, Game.without_member(@assoc) %>
+                    <%= game_select f, Game.without_member(@assoc) %>
                 <%- end -%>
             </div>
+            
             <div class="field">
                 <%= f.label :member_id %>
                 <%- if @assoc_type == Member then -%>
                     <%= member_avatar @assoc %>
                 <%- else -%>
-                    <%= members_select f, Member.without_game(@assoc) %>
+                    <%= member_select f, Member.without_game(@assoc) %>
                 <%- end -%>
             </div>
         </div>
-        <%= user_actions do -%>
-            <%= f.submit 'Save' %>
-            <%= f.button 'Reset', type: :reset %>
-            <%= link_to 'Cancel', @assoc %>
-        <%- end -%>
+
+        <%= form_actions f, @assoc %>
     <% end %>
 <% end %>

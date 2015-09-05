@@ -1,26 +1,31 @@
-<%- content_for :title do -%>External Links | <%= @member.handle %> | <%- end -%>
+<%- title 'External Links', @member.handle -%>
 
-<%= content_section 'external-links-index', class: 'limit-large', title: "External Links for #{@member.handle}" do -%>
+<%- sites_available = ExternalLink.available_sites_for(@member).length > 0 -%>
+
+<%= content_section 'external_links-index', class: 'limit_large', title: "External Links for #{@member.handle}" do -%>
     <table>
         <%- @member.external_links.each do |el| -%>
             <tr>
-                <td class="external-link-actions">
+                <td class="record_actions">
                     <%= icon_delete_link '', member_external_link_path(@member, el) %>
                     <%= icon_link_to :settings, '', edit_member_external_link_path(@member, el) %>
                 </td>
-                <td class="external-link-site-cell"><%= external_link_icon el %><%= el.site_name %></td>
-                <td class="external-link-fragment-cell"><%= external_link_resource_url_text(el).html_safe %></td>
+                
+                <td class="site"><%= external_link_icon el %><%= el.site_name %></td>
+                
+                <td class="url"><%= external_link_resource_url(el, true).html_safe %></td>
             </tr>
         <%- end -%>
     </table>
-    <%- sites_available = ExternalLink.available_sites_for(@member).length > 0 -%>
+    
     <%- unless sites_available then -%>
         <p class="notice">You have set an External Link for all currently supported sites.</p>
     <%- end -%>
+    
     <%= user_actions is_admin_or?(@member) do -%>
         <%- if sites_available then -%>
-            <%= action_link_to :plus, "Add Link", new_member_external_link_path(@member) %>
+            <%= icon_link_to :plus, "Add Link", new_member_external_link_path(@member) %>
         <%- end -%>
-        <%= action_link_to 'keyboard-backspace', "Back to Member", @member %>
+        <%= icon_link_to 'keyboard-backspace', "Back to Member", @member %>
     <%- end -%>
 <%- end -%>

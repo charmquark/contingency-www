@@ -1,41 +1,16 @@
-#featured-background-image {
-    width: 100%;
-    
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    
-    z-index: -1;
-    
-    .breakpoint-small & { top: $header-height-small; }
-    
-    .breakpoint-medium & { top: $header-height-medium; }
-    
-    .breakpoint-large & { top: 0px; }
-}
+#background_images-index-section {
+    img { @include size(100% auto); }
 
-
-#background-images-index-section {
-    img {
-        width: 100%;
-        height: auto;
-    }
-
+    
     li {
-        background: $black;
+        outline: 1px $black solid;
         
-        width: 49%;
+        font-size: 0px;
         
         position: relative;
-        
-        float: left;
-        
-        &:nth-child(even) { float: right; }
-        
-        &:nth-child(1) { margin-top: 0px !important; }
-        &:nth-child(2) { margin-top: 0px !important; }
     }
 
+    
     ul {
         list-style-type: none;
         
@@ -46,7 +21,36 @@
     }
     
     
-    .breakpoint-small & li { margin-top: $pad-small; }
+    .breakpoint-small & li { @include margin-centered($content-width-small, $spacing-small); }
     
-    .breakpoint-medium & li { margin-top: $pad-medium; }
+    
+    .breakpoint-medium & li {
+        width: ($content-width-medium - $spacing-medium - $pad-medium-x2) / 2;
+        
+        margin-top: $spacing-medium;
+        
+        float: left;
+        
+        &:nth-child(even) { float: right; }
+    }
+    
+    
+    .breakpoint-large & li {
+        width: ($content-width-large - $spacing-large - $pad-medium-x2) / 2;
+        
+        margin-bottom: $spacing-large;
+    }
+    
+    
+    .breakpoint-wide & li {
+        float: left;
+        
+        width: ($content-width-wide - ($spacing-large * 2) - $pad-medium-x2) / 3;
+        
+        margin-right: $spacing-large;
+        
+        &:nth-child(even) { float: left; }
+        
+        &:nth-child(3n) { margin-right: 0px; }
+    }
 }

@@ -1,0 +1,23 @@
+#game-index-section {
+    .description { @extend %hide_small; }
+    
+    .breakpoint-medium & {
+        li {
+            background-color: $bg-card;
+            
+            width: $game-banner-width;
+            
+            &:hover { background-color: $color-card; }
+        }
+        
+        .description {
+            @include size($game-index-description-size);
+            
+            margin: 0px auto;
+            padding: $pad-medium;
+            
+            font-size: 0.8rem;
+            line-height: 1rem;
+        }
+    }
+}

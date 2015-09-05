@@ -1,5 +1,5 @@
-<%- content_for :title do -%>Editing <%= @member.handle %> | <%- end -%>
+<%- title "Editing Member #{@member.handle}" -%>
 
-<%= form_section title: "Editing Member: #{@member.handle}" do -%>
+<%= form_section title: "Editing Member &ldquo;#{@member.handle}&rdquo;" do -%>
     <%= render 'form' %>
 <%- end -%>

@@ -1,0 +1,74 @@
+#member-show-biography {
+    @extend %card;
+    
+    max-height: $member-avatar-height * 4;
+    
+    overflow-x: none;
+    overflow-y: auto;
+
+    
+    .breakpoint-small & { margin-top: $spacing-small; }
+    
+    .breakpoint-medium & { margin-left: $member-show--info--offset-medium; }
+    .breakpoint-large  & { margin-left: $member-show--info--offset-large ; }
+}
+
+
+#member-show-external_links {
+    @extend %spacing_margin_y;
+    
+    font-size: 0px;
+
+    
+    .breakpoint-small & {
+        text-align: center;
+        
+        .icon { margin: 0px $spacing_small; }
+    }
+
+    
+    .breakpoint-medium & {
+        @extend .z_shadow_1;
+        
+        background-color: $bg-card;
+        color: $fg-card;
+        text-align: center;
+        
+        width: $member-avatar-width;
+        
+        clear: left;
+        float: left;
+    }
+}
+
+
+#member-show-games-section {
+    .breakpoint-small & { margin-bottom: 0px; }
+}
+
+#member-show-info-section {
+    .member-avatar {
+        @extend %circle, .z_shadow_2;
+        
+        z-index: 10;
+    }
+    
+    
+    .breakpoint-small & {
+        .member-avatar {
+            margin: 0px auto;
+            
+            display: block;
+        }
+    }
+    
+    
+    .breakpoint-medium & {
+        .member-avatar { float: left; }
+    }
+    
+    
+    .csstransforms & {
+        .member-avatar { @include transform(rotateZ(-15deg)); }
+    }
+}

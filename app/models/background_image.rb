@@ -12,5 +12,5 @@ class BackgroundImage < ActiveRecord::Base
     
     validates :image,
         attachment_presence: true,
-        attachment_content_type: {content_type: 'image/png'}
+        attachment_content_type: {content_type: 'image/jpeg'}
 end

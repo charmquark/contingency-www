@@ -1,0 +1,46 @@
+@mixin colors($b, $f) {
+    background-color: $b;
+    color: $f;
+}
+
+
+@mixin positioned-background($pos, $url) {
+    background-image: url($url);
+    background-position: $pos;
+    background-repeat: no-repeat;
+}
+
+
+@mixin margin-centered($width, $margin: null) {
+    width: 100%;
+    max-width: $width;
+
+    @if $margin == null {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @else {
+        margin: $margin auto;
+    }
+}
+
+
+@mixin max-size($width, $height: null) {
+    @if length($width) == 1 {
+        @if $height == null {
+            $height: $width;
+        }
+    }
+    @else {
+        $height: nth($width, 2);
+        $width: nth($width, 1);
+    }
+    max-width: $width;
+    max-height: $height;
+}
+
+
+@mixin padding {
+    .breakpoint-small  & { padding: $pad-small ; }
+    .breakpoint-medium & { padding: $pad-medium; }
+}

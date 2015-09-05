@@ -1,0 +1,36 @@
+.member-avatar {
+    @include size($member-avatar-size);
+    
+    position: relative;
+    
+    display: inline-block;
+    
+    &.half_size { @include size($member-avatar-size-half); }
+    
+    > img {
+        @include size(100%);
+        
+        display: inline-block;
+    }
+    
+    > .handle {
+        @extend %text-shadow-heavy;
+
+        @include colors($bg-member-avatar-handle, $fg-member-avatar-handle);
+        font-weight: bold;
+        text-align: center;
+        
+        width: 100%;
+        height: $member-handle-height;
+
+        font-size: $member-handle-font-size;
+        letter-spacing: $member-handle-letter-spacing;
+        line-height: $member-handle-height;
+        
+        @include position(absolute, null 0px 0px 0px);
+        
+        display: block;
+    }
+    
+    .breakpoint-medium & { @include max-size($member-avatar-size); }
+}

@@ -1,0 +1,25 @@
+ul.of_members.packed {
+    .breakpoint-small & {
+        > li {
+            &:not(.see-all) { @include size(33% auto); }
+        }
+        
+        .member-avatar { @include size(100%); }
+    }
+
+    
+    .breakpoint-medium & {
+        > li.see-all {
+            @include size($member-avatar-size);
+            
+            line-height: $member-avatar-height;
+        }
+    }
+    
+    
+    .breakpoint-medium.csstransforms & {
+        > li {
+            &:hover .member-avatar img { @include transform($list-member-avatar-transform); }
+        }
+    }
+}

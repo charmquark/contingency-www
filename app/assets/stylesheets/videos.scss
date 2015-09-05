@@ -1,5 +1,5 @@
 iframe.youtube-player {
-    @extend %hide-small;
+    @extend %hide_small;
     
     display: inline-block;
     
@@ -20,15 +20,15 @@ iframe.youtube-player {
         
         padding: 1rem 0rem;
         
-        &.video-fragment-cell { padding: 1rem 0.5rem; }
+        &.fragment { padding: 1rem 0.5rem; }
         
-        &.video-info-cell > span.video-info-channel {
+        &.info > span.channel {
             color: $cyan-200;
             
             margin-right: 1rem;
         }
         
-        &.video-actions {
+        &.record_actions {
             text-align: center;
             
             > a {

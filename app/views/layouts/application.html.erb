@@ -22,10 +22,10 @@
     
     <%= csrf_meta_tags %>
 </head>
-<body class="<%= controller_name %>-controller <%= action_name %>-action <%= yield :body_class %>">
-    <%- unless featured_background_image.nil? -%>
-        <%= image_tag featured_background_image.image.url, id: 'featured-background-image' %>
-    <%- end -%>
+<body
+    class="<%= controller_name %>-controller <%= action_name %>-action <%= yield :body_class %>"
+    <%= featured_background_image.nil? ? '' : "data-background=#{featured_background_image.image.url}" %>
+>
     <header>
         <div>
             <h1><%= icon_link_to 'contingency-symbol', 'The Contingency', root_path %></h1>
@@ -33,7 +33,7 @@
             <nav>
                 <%= icon_link_to 'gamepad-multiple', 'Games', games_path, id: 'header-nav-games' %>
                 <%= icon_link_to 'account-multiple', 'Members', members_path, id: 'header-nav-members' %>
-                <%= icon_link_to :newspaper, 'News', news_posts_path, id: 'header-nav-news-posts' %>
+                <%= icon_link_to :newspaper, 'News', news_posts_path, id: 'header-nav-news_posts' %>
                 <%- if logged_in? then -%>
                     <%= icon_link_to :account, current_user.handle, current_user %>
                 <%- end -%>
@@ -63,6 +63,7 @@
                 <%= link_to 'Members', members_path %>
                 <%= link_to 'News', news_posts_path %>
             </nav>
+            <%= image_tag 'footer-logo.png', width: 100 %>
         </div>
     </footer>
 </body>

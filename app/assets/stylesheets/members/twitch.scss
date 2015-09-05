@@ -1,0 +1,96 @@
+ul.packed.of_members {
+    .twitch-indicator { display: none; }
+
+
+    .breakpoint-medium & {
+        .twitch-indicator.show {
+            background-color: $color-twitch-light-grey;
+            text-align: center;
+            
+            @include size(35px);
+            
+            font-size: 0px;
+            line-height: 0px;
+            
+            @include position(absolute, 5px null null 5px);
+            
+            display: block;
+            
+            img { @include size(100%); }
+        }
+    }
+}
+
+
+#member-show-twitch_preview {
+    display: none;
+
+    
+    &.show {
+        @include positioned-background(bottom right, '/images/external-sites/twitch-preview.png');
+        background-color: $color-twitch-light-grey;
+        color: $color-twitch-dark-grey;
+        outline: 1px $color-twitch-dark-grey solid;
+        
+        @include padding;
+        
+        position: relative;
+        
+        display: block;
+        
+        > span { display: block; }
+        
+        .game,
+        .title {
+            color: $color-twitch-purple;
+            font-weight: bold;
+        }
+        
+        .thumbnail { outline: 1px $color-twitch-dark-grey solid; }
+    }
+
+    
+    .breakpoint-small &.show {
+        background-size: 25%;
+        
+        margin-bottom: $spacing-small;
+        
+        > span {
+            margin-bottom: $pad-small;
+            margin-right: 70px;
+        }
+        
+        .thumbnail { @include size(100% auto); }
+    }
+    
+    
+    .breakpoint-medium &.show {
+        background-size: 125px;
+        
+        height: 180px + $pad-medium-x2;
+        
+        margin-bottom: $spacing-medium;
+        margin-left: $member-show--info--offset-medium;
+        
+        @include clearfix;
+        
+        > span {
+            margin-bottom: $pad-medium;
+            margin-left: 320px + $pad-medium;
+        }
+        
+        .thumbnail {
+            position: absolute;
+            top: $pad-medium;
+            left: $pad-medium;
+            
+            display: block;
+        }
+    }
+    
+    
+    .breakpoint-large &.show {
+        margin-bottom: $spacing-large;
+        margin-left: $member-show--info--offset-large;
+    }
+}

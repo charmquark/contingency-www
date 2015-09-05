@@ -1,0 +1,17 @@
+/*
+ * Banners
+ */
+
+$game-banner-width:     240px;
+$game-banner-height:    120px;
+$game-banner-size:      $game-banner-width $game-banner-height;
+
+$game-banner-width-half:    $game-banner-width / 2;
+$game-banner-height-half:   $game-banner-height / 2;
+$game-banner-size-half:     $game-banner-width-half $game-banner-height-half;
+
+/*
+ * Index
+ */
+
+$game-index-description-size:   100% ($game-banner-height * 1.5);

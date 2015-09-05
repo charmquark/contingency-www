@@ -1,7 +1,3 @@
-@mixin form-dependant-sizes($spacing) {
-    .field { margin-bottom: $spacing; }
-}
-
 form {
     margin: auto;
     
@@ -33,17 +29,19 @@ form {
 
     textarea {
         max-width: 100%;
-        min-height: 6.8rem;
+        min-height: 7rem;
         
         font-size: 1rem;
         line-height: 1.2rem;
         
         &.long {
-            min-height: 12.8rem;
+            min-height: 21rem;
         }
     }
     
     .field {
+        @extend %spacing_margin_bottom;
+        
         position: relative;
         
         > label {
@@ -60,7 +58,7 @@ form {
         
         .check-group,
         .radio-group {
-            background: rgba($link-hilite, 0.2);
+            background: rgba($bg-link-hover, 0.2);
             
             &.halfs,
             &.thirds {
@@ -81,7 +79,7 @@ form {
                 &.checked {
                     background: rgba($blue-grey-700, 0.4);
                     
-                    .toggle > span { background: $bg-color; }
+                    .toggle > span { background: $color-content; }
                 }
             }
             
@@ -135,8 +133,6 @@ form {
     
     .games-select { height: $game-banner-height; }
     
-    .members-select { height: $member-avatar-height; }
-    
     .breakpoint-small & {
         padding: 0px $pad-small;
         
@@ -144,20 +140,16 @@ form {
         .radio-group {
             label { font-size: 0.6rem; }
         }
-        
-        .field { margin-bottom: $spacing-small; }
     }
     
     .breakpoint-medium & {
-        .field { margin-bottom: $spacing-medium; }
-        
-        .halfs-medium {
+        > .halfs {
             position: relative;
             
             @include clearfix;
             
             .field {
-                width: 48%;
+                width: ($content-width-medium - $pad-medium-x2 - $spacing-medium) / 2;
                 
                 display: inline-block;
                 
@@ -165,9 +157,5 @@ form {
                 &:last-child { float: right; }
             }
         }
-    }
-
-    .breakpoint-large & {
-        .field { margin-bottom: $spacing-large; }
     }
 }

@@ -1,0 +1,95 @@
+#news_post-index-section {
+    .breakpoint-small & {
+        .news_post-embed { margin-bottom: $spacing-small; }
+    }
+    
+    
+    .breakpoint-medium & {
+        .news_post-embed {
+            width: ($content-width-medium - $spacing-medium - ($pad-medium * 2)) / 2;
+            
+            margin-bottom: $spacing-medium;
+            
+            float: left;
+            
+            &:nth-child(odd) { float: right; }
+        }
+    }
+    
+    
+    .breakpoint-large & {
+        .news_post-embed {
+            width: ($content-width-large - $spacing-large - ($pad-medium * 2)) / 2;
+            
+            margin-bottom: $spacing-large;
+        }
+    }
+    
+    
+    .breakpoint-wide & {
+        .news_post-embed {
+            width: ($content-width-wide - ($spacing-large * 2) - ($pad-medium * 2)) / 3;
+            
+            margin-bottom: $spacing-large;
+            margin-right: $spacing-large;
+            
+            &:nth-child(odd) { float: left; }
+            
+            &:nth-child(3n) { margin-right: 0px; }
+        }
+    }
+}
+
+
+#news-posts-index-section {
+    .news-posts-list {
+        width: auto;
+        
+        margin: 0px auto;
+    }
+
+    .breakpoint-small & {
+        article {
+            margin-top: $spacing-small;
+            
+            &:first-child { margin-top: 0px; }
+        }
+    }
+    
+    .breakpoint-medium & {
+        article {
+            width: (($content-width-medium / 2) - $spacing-medium - (10px));
+            
+            margin-top: $spacing-medium;
+            
+            float: left;
+            
+            &:nth-child(odd) { float: right; }
+            
+            &:nth-child(1),
+            &:nth-child(2) { margin-top: 0px; }
+        }
+    }
+    
+    .breakpoint-large & {
+        article {
+            width: (($content-width-large / 2) - $spacing-large);
+            
+            margin-top: $spacing-large;
+        }
+    }
+    
+    .breakpoint-wide & {
+        article {
+            width: (($content-width-wide / 3) - $spacing-large);
+            
+            margin-right: $spacing-large;
+            
+            &:nth-child(odd) { float: left; }
+            
+            &:nth-child(3) { margin-top: 0px; }
+            
+            &:nth-child(3n+0) { margin-right: 0px; }
+        }
+    }
+}

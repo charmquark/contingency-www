@@ -1,30 +1,30 @@
-<%- content_for :title do -%><%= @game.name %> | Games | <%- end -%>
+<%- title @game.name, 'Games' -%>
 
 <%= content_row :large, :halfs do -%>
-    <%= content_section 'game-info' do -%>
+    <%= content_section 'game-show-info' do -%>
         <% record_cache @game do %>
             <%= game_banner @game, link: false %>
-            <div class="game-description"><%= render_markdown @game.description -%></div>
+            <div class="description"><%= render_markdown @game.description -%></div>
         <% end %>
-        <div class="clear"></div>
-        <%= user_actions is_admin? do %>
-            <%= action_link_to :settings, 'Edit', edit_game_path(@game) %>
-            <%= action_link_to 'image-area', 'Backgrounds', game_background_images_path(@game) %>
-            <%= action_delete_link 'Delete', @game %>
-        <%- end -%>
+        
+        <%= user_actions is_admin?,
+            settings: ['Edit', edit_game_path(@game)],
+            'image-area' => ['Backgrounds', game_background_images_path(@game)],
+            delete: ['Delete', @game]
+        %>
     <%- end -%>
 
-    <%= content_section 'game-related-news', title: 'Related News' do -%>
+    <%= content_section 'game-show-news_post', title: 'Related News' do -%>
         <%= render partial: 'news_posts/embed', locals: {news_post: @game.news_posts.last} -%>
     <%- end -%>
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>
-    <%= content_section 'game-players', title: 'Players' do -%>
+    <%= content_section 'game-show-players', title: 'Players' do -%>
         <%= render partial: 'game_memberships/list', locals: {assoc: @game} %>
     <%- end -%>
     
-    <%= content_section 'game-recent-videos', class: 'hide-small', title: 'Recent Videos' do -%>
+    <%= content_section 'game-show-videos', class: 'hide_small', title: 'Recent Videos' do -%>
         <%= render partial: 'videos/list', locals: {assoc: @game} %>
     <%- end -%>
 <%- end -%>

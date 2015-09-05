@@ -1,29 +1,30 @@
 <%= form_for(@news_post) do |f| %>
     <div class="field">
-        <%= f.label :title %><br>
+        <%= f.label :title %>
         <%= f.text_field :title %>
     </div>
-    <div class="halfs-medium">
+    
+    <div class="halfs">
         <div class="field">
-            <%= f.label :member_id %><br>
+            <%= f.label :member_id %>
             <%= member_avatar @news_post.member %>
         </div>
+        
         <div class="field">
-            <%= f.label :game_id %><br>
-            <%= games_select f, Game.all, {include_blank: true} %>
+            <%= f.label :game_id %>
+            <%= game_select f, Game.all, {include_blank: true} %>
         </div>
     </div>
+    
     <div class="field">
-        <%= f.label :short_body %><br>
+        <%= f.label :short_body %>
         <%= f.text_area :short_body %>
     </div>
+    
     <div class="field">
-        <%= f.label :long_body %><br>
-        <%= f.text_area :long_body %>
+        <%= f.label :long_body %>
+        <%= f.text_area :long_body, class: 'long' %>
     </div>
-    <div class="actions">
-        <%= f.submit 'Save' %>
-        <%= f.button 'Reset', type: :reset %>
-        <%= link_to 'Cancel', (action_name == 'edit' ? @news_post : news_posts_path) %>
-    </div>
+    
+    <%= form_actions f, (action_name == 'edit' ? @news_post : news_posts_path) %>
 <% end %>

@@ -1,22 +1,22 @@
 <%- unless news_post.nil? then -%>
     <% record_cache news_post, '_embed/' do %>
-        <article class="news-post-embed">
+        <article class="news_post-embed">
             <header>
-                <%= member_avatar(news_post.member, handle: false, link: {class: 'half-size'}) %>
+                <%= member_avatar(news_post.member, handle: false, link: {class: 'half_size'}) %>
+                
                 <%- unless news_post.game.nil? then -%>
-                    <%= game_banner news_post.game, link: {class: 'half-size'} %>
+                    <%= game_banner news_post.game, link: {class: 'half_size'} %>
                 <%- else -%>
                     <%= image_tag 'generic-news-post.jpg', class: 'generic' %>
                 <%- end -%>
+                
                 <h1><%= news_post.title %></h1>
-                <span class="news-post-date"><%= news_post.created_at.to_formatted_s :news_post %></span>
+                <span class="date"><%= news_post.created_at.to_formatted_s :news_post %></span>
             </header>
-            <main>
-                <%= render_news news_post %>
-            </main>
-            <%- unless news_post.long_body.nil? or news_post.long_body.empty? then -%>
-                <%= link_to 'Read More', news_post, class: 'read-more' %>
-            <%- end %>
+            
+            <main> <%= render_news news_post %></main>
+            
+            <%= link_to 'Read More', news_post, class: 'read_more' %>
         </article>
     <% end %>
 <%- end -%>

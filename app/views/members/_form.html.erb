@@ -1,44 +1,49 @@
 <%= form_for(@member) do |f| %>
-    <div class="halfs-medium">
+    <div class="halfs">
         <div class="field">
             <%= f.label :handle %>
             <%= f.text_field :handle, data: {focus: ''} %>
         </div>
+        
         <div class="field">
             <%= f.label :email %>
             <%= f.text_field :email %>
         </div>
     </div>
-    <div class="halfs-medium">
+    
+    <div class="halfs">
         <div class="field">
             <%= f.label :password %>
             <%= f.password_field :password %>
         </div>
+        
         <div class="field">
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation %>
         </div>
     </div>
-    <div class="halfs-medium hide-small">
+    
+    <div class="halfs hide_small">
         <div class="field">
             <%= f.label :avatar %>
             <%= f.file_field :avatar %>
         </div>
+        
         <div class="field">
-            <%- unless @member.avatar.url.empty? then -%>
-                <label>Current Avatar</label>
-                <div class="member-avatar">
-                    <%= member_avatar_img @member %>
-                </div>
-            <%- end -%>
+            <label>Current Avatar</label>
+            <div class="member-avatar">
+                <%= member_avatar_img @member %>
+            </div>
         </div>
     </div>
+    
     <div class="field">
         <%= f.label :biography %>
         <%= f.text_area :biography, class: 'long' %>
     </div>
+    
     <%- if is_admin? then -%>
-        <div class="halfs-medium">
+        <div class="halfs">
             <div class="field">
                 <%= f.label :rank %>
                 <div class="radio-group halfs">
@@ -50,6 +55,7 @@
                     <% end %>
                 </div>
             </div>
+            
             <div class="field">
                 <%= f.label :role %>
                 <div class="radio-group halfs">
@@ -63,9 +69,6 @@
             </div>
         </div>
     <%- end -%>
-    <%= user_actions do -%>
-        <%= f.submit 'Save' %>
-        <%= f.button 'Reset', type: :reset %>
-        <%= link_to 'Cancel', (action_name == 'edit' ? @member : members_path) %>
-    <%- end -%>
+
+    <%= form_actions f, (action_name == 'edit' ? @member : members_path) %>
 <% end %>

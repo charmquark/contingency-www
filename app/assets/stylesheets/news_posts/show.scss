@@ -1,0 +1,78 @@
+#news_post-show-article {
+    > header { position: relative; }
+    
+    
+    h1 {
+        text-align: left;
+        
+        font-size: 1.5rem;
+        line-height: 1.7rem;
+        margin: 0px;
+    }
+    
+    
+    > main { position: relative; }
+    
+    
+    .date {
+        font-size: 0.8rem;
+        line-height: 1rem;
+    }
+
+
+    .breakpoint-small & {
+        > header {
+            .game-banner,
+            .member-avatar { display: none; }
+        }
+        
+        
+        > main { margin: $spacing-small 0px; }
+    }
+    
+    
+    .breakpoint-medium & {
+        > header {
+            min-height: $member-avatar-height-half;
+            
+            padding-right: $member-avatar-width-half + $game-banner-width-half + $spacing-medium;
+            
+            
+            .game-banner,
+            .member-avatar {
+                position: absolute;
+                top: 0px;
+            }
+            
+            
+            .game-banner { right: $member-avatar-width-half; }
+            
+            .member-avatar { right: 0px; }
+        }
+        
+        
+        > main { margin: $spacing-medium 0px; }
+    }
+    
+    
+    .breakpoint-large & {
+        > main { margin: $spacing-large 0px; }
+    }
+}
+
+
+#news_post-show-related {
+    @extend %hide_medium;
+    
+    
+    .breakpoint-large & {
+        width: $game-banner-width * 1.5;
+        
+        margin-top: $game-banner-height-half + $spacing-large;
+        margin-left: $spacing-large;
+        
+        float: right;
+        
+        .news_post-embed { margin-bottom: $spacing-large; }
+    }
+}

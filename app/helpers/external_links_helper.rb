@@ -1,11 +1,11 @@
 module ExternalLinksHelper
     def external_link_icon(el)
-        image_tag "external-sites/#{el.site}.png", class: 'external-site-icon'
+        image_tag "external-sites/#{el.site}.png", class: 'external_link-icon'
     end
     
     def external_link_resource_url(el, decorate = false)
         frag = el.fragment
-        frag = content_tag :span, frag, class: 'external-link-fragment' if decorate
+        frag = content_tag :span, frag, class: 'fragment' if decorate
         case el.site
         when 'beam_pro'
             "https://beam.pro/#{frag}"
@@ -28,9 +28,6 @@ module ExternalLinksHelper
         end
     end
     
-    def external_link_resource_url_text(el)
-        content_tag :span, external_link_resource_url(el, true).html_safe, class: 'external-link-url'
-    end
     
     def external_link_twitch_channel_url(frag)
         "http://www.twitch.tv/#{frag}"

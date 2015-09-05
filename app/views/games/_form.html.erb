@@ -1,28 +1,32 @@
 <%= form_for(@game, html: {multipart: true}) do |f| -%>
-    <div class="halfs-medium">
+    <div class="halfs">
         <div class="field">
             <%= f.label :name %>
             <%= f.text_field :name, data: {focus: ''} %>
         </div>
+        
         <div class="field">
             <%= f.label :slug %>
             <%= f.text_field :slug %>
         </div>
     </div>
+    
     <div class="field">
         <label>Attributes</label>
-        <div class="check-group singleton">
+        <div class="check-group">
             <div>
                 <%= f.check_box :featured %>
                 <%= f.label :featured %>
             </div>
         </div>
     </div>
-    <div class="halfs-medium hide-small">
+    
+    <div class="halfs hide_small">
         <div class="field">
             <%= f.label :banner %>
             <%= f.file_field :banner %>
         </div>
+        
         <div class="field">
             <%- unless @game.banner.url.empty? then -%>
                 <label>Current Banner</label>
@@ -32,13 +36,11 @@
             <%- end -%>
         </div>
     </div>
+    
     <div class="field">
         <%= f.label :description %>
-        <%= f.text_area :description, class: 'long' %>
+        <%= f.text_area :description %>
     </div>
-    <%= user_actions do -%>
-        <%= f.submit 'Save' %>
-        <%= f.button 'Reset', type: :reset %>
-        <%= link_to 'Cancel', (action_name == 'edit' ? @game : games_path) %>
-    <%- end -%>
+    
+    <%= form_actions f, (action_name == 'edit' ? @game : games_path) %>
 <%- end -%>

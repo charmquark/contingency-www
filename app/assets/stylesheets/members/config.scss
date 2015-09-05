@@ -1,0 +1,26 @@
+/*
+ * Avatars
+ */
+
+$member-avatar-width:   120px;
+$member-avatar-height:  120px;
+$member-avatar-size:    $member-avatar-width $member-avatar-height;
+
+$member-avatar-width-half:  $member-avatar-width / 2;
+$member-avatar-height-half: $member-avatar-height / 2;
+$member-avatar-size-half:   $member-avatar-width-half $member-avatar-height-half;
+
+$member-handle-height:          20px;
+$member-handle-font-size:       13px;
+$member-handle-letter-spacing:  0.5px;
+
+$bg-member-avatar-handle:   $black-secondary;
+$fg-member-avatar-handle:   $white-text;
+
+
+/*
+ * Members: Show
+ */
+
+$member-show--info--offset-medium:  $member-avatar-width + $spacing-medium;
+$member-show--info--offset-large:   $member-avatar-width + $spacing-large;

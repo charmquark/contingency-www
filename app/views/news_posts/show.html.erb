@@ -1,22 +1,31 @@
-<%- content_for :title do -%><%= @news_post.title %> | News | <%- end -%>
+<%- title @news_post.title, 'News' -%>
 
-<%= content_section 'news-post', class: 'limit-large' do -%>
+<%= content_section 'news_post-show', class: 'limit_large' do -%>
+    <% model_cache NewsPost do %>
+        <aside id="news_post-show-related">
+            <%- @news_post.related.each do |np| -%>
+                <%= render partial: 'news_posts/embed', locals: {news_post: np} %>
+            <%- end -%>
+        </aside>
+    <% end %>
+    
     <% record_cache @news_post do %>
-        <article>
+        <article id="news_post-show-article">
             <header>
-                <h2><%= @news_post.title %></h2>
-                <span class="news-post-date"><%= @news_post.created_at.to_formatted_s :news_post %></span>
-                <%= member_avatar @news_post.member, handle: false unless @news_post.member.nil? %>
-                <%= game_banner @news_post.game unless @news_post.game.nil? %>
+                <%= member_avatar @news_post.member, handle: false, link: {class: 'half_size'} %>
+                <%= game_banner @news_post.game, link: {class: 'half_size'} unless @news_post.game.nil? %>
+                
+                <h1><%= @news_post.title %></h1>
+                <span class="date"><%= @news_post.created_at.to_formatted_s :news_post %></span>
             </header>
-            <main>
-                <%= render_news @news_post, true %>
-            </main>
+            
+            <main><%= render_news @news_post, true %></main>
         </article>
     <% end %>
-    <%= user_actions is_admin? do -%>
-        <%= action_link_to :settings, 'Edit', edit_news_post_path(@news_post) %>
-        <%= action_delete_link 'Delete', @news_post %>
-    <% end %>
+    
+    <%= user_actions is_admin?,
+        settings: ['Edit', edit_news_post_path(@news_post)],
+        delete: ['Delete', @news_post]
+    %>
 <%- end -%>
 

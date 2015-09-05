@@ -8,6 +8,7 @@
     font-smooth: always;
     
     @include prefixer(overflow-scrolling, touch, webkit);
+    @include prefixer(transition-property, $transition-properties, moz o webkit);
     @include prefixer(transition-duration, 0.25s, moz o webkit);
     @include prefixer(transition-timing-function, linear, moz o webkit);
 }
@@ -16,21 +17,23 @@ html,
 body { @include size(100%); }
 
 body {
-    background-color: darken($blue-grey-900, 13%);
+    background-attachment: fixed;
+    background-color: $blue-grey-900;
+    background-image: url('/images/site-bg.jpg');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: $white-text;
     font-family: $font-lato;
     font-weight: normal;
 
     margin: 0px;
     
-    .breakpoint-small & { font-size: 14px; }
+    .breakpoint-small & {
+        font-size: 14px;
+    }
     
     .breakpoint-medium & {
-        background-attachment: fixed;
-        background-image: url('/images/site-bg.jpg');
-        background-position: bottom center;
-        background-repeat: no-repeat;
-        background-size: cover;
         font-size: 16px;
         
         padding-top: $header-height-medium + $spacing-medium;
@@ -55,17 +58,13 @@ h6 {
     font-weight: normal;
 }
 
-h1 { font-size: 2rem; }
-
-h2 { font-size: 1.5rem; }
-
 body > main {
     min-height: 514px;
     
     z-index: 100;
     
     .breakpoint-small & {
-        //background: $bg-content-small;
+        background: $bg-content-small;
         
         padding-top: $header-height-small + $spacing-small;
     }
@@ -90,36 +89,18 @@ p {
 
 .clear { clear: both; }
 
-.content-section {
-    .breakpoint-small & {
-        margin-bottom: $spacing-small;
-        padding: $pad-small;
-    }
+.content_section {
+    @extend %spacing_margin_bottom;
     
-    .breakpoint-medium & { margin-bottom: $spacing-medium; }
-    
-    .breakpoint-large & { margin-bottom: $spacing-large; }
+    .breakpoint-small & { padding: $pad-small-x2 $pad-small; }
 }
 
-.content-section-body {
+.content_section-body {
     @extend %content-centered;
     
     position: relative;
     
     @include clearfix;
-    
-    h2 {
-        border-bottom: 1px $white-divider solid;
-        text-align: center;
-        
-        height: 1.5rem;
-
-        letter-spacing: 1px;
-        line-height: 2rem;
-        
-        position: relative;
-        top: -0.5rem;
-    }
     
     h3 {
         border-bottom: 1pt $white-divider solid;
@@ -131,30 +112,48 @@ p {
     
     .breakpoint-small & {
         h2 {
-            background: $bg-color;
+            text-align: center;
             
-            margin-bottom: $spacing-small / 2;
+            font-size: 1.5rem;
+            line-height: 2rem;
+            margin-bottom: $spacing-small;
         }
     }
     
     .breakpoint-medium & {
-        background: $bg-content;
+        background-color: $bg-content;
+        background-image: url('/images/bg-content.png');
+        background-position: top center;
+        background-repeat: repeat-x;
         
         padding: $pad-medium;
         
-        h2 { margin-bottom: $spacing-medium / 2; }
+        h2 {
+            border-bottom: 2px $white-divider solid;
+            text-align: left;
+            
+            height: 2rem;
+
+            font-size: 2rem;
+            line-height: 2.7rem;
+            margin-top: 0px;
+            margin-bottom: $spacing-medium;
+            
+            position: relative;
+            top: -0.7rem;
+        }
     }
     
     .breakpoint-large & {
-        h2 { margin-bottom: $spacing-large / 2; }
+        h2 { margin-bottom: $spacing-large; }
     }
 }
 
-.breakpoint-medium .content-section.limit-medium .content-section-body { max-width: $content-width-medium; }
+.breakpoint-medium .content_section.limit_medium .content_section-body { max-width: $content-width-medium; }
+.breakpoint-large  .content_section.limit_large  .content_section-body { max-width: $content-width-large ; }
 
-.breakpoint-large .content-section.limit-large .content-section-body { max-width: $content-width-large; }
 
-.breakpoint-small .hide-small { @extend %hide-small; }
+.hide_small { @extend %hide_small; }
 
 
 @import 'site/actions';

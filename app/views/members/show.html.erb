@@ -1,47 +1,52 @@
-<%- content_for :title do -%><%= @member.handle %> | Members | <%- end -%>
+<%- title @member.handle, 'Members' -%>
 
-<%= content_section 'member-info' do -%>
+<%= content_section 'member-show-info' do -%>
     <% record_cache @member do %>
-        <%= member_avatar @member, img: {class: 'z-shadow-1'}, link: false, handle: false %>
+        <%= member_avatar @member, link: false, handle: false %>
+        
         <%- twitch_link = nil -%>
-        <div class="member-external-links z-shadow-1">
+        <div id="member-show-external_links">
             <%- @member.external_links.each do |el| -%>
                 <%= link_to external_link_icon(el), external_link_resource_url(el), target: '_blank' %>
                 <%- twitch_link = el if el.site == 'twitch' -%>
             <%- end -%>
         </div>
+        
         <h2><%= @member.handle %></h2>
+        
         <%- unless twitch_link.nil? then -%>
             <%- fragment = twitch_link.fragment -%>
             <a
-                class="member-twitch-indicator z-shadow-1"
+                id="member-show-twitch_preview"
                 href="<%= external_link_twitch_channel_url fragment %>"
                 data-fragment="<%= fragment %>"
                 target="_blank"
             >
-                <span>Live Now @ Twitch:&nbsp;&nbsp;<span class="twitch-info-title"></span></span>
-                <span>Playing&nbsp;&nbsp;<span class="twitch-info-game"></span>&nbsp;&nbsp;with <span class="twitch-info-viewers"></span> viewers.</span>
+                <span>Live Now @ Twitch: <span class="title"></span></span>
+                <span>Playing <span class="game"></span> with <span class="viewers"></span> viewers.</span>
             </a>
         <%- end -%>
-        <div class="member-biography"><%= render_markdown @member.biography %></div>
+        
+        <div id="member-show-biography"><%= render_markdown @member.biography %></div>
     <% end %>
-    <div class="clear"></div>
-    <%= user_actions is_admin_or?(@member) do -%>
-        <%= action_link_to :settings, 'Edit', edit_member_path(@member)  %>
-        <%= action_link_to :link, 'Links', member_external_links_path(@member) %>
-        <%= action_link_to 'image-area', 'Backgrounds', member_background_images_path(@member) %>
+    
+    <%= user_actions is_admin_or?(@member),
+        settings: ['Edit', edit_member_path(@member)],
+        link: ['Links', member_external_links_path(@member)],
+        'image-area' => ['Backgrounds', member_background_images_path(@member)] do
+    -%>
         <%- if is_admin? then -%>
-            <%= action_delete_link 'Delete', @member %>
+            <%= icon_delete_link 'Delete', @member %>
         <%- end -%>
     <%- end -%>
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>
-    <%= content_section 'member-games', title: 'Games' do -%>
+    <%= content_section 'member-show-games', title: 'Games' do -%>
         <%= render partial: 'game_memberships/list', locals: {assoc: @member} %>
     <%- end -%>
     
-    <%= content_section 'member-recent-videos', class: 'hide-small', title: 'Recent Videos' do -%>
+    <%= content_section 'member-show-videos', class: 'hide_small', title: 'Recent Videos' do -%>
         <%= render partial: 'videos/list', locals: {assoc: @member, show_actions: true} %>
     <%- end -%>
 <%- end -%>

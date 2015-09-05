@@ -1,17 +1,8 @@
 <%- tag = "_list/#{assoc.model_name.param_key}-#{assoc.id}-" -%>
 <% model_cache_unless is_admin_or?(assoc), GameMembership, tag do %>
-    <%- 
-        list_class = nil
-        case assoc.model_name
-        when 'Game'
-            list_class  = 'of-members'
-        when 'Member'
-            list_class  = 'of-games'
-        end
-    -%>
-    <ul class="<%= list_class %> packed">
+    <ul class="of_<%= assoc.class.inverse_game_membership_assoc.model_name.param_key.pluralize %> packed">
         <%- game_memberships_sorted(assoc).each do |gm| -%>
-            <li class="hover-zoom z-level-0">
+            <li>
                 <%= render_game_membership assoc, gm %>
                 <%= user_action_icons is_admin?,
                     delete: polymorphic_path([assoc, gm])
@@ -20,6 +11,7 @@
         <%- end -%>
     </ul>
 <% end %>
-<%= user_actions is_admin? do -%>
-    <%= action_link_to :plus, 'Add', new_polymorphic_path([assoc, GameMembership]) %>
-<%- end -%>
+
+<%= user_actions is_admin?,
+    plus: ['Add', new_polymorphic_path([assoc, GameMembership])]
+%>

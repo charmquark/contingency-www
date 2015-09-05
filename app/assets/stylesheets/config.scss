@@ -1,22 +1,22 @@
-@import url('http://fonts.googleapis.com/css?family=Lato:300,400|Forum');
-
-$font-lato:     'Lato', 'Roboto', sans-serif;
-$font-forum:    'Forum', 'Roboto', sans-serif;
-
 @import 'config/colors';
+@import 'config/fonts';
+@import 'config/lists';
+@import 'config/z';
 
-$action-color: $cyan-900;
+/*
+ * Icons
+ */
 
-$bg-action:                 rgba($action-color, 0.2);
-$bg-action-danger:          rgba($red-900, 0.2);
-$bg-action-hover:           $action-color;
-$bg-action-danger-hover:    rgba($red-900, 0.6);
-$bg-color:                  $blue-grey-900;
-$bg-content:                rgba($bg-color, 0.6);
-$bg-content-small:          rgba($bg-color, 0.2);
-$bg-contrast:               rgba($blue-grey-100, 0.2);
-$bg-current:                rgba($cyan-900, 0.6);
-$bg-icon:                   rgba($bg-color, $alpha-black-icon);
+$external-link-size:    60px;
+
+$icons-available:   account, account-multiple, account-plus, contingency-symbol, delete, file-document-box, gamepad, gamepad-multiple, gamepad-plus, home, image-area, keyboard-backspace, link, logout, menu, newspaper, plus, settings, video;
+
+$icon-size-sm:  30px;
+$icon-size-lg:  60px;
+
+/*
+ * Layout
+ */
 
 $content-width-small:   500px;
 $content-width-medium:  760px;
@@ -30,33 +30,16 @@ $content-width-map: (
     wide:   $content-width-wide
 );
 
-$content-width-halfs-medium:    760px;
-$content-width-halfs-large:     1080px;
-$content-width-halfs-wide:      1560px;
-
-$external-link-size:    60px;
-
-$font-size-action:      20px;
-
-$game-banner-width:     240px;
-$game-banner-height:    $game-banner-width / 2;
-
 $header-height-small:   30px;
 $header-height-medium:  60px;
 $header-height-large:   60px;
 $header-height-wide:    $header-height-large;
 
-$icons-available:   account, account-multiple, account-plus, contingency-symbol, delete, file-document-box, gamepad, gamepad-multiple, gamepad-plus, home, image-area, keyboard-backspace, link, logout, menu, newspaper, plus, settings, video;
-
-$icon-size-sm:  30px;
-$icon-size-lg:  60px;
-
-$link-bg-alpha: 0.8;
-$link-bg:       rgba($blue-grey-900, $link-bg-alpha);
-$link-hilite:   $blue-grey-700;
-
 $pad-small:     10px;
 $pad-medium:    20px;
+
+$pad-small-x2:  ($pad-small  * 2);
+$pad-medium-x2: ($pad-medium * 2);
 
 $pad-map: (
     small:  $pad-small,
@@ -64,10 +47,6 @@ $pad-map: (
     large:  $pad-medium,
     wide:   $pad-medium
 );
-
-$member-avatar-width:       $game-banner-height;
-$member-avatar-height:      $member-avatar-width;
-$member-avatar-handle-bg:   $black-hint;
 
 $spacing-small:     10px;
 $spacing-medium:    20px;
@@ -80,8 +59,35 @@ $spacing-map: (
     wide:   $spacing-large
 );
 
-
+$content-width-halfs-medium:    760px;
+$content-width-halfs-large:     1080px;
+$content-width-halfs-wide:      1560px;
 
 $content-width-halfs-medium-column: ($content-width-medium / 2) - ($spacing-medium / 2);
 $content-width-halfs-large-column:  ($content-width-large / 2) - ($spacing-large / 2);
 $content-width-halfs-wide-column:   ($content-width-wide / 2) - ($spacing-large / 2);
+
+/*
+ * Other
+ */
+
+$transition-properties: (
+    background,
+    background-color,
+    border-radius,
+    box-shadow,
+    color,
+    opacity,
+    
+    width,
+    height,
+    
+    left,
+    
+    transform,
+    z-index
+);
+
+@import 'games/config';
+@import 'members/config';
+@import 'news_posts/config';

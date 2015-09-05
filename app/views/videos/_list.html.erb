@@ -1,12 +1,14 @@
 <%- show_actions ||= false -%>
+
 <% model_cache Video, "_list/#{assoc.model_name.param_key}-#{assoc.id}-" do %>
-    <ul class="of-videos packed">
+    <ul class="of_videos packed">
         <%- assoc.videos.recent.each do |vid| -%>
             <li><%= render partial: 'videos/iframe', locals: {video: vid} %></li>
         <%- end -%>
     </ul>
 <%- end -%>
-<%= user_actions(show_actions && is_admin_or?(assoc)) do %>
-    <%= action_link_to :plus, 'Add Video', new_polymorphic_path([assoc, Video]) %>
-    <%= action_link_to :video, 'Videos', polymorphic_path([assoc, Video]) %>
-<%- end -%>
+
+<%= user_actions(show_actions && is_admin_or?(assoc),
+    plus: ['Add Video', new_polymorphic_path([assoc, Video])],
+    video: ['Videos', polymorphic_path([assoc, Video])]
+) %>

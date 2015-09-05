@@ -1,10 +1,9 @@
-<%- content_for :title do -%>Games | <%- end -%>
+<%- title 'Games' -%>
 
-<%= content_section 'games-index', title: 'The Games We Play' do -%>
+<%= content_section 'game-index', title: 'The Games We Play' do -%>
     <% model_cache_unless is_admin?, Game do %>
         <%= render partial: 'games/list', locals: {games: Game.all, show_desc: true} %>
     <% end %>
-    <%= user_actions is_admin? do -%>
-        <%= action_link_to 'gamepad-plus', 'Add Game', new_game_path %>
-    <%- end -%>
+    
+    <%= user_actions is_admin?, 'gamepad-plus' => ['Add Game', new_game_path] %>
 <%- end -%>

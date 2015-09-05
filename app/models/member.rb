@@ -49,6 +49,11 @@ class Member < ActiveRecord::Base
         presence: true
     
     
+    def self.inverse_game_membership_assoc
+        Game
+    end
+    
+    
     def <=>(other_member)
         handle.downcase <=> other_member.handle.downcase
     end

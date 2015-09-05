@@ -1,0 +1,161 @@
+.news_post-embed {
+    @extend %card;
+    
+    width: 100%;
+    
+    
+    > header {
+        position: relative;
+        
+        
+        h1 {
+            font-size: 1.2rem;
+            line-height: 1.4rem;
+            margin: 0px;
+        }
+        
+        
+        .game-banner,
+        .generic,
+        .member-avatar { @extend %hide_small; }
+        
+        
+        .date {
+            font-size: 0.8rem;
+            line-height: 1rem;
+            
+            display: block;
+        }
+    }
+    
+    
+    > main {
+        overflow-x: none;
+        overflow-y: scroll;
+    }
+
+    
+    .read_more {
+        @extend %action-button;
+        
+        display: block;
+    }
+
+    
+    .breakpoint-small & {
+        > main {
+            max-height: $news-post-embed-main-height-small;
+            
+            margin: $spacing-small 0px;
+        }
+        
+        
+        .read_more { width: 100%; }
+    }
+    
+    
+    .breakpoint-medium & {
+        > header {
+            padding-top: $member-avatar-height-half + $spacing-medium;
+            
+            
+            .game-banner,
+            .generic,
+            .member-avatar { position: absolute; }
+            
+            
+            .game-banner,
+            .generic {
+                top: 0px;
+                left: $member-avatar-width-half;
+            }
+            
+            
+            .generic { @include size($member-avatar-size-half); }
+            
+            
+            .member-avatar {
+                top: 0px;
+                left: 0px;
+            }
+        }
+        
+        
+        > main {
+            height: $news-post-embed-main-height-medium;
+            
+            margin: $spacing-medium 0px;
+        }
+    }
+    
+    
+    .breakpoint-medium.csstransforms & {
+        > header {
+            padding-top: 0px;
+            padding-right: $member-avatar-width-half + $spacing-medium;
+            
+            
+            .game-banner,
+            .generic {
+                top: $member-avatar-height-half;
+                left: initial;
+                right: 0px;
+            }
+            
+            
+            .game-banner {
+                @include transform(rotate(90deg));
+                @include transform-origin(bottom);
+            }
+            
+            
+            .member-avatar {
+                left: initial;
+                right: 0px;
+            }
+        }
+        
+        
+        > main {
+            margin-right: $game-banner-height-half + $spacing-medium;
+        }
+    }
+    
+    
+    .breakpoint-large &,
+    .breakpoint-large.csstransforms & {
+        > header {
+            padding-top: 0px;
+            padding-right: $member-avatar-width-half + $game-banner-width-half + $spacing-large;
+            
+            
+            .game-banner,
+            .generic {
+                top: 0px;
+                left: initial;
+                right: $member-avatar-width-half;
+            }
+            
+            
+            .game-banner { @include transform(initial); }
+            
+            
+            .member-avatar {
+                left: initial;
+                right: 0px;
+            }
+        }
+        
+        
+        > main { margin: $spacing-large 0px; }
+    }
+}
+
+
+.breakpoint-large .news_posts-controller.show-action .news_post-embed > header {
+    padding-right: $member-avatar-width-half + $spacing-large;
+    
+    
+    .game-banner,
+    .generic { display: none; }
+}

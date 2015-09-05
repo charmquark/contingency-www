@@ -1,0 +1,7 @@
+@function sixteen-by-nine($base) {
+    @return ($base sixteen-to-nine($base));
+}
+
+@function sixteen-to-nine($sixteen) {
+    @return (($sixteen / 16) * 9);
+}

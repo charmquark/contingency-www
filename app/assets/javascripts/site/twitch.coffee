@@ -1,20 +1,19 @@
 $(document).on 'page:change', ->
-    $('.member-twitch-indicator').each ->
-        indicator = $ this
+    $('#member_show_twitch-preview').each ->
+        preview = $ this
         twitch_fetch
-            url: twitch_data_url_for indicator
+            url: twitch_data_url_for preview
             success: (data, textStatus, jqXHR)->
                 if data.stream?
                     stream = data.stream
-                    indicator.prepend $("<img class='twitch-info-preview' src='#{stream.preview.medium}' />")
-                    $('.twitch-info-game', indicator).text stream.game
-                    $('.twitch-info-title', indicator).text stream.channel.status
-                    $('.twitch-info-viewers', indicator).text stream.viewers
-                    indicator.addClass 'show'
+                    preview.prepend $("<img class='thumbnail' src='#{stream.preview.medium}' />")
+                    $('.title', preview).text stream.channel.status
+                    $('.game', preview).text stream.game
+                    $('.viewers', preview).text stream.viewers
+                    preview.addClass 'show'
     
-    $('.member-avatar-twitch-indicator').each ->
+    $('.twitch-indicator').each ->
         indicator = $ this
-        fragment = indicator.data 'fragment'
         twitch_fetch
             url: twitch_data_url_for indicator
             success: (data, textStatus, jqXHR)->

@@ -55,6 +55,7 @@ private
                 @assoc_type = model
                 key = @assoc_type.model_name.param_key
                 @assoc = send "find_#{key}", params["#{key}_id".to_sym]
+                @assoc_inverse = @assoc_type.inverse_game_membership_assoc
                 set_featured_backgroundable @assoc
                 break
             end

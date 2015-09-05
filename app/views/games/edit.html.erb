@@ -1,5 +1,5 @@
-<%- content_for :title do -%>Editing <%= @game.name %> | <%- end -%>
+<%- title "Editing #{@game.name}" -%>
 
-<%= form_section title: "Editing Game: #{@game.name}" do -%>
+<%= form_section title: "Editing Game &ldquo;#{@game.name}&rdquo;" do -%>
     <%= render 'form' %>
 <%- end -%>

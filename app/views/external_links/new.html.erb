@@ -1,4 +1,4 @@
-<%- content_for :title do -%>New External Link | <%= @member.handle %> | <%- end -%>
+<%- title 'New External Link', @member.handle -%>
 
 <%= form_section title: "New External Link for #{@member.handle}" do -%>
     <%= form_for(@external_link,
@@ -17,14 +17,12 @@
                 <% end %>
             </div>
         </div>
+
         <div class="field">
             <%= f.label :fragment %>
             <%= f.text_field :fragment %>
         </div>
-        <%= user_actions do -%>
-            <%= f.submit 'Save' %>
-            <%= f.button 'Reset', type: :reset %>
-            <%= link_to 'Cancel', member_external_links_path(@member) %>
-        <%- end -%>
+
+        <%= form_actions f, member_external_links_path(@member) %>
     <%- end -%>
 <%- end -%>

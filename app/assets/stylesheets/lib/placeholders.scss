@@ -1,0 +1,76 @@
+%card {
+    @extend %half_padding, .z_shadow_1;
+    
+    background: $bg-card;
+    color: $fg-card;
+}
+
+%circle {
+    border-radius: 50%;
+    
+    overflow: hidden;
+}
+
+%content-centered {
+    .breakpoint-small  & { @include margin-centered($content-width-small ); }
+    .breakpoint-medium & { @include margin-centered($content-width-medium); }
+    .breakpoint-large  & { @include margin-centered($content-width-large ); }
+    .breakpoint-wide   & { @include margin-centered($content-width-wide  ); }
+}
+
+%font-forum { font-family: $font-forum; }
+
+%font-lato { font-family: $font-lato; }
+
+%half_padding {
+    .breakpoint-small  & { padding: $pad-small  / 2; }
+    .breakpoint-medium & { padding: $pad-medium / 2; }
+}
+
+%hide_small {
+    .breakpoint-small & { display: none; }
+}
+
+%hide_medium {
+    .breakpoint-small &,
+    .breakpoint-medium:not(.breakpoint-large):not(.breakpoint-wide) & { display: none; }
+}
+
+%hover-zoom {
+    .breakpoint-medium.csstransforms &:hover {
+        @include transform(scale(1.2));
+        z-index: $z-hover;
+    }
+}
+
+%only-small {
+    .breakpoint-medium &,
+    .breakpoint-large  &,
+    .breakpoint-wide   & { display: none; }
+}
+
+%text-shadow-heavy {
+    text-shadow:
+        -1px -1px 4px #000,
+            1px -1px 4px #000,
+        -1px  1px 4px #000,
+            1px  1px 4px #000;
+}
+
+%spacing_margin_bottom {
+    .breakpoint-small  & { margin-bottom: $spacing-small ; }
+    .breakpoint-medium & { margin-bottom: $spacing-medium; }
+    .breakpoint-large  & { margin-bottom: $spacing-large ; }
+}
+
+%spacing_margin_x {
+    .breakpoint-small  & { margin: 0px $spacing-small ; }
+    .breakpoint-medium & { margin: 0px $spacing-medium; }
+    .breakpoint-large  & { margin: 0px $spacing-large ; }
+}
+
+%spacing_margin_y {
+    .breakpoint-small  & { margin: $spacing-small  0px; }
+    .breakpoint-medium & { margin: $spacing-medium 0px; }
+    .breakpoint-large  & { margin: $spacing-large  0px; }
+}

@@ -1,7 +1,7 @@
 body > header {
     @include size(100% auto);
     
-    z-index: 1000;
+    z-index: $z-header;
     
     > div {
         @extend %content-centered;
@@ -27,7 +27,7 @@ body > header {
     
     .breakpoint-small &,
     .breakpoint-medium & {
-        background: $bg-color;
+        background: $color-content;
         
         position: fixed;
         top: 0px;
@@ -56,7 +56,7 @@ body > header {
         }
         
         nav {
-            @extend .z-shadow-2;
+            @extend .z_shadow_2;
             
             background: $cyan-900;
             
@@ -139,7 +139,7 @@ body > header {
                 
                 display: inline-block;
                 
-                &:hover { background: $link-hilite; }
+                &:hover { background: $bg-link-hover; }
                 
                 .icon,
                 .text {
@@ -182,12 +182,12 @@ body > header {
 }
 
 
-.background_images-controller.background_images-assoc-game > header nav a#header-nav-games,
-.background_images-controller.background_images-assoc-member > header nav a#header-nav-members,
-.external_links-controller > header nav a#header-nav-members,
-.game_memberships-controller.game_memberships-assoc-game > header nav a#header-nav-games,
-.game_memberships-controller.game_memberships-assoc-member > header nav a#header-nav-members,
-.games-controller > header nav a#header-nav-games,
-.members-controller > header nav a#header-nav-members,
-.news_posts-controller > header nav a#header-nav-news-posts,
-.videos-controller > header nav a#header-nav-members { background: $bg-current; }
+.background_images-assoc-game   #header-nav-games,
+.background_images-assoc-game   #header-nav-members,
+.external_links-controller      #header-nav-members,
+.game_memberships-assoc-game    #header-nav-games,
+.game_memberships-assoc-member  #header-nav-members,
+.games-controller               #header-nav-games,
+.members-controller             #header-nav-members,
+.news_posts-controller          #header-nav-news_posts,
+.videos-controller              #header-nav-members { background-color: $bg-current; }

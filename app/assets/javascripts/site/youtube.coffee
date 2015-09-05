@@ -12,8 +12,8 @@ $(document).on 'page:change', ->
         youtube_fetch_snippets ids, (response)->
             for item in response.items
                 container = info_instances[item.id]
-                container.append $("<span class='video-info-channel'>#{item.snippet.channelTitle}</span>")
-                container.append $("<span class='video-info-title'>#{item.snippet.title}</span>")
+                container.append $("<span class='channel'>#{item.snippet.channelTitle}</span>")
+                container.append $("<span class='title'>#{item.snippet.title}</span>")
 
 
 youtube_fetch_snippets = (ids, callback)->

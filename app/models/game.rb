@@ -44,6 +44,11 @@ class Game < ActiveRecord::Base
         uniqueness: true
     
     
+    def self.inverse_game_membership_assoc
+        Member
+    end
+    
+    
     def <=>(other_game)
         name.downcase <=> other_game.name.downcase
     end

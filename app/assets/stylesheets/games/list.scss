@@ -1,0 +1,25 @@
+ul.of_games.packed {
+    .breakpoint-small & {
+        > li {
+            &:not(.see-all) { @include size(50% auto); }
+        }
+        
+        .game-banner { @include size(100%); }
+    }
+    
+    
+    .breakpoint-medium & {
+        > li.see-all {
+            @include size($game-banner-size);
+            
+            line-height: $game-banner-height;
+        }
+    }
+    
+    
+    .breakpoint-medium.csstransforms & {
+        > li {
+            &:hover .game-banner img { @include transform($list-game-banner-transform); }
+        }
+    }
+}

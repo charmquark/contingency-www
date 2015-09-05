@@ -1,9 +1,9 @@
 %action-button {
-    @extend .hover-zoom, .z-level-1;
+    @extend %hover-zoom, .z_level_1;
     
     background: $bg-action;
     border-width: 0px;
-    color: $white-text;
+    color: $fg-action;
     font-family: $font-lato;
     font-weight: lighter;
     text-align: center;
@@ -30,6 +30,8 @@
         
         &.danger { background: $bg-action-danger-hover; }
     }
+    
+    a { color: $fg-action; }
     
     .icon,
     .text {
@@ -62,7 +64,7 @@ form {
     }
 }
 
-.action-icons {
+.action_icons {
     background: $black-icon;
     
     position: absolute;
@@ -73,16 +75,12 @@ form {
 }
 
 .actions {
-    @extend %hide-small;
+    text-align: center;
     
-    .breakpoint-medium & {
-        text-align: center;
-        
-        font-size: 0px;
-        margin: 0px auto;
-        
-        clear: both;
-    }
+    font-size: 0px;
+    margin: 0px auto;
+    
+    clear: both;
     
     body > main > & { width: $content-width-medium; }
     

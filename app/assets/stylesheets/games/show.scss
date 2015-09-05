@@ -1,0 +1,24 @@
+#game-show-info-section {
+    .breakpoint-small & {
+        .game-banner {
+            margin: 0px auto;
+            
+            display: block;
+        }
+        
+        
+        .description { margin-top: $spacing-small; }
+    }
+    
+    
+    .breakpoint-medium & {
+        .game-banner { float: left; }
+        
+        .description { margin-left: $game-banner-width + $spacing-medium; }
+    }
+    
+    
+    .breakpoint-large & {
+        .description { margin-left: $game-banner-width + $spacing-large; }
+    }
+}

@@ -12,22 +12,27 @@ body > footer {
     
     > div { @extend %content-centered; }
     
-    nav { @extend %hide-small; }
+    nav { @extend %hide_small; }
     
     .breakpoint-small & {
-        background: $bg-color;
+        background: $color-content;
         
+        font-size: 0.7rem;
         padding: $pad-small;
+        
+        img { margin-top: $spacing-small; }
     }
     
     .breakpoint-medium & {
-        background: $bg-color;
+        background: $color-content;
         
         padding: $pad-medium;
         
         position: relative;
         
         nav {
+            margin: $spacing-medium 0px;
+            
             a {
                 color: $white-icon;
                 
@@ -39,11 +44,9 @@ body > footer {
                 
                 display: inline-block;
                 
-                &:hover { background: $link-hilite; }
+                &:hover { background: $bg-link-hover; }
             }
         }
-        
-        nav { margin-top: $spacing-medium; }
     }
     
     .breakpoint-large & {
@@ -52,6 +55,6 @@ body > footer {
         margin-bottom: $spacing-large;
         padding: 0px;
         
-        nav { margin-top: $spacing-large; }
+        nav { margin: $spacing-large 0px; }
     }
 }

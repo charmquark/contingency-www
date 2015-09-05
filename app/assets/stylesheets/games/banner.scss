@@ -1,0 +1,19 @@
+.game-banner {
+    @include size($game-banner-size);
+    
+    position: relative;
+    
+    display: inline-block;
+    
+    overflow: hidden;
+    
+    &.half_size { @include size($game-banner-size-half); }
+    
+    > img {
+        @include size(100%);
+        
+        display: inline-block;
+    }
+    
+    .breakpoint-medium & { @include max-size($game-banner-size); }
+}

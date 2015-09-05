@@ -1,0 +1,8 @@
+$list-game-banner-transform:    scale(1.25) rotateZ(6deg);
+$list-member-avatar-transform:  $list-game-banner-transform;
+
+$list-see-all-height-small: 60px;
+
+$list-width-medium: 720px; // game banner * 3, member avatar * 6
+$list-width-large:  960px; // game banner * 4, member avatar * 8
+$list-width-wide:   1440px; // game banner * 6, member avatar * 12

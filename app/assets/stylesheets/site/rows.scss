@@ -1,25 +1,25 @@
-.breakpoint-small .row-medium,
-.breakpoint-small .row-large,
-.breakpoint-small .row-wide,
-.breakpoint-medium:not(.breakpoint-large) .row-large,
-.breakpoint-medium:not(.breakpoint-wide) .row-wide,
-.breakpoint-large:not(.breakpoint-wide) .row-wide {
+.breakpoint-small .row_medium,
+.breakpoint-small .row_large,
+.breakpoint-small .row_wide,
+.breakpoint-medium:not(.breakpoint-large) .row_large,
+.breakpoint-medium:not(.breakpoint-wide) .row_wide,
+.breakpoint-large:not(.breakpoint-wide) .row_wide {
     > section > div { @extend %content-centered; }
 }
 
-.breakpoint-medium .row-medium,
-.breakpoint-large .row-medium,
-.breakpoint-large .row-large,
-.breakpoint-wide .row-medium,
-.breakpoint-wide .row-large,
-.breakpoint-wide .row-wide {
+.breakpoint-medium .row_medium,
+.breakpoint-large .row_medium,
+.breakpoint-large .row_large,
+.breakpoint-wide .row_medium,
+.breakpoint-wide .row_large,
+.breakpoint-wide .row_wide {
     //@extend %content-centered;
     
     position: relative;
     
     display: block;
 
-    &.row-of-halfs {
+    &.row_of_halfs {
         @include clearfix;
         
         > :first-child { float: left; }
@@ -28,8 +28,8 @@
 }
 
 .breakpoint-medium {
-    .row-medium {
-        &.row-of-halfs {
+    .row_medium {
+        &.row_of_halfs {
             @include margin-centered($content-width-halfs-medium);
             
             > section { width: $content-width-halfs-medium-column; }
@@ -38,9 +38,9 @@
 }
 
 .breakpoint-large {
-    .row-medium,
-    .row-large {
-        &.row-of-halfs {
+    .row_medium,
+    .row_large {
+        &.row_of_halfs {
             @include margin-centered($content-width-halfs-large);
             
             > section { width: $content-width-halfs-large-column; }
@@ -49,10 +49,10 @@
 }
 
 .breakpoint-wide {
-    .row-medium,
-    .row-large,
-    .row-wide {
-        &.row-of-halfs {
+    .row_medium,
+    .row_large,
+    .row_wide {
+        &.row_of_halfs {
             @include margin-centered($content-width-halfs-wide);
             
             > section { width: $content-width-halfs-wide-column; }

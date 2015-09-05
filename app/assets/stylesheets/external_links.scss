@@ -1,49 +1,70 @@
-.external-link-url {
-    color: rgba($cyan-200, $alpha-white-text);
-    
-    font-size: 0.8rem;
-    letter-spacing: 0.1rem;
-    
-    .external-link-fragment {
-        color: $white-text;
-        
-        font-size: 1.2rem;
-    }
-}
-
-.external-site-icon {
-    @extend .hover-zoom;
+.external_link-icon {
+    @extend %hover-zoom;
     
     vertical-align: middle;
     
     @include size($icon-size-lg);
 }
 
-#external-links-index-section {
+
+#external_links-index-section {
     table { width: 100%; }
     
-    td {
-        width: auto;
-        padding: 0.5rem 0rem;
-        
-        &.external-link-site-cell { padding: 0.5rem; }
-        
-        &.external-link-actions {
-            text-align: center;
-            
-            > a {
-                margin-right: 5px;
-                
-                &:last-child { margin-right: 0px; }
-            }
-        }
-    }
-
+    
     tr {
         border-bottom: 1px $black-divider solid;
         
-        &:last-child { border-bottom-width: 0px; }
+        &:hover { background-color: rgba($cyan-900, 0.2); }
         
-        &:hover { background: rgba($cyan-900, 0.2); }
+        &:last-child { border-bottom-width: 0px; }
+    }
+
+    
+    .record_actions {
+        @extend %hide_small;
+        
+        a {
+            margin-right: 10px;
+            
+            display: inline-block;
+            
+            &:last-child { margin-right: 0px; }
+        }
+    }
+    
+    
+    .url {
+        color: rgba($cyan-200, $alpha-white-text);
+        
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+        line-height: 1.2rem;
+        
+        
+        .fragment {
+            color: $white-text;
+            
+            font-size: 1.2rem;
+        }
+    }
+    
+    
+    .breakpoint-small & {
+        .site {
+            width: 70px;
+            
+            font-size: 0px;
+        }
+    }
+    
+    
+    .breakpoint-medium & {
+        .record_actions { width: 90px; }
+        
+        .site { width: 160px; }
+    }
+    
+    .breakpoint-large & {
+        
     }
 }

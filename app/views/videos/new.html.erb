@@ -6,24 +6,23 @@
             method: :post
         ) do |f|
     -%>
-        <div class="halfs-medium">
+        <div class="halfs">
             <div class="field">
                 <%= f.label :game_id %>
-                <%= games_select f, Game.all, {include_blank: true} %>
+                <%= game_select f, Game.all, {include_blank: true} %>
             </div>
+            
             <div class="field">
                 <%= f.label :member_id %>
                 <%= member_avatar @member %>
             </div>
         </div>
+        
         <div class="field">
             <%= f.label :fragment %>
             <%= f.text_field :fragment %>
         </div>
-        <%= user_actions do -%>
-            <%= f.submit 'Save' %>
-            <%= f.button 'Reset', type: :reset %>
-            <%= link_to 'Cancel', member_videos_path(@member) %>
-        <%- end -%>
+        
+        <%= form_actions f, member_videos_path(@member) %>
     <%- end -%>
 <%- end -%>

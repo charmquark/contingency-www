@@ -1,19 +1,19 @@
 <%= content_row :medium, :halfs do %>
-    <%= content_section 'home-intro', title: 'A Brief Introduction' do -%>
+    <%= content_section 'home-intro' do -%>
         <p>The Contingency is a community of friends united by a love of gaming and a general philosophy of curiosity, innovation, and hilarity. What began as a technical Minecraft server has expanded to encompass many kinds of experiences: survival games, shooters, minigames, building games, online board games, and more. Members often stream their activity at Twitch.tv and/or post videos to YouTube; and we love to interact with viewers. Depending on what's going on, we will sometimes invite viewers to tag along!</p>
     <%- end -%>
     
-    <%= content_section 'home-latest-news', title: 'Latest News' do -%>
+    <section class="content_section">
         <%= render partial: 'news_posts/embed', locals: {news_post: @news_post} -%>
-    <%- end -%>
+    </section>
 <%- end -%>
 
 <%= content_row :large, :halfs do -%>
-    <%= content_section 'home-games', title: 'Some Games We Enjoy' do -%>
+    <%= content_section 'home-games' do -%>
         <%= render partial: 'games/list', locals: {games: @games, see_all: true} %>
     <%- end -%>
     
-    <%= content_section 'home-members', title: 'Some of Our Members' do -%>
+    <%= content_section 'home-members' do -%>
         <%= render partial: 'members/list', locals: {members: @members, see_all: true} %>
     <%- end -%>
 <%- end -%>

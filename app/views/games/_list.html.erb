@@ -1,15 +1,16 @@
 <%- show_desc ||= false %>
 <%- see_all ||= false %>
-<ul class="of-games packed">
+<ul class="of_games packed">
     <%- games.each do |game| -%>
-        <li class="hover-zoom z-level-0">
+        <li>
             <%= game_banner game -%>
             <%- if show_desc then -%>
-                <div class="game-description"><%= render_markdown game.description -%></div>
+                <div class="description"><%= render_markdown game.description -%></div>
             <%- end -%>
         </li>
     <%- end -%>
+    
     <%- if see_all then -%>
-        <li class="hover-zoom see-all z-level-0"><%= link_to 'All Games', games_path %></li>
+        <li class="see-all"><%= link_to 'All Games', games_path %></li>
     <%- end -%>
 </ul>

@@ -1,25 +1,27 @@
-<%- content_for :title do -%>Videos | <%= @member.handle %> | <%- end -%>
+<%- title 'Videos', @member.handle -%>
 
 <%= content_section 'videos-index', title: "Videos for #{@member.handle}" do -%>
     <table>
         <%- @videos.each do |vid| -%>
             <tr>
-                <td class="video-actions">
+                <td class="record_actions">
                     <%= icon_delete_link '', member_video_path(@member, vid) %>
                 </td>
-                <td class="video-fragment-cell"><%= vid.fragment %></td>
-                <td class="video-info-cell" data-youtube-info="<%= vid.fragment %>"></td>
+                <td class="fragment"><%= vid.fragment %></td>
+                <td class="info" data-youtube-info="<%= vid.fragment %>"></td>
             </tr>
         <%- end -%>
     </table>
+    
     <%- limit_reached = @videos.length >= 9 -%>
     <%- if limit_reached then -%>
         <p class="notice">You have reached the limit of Videos allowed per Member. You will need to remove at least one Video before adding more.</p>
     <%- end -%>
+    
     <%= user_actions is_admin_or?(@member) do -%>
         <%- unless limit_reached then -%>
-            <%= action_link_to :plus, "Add Video", new_member_video_path(@member) %>
+            <%= icon_link_to :plus, "Add Video", new_member_video_path(@member) %>
         <%- end -%>
-        <%= action_link_to 'keyboard-backspace', "Back to Member", @member %>
+        <%= icon_link_to 'keyboard-backspace', "Back to Member", @member %>
     <%- end -%>
 <%- end -%>

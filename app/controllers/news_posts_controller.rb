@@ -6,6 +6,7 @@ class NewsPostsController < ApplicationController
     end
 
     def show
+        set_featured_backgroundable @news_post.game
     end
 
     def new

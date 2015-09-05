@@ -1,22 +1,9 @@
 module IconHelper
-    ACTION_DELETE_LINK_OPTIONS  = {class: ['danger']}
-    ACTION_LINK_TO_OPTIONS      = {class: ['hover-zoom']}
     ICON_DELETE_LINK_OPTIONS    = {
+        class:  ['danger'],
         data:   {confirm: 'Are you sure? This action cannot be undone.'},
         method: :delete
     }
-
-    
-    def action_delete_link(text, href, options = {})
-        options.symbolize_keys!.union! ACTION_DELETE_LINK_OPTIONS
-        action_link_to :delete, text, href, options
-    end
-
-    
-    def action_link_to(which, text, href, options = {})
-        options.symbolize_keys!.union! ACTION_LINK_TO_OPTIONS
-        icon_link_to which, text, href, options
-    end
 
     
     def icon(which, options = {})
@@ -49,7 +36,7 @@ module IconHelper
                 end
             end
             body += capture &blk if block_given?
-            content_tag :div, body.html_safe, class: 'action-icons'
+            content_tag :div, body.html_safe, class: 'action_icons'
         else
             ''
         end

@@ -1,14 +1,14 @@
-<%- content_for :title do -%>New Background | <%= @backgroundable.name %> | <%- end -%>
+<%- title 'New Background', @backgroundable.name -%>
 
-<%= form_section title: "New Background Image for #{@backgroundable.name}" do -%>
+<%= form_section title: "New Background for #{@backgroundable.name}" do -%>
     <%= form_for(@background_image,
             html: {multipart: true},
             url: polymorphic_path([@backgroundable, BackgroundImage]),
             method: :post
         ) do |f|
     -%>
-        <div class="halfs-medium">
-            <div class="field backgroundable-info">
+        <div class="halfs">
+            <div class="field">
                 <label><%= @backgroundable_type.model_name.human %></label>
                 <%- case @backgroundable_type.model_name -%>
                 <%- when 'Game' -%>
@@ -17,15 +17,13 @@
                     <%= member_avatar @backgroundable %>
                 <%- end -%>
             </div>
+            
             <div class="field">
                 <%= f.label :image %>
                 <%= f.file_field :image %>
             </div>
         </div>
-        <%= user_actions do -%>
-            <%= f.submit 'Save' %>
-            <%= f.button 'Reset', type: :reset %>
-            <%= link_to 'Cancel', polymorphic_path([@backgroundable, BackgroundImage]) %>
-        <%- end -%>
+        
+        <%= form_actions f, polymorphic_path([@backgroundable, BackgroundImage]) %>
     <%- end -%>
 <%- end -%>
