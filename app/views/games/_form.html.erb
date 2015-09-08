@@ -16,7 +16,9 @@
     </div>
     
     <div class="halfs hide_small">
-        <%= form_field_basic f, :file_field, @game, :banner, required: '' %>
+        <%- opts = {} -%>
+        <%- opts[:required] = '' unless is_editing_action? -%>
+        <%= form_field_basic f, :file_field, @game, :banner, opts %>
         
         <div class="field">
             <%- if @game.banner? then -%>
