@@ -21,8 +21,10 @@ module MembersHelper
 
     
     def member_avatar_img(member, options = {})
-        alt = member.handle.sub '"', "'"
-        options.symbolize_keys!.union! alt: alt.html_safe
+        if member.handle?
+            alt = member.handle.sub '"', "'"
+            options.symbolize_keys!.union! alt: alt.html_safe
+        end
         image_tag member.avatar.url, options
     end
     

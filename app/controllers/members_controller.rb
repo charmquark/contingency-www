@@ -24,6 +24,7 @@ class MembersController < ApplicationController
     def create
         @member = Member.new member_params
         if @member.save then
+            MemberMailer.new_member(current_user, @member).deliver_now
             redirect_to @member, notice: member_notice('was successfully added.')
         else
             render :new
@@ -35,6 +36,7 @@ class MembersController < ApplicationController
 
     def update
         if @member.update member_params then
+            MemberMailer.edit_member(current_user, @member).deliver_now
             redirect_to @member, notice: member_notice('was successfully updated.')
         else
             render :edit

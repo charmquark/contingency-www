@@ -1,0 +1,20 @@
+<h1>Your Contingency Profile was Updated</h1>
+
+<p>Your account details have been changed in the following ways:</p>
+
+<%- changes = @member.previous_changes -%>
+<ul>
+    <%- if changes.include? 'handle' then -%>
+        <li><b>Handle</b> changed to: <b><%= @member.handle %></b></li>
+    <%- end -%>
+    <%- if changes.include? 'email' then -%>
+        <li><b>Email</b> changed.</li>
+    <%- end -%>
+    <%- if changes.include? 'avatar_updated_at' then -%>
+        <li><b>Avatar</b> changed.</li>
+    <%- end -%>
+    <%- if changes.include? 'biography' then -%>
+        <li><b>Biography</b> changed to:<br><%= $markdown.render(@member.biography).html_safe %></li>
+    <%- end -%>
+</ul>
+

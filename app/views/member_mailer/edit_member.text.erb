@@ -1,0 +1,33 @@
+Your Contingency Profile was Updated
+==================================================
+
+Your account details have been changed in the following ways:
+
+<%- @member.changes.each_pair do |field_name, values| -%>
+--------------------------------------------------
+<%= field_name %>
+
+---- FROM: <%= values[0] %>
+
+---- TO: <%= values[1] %>
+
+
+<%- end -%>
+
+
+
+<%- changes = @member.previous_changes -%>
+<%- if changes.include? 'handle' then -%>
+    -- Handle changed to: <%= @member.handle %>
+<%- end -%>
+<%- if changes.include? 'email' then -%>
+    -- Email changed.
+<%- end -%>
+<%- if changes.include? 'avatar_updated_at' then -%>
+    -- Avatar changed.
+<%- end -%>
+<%- if changes.include? 'biography' then -%>
+    -- Biography changed to:
+<%= @member.biography %>
+<%- end -%>
+

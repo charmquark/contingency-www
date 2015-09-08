@@ -1,0 +1,7 @@
+<h1>Welcome to The Contingency!</h1>
+
+<p>Your account has just been created at the Contingency community website. You may get started using the site right now, at <%= link_to root_url, root_url %>. Use the link in the footer to login. To help you become acquainted with the current services offered by the site, there is a basic introductory manual available at <%= link_to manual_url, manual_url %>.</p>
+
+<p><%= link_to @admin.handle, member_url(@admin) %> created your account, so ask them for your password. Once you are logged in, you can change your password to suit you by first going to <%= link_to 'your profile page', member_url(@member) %> and clicking on the <em>Edit</em> action button at the bottom of the top section. (Remember, you must be logged in to access actions!) Login sessions which are inactive for an hour are automatically logged out for security, so bear this in mind.</p>
+
+<p>If you have any questions, suggestions, requests, or concerns, please just ask!</p>
