@@ -46,6 +46,7 @@ group :development, :test do
 end
 
 # Use puma as the app server
+gem 'tzinfo-data',  platforms: [:mingw, :mswin, :x64_mingw]
 gem 'puma'
 
 # Use paperclip to add image fields to models

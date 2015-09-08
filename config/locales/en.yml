@@ -25,17 +25,19 @@ en:
             external_link:
                 fragment:   "Identifier for External Resource (e.g., username or channel id)"
                 site:       "External Resource"
-            
+
             game:
-                banner:         "Banner Image (500×250 JPEG)"
-                description:    "Description (Markdown formatted)"
+                banner:         "Banner Image (480×240 JPEG)"
+                description:    "Description (Markdown formatted; limit 318 characters)"
                 featured:       "Featured"
-                name:           "Name"
+                info_bg:        "Info Section Background (760 width JPEG)"
+                logo:           "Info Section Logo (480×240 PNG)"
+                name:           "Full Name"
                 slug:           "Slug"
                 summary:        "Summary"
-                
+
             member:
-                avatar:                 "Avatar image (250×250 JPEG)"
+                avatar:                 "Avatar image (240×240 JPEG)"
                 biography:              "Biography (Markdown Formatted)"
                 email:                  "Email Address"
                 handle:                 "Handle"
@@ -43,7 +45,11 @@ en:
                 password_confirmation:  "Password Confirmation"
                 rank:                   "Rank"
                 role:                   "Role"
-            
+
+            news_post:
+                long_body:              "Long Body (Markdown Formatted)"
+                short_body:             "Short Body (Markdown Formatted)"
+
             session:
                 handle:     "Member Handle"
                 password:   "Password"

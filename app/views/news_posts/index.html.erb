@@ -1,6 +1,6 @@
 <%- title 'News' %>
 
-<%= content_section 'news_post-index', title: 'Recent News' do -%>
+<%= content_section 'news_post-index', title: 'Recent Contingency News &amp; Announcements' do -%>
     <% model_cache NewsPost do %>
         <div>
             <%- NewsPost.recent.each do |post| -%>

@@ -21,8 +21,7 @@ module MembersHelper
 
     
     def member_avatar_img(member, options = {})
-        url = member.nil? ? Member::DEFAULT_AVATAR_URL : member.avatar.url
-        image_tag url, options
+        image_tag member.avatar.url, options
     end
     
     

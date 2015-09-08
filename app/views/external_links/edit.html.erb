@@ -11,11 +11,8 @@
             <%= external_link_icon @external_link %>
             <%= @external_link.site_name %>
         </div>
-        
-        <div class="field">
-            <%= f.label :fragment %>
-            <%= f.text_field :fragment %>
-        </div>
+
+        <%= form_field_basic f, :text_field, @external_link, :fragment, required: '' %>
 
         <%= form_actions f, member_external_links_path(@member) %>
     <%- end -%>

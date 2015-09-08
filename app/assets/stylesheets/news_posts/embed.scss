@@ -98,7 +98,7 @@
             .game-banner,
             .generic {
                 top: $member-avatar-height-half;
-                left: initial;
+                left: inherit;
                 right: 0px;
             }
             
@@ -110,7 +110,7 @@
             
             
             .member-avatar {
-                left: initial;
+                left: inherit;
                 right: 0px;
             }
         }
@@ -132,16 +132,14 @@
             .game-banner,
             .generic {
                 top: 0px;
-                left: initial;
                 right: $member-avatar-width-half;
             }
             
             
-            .game-banner { @include transform(initial); }
+            .game-banner { @include transform(rotate(0deg)); }
             
             
             .member-avatar {
-                left: initial;
                 right: 0px;
             }
         }

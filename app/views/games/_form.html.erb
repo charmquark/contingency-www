@@ -1,14 +1,7 @@
 <%= form_for(@game, html: {multipart: true}) do |f| -%>
     <div class="halfs">
-        <div class="field">
-            <%= f.label :name %>
-            <%= f.text_field :name, data: {focus: ''} %>
-        </div>
-        
-        <div class="field">
-            <%= f.label :slug %>
-            <%= f.text_field :slug %>
-        </div>
+        <%= form_field_basic f, :text_field, @game, :name, data: {focus: ''}, required: '' %>
+        <%= form_field_basic f, :text_field, @game, :slug, required: '' %>
     </div>
     
     <div class="field">
@@ -19,16 +12,14 @@
                 <%= f.label :featured %>
             </div>
         </div>
+        <%= form_errors @game, :featured %>
     </div>
     
     <div class="halfs hide_small">
-        <div class="field">
-            <%= f.label :banner %>
-            <%= f.file_field :banner %>
-        </div>
+        <%= form_field_basic f, :file_field, @game, :banner, required: '' %>
         
         <div class="field">
-            <%- unless @game.banner.url.empty? then -%>
+            <%- if @game.banner? then -%>
                 <label>Current Banner</label>
                 <div class="game-banner">
                     <%= game_banner_img @game %>
@@ -37,10 +28,33 @@
         </div>
     </div>
     
-    <div class="field">
-        <%= f.label :description %>
-        <%= f.text_area :description %>
+    <div class="halfs hide_small">
+        <%= form_field_basic f, :file_field, @game, :info_bg %>
+        
+        <div class="field">
+            <%- if @game.info_bg? then -%>
+                <label>Current Info Section Background</label>
+                <div class="game-info_bg">
+                    <%= image_tag @game.info_bg.url %>
+                </div>
+            <%- end -%>
+        </div>
     </div>
     
-    <%= form_actions f, (action_name == 'edit' ? @game : games_path) %>
+    <div class="halfs hide_small">
+        <%= form_field_basic f, :file_field, @game, :logo %>
+        
+        <div class="field">
+            <%- if @game.logo? then -%>
+                <label>Current Info Section Logo</label>
+                <div class="game-logo">
+                    <%= image_tag @game.logo.url %>
+                </div>
+            <%- end -%>
+        </div>
+    </div>
+    
+    <%= form_field_basic f, :text_area, @game, :description, required: '' %>
+    
+    <%= form_actions f, (is_editing_action? ? @game : games_path) %>
 <%- end -%>

@@ -1,6 +1,6 @@
 <%- title 'Games' -%>
 
-<%= content_section 'game-index', title: 'The Games We Play' do -%>
+<%= content_section 'game-index' do -%>
     <% model_cache_unless is_admin?, Game do %>
         <%= render partial: 'games/list', locals: {games: Game.all, show_desc: true} %>
     <% end %>

@@ -3,3 +3,13 @@
 
 @import 'games/index';
 @import 'games/show';
+
+form {
+	.game-info_bg img {
+		width: 100%;
+	}
+
+	.game-logo img {
+		@include size($game-banner-size);
+	}
+}

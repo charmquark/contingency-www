@@ -44,7 +44,8 @@ form {
         
         position: relative;
         
-        > label {
+        > label,
+        > .field_with_errors > label {
             font-family: $font-lato;
             text-transform: uppercase;
 
@@ -55,6 +56,19 @@ form {
             
             display: block;
         }
+
+
+        .errors {
+            color: $red-100;
+            font-family: $font-lato;
+
+            font-size: 0.8rem;
+            line-height: 1;
+            margin-top: 0.2rem;
+
+            display: block;
+        }
+
         
         .check-group,
         .radio-group {
@@ -130,6 +144,12 @@ form {
             }
         }
     }
+
+
+    .field_with_errors {
+        background-color: rgba($red-900, 0.4);
+    }
+
     
     .games-select { height: $game-banner-height; }
     

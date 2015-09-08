@@ -1,60 +1,7 @@
-%action-button {
-    @extend %hover-zoom, .z_level_1;
-    
-    background: $bg-action;
-    border-width: 0px;
-    color: $fg-action;
-    font-family: $font-lato;
-    font-weight: lighter;
-    text-align: center;
-    vertical-align: middle;
-    
-    height: 40px;
-    
-    font-size: 20px;
-    line-height: 40px;
-    margin-top: 20px;
-    margin-right: 20px;
-    padding: 0px 10px;
-    
-    position: relative;
-    
-    display: inline-block;
-    
-    &.danger { background: $bg-action-danger; }
-    
-    &:hover {
-        background: $bg-action-hover;
-        
-        z-index: 2000;
-        
-        &.danger { background: $bg-action-danger-hover; }
-    }
-    
-    a { color: $fg-action; }
-    
-    .icon,
-    .text {
-        vertical-align: middle;
-        
-        position: relative;
-    }
-    
-    .icon {
-        margin-right: 5px;
-        
-        top: -3px;
-    }
-    
-    .text { top: -4px; }
-    
-    &:last-child { margin-right: 0px; }
-}
-
 form {
     input[type=file] {
         &::-webkit-file-upload-button {
-            @extend %action-button;
+            @include action-button-complete;
             
             cursor: pointer;
             
@@ -70,6 +17,8 @@ form {
     position: absolute;
     top: 5px;
     right: 5px;
+
+    z-index: 10;
     
     &:hover { background: $black-text; }
 }

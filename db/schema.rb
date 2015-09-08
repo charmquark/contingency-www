@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821183808) do
+ActiveRecord::Schema.define(version: 20150907182627) do
 
   create_table "background_images", force: :cascade do |t|
     t.integer  "backgroundable_id"
@@ -53,10 +53,18 @@ ActiveRecord::Schema.define(version: 20150821183808) do
     t.string   "banner_content_type"
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.text     "description"
     t.boolean  "featured"
+    t.string   "info_bg_file_name"
+    t.string   "info_bg_content_type"
+    t.integer  "info_bg_file_size"
+    t.datetime "info_bg_updated_at"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "games", ["name"], name: "index_games_on_name", unique: true

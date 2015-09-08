@@ -1,10 +1,10 @@
-<%- show_twitch_indicator ||= false -%>
+<%- twitch_indicator ||= true -%>
 <%- see_all ||= false -%>
 <ul class="of_members packed">
     <%- members.each do |member| -%>
         <li>
-            <%= member_twitch_indicator member if show_twitch_indicator %>
             <%= member_avatar member -%>
+            <%= member_twitch_indicator member if twitch_indicator %>
         </li>
     <%- end -%>
     

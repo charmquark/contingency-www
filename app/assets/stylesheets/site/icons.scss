@@ -8,8 +8,6 @@
     
     display: inline-block;
     
-    &:hover { opacity: $alpha-white-text; }
-    
     &.icon-lg { @include size($icon-size-lg); }
 
     @each $icon in $icons-available {

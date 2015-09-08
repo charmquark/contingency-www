@@ -16,22 +16,26 @@ body > footer {
     
     .breakpoint-small & {
         background: $color-content;
+
+        height: $footer-height-small;
         
         font-size: 0.7rem;
-        padding: $pad-small;
+        padding-top: $pad-small;
         
         img { margin-top: $spacing-small; }
     }
     
     .breakpoint-medium & {
         background: $color-content;
+
+        height: $footer-height-medium;
         
-        padding: $pad-medium;
+        padding-top: $pad-medium;
         
         position: relative;
         
         nav {
-            margin: $spacing-medium 0px;
+            margin-top: $spacing-medium;
             
             a {
                 color: $white-icon;
@@ -49,12 +53,5 @@ body > footer {
         }
     }
     
-    .breakpoint-large & {
-        background: transparent;
-        
-        margin-bottom: $spacing-large;
-        padding: 0px;
-        
-        nav { margin: $spacing-large 0px; }
-    }
+    .breakpoint-large & { background: rgba($color-content, 0.8); }
 }

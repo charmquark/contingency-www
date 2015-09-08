@@ -5,13 +5,15 @@
         <div class="halfs">
             <div class="field">
                 <%= f.label :handle %>
-                <%= f.text_field :handle %>
+                <%= f.text_field :handle, required: '', data: {focus: ''} %>
             </div>
+
             <div class="field">
                 <%= f.label :password %>
-                <%= f.password_field :password %>
+                <%= f.password_field :password, required: '' %>
             </div>
         </div>
+        
         <div class="actions">
             <%= f.submit 'Login' %>
         </div>

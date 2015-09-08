@@ -2,7 +2,7 @@
 
 <%= content_section nil, class: 'limit_large', title: 'Our Members' do -%>
     <% model_cache_unless is_admin?, Member do %>
-        <%= render partial: 'members/list', locals: {members: Member.all, show_twitch_indicator: true} %>
+        <%= render partial: 'members/list', locals: {members: Member.all} %>
     <% end %>
     
     <%= user_actions is_admin?, 'account-plus' => ['Add Member', new_member_path] %>

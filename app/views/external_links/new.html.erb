@@ -11,17 +11,14 @@
             <div class="radio-group thirds">
                 <% ExternalLink.available_sites_for(@member).each do |site| %>
                     <div>
-                        <%= f.radio_button :site, site %>
+                        <%= f.radio_button :site, site, required: '' %>
                         <label><%= ExternalLink::SITE_NAMES[site.to_sym] %></label>
                     </div>
                 <% end %>
             </div>
         </div>
 
-        <div class="field">
-            <%= f.label :fragment %>
-            <%= f.text_field :fragment %>
-        </div>
+        <%= form_field_basic f, :text_field, @external_link, :fragment, required: '' %>
 
         <%= form_actions f, member_external_links_path(@member) %>
     <%- end -%>

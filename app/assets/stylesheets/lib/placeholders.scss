@@ -1,3 +1,9 @@
+%action-button {
+    @extend %hover-zoom, .z_level_1;
+    @include action-button;
+}
+
+
 %card {
     @extend %half_padding, .z_shadow_1;
     
@@ -37,10 +43,7 @@
 }
 
 %hover-zoom {
-    .breakpoint-medium.csstransforms &:hover {
-        @include transform(scale(1.2));
-        z-index: $z-hover;
-    }
+    @include hover-zoom;
 }
 
 %only-small {

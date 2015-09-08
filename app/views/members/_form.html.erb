@@ -1,33 +1,18 @@
 <%= form_for(@member) do |f| %>
     <div class="halfs">
-        <div class="field">
-            <%= f.label :handle %>
-            <%= f.text_field :handle, data: {focus: ''} %>
-        </div>
-        
-        <div class="field">
-            <%= f.label :email %>
-            <%= f.text_field :email %>
-        </div>
+        <%= form_field_basic f, :text_field, @member, :handle, data: {focus: ''}, required: '' %>
+        <%= form_field_basic f, :text_field, @member, :email %>
     </div>
     
     <div class="halfs">
-        <div class="field">
-            <%= f.label :password %>
-            <%= f.password_field :password %>
-        </div>
-        
-        <div class="field">
-            <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation %>
-        </div>
+        <%- passwd_options = {} -%>
+        <%- passwd_options[:required] = '' if is_creating_action? -%>
+        <%= form_field_basic f, :password_field, @member, :password, passwd_options %>
+        <%= form_field_basic f, :password_field, @member, :password_confirmation, passwd_options %>
     </div>
     
     <div class="halfs hide_small">
-        <div class="field">
-            <%= f.label :avatar %>
-            <%= f.file_field :avatar %>
-        </div>
+        <%= form_field_basic f, :file_field, @member, :avatar %>
         
         <div class="field">
             <label>Current Avatar</label>
@@ -36,11 +21,8 @@
             </div>
         </div>
     </div>
-    
-    <div class="field">
-        <%= f.label :biography %>
-        <%= f.text_area :biography, class: 'long' %>
-    </div>
+
+    <%= form_field_basic f, :text_area, @member, :biography %>
     
     <%- if is_admin? then -%>
         <div class="halfs">

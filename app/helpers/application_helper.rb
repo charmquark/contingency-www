@@ -14,7 +14,12 @@ module ApplicationHelper
         body = title.nil? ? '' : content_tag(:h2, title.html_safe)
         body += block_given? ? capture(&blk) : ''
         
-        body = content_tag :div, body.html_safe, class: 'content_section-body' if options.fetch(:body, true)
+        if options.fetch(:body, true) then
+            body_options = options.delete :section_body
+            body_options = {} if body_options.nil?
+            body_options.union! class: 'content_section-body'
+            body = content_tag :div, body.html_safe, body_options
+        end
         content_tag :section, body, options
     end
     
@@ -29,10 +34,32 @@ module ApplicationHelper
         end
     end
 
+
+    def form_errors(record, field)
+        content_tag :span, record.errors[field].join('; '), class: 'errors'
+    end
+
+
+    def form_field_basic(f, type, record, field, options = {})
+        content_tag :div, class: 'field' do
+            (f.label field) + (f.__send__ type, field, options) + (form_errors record, field)
+        end
+    end
+
     
     def form_section(options = {}, &blk)
         options.symbolize_keys!.union! class: ['limit_medium']
         content_section :form, options, &blk
+    end
+
+
+    def is_creating_action?
+        action_name == 'new' || action_name == 'create'
+    end
+
+
+    def is_editing_action?
+        action_name == 'edit' || action_name == 'update'
     end
 
     

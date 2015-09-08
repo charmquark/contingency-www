@@ -30,10 +30,13 @@ $content-width-map: (
     wide:   $content-width-wide
 );
 
+
+$footer-height-small:   50px;
+$footer-height-medium:  150px;
+
 $header-height-small:   30px;
 $header-height-medium:  60px;
-$header-height-large:   60px;
-$header-height-wide:    $header-height-large;
+
 
 $pad-small:     10px;
 $pad-medium:    20px;

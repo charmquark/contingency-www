@@ -1,5 +1,19 @@
 <%- title @member.handle, 'Members' -%>
 
+<%- content_for :member_show_games do -%>
+    <%= content_section 'member-show-games', title: 'Games' do -%>
+        <%= render partial: 'game_memberships/list', locals: {assoc: @member} %>
+    <%- end -%>
+<%- end -%>
+
+<%- if @member.videos.count > 0 || is_admin_or?(@member) then -%>
+    <%- content_for :member_show_videos do -%>
+        <%= content_section 'member-show-videos', class: 'hide_small', title: 'Recent Videos' do -%>
+            <%= render partial: 'videos/list', locals: {assoc: @member, show_actions: true} %>
+        <%- end -%>
+    <%- end -%>
+<%- end -%>
+
 <%= content_section 'member-show-info' do -%>
     <% record_cache @member do %>
         <%= member_avatar @member, link: false, handle: false %>
@@ -27,7 +41,9 @@
             </a>
         <%- end -%>
         
-        <div id="member-show-biography"><%= render_markdown @member.biography %></div>
+        <%- unless @member.biography.empty? then -%>
+            <div id="member-show-biography"><%= render_markdown @member.biography %></div>
+        <%- end -%>
     <% end %>
     
     <%= user_actions is_admin_or?(@member),
@@ -41,12 +57,11 @@
     <%- end -%>
 <%- end -%>
 
-<%= content_row :large, :halfs do -%>
-    <%= content_section 'member-show-games', title: 'Games' do -%>
-        <%= render partial: 'game_memberships/list', locals: {assoc: @member} %>
+<%- if content_for? :member_show_videos then -%>
+    <%= content_row :large, :halfs do -%>
+        <%= yield :member_show_games %>
+        <%= yield :member_show_videos %>
     <%- end -%>
-    
-    <%= content_section 'member-show-videos', class: 'hide_small', title: 'Recent Videos' do -%>
-        <%= render partial: 'videos/list', locals: {assoc: @member, show_actions: true} %>
-    <%- end -%>
+<%- else -%>
+    <%= yield :member_show_games %>
 <%- end -%>

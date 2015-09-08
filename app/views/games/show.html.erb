@@ -1,30 +1,64 @@
 <%- title @game.name, 'Games' -%>
 
-<%= content_row :large, :halfs do -%>
-    <%= content_section 'game-show-info' do -%>
-        <% record_cache @game do %>
-            <%= game_banner @game, link: false %>
-            <div class="description"><%= render_markdown @game.description -%></div>
-        <% end %>
-        
-        <%= user_actions is_admin?,
-            settings: ['Edit', edit_game_path(@game)],
-            'image-area' => ['Backgrounds', game_background_images_path(@game)],
-            delete: ['Delete', @game]
-        %>
-    <%- end -%>
+<%- content_for :game_show_info do -%>
+    <% record_cache_unless is_admin?, @game do %>
+        <%- info_data = {} -%>
+        <%- info_data[:background] = @game.info_bg.url if @game.info_bg? -%>
+        <%= content_section 'game-show-info', section_body: {data: info_data} do -%>
+            <%- if @game.logo? then -%>
+                <%= image_tag @game.logo.url, class: 'logo' %>
+            <%- else -%>
+                <h2><%= @game.name %></h2>
+            <%- end -%>
 
-    <%= content_section 'game-show-news_post', title: 'Related News' do -%>
-        <%= render partial: 'news_posts/embed', locals: {news_post: @game.news_posts.last} -%>
+            <div class="description"><%= render_markdown @game.description -%></div>
+        
+            <%= user_actions is_admin?,
+                settings: ['Edit', edit_game_path(@game)],
+                'image-area' => ['Backgrounds', game_background_images_path(@game)],
+                delete: ['Delete', @game]
+            %>
+        <% end %>
     <%- end -%>
 <%- end -%>
 
-<%= content_row :large, :halfs do -%>
-    <%= content_section 'game-show-players', title: 'Players' do -%>
+<%- news = @game.news_posts.last -%>
+<%- unless news.nil? then -%>
+    <%- content_for :game_show_news_post do -%>
+        <section id="game-show-news_post-section" class="content_section">
+            <%= render partial: 'news_posts/embed', locals: {news_post: news} -%>
+        </section>
+    <%- end -%>
+<%- end -%>
+
+<%- content_for :game_show_players do -%>
+    <%= content_section 'game-show-players', title: "Members Playing This" do -%>
         <%= render partial: 'game_memberships/list', locals: {assoc: @game} %>
     <%- end -%>
-    
-    <%= content_section 'game-show-videos', class: 'hide_small', title: 'Recent Videos' do -%>
-        <%= render partial: 'videos/list', locals: {assoc: @game} %>
+<%- end -%>
+
+<%- unless @game.videos.count == 0 then -%>
+    <%- content_for :game_show_videos do -%>
+        <%= content_section 'game-show-videos', class: 'hide_small', title: 'Related Member Videos' do -%>
+            <%= render partial: 'videos/list', locals: {assoc: @game} %>
+        <%- end -%>
     <%- end -%>
+<%- end -%>
+
+<%- if content_for? :game_show_news_post then -%>
+    <%= content_row :large, :halfs do -%>
+        <%= yield :game_show_info %>
+        <%= yield :game_show_news_post %>
+    <%- end -%>
+<%- else -%>
+    <%= yield :game_show_info %>
+<%- end -%>
+
+<%- if content_for? :game_show_videos then -%>
+    <%= content_row :large, :halfs do -%>
+        <%= yield :game_show_players %>
+        <%= yield :game_show_videos %>
+    <%- end -%>
+<%- else -%>
+    <%= yield :game_show_players %>
 <%- end -%>

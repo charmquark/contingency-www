@@ -14,7 +14,7 @@ module CacheHelper
     
     def model_cache_unless(condition, model, tag = nil, &blk)
         unless condition then
-            cache model_cache_key(model, tag), &blk
+            model_cache model, tag, &blk
         else
             yield
         end
@@ -27,6 +27,14 @@ module CacheHelper
     def record_cache_key(rec, tag = nil)
         tag ||= action_cache_tag
         "#{tag}#{rec.model_name.route_key}/#{rec.id}-#{timestamp_to_s rec.updated_at}"
+    end
+
+    def record_cache_unless(condition, rec, tag = nil, &blk)
+        unless condition then
+            record_cache rec, tag, &blk
+        else
+            yield
+        end
     end
     
     def timestamp_to_s(stamp)

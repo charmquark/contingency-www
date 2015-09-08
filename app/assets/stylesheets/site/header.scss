@@ -10,6 +10,10 @@ body > header {
         
         font-size: 0px;
     }
+
+
+    a { color: $white-secondary !important; }
+
     
     h1 {
         margin: 0px;
@@ -89,7 +93,6 @@ body > header {
             }
             
             a {
-                color: $white-secondary;
                 text-align: right;
                 
                 padding: $pad-small;
@@ -173,9 +176,10 @@ body > header {
     }
     
     .breakpoint-large & {
-        background: transparent;
-        
-        margin-bottom: $spacing-large;
+        background-color: transparent;
+        background-image: url(asset-path('bg-header.png'));
+        background-position: top center;
+        background-repeat: repeat-x;
         
         position: static;
     }

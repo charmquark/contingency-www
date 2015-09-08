@@ -14,7 +14,7 @@
                 <%- if @assoc_type == Game then -%>
                     <%= game_banner @assoc %>
                 <%- else -%>
-                    <%= game_select f, Game.without_member(@assoc) %>
+                    <%= game_select f, Game.without_member(@assoc), {}, required: '' %>
                 <%- end -%>
             </div>
             
@@ -23,7 +23,7 @@
                 <%- if @assoc_type == Member then -%>
                     <%= member_avatar @assoc %>
                 <%- else -%>
-                    <%= member_select f, Member.without_game(@assoc) %>
+                    <%= member_select f, Member.without_game(@assoc), {}, required: '' %>
                 <%- end -%>
             </div>
         </div>

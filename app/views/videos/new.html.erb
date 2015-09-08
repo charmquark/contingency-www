@@ -10,6 +10,7 @@
             <div class="field">
                 <%= f.label :game_id %>
                 <%= game_select f, Game.all, {include_blank: true} %>
+                <%= form_errors @video, :game_id %>
             </div>
             
             <div class="field">
@@ -18,10 +19,7 @@
             </div>
         </div>
         
-        <div class="field">
-            <%= f.label :fragment %>
-            <%= f.text_field :fragment %>
-        </div>
+        <%= form_field_basic f, :text_field, @video, :fragment, required: '' %>
         
         <%= form_actions f, member_videos_path(@member) %>
     <%- end -%>

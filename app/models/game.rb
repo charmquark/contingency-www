@@ -30,10 +30,23 @@ class Game < ActiveRecord::Base
     
     has_attached_file :banner,
         default_url: DEFAULT_BANNER_URL
+
+    has_attached_file :info_bg
+
+    has_attached_file :logo
     
     
     validates :banner,
         attachment_content_type: { content_type: 'image/jpeg' }
+
+    validates :description,
+        length: {maximum: 318}
+
+    validates :info_bg,
+        attachment_content_type: { content_type: 'image/jpeg' }
+
+    validates :logo,
+        attachment_content_type: { content_type: 'image/png' }
     
     validates :name,
         presence: true,

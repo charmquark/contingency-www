@@ -1,8 +1,5 @@
 <%= form_for(@news_post) do |f| %>
-    <div class="field">
-        <%= f.label :title %>
-        <%= f.text_field :title %>
-    </div>
+    <%= form_field_basic f, :text_field, @news_post, :title, data: {focus: ''}, required: '' %>
     
     <div class="halfs">
         <div class="field">
@@ -13,18 +10,12 @@
         <div class="field">
             <%= f.label :game_id %>
             <%= game_select f, Game.all, {include_blank: true} %>
+            <%= form_errors @news_post, :game_id %>
         </div>
     </div>
     
-    <div class="field">
-        <%= f.label :short_body %>
-        <%= f.text_area :short_body %>
-    </div>
-    
-    <div class="field">
-        <%= f.label :long_body %>
-        <%= f.text_area :long_body, class: 'long' %>
-    </div>
+    <%= form_field_basic f, :text_area, @news_post, :short_body, required: '' %>
+    <%= form_field_basic f, :text_area, @news_post, :long_body, class: 'long' %>
     
     <%= form_actions f, (action_name == 'edit' ? @news_post : news_posts_path) %>
 <% end %>

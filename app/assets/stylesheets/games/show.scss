@@ -1,24 +1,37 @@
 #game-show-info-section {
+    .content_section-body[data-background] { background-position: top center; }
+
+
+    .description { text-align: justify; }
+
+
+    .logo {
+        @include size($game-banner-size);
+
+        margin: 0px auto;
+
+        display: block;
+    }
+
+
     .breakpoint-small & {
-        .game-banner {
-            margin: 0px auto;
-            
-            display: block;
-        }
-        
-        
-        .description { margin-top: $spacing-small; }
+        .content_section-body { padding: $pad-small; }
+
+        .logo { margin-bottom: $spacing-small; }
     }
     
     
     .breakpoint-medium & {
-        .game-banner { float: left; }
-        
-        .description { margin-left: $game-banner-width + $spacing-medium; }
+        .logo { margin-bottom: $spacing-medium; }
     }
     
     
     .breakpoint-large & {
-        .description { margin-left: $game-banner-width + $spacing-large; }
+        .logo { margin-bottom: $spacing-large; }
     }
+}
+
+
+.breakpoint-small body > main {
+    padding-top: $header-height-small;
 }

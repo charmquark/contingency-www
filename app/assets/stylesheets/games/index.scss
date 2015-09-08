@@ -11,6 +11,8 @@
         }
         
         .description {
+            text-align: justify;
+
             @include size($game-index-description-size);
             
             margin: 0px auto;

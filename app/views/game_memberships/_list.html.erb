@@ -1,12 +1,15 @@
+<%- twitch_indicator ||= true -%>
+<%- twitch_indicator = twitch_indicator && assoc.class == Game -%>
 <%- tag = "_list/#{assoc.model_name.param_key}-#{assoc.id}-" -%>
 <% model_cache_unless is_admin_or?(assoc), GameMembership, tag do %>
     <ul class="of_<%= assoc.class.inverse_game_membership_assoc.model_name.param_key.pluralize %> packed">
         <%- game_memberships_sorted(assoc).each do |gm| -%>
             <li>
-                <%= render_game_membership assoc, gm %>
+                <%= member_twitch_indicator gm.member if twitch_indicator %>
                 <%= user_action_icons is_admin?,
                     delete: polymorphic_path([assoc, gm])
                 %>
+                <%= render_game_membership assoc, gm %>
             </li>
         <%- end -%>
     </ul>

@@ -8,9 +8,9 @@
     font-smooth: always;
     
     @include prefixer(overflow-scrolling, touch, webkit);
-    @include prefixer(transition-property, $transition-properties, moz o webkit);
-    @include prefixer(transition-duration, 0.25s, moz o webkit);
-    @include prefixer(transition-timing-function, linear, moz o webkit);
+    @include prefixer(transition-property, $transition-properties, moz ms o webkit);
+    @include prefixer(transition-duration, 0.25s, moz ms o webkit);
+    @include prefixer(transition-timing-function, linear, moz ms o webkit);
 }
 
 html,
@@ -29,17 +29,9 @@ body {
 
     margin: 0px;
     
-    .breakpoint-small & {
-        font-size: 14px;
-    }
+    .breakpoint-small & { font-size: 14px; }
     
-    .breakpoint-medium & {
-        font-size: 16px;
-        
-        padding-top: $header-height-medium + $spacing-medium;
-    }
-    
-    .breakpoint-large & { padding-top: 0px; }
+    .breakpoint-medium & { font-size: 16px; }
 }
 
 a {
@@ -59,14 +51,28 @@ h6 {
 }
 
 body > main {
-    min-height: 514px;
-    
     z-index: 100;
+    
     
     .breakpoint-small & {
         background: $bg-content-small;
-        
+
         padding-top: $header-height-small + $spacing-small;
+        padding-bottom: $spacing-small;
+    }
+
+
+    .breakpoint-medium & {
+        min-height: calc(100% - #{$footer-height-medium});
+
+        padding: ($header-height-medium + $spacing-medium)  0px;
+    }
+
+
+    .breakpoint-large & {
+        min-height: calc(100% - #{$header-height-medium + $footer-height-medium});
+        
+        padding: $spacing-large 0px;
     }
 }
 
@@ -101,6 +107,15 @@ p {
     position: relative;
     
     @include clearfix;
+
+    &[data-background] {
+        @extend %text-shadow-heavy;
+
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
     
     h3 {
         border-bottom: 1pt $white-divider solid;
@@ -109,6 +124,7 @@ p {
         margin: 1rem 0px 0.5rem 0px;
         padding-left: 1rem;
     }
+
     
     .breakpoint-small & {
         h2 {
@@ -116,17 +132,23 @@ p {
             
             font-size: 1.5rem;
             line-height: 2rem;
-            margin-bottom: $spacing-small;
+            margin-bottom: $pad-small;
         }
     }
+
     
     .breakpoint-medium & {
         background-color: $bg-content;
         background-image: url('/images/bg-content.png');
-        background-position: top center;
-        background-repeat: repeat-x;
         
         padding: $pad-medium;
+
+        &:not([data-background]) {
+            background-position: top center;
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
         
         h2 {
             border-bottom: 2px $white-divider solid;
@@ -137,15 +159,11 @@ p {
             font-size: 2rem;
             line-height: 2.7rem;
             margin-top: 0px;
-            margin-bottom: $spacing-medium;
+            margin-bottom: $pad-medium;
             
             position: relative;
             top: -0.7rem;
         }
-    }
-    
-    .breakpoint-large & {
-        h2 { margin-bottom: $spacing-large; }
     }
 }
 

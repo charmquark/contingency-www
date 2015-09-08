@@ -1,6 +1,73 @@
+@mixin action-button {
+    background: $bg-action;
+    border-width: 0px;
+    color: $fg-action;
+    font-family: $font-lato;
+    font-weight: lighter;
+    text-align: center;
+    vertical-align: middle;
+    
+    height: 40px;
+    
+    font-size: 20px;
+    line-height: 40px;
+    margin-top: 20px;
+    margin-right: 20px;
+    padding: 0px 10px;
+    
+    position: relative;
+    
+    display: inline-block;
+    
+    &.danger { background: $bg-action-danger; }
+    
+    &:hover {
+        background: $bg-action-hover;
+        
+        z-index: 2000;
+        
+        &.danger { background: $bg-action-danger-hover; }
+    }
+    
+    a { color: $fg-action; }
+    
+    .icon,
+    .text {
+        vertical-align: middle;
+        
+        position: relative;
+    }
+    
+    .icon {
+        margin-right: 5px;
+        
+        top: -3px;
+    }
+    
+    .text { top: -4px; }
+    
+    &:last-child { margin-right: 0px; }
+}
+
+
+@mixin action-button-complete {
+    @include action-button;
+    @include hover-zoom;
+    @include z_level_1;
+}
+
+
 @mixin colors($b, $f) {
     background-color: $b;
     color: $f;
+}
+
+
+@mixin hover-zoom {
+    .breakpoint-medium.csstransforms &:hover {
+        @include transform(scale(1.2));
+        z-index: $z-hover;
+    }
 }
 
 
@@ -43,4 +110,10 @@
 @mixin padding {
     .breakpoint-small  & { padding: $pad-small ; }
     .breakpoint-medium & { padding: $pad-medium; }
+}
+
+
+@mixin z_level_1 {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16),
+                0 3px 6px rgba(0,0,0,0.23);
 }

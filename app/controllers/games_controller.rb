@@ -48,7 +48,7 @@ private
     end
 
     def game_params
-        params.require(:game).permit(:name, :slug, :featured, :banner, :description)
+        params.require(:game).permit(:name, :slug, :featured, :banner, :info_bg, :logo, :description)
     end
 
     def game_notice(tail)
