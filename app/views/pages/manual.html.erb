@@ -1,0 +1,163 @@
+<%- content_for :title do -%>Site Manual | <%- end -%>
+
+
+<ul id="table-of-contents">
+    <li><%= link_to 'Sessions', '#info-sessions-section' %></li>
+    <li><%= link_to 'Background Images', '#info-background_images-section' %></li>
+    <li><%= link_to 'External Links', '#info-external_links-section' %></li>
+    <li><%= link_to 'Games', '#info-games-section' %></li>
+    <li><%= link_to 'Game Memberships', '#info-game_memberships-section' %></li>
+    <li><%= link_to 'Members', '#info-members-section' %></li>
+    <li><%= link_to 'News Posts', '#info-news_posts-section' %></li>
+    <li><%= link_to 'Videos', '#info-videos-section' %></li>
+</ul>
+
+
+<%= content_section 'info-intro', title: 'Introduction to the Manual' do -%>
+    <p>This is the User Manual for the Contingency website. Yeah, you read that right, a website with a manual. There's nothing terribly complex, but it never hurts to give some explanations. Each section corresponds to one of the resource types currently implemented by the site, and gives relevant information for how to manage them as both a regular user and as an administrator. If you have any question not covered by the manual, please let me <small>(charmquark)</small> know so it can be updated/improved. Maybe I'll even answer your question. You may want to remind me.</p>
+    
+    <div class="for-admins">
+        <p>Information intended specifically for administrators will appear with a red band along the left side, like this paragraph. Regular users can ignore it or read it as they see fit.</p>
+    </div>
+
+    <p>If you are reading this on a desktop (or anything with a decently large display), there is a Table of Contents panel to the right for conveniently jumping to a particular section of the manual.</p>
+<%- end -%>
+
+
+<%= content_section 'info-sessions', title: 'Sessions: Logging In/Out' do -%>
+    <p>Members can login anytime by clicking the <em>Login</em> link in the footer at the bottom of every page. You will need to enter your handle and password, bearing in mind that both are <em>case-sensitive</em>, so capitalization matters. When successfully logged in, you will be redirected back to the home page, a link to your personal profile will be added to the page header, and the <em>Login</em> link will be replaced with <em>Logout</em>.</p>
+
+    <p>To keep track of your login, the site uses a small cookie, so you will need to have cookies enabled in your browser, or permission granted to the site if you use some form advanced cookies management. After one hour of no activity, you will be automatically logged out.</p>
+<%- end -%>
+
+
+<%= content_section 'info-background_images', title: 'Background Images' do -%>
+    <p>Background Images can be added to Games and Members. Backgrounds for Games will be used on that Game's page(s), as well as added to the global pool. Backgrounds for Members are used <em>only</em> on that Member's page(s). Any page without a naturally associated Background will use one from the global pool.</p>
+
+    <p>If you have an image you believe is suitable, you can add it to your Member account by first navigating to your Member profile, then clicking on the <em><%= icon 'image-area' %>Backgrounds</em> action button at the bottom of the information section (the top section) to reach the Backgrounds index page. From here you can remove an existing Background by clicking the <%= icon :delete %> action icon, or add a new one by clicking the <em><%= icon :plus %>Add Background</em> action button at the bottom. Before submitting an image, double-check these requirements:</p>
+
+    <ul>
+        <li>Image format is JPEG.</li>
+        <li>Image file size is below 1 MB.</li>
+        <li>Image display size is at least 1920×1080.</li>
+        <li>Image has been sufficiently darkened, as necessary for content to display clearly over it.</li>
+    </ul>
+
+    <div class="for-admins">
+        <p>Administrators can access Backgrounds for Games the same way, except you will navigate to the Game profile instead.</p>
+    </div>
+<%- end -%>
+
+
+<%= content_section 'info-external_links', title: 'External Links' do -%>
+    <p>External Links lead to an account on some other site, such as Twitch or YouTube. To manage External Links, first navigate to the Member profile page, then click on the <em><%= icon :link %>Links</em> action button at the bottom of the information section (the top section) to reach the External Links index page. From here you can remove an existing Link by clicking the <%= icon :delete %> action icon, modify an existing Link by clicking the <%= icon :settings %> action icon, or add a new one by clicking the <em><%= icon :plus %>Add Link</em> action button at the bottom.</p>
+
+    <p>A limited number of external sites are supported, currently being: Beam.pro, Facebook, Google+, Player.me, Steam, Twitter, Twitch, and YouTube. You can also add one link to an arbitrary URL, such as a personal website. When creating or modifying a Link, you will be asked for a <em>&ldquo;fragment&rdquo;</em>. This is the portion of a URL that uniquely identifies your account. For example, your Twitter handle or YouTube channel path (e.g., &ldquo;user/bigpileofcrock&rdquo;).</p>
+
+    <p>When looking at the External Links index page, each Link will be shown with the full URL so you can immediately see if you've made a mistake entering the fragment.</p>
+
+    <div class="for-admins">
+        <p>Administrators can create or update Links for any Member, by clicking the <em><%= icon :link %>Links</em> action button on that Member's profile rather than their own.</p>
+    </div>
+
+    <p>There is special support for Twitch. If you have provided your Twitch Link, and are currently live, an indicator icon will appear on your Member avatar throughout the site, and a preview panel will appear on your profile page at the top of the information section. Clicking anywhere on either of these will send users straight to your Twitch channel. (Note that clicking the normal Twitch link icon on the left side of the information section leads to your Twitch profile page.) Given sufficient interest, and availability of appropriate APIs, similar support may be added for other services in the future.</p>
+<%- end -%>
+
+
+<%= content_section 'info-games', title: 'Games' do -%>
+    <p>Games listed are currently limited to those played by at least a few members of Contingency together in some fashion. In the future it may be made possible to add other games to the system for display on Member pages, given a good reason to do so (such as frequent play on live streams, or a long-lived video series). Regular Members are not able to add Games to the site at this time.</p>
+
+    <div class="for-admins">
+        <p>To add a new Game, first navigate to the Games index page (click the <em>Games</em> header link), then click on the <em><%= icon :plus %>Add Game</em> action button at the bottom. To update an existing game, navigate to the Game profile and click on the <em><%= icon :settings %>Edit</em> action button at the bottom of the information section (the first section). To delete a Game, again visit the profile page, then click on the <em><%= icon :delete %>Delete</em> action button.</p>
+
+        <p>When adding or updating a Game, keep in mind:</p>
+        <ul>
+            <li>The Full Name field is required, and should be filled with the canonical name of the Game. For example, do not enter &ldquo;Ark&rdquo;, but instead enter &ldquo;ARK Survival Evolved&rdquo;. Do not enter &ldquo;CS:GO&rdquo;, but instead enter &ldquo;Counter-Strike: Global Offensive&rdquo;.</li>
+
+            <li>The Slug field is required, and should be filled with a short, simple, unique identifier for the game. Use only lowercase letters and numbers. As examples, a good slug for Minecraft would be &ldquo;mc&rdquo;, or for Don't Starve Together, &ldquo;dst&rdquo;. The Slug is used in URLs to identify the Game.</li>
+
+            <li>The Featured attribute forces the Game to display on the home page. At this time, this is the only attribute.</li>
+
+            <li>The Banner Image is required. This is the image used to represent the Game throughout the site, and should ideally feature some variant of an official logo over a screenshot or official promotional art. Follow this guideline:
+                <ul>
+                    <li>Image must be JPEG format.</li>
+                    <li>Image size should be 480×240.</li>
+                </ul>
+            </li>
+
+            <li>The Info Section Background and Info Section Logo are optional, but should be provided whenever possible. These images are used as the background and logo for the information section on the Game profile. If no Logo is provided, the game's name will be rendered as a heading instead. Follow this guideline:
+                <ul>
+                    <li>The Background image must be JPEG format, at least 760 pixels wide, and smaller than 1 MB.</li>
+                    <li>The Logo image must be PNG format, 480×240, and smaller than 1 MB.</li>
+                </ul>
+            </li>
+
+            <li>The Description field is optional, but should be filled with any quick, short explanation of the game. It is limited to 318 characters. You may use <%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics' %> formatting to create italics, bolding, etc.</li>
+        </ul>
+    </div>
+<%- end -%>
+
+
+<%= content_section 'info-game_memberships', title: 'Game Memberships' do -%>
+    <p>A Game Membership is simply an association between a Game and a Member, indicating that the Member is a player of that Game. They will be listed on each other's profile pages.</p>
+
+    <div class="for-admins">
+        <p>Administrators may manage Game Memberships from either a Game or Member profile page, in the games/players section (bottom row). To add a new Game Membership, click on the <em><%= icon :plus %>Add</em> action button. To remove one, click the <%= icon :delete %> action icon.</p>
+    </div>
+<%- end -%>
+
+
+<%= content_section 'info-members', title: 'Members' do -%>
+    <p>Members are anyone who is actively part of the Contingency family, participating in Games and accepted as such by the community. Members have a profile page at <em>thecontingency.org/members/HANDLE</em>. Members may access various settings for their own profile by navigating to it (there is a convenience link provided in the header when logged in) and clicking the appropriate action buttons/icons. To update general information, use the <em><%= icon :settings%>Edit</em> action button at the bottom of the information section (the top section).</p>
+
+    <div class="for-admins">
+        <p>Administrators may add a new Member by navigating to the Members index page (click <em>Members</em> in the header), then clicking on the <em><%= icon 'account-plus' %>Add Member</em> action button at the bottom.</p>
+    </div>
+
+    <p>When adding or updating a Member, follow these guidelines:</p>
+    <ul>
+        <li>The Handle field is required, and should be filled with a common in-game name (e.g., &ldquo;Nukewarhead&rdquo; or &ldquo;poporp&rdquo;. This will be used in various places, including URLs, to identify the Member.</li>
+
+        <li>The Email Address field is optional.</li>
+
+        <li>The Password and Password Confirmation fields are required when adding a new member, and must match. When updating a Member, leave these fields blank unless you intend to change the password.</li>
+
+        <li>The Avatar Image field is optional. The provided Avatar image, if any, must be in JPEG format, and 240×240 pixels in size. If you do not provide an Avatar image, a generic image of the Contingency "infinity arrow" logo will be used.</li>
+
+        <li>The Biography field is optional, and may contain anything you wish to convey about yourself. Use <%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics' %> formatting to add italics, bolding, headings, etc. Use second level headings or lower, if using any at all.</li>
+    </ul>
+<%- end -%>
+
+
+<%= content_section 'info-news_posts', title: 'News Posts' do -%>
+    <p>News Posts are for publishing updates and announcements regarding the community or its game servers. Only administrators are able to create News Posts.</p>
+
+    <div class="for-admins">
+        <p>To add a News Post, navigate to the News index page and click on the <em><%= icon :plus %>Add News Post</em> action button at the bottom of the page. Follow these guidelines:</p>
+
+        <ul>
+            <li>The Title field is required. Try to keep a balance between clarity and brevity.</li>
+
+            <li>The Game field is optional.</li>
+
+            <li>The Short Body field is required, and should be filled with the first paragraph of the post. This will be used whenever a News Post is embedded into other pages, such as the home page and relevant Game profile.</li>
+
+            <li>The Long Body field is optional, and should be filled with any additional content.</li>
+        </ul>
+
+        <p>Both the Short Body and Long Body fields accept <%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics' %> formatting.</p>
+    </div>
+<%- end -%>
+
+
+<%= content_section 'info-videos', title: 'Videos' do -%>
+    <p>At this time only YouTube videos are supported. Given interest, and the availability of appropriate APIs, support may be expanded in the future to include other video services. Videos are added to Members, but may optionally be associated with a Game, appearing on that Game's profile as well.</p>
+
+    <p>To add a Video, navigate to your profile and click on the <em><%= icon :plus %>Add Video</em> action button on the bottom of the videos section. Fill in the Fragment field with the video ID (what appears after <small><code>watch?v=</code></small> in a YouTube URL). If you are not logged in, and there are no Videos, this section is not visible.</p>
+
+    <p>You are currently limited to having up to nine Videos at a time. To remove a Video, click on the <%= icon :delete %> action icon on either your profile page, or the Videos index page, which is reached by clicking on the <em><%= icon :video %>Videos</em> action button on the bottom of the videos section of your profile.</p>
+
+    <div class="for-admins">
+        <p>As an administrator, you can manage the Videos of any account.</p>
+    </div>
+<%- end -%>

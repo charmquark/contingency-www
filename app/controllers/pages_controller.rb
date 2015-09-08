@@ -13,7 +13,7 @@ class PagesController < ApplicationController
         @news_post = NewsPost.last
     end
     
-    def info
+    def manual
     end
 end
 
