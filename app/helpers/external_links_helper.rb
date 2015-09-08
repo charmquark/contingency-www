@@ -1,6 +1,6 @@
 module ExternalLinksHelper
     def external_link_icon(el)
-        image_tag "external-sites/#{el.site}.png", class: 'external_link-icon'
+        image_tag "external-sites/#{el.site}.png", class: 'external_link-icon', alt: el.site_name
     end
     
     def external_link_resource_url(el, decorate = false)

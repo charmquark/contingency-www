@@ -21,6 +21,8 @@ module MembersHelper
 
     
     def member_avatar_img(member, options = {})
+        alt = member.handle.sub '"', "'"
+        options.symbolize_keys!.union! alt: alt.html_safe
         image_tag member.avatar.url, options
     end
     
@@ -29,7 +31,10 @@ module MembersHelper
         fragment = member.twitch_fragment
         unless fragment.nil? then
             link_to(
-                image_tag('external-sites/twitch-avatar-indicator.png'),
+                image_tag(
+                    'external-sites/twitch-avatar-indicator.png',
+                    alt: 'See me live at Twitch!'
+                ),
                 external_link_twitch_channel_url(fragment),
                 class: 'twitch_indicator',
                 data: {fragment: fragment},

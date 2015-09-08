@@ -1,5 +1,9 @@
 <%- title @member.handle, 'Members' -%>
 
+<%- content_for :page_keywords do -%><%= @member.handle -%><%- end -%>
+
+<%- content_for :page_description do -%><%= @member.handle -%> is a member of The Contingency, a community of gaming friends who believe in innovation and having fun!<%- end -%>
+
 <%- content_for :member_show_games do -%>
     <%= content_section 'member-show-games', title: 'Games' do -%>
         <%= render partial: 'game_memberships/list', locals: {assoc: @member} %>

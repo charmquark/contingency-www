@@ -14,6 +14,16 @@
     <meta name="breakpoint" content="wide" media="(min-width: 1640px)">
     <!--<meta name="breakpoint" content="retina" media="(-webkit-min-device-pixel-ratio: 2)">-->
 
+    <meta name="keywords" content="<%= yield :page_keywords %>">
+
+    <%-
+        if content_for? :page_description then
+            page_description = yield :page_description
+        else
+            page_description = "The Contingency is a community of friends united by gaming and a philosophy of curiosity, innovation, and hilarity. It began with a technical Minecraft server and expanded to a variety of games and other experiences, published to YouTube or running live on Twitch."
+        end
+    -%>
+    <meta name="description" content="<%= page_description %>">
     <meta name="copyright" content="Copyright 2015, The Contingency. All rights reserved.">
     
     <title><%= yield :title %>The Contingency</title>

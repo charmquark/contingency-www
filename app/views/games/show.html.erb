@@ -1,12 +1,16 @@
 <%- title @game.name, 'Games' -%>
 
+<%- content_for :page_keywords do -%><%= @game.name -%><%- end -%>
+
+<%- content_for :page_description do -%><%= @game.name %> is one of the many games played by the members of The Contingency, a community of gaming friends who believe in innovation and having fun!<%- end -%>
+
 <%- content_for :game_show_info do -%>
     <% record_cache_unless is_admin?, @game do %>
         <%- info_data = {} -%>
         <%- info_data[:background] = @game.info_bg.url if @game.info_bg? -%>
         <%= content_section 'game-show-info', section_body: {data: info_data} do -%>
             <%- if @game.logo? then -%>
-                <%= image_tag @game.logo.url, class: 'logo' %>
+                <%= image_tag @game.logo.url, class: 'logo', alt: @game.name %>
             <%- else -%>
                 <h2><%= @game.name %></h2>
             <%- end -%>

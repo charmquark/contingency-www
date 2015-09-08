@@ -17,8 +17,13 @@ module GamesHelper
     
     
     def game_banner_img(game = nil, options = {})
-        url = game.nil? ? Game::DEFAULT_BANNER_URL : game.banner.url
-        image_tag url, options
+        unless game.nil? then
+            alt = game.name.sub '"', "'"
+            options.symbolize_keys!.union! alt: alt.html_safe
+            image_tag game.banner.url, options
+        else
+            image_tag Game::DEFAULT_BANNER_URL, options
+        end
     end
     
     

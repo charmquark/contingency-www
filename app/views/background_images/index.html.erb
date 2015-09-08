@@ -6,7 +6,7 @@
     <ul>
         <%- @backgroundable.background_images.each do |bg| -%>
             <li>
-                <%= image_tag bg.image.url -%>
+                <%= image_tag bg.image.url, alt: "Background #{bg.id}, #{@backgroundable.name}" -%>
                 <%= user_action_icons is_admin_or?(@backgroundable),
                     delete: polymorphic_path([@backgroundable, bg])
                 %>
