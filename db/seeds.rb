@@ -10,6 +10,7 @@ Member.create [
     {
         handle: 'charmquark',
         password: 'password',
-        role: 'admin'
+        role: 'admin',
+        biography: ''
     }
 ]
