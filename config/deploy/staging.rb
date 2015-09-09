@@ -37,6 +37,7 @@ role :db, %w(invironz@midgard)
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
+set :deploy_to, '/srv/http/invironz.com/contingency-staging'
 
 
 # Custom SSH Options

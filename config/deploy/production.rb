@@ -7,6 +7,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
+server 'thecontingency.org', user: 'git-deploy', roles: %w(app db web)
 
 
 # role-based syntax
@@ -21,6 +22,9 @@
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
+role :app, %w(git-deploy@thecontingency.org)
+role :web, %w(git-deploy@thecontingency.org)
+role :db, %w(git-deploy@thecontingency.org)
 
 
 # Configuration
@@ -31,6 +35,7 @@
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
+set :deploy_to, '/srv/http/thecontingency_org'
 
 
 # Custom SSH Options
@@ -59,3 +64,15 @@
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
 #   }
+
+set :ssh_options, {
+    auth_methods: %w(publickey password)
+}
+
+set :linked_dirs, fetch(:linked_dirs, []).push(
+    'public/system'
+)
+
+set :linked_files, fetch(:linked_files, []).push(
+    'db/production.sqlite3'
+)
