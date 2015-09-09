@@ -17,6 +17,16 @@ class NewsPost < ActiveRecord::Base
     
     
     def related
-        NewsPost.recent.where(game: self.game).where.not(id: self.id).limit(3)
+        posts = nil
+        if self.game then
+            posts = NewsPost.recent.where(game: self.game).where.not(id: self.id).limit(3)
+            puts posts.inspect
+            if posts.length < 3 then
+                posts += NewsPost.recent.where.not(id: self.id, game: self.game).limit(3 - posts.length)
+            end
+        else
+            posts = NewsPost.recent.where.not(id: self.id).limit(3)
+        end
+        posts
     end
 end
