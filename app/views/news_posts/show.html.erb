@@ -1,7 +1,7 @@
 <%- title @news_post.title, 'News' -%>
 
 <%= content_section 'news_post-show', class: 'limit_large' do -%>
-    <% model_cache NewsPost do %>
+    <% model_cache NewsPost, "aside-#{@news_post.id}/" do %>
         <aside id="news_post-show-related">
             <%- @news_post.related.each do |np| -%>
                 <%= render partial: 'news_posts/embed', locals: {news_post: np} %>
