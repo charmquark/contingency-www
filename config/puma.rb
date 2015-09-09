@@ -18,7 +18,7 @@ when 'staging'
     daemonize
     quiet
 when 'production'
-    bind 'unix:///var/run/puma/contingency.sock'
+    bind 'unix:/var/run/puma/thecontingency_org.sock'
     pidfile 'tmp/pids/puma.pid'
     state_path 'tmp/pids/puma.state'
     daemonize
