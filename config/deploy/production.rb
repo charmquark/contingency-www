@@ -70,7 +70,7 @@ set :ssh_options, {
 }
 
 set :linked_dirs, fetch(:linked_dirs, []).push(
-    'public/system'
+    'public'
 )
 
 set :linked_files, fetch(:linked_files, []).push(
